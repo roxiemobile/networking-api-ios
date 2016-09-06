@@ -1,0 +1,34 @@
+PODS:
+  - Alamofire (3.4.2)
+  - Atomic (1.0.3)
+  - NetworkingApi (0.1.0):
+    - Alamofire (~> 3.4)
+    - Atomic (~> 1.0)
+    - SwiftCommons (~> 0.1.0)
+  - SwiftCommons (0.1.0)
+
+DEPENDENCIES:
+  - NetworkingApi (from `../../`)
+  - SwiftCommons (from `git@github.com:roxiemobile/swift-commons.ios.git`, tag `0.1.0`)
+
+EXTERNAL SOURCES:
+  NetworkingApi:
+    :path: "../../"
+  SwiftCommons:
+    :git: git@github.com:roxiemobile/swift-commons.ios.git
+    :tag: 0.1.0
+
+CHECKOUT OPTIONS:
+  SwiftCommons:
+    :git: git@github.com:roxiemobile/swift-commons.ios.git
+    :tag: 0.1.0
+
+SPEC CHECKSUMS:
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
+  Atomic: 6a65765cb7d197873633e2693ee612f036736689
+  NetworkingApi: b0b22246327ded29d31db59af15965f0495199c6
+  SwiftCommons: 40357c247184dd066cbc02fea14c3fcf12e380ae
+
+PODFILE CHECKSUM: 7dced44764a660e552835ab4dfa2c02b15bb2317
+
+COCOAPODS: 1.0.1

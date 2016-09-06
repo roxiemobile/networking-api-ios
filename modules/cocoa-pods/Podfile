@@ -1,0 +1,12 @@
+platform :ios, '8.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+project '../networking-api/NetworkingApi.xcodeproj'
+workspace '../networking-api/NetworkingApi.xcworkspace'
+
+target 'NetworkingApiTests' do
+  pod 'SwiftCommons', git: 'git@github.com:roxiemobile/swift-commons.ios.git', tag: '0.1.0'
+  pod 'NetworkingApi', path: '../../'
+end
