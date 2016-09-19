@@ -33,11 +33,11 @@ public class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
 {
 // MARK: - Construction
 
-    override init() {
+    public override init() {
         super.init()
     }
 
-    init(entity: ResponseEntity<T>)
+    public init(entity: ResponseEntity<T>)
     {
         // Init instance variables
         self.status = entity.status
@@ -47,7 +47,7 @@ public class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
         super.init(entity: entity)
     }
 
-    init<Ti>(entity: ResponseEntity<Ti>, body: T?)
+    public init<Ti>(entity: ResponseEntity<Ti>, body: T?)
     {
         // Init instance variables
         self.status = entity.status
