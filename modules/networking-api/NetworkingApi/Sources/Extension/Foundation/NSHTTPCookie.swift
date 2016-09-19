@@ -53,7 +53,7 @@ extension NSHTTPCookie: HttpCookie
     {
         var result = false
 
-        let scheme = (url.scheme.lowercaseString ?? "http")
+        let scheme = (url.scheme?.lowercaseString ?? "http")
         let secureLink = (scheme == "https")
         let path = (str_isNotEmpty(url.path) ? url.path : "/")
 
@@ -65,7 +65,7 @@ extension NSHTTPCookie: HttpCookie
                 // Enforce httponly attribute
                 if (self.HTTPOnly)
                 {
-                    let s  = (url.scheme.lowercaseString ?? "")
+                    let s  = (url.scheme?.lowercaseString ?? "")
                     if (s != "http") && (s != "https") {
                         break
                     }
