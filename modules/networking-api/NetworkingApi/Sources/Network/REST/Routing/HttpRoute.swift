@@ -32,7 +32,7 @@ public final class HttpRoute
     public static func buildRoute(baseURL: NSURL, path: String? = nil, params: QueryParams? = nil) -> HttpRoute
     {
         // Build new URL
-        var urlString = baseURL.absoluteString
+        var urlString = (baseURL.absoluteString ?? "")
 
         // Append path to URL
         if let path = path {
