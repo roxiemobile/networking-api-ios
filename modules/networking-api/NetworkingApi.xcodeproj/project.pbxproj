@@ -21,9 +21,7 @@
 		409526447BC03F815FB9A22A /* Pods_NetworkingApiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD0FD01CD704601522D236C /* Pods_NetworkingApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		664EDD961CC0EA1A007C1D3C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		739F429557B55F2859CFDBBF /* Pods-NetworkingApi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.release.xcconfig"; path = "../cocoa-pods/Pods/Target Support Files/Pods-NetworkingApi/Pods-NetworkingApi.release.xcconfig"; sourceTree = "<group>"; };
 		9D1C7DDD934B6ABC61959095 /* Pods-NetworkingApiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApiTests.release.xcconfig"; path = "../cocoa-pods/Pods/Target Support Files/Pods-NetworkingApiTests/Pods-NetworkingApiTests.release.xcconfig"; sourceTree = "<group>"; };
-		A4ED89B1721431E084E21768 /* Pods-NetworkingApi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.debug.xcconfig"; path = "../cocoa-pods/Pods/Target Support Files/Pods-NetworkingApi/Pods-NetworkingApi.debug.xcconfig"; sourceTree = "<group>"; };
 		F809E1E897769B5D2EA6D241 /* Pods-NetworkingApiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApiTests.debug.xcconfig"; path = "../cocoa-pods/Pods/Target Support Files/Pods-NetworkingApiTests/Pods-NetworkingApiTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,8 +104,6 @@
 		352A93025280E5BDBEBADA37 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A4ED89B1721431E084E21768 /* Pods-NetworkingApi.debug.xcconfig */,
-				739F429557B55F2859CFDBBF /* Pods-NetworkingApi.release.xcconfig */,
 				F809E1E897769B5D2EA6D241 /* Pods-NetworkingApiTests.debug.xcconfig */,
 				9D1C7DDD934B6ABC61959095 /* Pods-NetworkingApiTests.release.xcconfig */,
 			);
