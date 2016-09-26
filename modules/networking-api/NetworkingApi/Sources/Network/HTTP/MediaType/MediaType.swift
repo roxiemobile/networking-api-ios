@@ -373,14 +373,6 @@ public class MediaType: MimeType
     public static let ApplicationJson: MediaType = MediaType.valueOf(ApplicationJsonValue)!
     public static let ApplicationJsonValue = "application/json"
 
-    /// Public constant media type for {@code application/vnd.ekassir.v1+json}.
-    public static let ApplicationVndEkassirJson: MediaType = MediaType.valueOf(ApplicationVndEkassirJsonValue)!
-    public static let ApplicationVndEkassirJsonValue = "application/vnd.ekassir.v1+json"
-
-    /// Public constant media type for {@code application/vnd.ekassir.v1+html}.
-    public static let ApplicationVndEkassirHtml: MediaType = MediaType.valueOf(ApplicationVndEkassirHtmlValue)!
-    public static let ApplicationVndEkassirHtmlValue = "application/vnd.ekassir.v1+html"
-
     /// Public constant media type for {@code application/octet-stream}.
     public static let ApplicationOctetStream = MediaType.valueOf(ApplicationOctetStreamValue)!
     public static let ApplicationOctetStreamValue = "application/octet-stream"

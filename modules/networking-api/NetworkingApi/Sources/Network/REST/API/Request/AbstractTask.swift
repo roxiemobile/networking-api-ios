@@ -139,7 +139,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         return builder.build()
     }
 
-    func newRedirectHandler() -> RedirectHandler? {
+    public func newRedirectHandler() -> RedirectHandler? {
         return nil
     }
 
@@ -154,8 +154,8 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 .build()
     }
 
-    func httpHeaders() -> HttpHeaders {
-        return HttpHeadersUtils.merge(Inner.DefaultHttpHeaders, self.requestEntity.headers)
+    public func httpHeaders() -> HttpHeaders {
+        return (self.requestEntity.headers ?? HttpHeaders([:]))
     }
 
     public func onResult(httpResult: CallResult<NSData>) -> CallResult<To> {
@@ -214,8 +214,6 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
     public typealias TaskTo = To
 
-    private typealias Inner = AbstractTaskInner
-
 // MARK: - Variables
 
     private let tag: String
@@ -223,18 +221,6 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     private let requestEntity: RequestEntity<Ti>
 
     private let cancelled = Atomic<Bool>(false)
-
-}
-
-// ----------------------------------------------------------------------------
-
-private struct AbstractTaskInner
-{
-// MARK: - Constants
-
-    static let DefaultHttpHeaders = HttpHeaders([
-        HttpHeaders.Header.Accept: MediaType.ApplicationVndEkassirJsonValue + ", " + MediaType.ApplicationJsonValue
-    ])
 
 }
 

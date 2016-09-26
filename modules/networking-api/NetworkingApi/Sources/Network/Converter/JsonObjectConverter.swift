@@ -56,7 +56,7 @@ public class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.ApplicationJson, MediaType.ApplicationVndEkassirJson]
+    private static let SupportedMediaTypes = [MediaType.ApplicationJson]
 
 }
 
