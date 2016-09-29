@@ -48,7 +48,7 @@ public class ImageConverter: AbstractCallResultConverter<UIImage>
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.ApplicationJson, MediaType.ApplicationVndEkassirJson]
+    private static let SupportedMediaTypes = [MediaType.ImageJpeg, MediaType.ImagePng]
 
 }
 

@@ -41,6 +41,7 @@ public struct HttpHeaders
         public static let Accept = "Accept"
         public static let AcceptCharset = "Accept-Charset"
         public static let Allow = "Allow"
+        public static let Authorization = "Authorization"
         public static let CacheControl = "Cache-Control"
         public static let ContentDisposition = "Content-Disposition"
         public static let ContentLength = "Content-Length"
@@ -301,6 +302,22 @@ extension HttpHeaders
 //            return EnumSet.noneOf(HttpMethod.class);
 //        }
 //    }
+
+    /**
+     * Sets a value for the {@code Authorization} header.
+     * @param httpAuthentication an http-based authentication representation
+     */
+    public mutating func setAuthorization(httpAuthentication: HttpAuthentication?) {
+        set(Header.Authorization, value: httpAuthentication?.getHeaderValue())
+    }
+
+    /**
+     * Returns the value of the {@code Authorization} header.
+     * @return the Authorization header value
+     */
+    public func getAuthorization() -> String? {
+        return get(Header.Authorization)
+    }
 
 //    /**
 //     * Sets the (new) value of the {@code Cache-Control} header.
