@@ -30,7 +30,7 @@ public class TaskBuilder<Ti, To>
 
 // MARK: - Functions
 
-    func build() -> Task<Ti, To> {
+    public func build() -> Task<Ti, To> {
         mdc_abstractFunction()
     }
 

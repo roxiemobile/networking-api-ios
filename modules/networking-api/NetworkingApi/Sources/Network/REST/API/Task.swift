@@ -18,17 +18,23 @@ import SwiftCommons
 
 public class Task<Ti, To>: Call<Ti>
 {
+// MARK: - Construction
+
+    public override init() {
+        super.init()
+    }
+
 // MARK: - Functions
 
-    func execute(callback: Callback<Ti, To>?) {
+    public func execute(callback: Callback<Ti, To>?) {
         mdc_abstractFunction()
     }
 
-    func enqueue(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
+    public func enqueue(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
         mdc_abstractFunction()
     }
 
-    func clone() -> Task<Ti, To> {
+    public func clone() -> Task<Ti, To> {
         mdc_abstractFunction()
     }
 
