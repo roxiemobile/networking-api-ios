@@ -162,11 +162,11 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         mdc_abstractFunction()
     }
 
-    public override func clone() -> Task<Ti, To> {
+    public override func clone() -> AbstractTask<Ti, To> {
         return newBuilder().build()
     }
 
-    public func newBuilder() -> TaskBuilder<Ti, To> {
+    public func newBuilder() -> AbstractTaskBuilder<Ti, To> {
         mdc_abstractFunction()
     }
 
@@ -226,7 +226,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
 // ----------------------------------------------------------------------------
 
-public class AbstractTaskBuilder<Ti, To>: TaskBuilder<Ti, To>
+public class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 {
 // MARK: - Construction
 
@@ -268,7 +268,7 @@ public class AbstractTaskBuilder<Ti, To>: TaskBuilder<Ti, To>
         return self
     }
 
-    public override func build() -> Task<Ti, To>
+    public override func build() -> AbstractTask<Ti, To>
     {
         checkInvalidState()
         return newTask()
@@ -280,7 +280,7 @@ public class AbstractTaskBuilder<Ti, To>: TaskBuilder<Ti, To>
         mdc_assert(self.requestEntity != nil)
     }
 
-    public func newTask() -> Task<Ti, To> {
+    public func newTask() -> AbstractTask<Ti, To> {
         mdc_abstractFunction()
     }
 

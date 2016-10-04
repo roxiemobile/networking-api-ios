@@ -18,6 +18,12 @@ import SwiftCommons
 
 public class Call<T>
 {
+// MARK: - Construction
+
+    public init() {
+        // Do nothing
+    }
+
 // MARK: - Properties
 
     public func getTag() -> String {
