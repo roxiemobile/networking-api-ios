@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
   s.name                  = 'NetworkingApi'
   s.summary               = 'Networking API is an HTTP library that makes networking for iOS apps easier.'
-  s.version               = '0.3.0'
+  s.version               = '0.3.1'
 
   s.platform              = :ios
   s.ios.deployment_target = '8.0'
