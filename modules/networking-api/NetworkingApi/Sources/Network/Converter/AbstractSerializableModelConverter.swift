@@ -36,15 +36,12 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
                 throw ConversionError(entity: entity, cause: error)
             }
 
-            // Try to parse ParcelableModel
-            if let jsonObject = (json.object as? JsonObject),
-               let model = T.init(params: jsonObject)
-                where model.validate()
-            {
-                newBody = model
-            }
-            else {
-                throw ConversionError(entity: entity)
+            do {
+                if let jsonObject = (json.object as? JsonObject) {
+                    newBody = try T.init(params: jsonObject)
+                }
+            } catch let e as JsonSyntaxException {
+                throw ConversionError(entity: entity, cause: e)
             }
         }
 
