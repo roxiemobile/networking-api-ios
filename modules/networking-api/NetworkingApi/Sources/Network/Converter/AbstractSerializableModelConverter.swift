@@ -39,6 +39,7 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
             // Try to parse ParcelableModel
             if let jsonObject = (json.object as? JsonObject),
                let model = T.init(params: jsonObject)
+                where model.validate()
             {
                 newBody = model
             }
