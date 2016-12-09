@@ -41,7 +41,7 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
                     newBody = try T.init(params: jsonObject)
                 }
                 else {
-                    throw ConversionError(entity: entity)
+                    throw JsonSyntaxException()
                 }
             }
             catch let exception as JsonSyntaxException {
@@ -51,10 +51,6 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
 
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()
         return newEntity
-    }
-
-    override public func supportedMediaTypes() -> [MediaType] {
-        return [MediaType.All]
     }
 
 }
