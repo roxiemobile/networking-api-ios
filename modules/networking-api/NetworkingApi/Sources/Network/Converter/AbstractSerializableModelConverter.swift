@@ -41,7 +41,7 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
                     newBody = try T.init(params: jsonObject)
                 }
                 else {
-                    throw JsonSyntaxException()
+                    throw JsonSyntaxException("Could not transform model.")
                 }
             }
             catch let exception as JsonSyntaxException {
