@@ -52,7 +52,7 @@ public final class HttpRoute
 
         // Validate result
         if (route == nil) {
-            mdc_fatalError("Could not create HTTP route for path ‘\(path)’.")
+            rxm_fatalError("Could not create HTTP route for path ‘\(path)’.")
         }
         
         // Done
@@ -75,7 +75,7 @@ public final class HttpRoute
 
     private static func buildQueryStringComponents(key: String, values: [String]) -> [String]
     {
-        if values.isEmpty { mdc_fatalError("") }
+        if values.isEmpty { rxm_fatalError("") }
 
         var components: [String] = []
         var encodedValue: String

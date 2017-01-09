@@ -19,7 +19,7 @@ public class HttpBearerAuthentication: HttpAuthentication
     public init(token: String)
     {
         // Validate params
-        mdc_assert(str_isNotEmpty(token), message: "Token is empty")
+        Expect.isNotEmpty(token, "Token is empty")
 
         // Init instance variables
         self.token = token

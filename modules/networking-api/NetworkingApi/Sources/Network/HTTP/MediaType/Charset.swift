@@ -88,7 +88,7 @@ public class Charset: NSObject
         }
 
         // Terminate application with runtime exception
-        mdc_fatalError("‘\(charsetName)’ charset is not supported.")
+        rxm_fatalError("‘\(charsetName)’ charset is not supported.")
     }
 
 // MARK: - Private Functions
@@ -109,7 +109,7 @@ public class Charset: NSObject
     private func checkName(name: String)
     {
         if name.isEmpty {
-            mdc_fatalError("Illegal charset name.")
+            rxm_fatalError("Illegal charset name.")
         }
 
         var idx = 0
@@ -127,7 +127,7 @@ public class Charset: NSObject
             if (ucs == UnicodeScalar("_").value && idx != 0) { idx += 1; continue; }
             if (ucs == UnicodeScalar(".").value && idx != 0) { idx += 1; continue; }
 
-            mdc_fatalError("Illegal charset name.")
+            rxm_fatalError("Illegal charset name.")
         }
     }
 

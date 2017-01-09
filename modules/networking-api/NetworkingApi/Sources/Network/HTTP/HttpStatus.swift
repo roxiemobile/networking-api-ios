@@ -268,7 +268,7 @@ public struct HttpStatus
         }
 
         // Terminate application with runtime exception
-        mdc_fatalError("No matching constant for [\(statusCode)].")
+        rxm_fatalError("No matching constant for [\(statusCode)].")
     }
 
     /// Return a string representation of this status code.

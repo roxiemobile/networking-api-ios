@@ -74,7 +74,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      */
     final func call() -> CallResult<To>?
     {
-        mdc_assert(!(NSThread.isMainThread()), message: "This method must not be called from the main thread!")
+        Expect.isFalse(NSThread.isMainThread(), "This method must not be called from the main thread!")
         var result: CallResult<To>?
 
         // Send request to the server
@@ -121,7 +121,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     }
 
     public func callExecute() -> HttpResult {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
     public func newClient() -> RestApiClient
@@ -159,7 +159,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     }
 
     public func onResult(httpResult: CallResult<NSData>) -> CallResult<To> {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
     public override func clone() -> AbstractTask<Ti, To> {
@@ -167,7 +167,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     }
 
     public func newBuilder() -> AbstractTaskBuilder<Ti, To> {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
     public func isCancelled() -> Bool {
@@ -200,7 +200,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 }
             }
             else {
-                mdc_fatalError("!isCancelled() && (result == null)")
+                rxm_fatalError("!isCancelled() && (result == null)")
             }
         }
         else {
@@ -276,12 +276,12 @@ public class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 
     public func checkInvalidState()
     {
-        mdc_assert(self.tag != nil)
-        mdc_assert(self.requestEntity != nil)
+        Expect.isNotNil(self.tag)
+        Expect.isNotNil(self.requestEntity)
     }
 
     public func newTask() -> AbstractTask<Ti, To> {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
 // MARK: - Variables

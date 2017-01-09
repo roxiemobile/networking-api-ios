@@ -89,7 +89,7 @@ public class EncodingProvider: NonCreatable
 
             default:
         // Terminate application with runtime exception
-                mdc_fatalError("‘\(charsetName)’ charset is not supported.")
+                rxm_fatalError("‘\(charsetName)’ charset is not supported.")
         }
 
         return encoding

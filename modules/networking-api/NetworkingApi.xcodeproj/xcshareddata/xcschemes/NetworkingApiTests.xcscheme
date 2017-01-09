@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -10,20 +10,6 @@
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19DBF01B1A6861F400A3F9C3"
-               BuildableName = "NetworkingApi.framework"
-               BlueprintName = "NetworkingApi"
-               ReferencedContainer = "container:NetworkingApi.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19DBF01B1A6861F400A3F9C3"
-            BuildableName = "NetworkingApi.framework"
-            BlueprintName = "NetworkingApi"
+            BlueprintIdentifier = "19DBF0261A6861F400A3F9C3"
+            BuildableName = "NetworkingApiTests.xctest"
+            BlueprintName = "NetworkingApiTests"
             ReferencedContainer = "container:NetworkingApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19DBF01B1A6861F400A3F9C3"
-            BuildableName = "NetworkingApi.framework"
-            BlueprintName = "NetworkingApi"
+            BlueprintIdentifier = "19DBF0261A6861F400A3F9C3"
+            BuildableName = "NetworkingApiTests.xctest"
+            BlueprintName = "NetworkingApiTests"
             ReferencedContainer = "container:NetworkingApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19DBF01B1A6861F400A3F9C3"
-            BuildableName = "NetworkingApi.framework"
-            BlueprintName = "NetworkingApi"
+            BlueprintIdentifier = "19DBF0261A6861F400A3F9C3"
+            BuildableName = "NetworkingApiTests.xctest"
+            BlueprintName = "NetworkingApiTests"
             ReferencedContainer = "container:NetworkingApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

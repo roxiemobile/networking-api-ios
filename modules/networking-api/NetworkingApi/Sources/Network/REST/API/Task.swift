@@ -27,15 +27,15 @@ public class Task<Ti, To>: Call<Ti>
 // MARK: - Functions
 
     public func execute(callback: Callback<Ti, To>?) {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
     public func enqueue(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
     public func clone() -> Task<Ti, To> {
-        mdc_abstractFunction()
+        raiseAbstractMethodException()
     }
 
 }

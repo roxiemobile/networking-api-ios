@@ -1,34 +1,37 @@
 PODS:
-  - Alamofire (3.5.0)
+  - Alamofire (3.5.1)
   - Atomic (1.0.3)
   - NetworkingApi (0.3.4):
     - Alamofire (~> 3.5)
     - Atomic (~> 1.0)
-    - SwiftCommons (~> 0.3.2)
-  - SwiftCommons (0.3.2)
+    - SwiftCommons (~> 0.4.0)
+  - SwiftCommons (0.4.0):
+    - SwiftyJSON (~> 2.4)
+  - SwiftyJSON (2.4.0)
 
 DEPENDENCIES:
   - NetworkingApi (from `../../`)
-  - SwiftCommons (from `https://github.com/roxiemobile/swift-commons.ios.git`, tag `0.3.2`)
+  - SwiftCommons (from `https://github.com/roxiemobile/swift-commons.ios.git`, tag `0.4.0`)
 
 EXTERNAL SOURCES:
   NetworkingApi:
     :path: "../../"
   SwiftCommons:
     :git: https://github.com/roxiemobile/swift-commons.ios.git
-    :tag: 0.3.2
+    :tag: 0.4.0
 
 CHECKOUT OPTIONS:
   SwiftCommons:
     :git: https://github.com/roxiemobile/swift-commons.ios.git
-    :tag: 0.3.2
+    :tag: 0.4.0
 
 SPEC CHECKSUMS:
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   Atomic: 6a65765cb7d197873633e2693ee612f036736689
-  NetworkingApi: 1c13364bd345134fb52c99df8acb461ad4920bc1
-  SwiftCommons: 74c13c640c56cc6f66959ff82b39c4d32c37f765
+  NetworkingApi: e429dfb3546a716b37dcb233182d4255e25d8f05
+  SwiftCommons: f9a9725ccbaa5f4971db4ffd32bd85bc1356c586
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
 
-PODFILE CHECKSUM: ce79ee7178855ffbc7432f42999d8f6c810f1483
+PODFILE CHECKSUM: fa44f41054345c8ccc116d2c2d67d4bf34f59212
 
 COCOAPODS: 1.1.1

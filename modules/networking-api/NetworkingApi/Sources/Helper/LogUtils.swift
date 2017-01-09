@@ -19,40 +19,39 @@ class LogUtils: NonCreatable
 
     static func logRequest(request: NSURLRequest)
     {
-        guard MDLog.isLoggable(.DEBUG) else { return }
+        guard Logger.isLoggable(.DEBUG) else { return }
 
         // Log URL
         let url = (request.URL?.absoluteString ?? "")
-        MDLog.d(String(format: "[%p/rqst-url] %@", request, url))
+        Logger.d(String(format: "[%p/rqst-url] %@", request, url))
 
         // Log Headers
-        MDLog.d(String(format: "[%p/rqst-headers] %@", request, request.allHTTPHeaderFields ?? [:]))
+        Logger.d(String(format: "[%p/rqst-headers] %@", request, request.allHTTPHeaderFields ?? [:]))
 
         // Log Body
         if let body = String(data: (request.HTTPBody ?? NSData()), encoding: NSUTF8StringEncoding) {
-            MDLog.d(String(format: "[%p/rqst-body] %@", request, body))
+            Logger.d(String(format: "[%p/rqst-body] %@", request, body))
         }
     }
 
     static func logResponse(response: NSHTTPURLResponse, body: NSData?)
     {
-        guard MDLog.isLoggable(.DEBUG) else { return }
+        guard Logger.isLoggable(.DEBUG) else { return }
 
         // Log Status
-        if let status = HttpStatus.valueOf(response.statusCode)
-        {
-            MDLog.d(String(format: "[%p/resp-status] %d %@", response, status.code.rawValue, status.reasonPhrase))
+        if let status = HttpStatus.valueOf(response.statusCode) {
+            Logger.d(String(format: "[%p/resp-status] %d %@", response, status.code.rawValue, status.reasonPhrase))
         }
         else {
-            MDLog.d(String(format: "[%p/resp-status] %d", response, response.statusCode))
+            Logger.d(String(format: "[%p/resp-status] %d", response, response.statusCode))
         }
 
         // Log Headers
-        MDLog.d(String(format: "[%p/resp-headers] %@", response, response.allHeaderFields))
+        Logger.d(String(format: "[%p/resp-headers] %@", response, response.allHeaderFields))
 
         // Log Body
         if let body = String(data: (body ?? NSData()), encoding: NSUTF8StringEncoding) {
-            MDLog.d(String(format: "[%p/resp-body] %@", response, body))
+            Logger.d(String(format: "[%p/resp-body] %@", response, body))
         }
     }
 

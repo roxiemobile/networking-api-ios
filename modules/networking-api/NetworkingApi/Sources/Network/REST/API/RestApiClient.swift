@@ -174,7 +174,7 @@ public final class RestApiClient
                 }
             }
             else {
-                mdc_fatalError("(response == nil) && (error == nil)")
+                rxm_fatalError("(response == nil) && (error == nil)")
             }
 
             // Release a waiting thread
@@ -280,14 +280,14 @@ public class RestApiClientBuilder
 
     public func connectTimeout(timeout: NSTimeInterval) -> Self
     {
-        mdc_assert(timeout >= 0, message: "timeout < 0")
+        Expect.isTrue(timeout >= 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
     public func requestTimeout(timeout: NSTimeInterval) -> Self
     {
-        mdc_assert(timeout >= 0, message: "timeout < 0")
+        Expect.isTrue(timeout >= 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }

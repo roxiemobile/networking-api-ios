@@ -55,7 +55,7 @@ extension NSHTTPCookie: HttpCookie
 
         let scheme = (url.scheme?.lowercaseString ?? "http")
         let secureLink = (scheme == "https")
-        let path = (str_isNotEmpty(url.path) ? url.path : "/")
+        let path = (String.isNotEmpty(url.path) ? url.path : "/")
 
         repeat {
             // Apply path-matches rule (RFC 2965 sec. 3.3.4) and check for the possible

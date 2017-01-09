@@ -258,7 +258,7 @@ extension BasicHttpCookieStore
         weak var instance = self
 
         // .. on main thread
-        mdc_dispatch_main_sync()
+        rxm_dispatch_main_sync()
         {
             var notificationCenter: NSNotificationCenter!
 #if os(iOS)

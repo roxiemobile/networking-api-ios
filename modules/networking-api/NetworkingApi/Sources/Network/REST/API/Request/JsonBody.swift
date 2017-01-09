@@ -11,6 +11,7 @@
 import Foundation
 
 import SwiftCommons
+import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 

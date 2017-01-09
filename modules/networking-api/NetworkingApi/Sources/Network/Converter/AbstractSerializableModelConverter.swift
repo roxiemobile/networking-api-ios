@@ -9,10 +9,11 @@
 // ----------------------------------------------------------------------------
 
 import SwiftCommons
+import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCallResultConverter<T>
+public class AbstractSerializableModelConverter<T: SerializableObject>: AbstractCallResultConverter<T>
 {
 // MARK: - Construction
 
@@ -41,10 +42,10 @@ public class AbstractSerializableModelConverter<T: ParcelableModel>: AbstractCal
                     newBody = try T.init(params: jsonObject)
                 }
                 else {
-                    throw JsonSyntaxException("Could not transform model.")
+                    throw JsonSyntaxError(message: "Could not transform model.")
                 }
             }
-            catch let exception as JsonSyntaxException {
+            catch let exception as JsonSyntaxError {
                 throw ConversionError(entity: entity, cause: exception)
             }
         }
