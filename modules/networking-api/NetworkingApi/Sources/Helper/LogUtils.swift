@@ -23,7 +23,8 @@ class LogUtils: NonCreatable
 
         // Log URL
         let url = (request.URL?.absoluteString ?? "")
-        Logger.d(String(format: "[%p/rqst-url] %@", request, url))
+        let method = (request.HTTPMethod ?? "")
+        Logger.d(String(format: "[%p/rqst-url] %@ %@", request, method, url))
 
         // Log Headers
         Logger.d(String(format: "[%p/rqst-headers] %@", request, request.allHTTPHeaderFields ?? [:]))

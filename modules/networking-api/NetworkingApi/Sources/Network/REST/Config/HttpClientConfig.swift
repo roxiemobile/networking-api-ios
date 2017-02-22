@@ -22,7 +22,17 @@ public protocol HttpClientConfig
      */
     func readTimeout() -> NSTimeInterval
 
-// TODO: - Add interceptors
+
+    /**
+     * TODO
+     */
+    func interceptors() -> [Interceptor]
+
+
+    /**
+     * TODO
+     */
+    func networkInterceptors() -> [Interceptor]
 
 }
 

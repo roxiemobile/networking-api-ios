@@ -8,6 +8,10 @@
 //
 // ----------------------------------------------------------------------------
 
+import SwiftCommons
+
+// ----------------------------------------------------------------------------
+
 public class DefaultHttpClientConfig: HttpClientConfig
 {
 // MARK: - Methods
@@ -18,6 +22,31 @@ public class DefaultHttpClientConfig: HttpClientConfig
 
     public func readTimeout() -> NSTimeInterval {
         return NetworkConfig.Timeout.Connection
+    }
+
+    public func interceptors() -> [Interceptor] {
+        return Inner.Interceptors
+    }
+
+    public func networkInterceptors() -> [Interceptor] {
+        return Inner.NetworkInterceptors
+    }
+
+// MARK: - Constants
+
+    private struct Inner
+    {
+        static let Interceptors: [Interceptor] = []
+
+        static let NetworkInterceptors: [Interceptor] = {
+            var networkInterceptors: [Interceptor] = []
+
+            if Logger.isLoggable(.DEBUG) {
+                networkInterceptors.append(HttpLoggingInterceptor())
+            }
+
+            return networkInterceptors
+        }()
     }
 
 }

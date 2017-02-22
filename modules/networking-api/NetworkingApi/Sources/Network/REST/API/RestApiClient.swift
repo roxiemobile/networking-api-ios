@@ -58,134 +58,76 @@ public final class RestApiClient
 
     private func execute(method: Alamofire.Method, entity: RequestEntity<HttpBody>) -> HttpResult
     {
+        let result: HttpResult
         let cookieStore = BasicHttpCookieStore(cookies: entity.cookies)
 
         // Create HTTP request
-        let request = newRequest(method, entity: entity)
+        let urlRequest = newRequest(method, entity: entity)
 
-        // Execute HTTP request
-        return execute(request, cookieStore: cookieStore)
-    }
+        do {
+            // Execute HTTP request
+            var response = try executeWithAllInterceptors(urlRequest, cookieStore: cookieStore)
 
-    private func execute(urlRequest: URLRequestConvertible, cookieStore: HttpCookieStore) -> HttpResult
-    {
-        var result: HttpResult!
+            // Follow up redirects
+            while let redirectRequest = response.redirectRequest {
+                response = try executeWithNetworkInterceptors(redirectRequest, cookieStore: cookieStore)
+            }
 
-        // Create session configuration
-        let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-
-        config.HTTPAdditionalHeaders = [:]
-        config.HTTPCookieStorage = (cookieStore as? NSHTTPCookieStorage)
-        config.timeoutIntervalForResource = self.options.connectionTimeout
-        config.timeoutIntervalForRequest  = self.options.requestTimeout
-
-        // Issues with NSURLSession Not Sending HTTPAdditionalHeaders
-        // @link https://teamtreehouse.com/forum/issues-with-nsurlsession-not-sending-httpadditionalheaders
-
-        // Send POST request using NSURLSession
-        // @link http://stackoverflow.com/a/19101084
-
-        // How to POST NSMutableURLRequest alogn with custome header fields using Alamofire
-        // @link http://stackoverflow.com/q/27025811
-
-        // How to use Alamofire with custom headers
-        // @link http://stackoverflow.com/a/26055667
-
-        let urlRequest = urlRequest.URLRequest.mutableCopy() as! NSMutableURLRequest
-
-        for (header, value) in config.HTTPAdditionalHeaders! {
-            urlRequest.setValue(value as? String, forHTTPHeaderField: header as! String)
+            // Handle response
+            result = HttpResult.Success(handleHttpResponse(response, cookieStore))
         }
-
-        // Create manager
-        let manager = Manager(configuration: config)
-        manager.startRequestsImmediately = false
-
-        // Create suspended request
-        let request = manager.request(urlRequest)
-
-        weak var weakSelf = self
-        if let sessionDelegate = request.session.delegate as? Manager.SessionDelegate
+        catch let error as HttpResponseError
         {
-            // Handle authentication challenge
-            sessionDelegate.sessionDidReceiveChallenge = { session, challenge in
-                return (.PerformDefaultHandling, nil)
-            }
-            sessionDelegate.taskDidReceiveChallenge = { session, task, challenge in
-                return (.PerformDefaultHandling, nil)
-            }
-
-            // Handle redirects
-            sessionDelegate.taskWillPerformHTTPRedirection = { session, task, response, request in
-                var newRequest: NSURLRequest? = request
-
-                // Log response
-                LogUtils.logResponse(response, body: nil)
-
-                if let handler = weakSelf?.options.redirectHandler {
-                    if !handler.onShouldPerformHttpRedirection(response, newRequest: request) {
-                        newRequest = nil
-                    }
-                }
-
-                if let request = newRequest
-                {
-                    // Log request
-                    LogUtils.logRequest(request)
-
-                    // iOS 8.1 uses "Content-Type" header from original request after redirect that may leads to 415 Unsupported Media Type error
-                    // HACK: Remove "Content-Type" header from new request
-                    let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
-                    mutableRequest.setValue("", forHTTPHeaderField: HttpHeaders.Header.ContentType)
-                    newRequest = mutableRequest
-                }
-
-                return newRequest
-            }
+            // Handle interrupted HTTP requests
+            result = HttpResult.Success(handleHttpResponse(error.httpResponse, cookieStore))
         }
-
-        // Log request
-        LogUtils.logRequest(urlRequest)
-
-        // Request data from the server
-        request.resume()
-
-        // Add queue for getting of response
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        let semaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
-
-        // Handle response
-        request.response(queue: queue) { request, response, body, error in
-            // Handle request errors
-            if let error = error {
-                result = HttpResult.Failure(error)
-            }
-            else
-            // Handle HTTP response
-            if let response = response
-            {
-                // Log response
-                LogUtils.logResponse(response, body: body)
-
-                if let entity = weakSelf?.handleResponse(response, body, cookieStore)
-                {
-                    // Create result
-                    result = HttpResult.Success(entity)
-                }
-            }
-            else {
-                rxm_fatalError("(response == nil) && (error == nil)")
-            }
-
-            // Release a waiting thread
-            dispatch_semaphore_signal(semaphore)
+        catch let error
+        {
+            // Handle any other errors
+            result = HttpResult.Failure(error)
         }
-
-        // Waiting for response
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
 
         // Done
         return result
+    }
+
+    private func executeWithAllInterceptors(urlRequest: NSURLRequest, cookieStore: HttpCookieStore) throws -> HttpResponse
+    {
+        var interceptors: [Interceptor] = []
+
+        interceptors.appendContentsOf(self.options.interceptors)
+        interceptors.appendContentsOf(self.options.networkInterceptors)
+        interceptors.append(newCallServerInterceptor(cookieStore))
+
+        return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
+    }
+
+    private func executeWithNetworkInterceptors(urlRequest: NSURLRequest, cookieStore: HttpCookieStore) throws -> HttpResponse
+    {
+        var interceptors: [Interceptor] = []
+
+        interceptors.appendContentsOf(self.options.networkInterceptors)
+        interceptors.append(newCallServerInterceptor(cookieStore))
+
+        return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
+    }
+
+    private func execute(urlRequest: NSURLRequest, withInterceptors interceptors: [Interceptor], cookieStore: HttpCookieStore) throws -> HttpResponse
+    {
+        // Create first chain element
+        let chain = InterceptorChain(interceptors: interceptors, index: 0, request: urlRequest)
+
+        // Start executing interceptors chain
+        return try chain.proceed(urlRequest)
+    }
+
+    private func newCallServerInterceptor(cookieStore: HttpCookieStore) -> CallServerInterceptor
+    {
+        return CallServerInterceptorBuilder()
+                .cookieStore(cookieStore)
+                .connectTimeout(self.options.connectionTimeout)
+                .requestTimeout(self.options.requestTimeout)
+                .build()
     }
 
     private func newRequest(method: Alamofire.Method, entity: RequestEntity<HttpBody>) -> NSURLRequest
@@ -204,34 +146,34 @@ public final class RestApiClient
         return request
     }
 
-    private func handleResponse(response: NSHTTPURLResponse, _ responseBody: NSData?, _ cookieStore: HttpCookieStore) -> ResponseEntity<NSData>
+    private func handleHttpResponse(httpResponse: HttpResponse, _ cookieStore: HttpCookieStore) -> ResponseEntity<NSData>
     {
         var statusCode = HttpStatus.InternalServerError
         var headers = [String: String]()
 
         // Get HTTP headers
-        for (key, value) in response.allHeaderFields {
+        for (key, value) in httpResponse.response.allHeaderFields {
             if let key = key as? String, let value = value as? String {
                 headers[key] = value
             }
         }
 
         // Get status code
-        if let httpStatus = HttpStatus.valueOf(response.statusCode) {
+        if let httpStatus = HttpStatus.valueOf(httpResponse.response.statusCode) {
             statusCode = httpStatus
         }
 
         // Create response entity
         let httpHeaders = HttpHeaders(headers)
         let entityBuilder = BasicResponseEntityBuilder<NSData>()
-                .url(response.URL)
+                .url(httpResponse.response.URL)
                 .headers(httpHeaders)
                 .status(statusCode)
                 // @see https://tools.ietf.org/html/rfc7231#section-3.1.1.5
                 .mediaType(MediaType.ApplicationOctetStream)
                 .cookies(cookieStore.cookies)
 
-        if let responseBody = responseBody {
+        if let responseBody = httpResponse.body {
             entityBuilder.body(responseBody)
 
             if let contentType = httpHeaders.contentType {
@@ -263,7 +205,9 @@ public final class RestApiClient
     {
         private var connectionTimeout = NetworkConfig.Timeout.Connection
         private var requestTimeout = NetworkConfig.Timeout.Request
-        private var redirectHandler: RedirectHandler?
+
+        private var interceptors: [Interceptor] = []
+        private var networkInterceptors: [Interceptor] = []
     }
 
 // MARK: - Variables
@@ -292,9 +236,15 @@ public class RestApiClientBuilder
         return self
     }
 
-    public func redirectHandler(redirectHandler: RedirectHandler?) -> Self
+    public func interceptors(interceptors: [Interceptor]) -> Self
     {
-        self.options.redirectHandler = redirectHandler
+        self.options.interceptors = interceptors
+        return self
+    }
+
+    public func networkInterceptors(networkInterceptors: [Interceptor]) -> Self
+    {
+        self.options.networkInterceptors = networkInterceptors
         return self
     }
 

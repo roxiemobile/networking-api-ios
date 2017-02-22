@@ -44,7 +44,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      * The http client config.
      */
     public func getHttpClientConfig() -> HttpClientConfig {
-        return self.defaultHttpClientConfig
+        return AbstractTaskInner.HttpClientConfig
     }
 
 // MARK: - Methods
@@ -142,15 +142,13 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 .connectTimeout(config.connectTimeout())
                 // Set the default socket timeout which is the timeout for waiting for data
                 .requestTimeout(config.readTimeout())
-                // Handle redirects
-                .redirectHandler(newRedirectHandler())
+                // Set an application interceptors
+                .interceptors(config.interceptors())
+                // Set an network interceptors
+                .networkInterceptors(config.networkInterceptors())
 
         // Done
         return builder.build()
-    }
-
-    public func newRedirectHandler() -> RedirectHandler? {
-        return nil
     }
 
     public func newRequestEntity(route: HttpRoute) -> RequestEntity<HttpBody>
@@ -232,7 +230,16 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
     private let cancelled = Atomic<Bool>(false)
 
-    private let defaultHttpClientConfig: HttpClientConfig = DefaultHttpClientConfig()
+}
+
+// ----------------------------------------------------------------------------
+
+// WORKAROUND: Type 'Inner' nested in generic type 'AbstractTask' is not allowed
+private struct AbstractTaskInner
+{
+// MARK: - Constants
+
+    static let HttpClientConfig = DefaultHttpClientConfig()
 
 }
 
