@@ -97,7 +97,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 case .Success(let entity):
                     // Create a new call result
                     if let status = entity.status where status.is2xxSuccessful() {
-                        result = onResult(.Success(entity))
+                        result = onSuccess(.Success(entity))
                     }
                     else {
                         let cause = ResponseError(entity: entity)
@@ -119,7 +119,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
             // Handle error
             if let error = error {
-                result = .Failure(error)
+                result = onFailure(.Failure(error))
             }
         }
 
@@ -166,8 +166,25 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         return (self.requestEntity.headers ?? HttpHeaders([:]))
     }
 
-    public func onResult(httpResult: CallResult<NSData>) -> CallResult<To> {
+    public func onSuccess(httpResult: CallResult<NSData>) -> CallResult<To> {
         raiseAbstractMethodException()
+    }
+
+    public func onFailure(httpResult: CallResult<NSData>) -> CallResult<To>
+    {
+        var result: CallResult<To>
+
+        switch httpResult
+        {
+            case .Success(_):
+                rxm_fatalError("Trying to call onFailure(_:) method for .Success(_) call result.")
+
+            case .Failure(let error):
+                // Copy an original error
+                result = .Failure(error)
+        }
+
+        return result
     }
 
     public override func clone() -> AbstractTask<Ti, To> {
