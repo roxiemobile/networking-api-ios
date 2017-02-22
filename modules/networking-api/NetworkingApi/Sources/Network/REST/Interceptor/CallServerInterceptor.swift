@@ -32,7 +32,7 @@ class CallServerInterceptor: Interceptor
 
 // MARK: - Private Functions
 
-    func performRequest(urlRequest: NSURLRequest) throws -> HttpResponse
+    private func performRequest(urlRequest: NSURLRequest) throws -> HttpResponse
     {
         var httpResponse: HttpResponse!
         var httpError: ErrorType?
