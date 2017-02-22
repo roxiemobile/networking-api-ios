@@ -34,8 +34,8 @@ public class CallbackDecorator<Ti, To>: Callback<Ti, To>
         return callback.onShouldExecute(call)
     }
 
-    public override func onResponse(call: Call<Ti>, entity: ResponseEntity<To>) {
-        self.callback?.onResponse(call, entity: entity)
+    public override func onSuccess(call: Call<Ti>, entity: ResponseEntity<To>) {
+        self.callback?.onSuccess(call, entity: entity)
     }
 
     public override func onFailure(call: Call<Ti>, error: RestApiError) {

@@ -118,12 +118,12 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
         return result
     }
 
-    override func onResponse(call: Call<Ti>, entity: ResponseEntity<To>)
+    override func onSuccess(call: Call<Ti>, entity: ResponseEntity<To>)
     {
         guard !(self.done.swap(true)) else { return }
 
         dispatch_async(self.queue) {
-            super.onResponse(call, entity: entity)
+            super.onSuccess(call, entity: entity)
         }
     }
 

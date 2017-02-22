@@ -40,7 +40,14 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         return self.requestEntity
     }
 
-// MARK: - Functions
+    /**
+     * The http client config.
+     */
+    public func getHttpClientConfig() -> HttpClientConfig {
+        return self.defaultHttpClientConfig
+    }
+
+// MARK: - Methods
 
     /**
     * Synchronously send the request and return its response.
@@ -126,12 +133,15 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
     public func newClient() -> RestApiClient
     {
+        // Get HTTP client config
+        let config = getHttpClientConfig()
+
         // Create/init HTTP client
         let builder = RestApiClientBuilder()
                 // Set the timeout until a connection is established
-                .connectTimeout(NetworkConfig.Timeout.Connection)
+                .connectTimeout(config.connectTimeout())
                 // Set the default socket timeout which is the timeout for waiting for data
-                .requestTimeout(NetworkConfig.Timeout.Request)
+                .requestTimeout(config.readTimeout())
                 // Handle redirects
                 .redirectHandler(newRedirectHandler())
 
@@ -193,7 +203,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 switch result
                 {
                     case .Success(let entity):
-                        callback.onResponse(self, entity: entity)
+                        callback.onSuccess(self, entity: entity)
 
                     case .Failure(let error):
                         callback.onFailure(self, error: error)
@@ -221,6 +231,8 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     private let requestEntity: RequestEntity<Ti>
 
     private let cancelled = Atomic<Bool>(false)
+
+    private let defaultHttpClientConfig: HttpClientConfig = DefaultHttpClientConfig()
 
 }
 

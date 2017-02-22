@@ -30,7 +30,7 @@ public class Callback<Ti, To>: AbstractClass
         raiseAbstractMethodException()
     }
 
-    public func onResponse(call: Call<Ti>, entity: ResponseEntity<To>) {
+    public func onSuccess(call: Call<Ti>, entity: ResponseEntity<To>) {
         raiseAbstractMethodException()
     }
 
