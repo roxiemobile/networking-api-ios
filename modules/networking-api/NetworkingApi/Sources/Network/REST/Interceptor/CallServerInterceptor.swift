@@ -170,14 +170,14 @@ class CallServerInterceptorBuilder
 
     func connectTimeout(timeout: NSTimeInterval) -> Self
     {
-        Expect.isTrue(timeout >= 0, "timeout < 0")
+        Require.isTrue(timeout >= 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
     func requestTimeout(timeout: NSTimeInterval) -> Self
     {
-        Expect.isTrue(timeout >= 0, "timeout < 0")
+        Require.isTrue(timeout >= 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }

@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  AbstractSerializableModelConverter.swift
+//  AbstractValidatableModelConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
 //  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
@@ -13,7 +13,7 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-public class AbstractSerializableModelConverter<T: SerializableObject>: AbstractCallResultConverter<T>
+public class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallResultConverter<T>
 {
 // MARK: - Construction
 

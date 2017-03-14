@@ -54,7 +54,7 @@ public class FormBodyBuilder
 
     public func add(name: String, value: String) -> Self
     {
-        self.values[name.trimmed()] = value.trimmed()
+        self.values[name.trim()] = value.trim()
         return self
     }
 

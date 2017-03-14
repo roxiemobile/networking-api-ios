@@ -19,8 +19,8 @@ public class HttpBasicAuthentication: HttpAuthentication
     public init(username: String, password: String)
     {
         // Validate params
-        Expect.isNotEmpty(username, "Username is empty")
-        Expect.isNotEmpty(password, "Password is empty")
+        Require.isNotEmpty(username, "Username is empty")
+        Require.isNotEmpty(password, "Password is empty")
 
         // Init instance variables
         self.username = username

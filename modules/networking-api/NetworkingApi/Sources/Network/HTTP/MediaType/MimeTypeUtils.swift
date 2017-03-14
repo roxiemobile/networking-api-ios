@@ -67,8 +67,8 @@ public final class MimeTypeUtils: NonCreatable
             {
                 if let eqIndex = parameter.rangeOfString("=")
                 {
-                    let attribute = parameter.substringToIndex(eqIndex.startIndex).trimmed()
-                    let value = parameter.substringFromIndex(eqIndex.startIndex.successor()).trimmed()
+                    let attribute = parameter.substringToIndex(eqIndex.startIndex).trim()
+                    let value = parameter.substringFromIndex(eqIndex.startIndex.successor()).trim()
                     parameters[attribute] = value
                 }
             }

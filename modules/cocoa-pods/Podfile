@@ -7,6 +7,6 @@ project '../networking-api/NetworkingApi.xcodeproj'
 workspace '../networking-api/NetworkingApi.xcworkspace'
 
 target 'NetworkingApiTests' do
-  pod 'SwiftCommons', git: 'https://github.com/roxiemobile/swift-commons.ios.git', tag: '0.4.0'
+  pod 'SwiftCommons', git: 'https://github.com/roxiemobile/swift-commons.ios.git', tag: '0.7.2'
   pod 'NetworkingApi', path: '../../'
 end

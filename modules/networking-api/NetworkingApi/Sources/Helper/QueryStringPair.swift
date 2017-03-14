@@ -32,12 +32,12 @@ class QueryStringPair
         var result = ""
 
         // Append "key"
-        if !(self.field is NSNull), let subString = self.field?.description.trimmed() where !subString.isEmpty {
+        if !(self.field is NSNull), let subString = self.field?.description.trim() where !subString.isEmpty {
             result += subString.escapeString(encoding)
         }
 
         // Append "value"
-        if !(self.value is NSNull), let subString = self.value?.description.trimmed() where !subString.isEmpty {
+        if !(self.value is NSNull), let subString = self.value?.description.trim() where !subString.isEmpty {
             result += (result.isEmpty ? "" : "=") + subString.escapeString(encoding)
         }
 

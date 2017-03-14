@@ -32,13 +32,13 @@ public class HttpLoggingInterceptor: Interceptor
     public func intercept(chain: InterceptorChain) throws -> HttpResponse
     {
         // Log request
-        LogUtils.logRequest(chain.request)
+        LogUtils.log(self.customTag, request: chain.request)
 
         // Perform request
         let httpResponse = try chain.proceed(chain.request)
 
         // Log response
-        LogUtils.logResponse(httpResponse.response, body: httpResponse.body)
+        LogUtils.log(self.customTag, response: httpResponse.response, body: httpResponse.body)
 
         // Done
         return httpResponse

@@ -13,7 +13,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-@objc public protocol HttpCookie: MDPrintable
+@objc public protocol HttpCookie: RXMCustomStringConvertible
 {
 // MARK: - Properties
 

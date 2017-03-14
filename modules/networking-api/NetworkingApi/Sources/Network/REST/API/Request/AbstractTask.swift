@@ -81,7 +81,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      */
     final func call() -> CallResult<To>?
     {
-        Expect.isFalse(NSThread.isMainThread(), "This method must not be called from the main thread!")
+        Require.isFalse(NSThread.isMainThread(), "This method must not be called from the main thread!")
         var result: CallResult<To>?
 
         // Send request to the server
@@ -312,8 +312,8 @@ public class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 
     public func checkInvalidState()
     {
-        Expect.isNotNil(self.tag)
-        Expect.isNotNil(self.requestEntity)
+        Require.isNotNil(self.tag)
+        Require.isNotNil(self.requestEntity)
     }
 
     public func newTask() -> AbstractTask<Ti, To> {

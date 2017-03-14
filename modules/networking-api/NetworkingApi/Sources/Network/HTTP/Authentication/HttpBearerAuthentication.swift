@@ -19,7 +19,7 @@ public class HttpBearerAuthentication: HttpAuthentication
     public init(token: String)
     {
         // Validate params
-        Expect.isNotEmpty(token, "Token is empty")
+        Require.isNotEmpty(token, "Token is empty")
 
         // Init instance variables
         self.token = token

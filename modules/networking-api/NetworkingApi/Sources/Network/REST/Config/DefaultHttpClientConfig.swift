@@ -41,7 +41,7 @@ public class DefaultHttpClientConfig: HttpClientConfig
         static let NetworkInterceptors: [Interceptor] = {
             var networkInterceptors: [Interceptor] = []
 
-            if Logger.isLoggable(.DEBUG) {
+            if Logger.isLoggable(.Debug) {
                 networkInterceptors.append(HttpLoggingInterceptor())
             }
 

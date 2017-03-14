@@ -36,7 +36,7 @@ public final class HttpRoute
 
         // Append path to URL
         if let path = path {
-            urlString += path.trimmed()
+            urlString += path.trim()
         }
 
         // Append query params to URL
