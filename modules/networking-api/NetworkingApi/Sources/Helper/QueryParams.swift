@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class QueryParams: DictionaryLiteralConvertible
+open class QueryParams: ExpressibleByDictionaryLiteral
 {
 // MARK: - Construction
 
@@ -23,21 +23,21 @@ public class QueryParams: DictionaryLiteralConvertible
 
     var items: [String: [String]] = [:]
 
-    public var isEmpty: Bool {
+    open var isEmpty: Bool {
         return self.items.isEmpty
     }
 
 // MARK: - Functions
 
-    public func add(key: String, _ value: String) {
+    open func add(_ key: String, _ value: String) {
         self.items[key] = ((self.items[key] ?? []) + [value])
     }
 
-    public func get(key: String) -> [String]? {
+    open func get(_ key: String) -> [String]? {
         return self.items[key]
     }
 
-    public func remove(key: String) {
+    open func remove(_ key: String) {
         self.items[key] = nil
     }
 

@@ -15,7 +15,7 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-public class JsonBody: HttpBody
+open class JsonBody: HttpBody
 {
 // MARK: - Construction
 
@@ -27,11 +27,11 @@ public class JsonBody: HttpBody
 
 // MARK: - Properties
 
-    public var mediaType: MediaType? {
+    open var mediaType: MediaType? {
         return JsonBody.MediaTypeJson
     }
 
-    public var body: NSData? {
+    open var body: Data? {
         guard let jsonBody = self.jsonBody else {
             return nil
         }
@@ -40,12 +40,12 @@ public class JsonBody: HttpBody
 
 // MARK: - Constants
 
-    private static let MediaTypeJson =
+    fileprivate static let MediaTypeJson =
             MediaType.valueOf(MediaType.ApplicationJsonValue + "; charset=" + HttpKeys.EncodingName.UTF_8)
 
 // MARK: - Variables
     
-    private let jsonBody: JsonElement?
+    fileprivate let jsonBody: JsonElement?
 
 }
 

@@ -12,11 +12,11 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class DataBody: HttpBody
+open class DataBody: HttpBody
 {
 // MARK: - Construction
 
-    private init(builder: DataBodyBuilder)
+    fileprivate init(builder: DataBodyBuilder)
     {
         // Init instance variables
         self.mediaType = builder.mediaType
@@ -25,15 +25,15 @@ public class DataBody: HttpBody
 
 // MARK: - Properties
 
-    public let mediaType: MediaType?
+    open let mediaType: MediaType?
 
-    public let body: NSData?
+    open let body: Data?
 
 }
 
 // ----------------------------------------------------------------------------
 
-public class DataBodyBuilder
+open class DataBodyBuilder
 {
 // MARK: - Construction
 
@@ -43,25 +43,25 @@ public class DataBodyBuilder
 
 // MARK: - Properties
 
-    public private(set) var mediaType: MediaType?
+    open fileprivate(set) var mediaType: MediaType?
 
-    public private(set) var body: NSData?
+    open fileprivate(set) var body: Data?
 
 // MARK: - Functions
 
-    public func mediaType(mediaType: MediaType?) -> Self
+    open func mediaType(_ mediaType: MediaType?) -> Self
     {
         self.mediaType = mediaType
         return self
     }
 
-    public func body(body: NSData?) -> Self
+    open func body(_ body: Data?) -> Self
     {
         self.body = body
         return self
     }
 
-    public func build() -> DataBody {
+    open func build() -> DataBody {
         return DataBody(builder: self)
     }
 

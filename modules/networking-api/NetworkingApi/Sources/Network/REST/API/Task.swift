@@ -16,7 +16,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class Task<Ti, To>: Call<Ti>
+open class Task<Ti, To>: Call<Ti>
 {
 // MARK: - Construction
 
@@ -26,15 +26,15 @@ public class Task<Ti, To>: Call<Ti>
 
 // MARK: - Functions
 
-    public func execute(callback: Callback<Ti, To>?) {
+    open func execute(_ callback: Callback<Ti, To>?) {
         raiseAbstractMethodException()
     }
 
-    public func enqueue(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
+    open func enqueue(_ callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
         raiseAbstractMethodException()
     }
 
-    public func clone() -> Task<Ti, To> {
+    open func clone() -> Task<Ti, To> {
         raiseAbstractMethodException()
     }
 

@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
 
   # External dependencies
   s.dependency 'SwiftCommons', '~> 0.7.2'
-  s.dependency 'Alamofire', '~> 3.5'
-  s.dependency 'Atomic', '~> 1.0'
+  s.dependency 'Alamofire', '~> 4.4'
 
 end

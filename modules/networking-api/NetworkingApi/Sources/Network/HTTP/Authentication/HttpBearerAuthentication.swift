@@ -12,7 +12,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class HttpBearerAuthentication: HttpAuthentication
+open class HttpBearerAuthentication: HttpAuthentication
 {
 // MARK: - Construction
 
@@ -27,13 +27,13 @@ public class HttpBearerAuthentication: HttpAuthentication
 
 // MARK: - Functions
 
-    public override func getHeaderValue() -> String {
+    open override func getHeaderValue() -> String {
         return "Bearer " + self.token
     }
 
 // MARK: - Variables
 
-    private let token: String
+    fileprivate let token: String
 
 }
 

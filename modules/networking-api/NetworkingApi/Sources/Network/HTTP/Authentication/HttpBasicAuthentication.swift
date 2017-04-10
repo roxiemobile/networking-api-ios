@@ -12,7 +12,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class HttpBasicAuthentication: HttpAuthentication
+open class HttpBasicAuthentication: HttpAuthentication
 {
 // MARK: - Construction
 
@@ -29,17 +29,17 @@ public class HttpBasicAuthentication: HttpAuthentication
 
 // MARK: - Functions
 
-    public override func getHeaderValue() -> String
+    open override func getHeaderValue() -> String
     {
-        let data = (self.username + ":" + self.password).dataUsingEncoding(NSUTF8StringEncoding)!
-        return "Basic " + data.base64EncodedStringWithOptions([])
+        let data = (self.username + ":" + self.password).data(using: String.Encoding.utf8)!
+        return "Basic " + data.base64EncodedString(options: [])
     }
 
 // MARK: - Variables
 
-    private let username: String
+    fileprivate let username: String
 
-    private let password: String
+    fileprivate let password: String
 
 }
 

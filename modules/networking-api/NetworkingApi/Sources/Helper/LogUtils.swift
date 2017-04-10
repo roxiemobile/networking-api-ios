@@ -17,41 +17,45 @@ class LogUtils: NonCreatable
 {
 // MARK: - Functions
 
-    static func log(tag: String, request: NSURLRequest)
+    static func log(_ tag: String, request: URLRequest)
     {
         guard Logger.isLoggable(.Debug) else { return }
 
+        let hashString = request.hashValue.rxm_hexString
+
         // Log URL
-        let url = (request.URL?.absoluteString ?? "")
-        let method = (request.HTTPMethod ?? "")
-        Logger.d(tag, String(format: "[%p/rqst-url] %@ %@", request, method, url))
+        let url = (request.url?.absoluteString ?? "")
+        let method = (request.httpMethod ?? "")
+        Logger.d(tag, String(format: "[%d/rqst-url] %@ %@", hashString, method, url))
 
         // Log Headers
-        Logger.d(tag, String(format: "[%p/rqst-headers] %@", request, request.allHTTPHeaderFields ?? [:]))
+        Logger.d(tag, String(format: "[%p/rqst-headers] %@", hashString, request.allHTTPHeaderFields ?? [:]))
 
         // Log Body
-        if let body = String(data: (request.HTTPBody ?? NSData()), encoding: NSUTF8StringEncoding) {
-            Logger.d(tag, String(format: "[%p/rqst-body] %@", request, body))
+        if let body = String(data: (request.httpBody ?? Data()), encoding: String.Encoding.utf8) {
+            Logger.d(tag, String(format: "[%p/rqst-body] %@", hashString, body))
         }
     }
 
-    static func log(tag: String, response: NSHTTPURLResponse, body: NSData?)
+    static func log(_ tag: String, response: HTTPURLResponse, body: Data?)
     {
         guard Logger.isLoggable(.Debug) else { return }
 
+        let hashString = response.hashValue.rxm_hexString
+
         // Log Status
         if let status = HttpStatus.valueOf(response.statusCode) {
-            Logger.d(tag, String(format: "[%p/resp-status] %d %@", response, status.code.rawValue, status.reasonPhrase))
+            Logger.d(tag, String(format: "[%p/resp-status] %d %@", hashString, status.code.rawValue, status.reasonPhrase))
         }
         else {
-            Logger.d(tag, String(format: "[%p/resp-status] %d", response, response.statusCode))
+            Logger.d(tag, String(format: "[%p/resp-status] %d", hashString, response.statusCode))
         }
 
         // Log Headers
-        Logger.d(tag, String(format: "[%p/resp-headers] %@", response, response.allHeaderFields))
+        Logger.d(tag, String(format: "[%p/resp-headers] %@", hashString, response.allHeaderFields))
 
         // Log Body
-        if let body = String(data: (body ?? NSData()), encoding: NSUTF8StringEncoding) {
+        if let body = String(data: (body ?? Data()), encoding: String.Encoding.utf8) {
             Logger.d(tag, String(format: "[%p/resp-body] %@", response, body))
         }
     }

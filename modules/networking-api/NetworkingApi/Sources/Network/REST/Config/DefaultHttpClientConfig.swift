@@ -12,29 +12,29 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class DefaultHttpClientConfig: HttpClientConfig
+open class DefaultHttpClientConfig: HttpClientConfig
 {
 // MARK: - Methods
 
-    public func connectTimeout() -> NSTimeInterval {
+    open func connectTimeout() -> TimeInterval {
         return NetworkConfig.Timeout.Connection
     }
 
-    public func readTimeout() -> NSTimeInterval {
+    open func readTimeout() -> TimeInterval {
         return NetworkConfig.Timeout.Connection
     }
 
-    public func interceptors() -> [Interceptor] {
+    open func interceptors() -> [Interceptor] {
         return Inner.Interceptors
     }
 
-    public func networkInterceptors() -> [Interceptor] {
+    open func networkInterceptors() -> [Interceptor] {
         return Inner.NetworkInterceptors
     }
 
 // MARK: - Constants
 
-    private struct Inner
+    fileprivate struct Inner
     {
         static let Interceptors: [Interceptor] = []
 
