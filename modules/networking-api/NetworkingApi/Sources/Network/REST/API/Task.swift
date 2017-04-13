@@ -30,7 +30,7 @@ open class Task<Ti, To>: Call<Ti>
         raiseAbstractMethodException()
     }
 
-    open func enqueue(_ callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
+    @discardableResult open func enqueue(_ callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
         raiseAbstractMethodException()
     }
 

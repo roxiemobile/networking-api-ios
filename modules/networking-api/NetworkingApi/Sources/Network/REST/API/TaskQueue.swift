@@ -18,15 +18,15 @@ open class TaskQueue: NonCreatable
 {
 // MARK: - Functions
 
-    open static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
+    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
         return enqueue(task, callback: nil)
     }
 
-    open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
+    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
         return enqueue(task, callback: callback, callbackOnUiThread: Thread.isMainThread)
     }
 
-    open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
+    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
     {
         let innerTask = InnerTask(task: task, callback: callback, callbackOnUiThread: callbackOnUiThread)
         self.tasks.value.add(innerTask, key: task.getTag())

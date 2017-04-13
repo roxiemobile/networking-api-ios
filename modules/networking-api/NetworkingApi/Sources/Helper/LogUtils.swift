@@ -19,7 +19,7 @@ class LogUtils: NonCreatable
 
     static func log(_ tag: String, request: URLRequest)
     {
-        guard Logger.isLoggable(.Debug) else { return }
+        guard Logger.isLoggable(.debug) else { return }
 
         let hashString = request.hashValue.rxm_hexString
 
@@ -39,7 +39,7 @@ class LogUtils: NonCreatable
 
     static func log(_ tag: String, response: HTTPURLResponse, body: Data?)
     {
-        guard Logger.isLoggable(.Debug) else { return }
+        guard Logger.isLoggable(.debug) else { return }
 
         let hashString = response.hashValue.rxm_hexString
 

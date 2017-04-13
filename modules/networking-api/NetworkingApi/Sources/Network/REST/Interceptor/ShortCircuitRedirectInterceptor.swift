@@ -13,7 +13,7 @@ open class ShortCircuitRedirectInterceptor: AbstractRedirectInterceptor
 // MARK: - Functions
 
     open override func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse {
-        throw HttpResponseError(httpResponse: httpResponse) as! Error
+        throw HttpResponseError(httpResponse: httpResponse)
     }
 
 }
