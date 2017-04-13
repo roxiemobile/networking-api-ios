@@ -12,7 +12,7 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class HttpResponseError: ErrorType
+open class HttpResponseError: Error
 {
 // MARK: - Construction
 
@@ -24,7 +24,7 @@ public class HttpResponseError: ErrorType
 
 // MARK: - Properties
 
-    public let httpResponse: HttpResponse
+    open let httpResponse: HttpResponse
 
 }
 

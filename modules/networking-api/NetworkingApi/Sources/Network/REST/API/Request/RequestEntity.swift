@@ -12,11 +12,11 @@
 
 // ----------------------------------------------------------------------------
 
-public class RequestEntity<T>
+open class RequestEntity<T>
 {
 // MARK: - Construction
 
-    init(url: NSURL?, headers: HttpHeaders?, cookies: [HttpCookie]?, body: T?)
+    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?)
     {
         // Init instance variables
         self.url = url
@@ -27,13 +27,13 @@ public class RequestEntity<T>
 
 // MARK: - Properties
 
-    public let url: NSURL?
+    open let url: URL?
 
-    public let headers: HttpHeaders?
+    open let headers: HttpHeaders?
 
-    public let cookies: [HttpCookie]?
+    open let cookies: [HttpCookieProtocol]?
 
-    public let body: T?
+    open let body: T?
 
 }
 

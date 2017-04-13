@@ -13,7 +13,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
+open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 {
 // MARK: - Construction
 
@@ -29,21 +29,21 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     /**
     * The tag associated with a task.
     */
-    override public func getTag() -> String {
+    override open func getTag() -> String {
         return self.tag
     }
 
     /**
      * The original request entity.
      */
-    override public func getRequestEntity() -> RequestEntity<Ti> {
+    override open func getRequestEntity() -> RequestEntity<Ti> {
         return self.requestEntity
     }
 
     /**
      * The http client config.
      */
-    public func getHttpClientConfig() -> HttpClientConfig {
+    open func getHttpClientConfig() -> HttpClientConfig {
         return AbstractTaskInner.HttpClientConfig
     }
 
@@ -52,7 +52,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     /**
     * Synchronously send the request and return its response.
     */
-    public override func execute(callback: Callback<Ti, To>?)
+    open override func execute(_ callback: Callback<Ti, To>?)
     {
         var shouldExecute = true
         var result: CallResult<To>?
@@ -66,12 +66,12 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         }
 
         // Yielding result to listener
-        if let callback = callback where shouldExecute {
+        if let callback = callback, shouldExecute {
             yieldResult(result, callback: callback)
         }
     }
 
-    public override func enqueue(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
+    open override func enqueue(_ callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable {
         return TaskQueue.enqueue(self, callback: callback, callbackOnUiThread: callbackOnUiThread)
     }
 
@@ -81,7 +81,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      */
     final func call() -> CallResult<To>?
     {
-        Require.isFalse(NSThread.isMainThread(), "This method must not be called from the main thread!")
+        Require.isFalse(Thread.isMainThread, "This method must not be called from the main thread!")
         var result: CallResult<To>?
 
         // Send request to the server
@@ -94,10 +94,10 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
             // Handle HTTP response
             switch httpResult
             {
-                case .Success(let entity):
+                case .success(let entity):
                     // Create a new call result
-                    if let status = entity.status where status.is2xxSuccessful() {
-                        result = onSuccess(.Success(entity))
+                    if let status = entity.status, status.is2xxSuccessful() {
+                        result = onSuccess(.success(entity))
                     }
                     else {
                         let cause = ResponseError(entity: entity)
@@ -105,7 +105,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                         error = ApplicationLayerError(cause: cause)
                     }
 
-                case .Failure(let cause):
+                case .failure(let cause):
                     var cause = cause
 
                     // Wrap up HTTP connection error
@@ -119,7 +119,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
             // Handle error
             if let error = error {
-                result = onFailure(.Failure(error))
+                result = onFailure(.failure(error))
             }
         }
 
@@ -127,11 +127,11 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         return result
     }
 
-    public func callExecute() -> HttpResult {
+    open func callExecute() -> HttpResult {
         raiseAbstractMethodException()
     }
 
-    public func newClient() -> RestApiClient
+    open func newClient() -> RestApiClient
     {
         // Get HTTP client config
         let config = getHttpClientConfig()
@@ -151,7 +151,7 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         return builder.build()
     }
 
-    public func newRequestEntity(route: HttpRoute) -> RequestEntity<HttpBody>
+    open func newRequestEntity(_ route: HttpRoute) -> RequestEntity<HttpBody>
     {
         let entity = self.requestEntity
 
@@ -162,54 +162,54 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 .build()
     }
 
-    public func httpHeaders() -> HttpHeaders {
+    open func httpHeaders() -> HttpHeaders {
         return (self.requestEntity.headers ?? HttpHeaders([:]))
     }
 
-    public func onSuccess(httpResult: CallResult<NSData>) -> CallResult<To> {
+    open func onSuccess(_ httpResult: CallResult<Data>) -> CallResult<To> {
         raiseAbstractMethodException()
     }
 
-    public func onFailure(httpResult: CallResult<NSData>) -> CallResult<To>
+    open func onFailure(_ httpResult: CallResult<Data>) -> CallResult<To>
     {
         var result: CallResult<To>
 
         switch httpResult
         {
-            case .Success(_):
-                rxm_fatalError("Trying to call onFailure(_:) method for .Success(_) call result.")
+            case .success(_):
+                rxm_fatalError(message: "Trying to call onFailure(_:) method for .Success(_) call result.")
 
-            case .Failure(let error):
+            case .failure(let error):
                 // Copy an original error
-                result = .Failure(error)
+                result = .failure(error)
         }
 
         return result
     }
 
-    public override func clone() -> AbstractTask<Ti, To> {
+    open override func clone() -> AbstractTask<Ti, To> {
         return newBuilder().build()
     }
 
-    public func newBuilder() -> AbstractTaskBuilder<Ti, To> {
+    open func newBuilder() -> AbstractTaskBuilder<Ti, To> {
         raiseAbstractMethodException()
     }
 
-    public func isCancelled() -> Bool {
+    open func isCancelled() -> Bool {
         return self.cancelled.value
     }
 
-    public func cancel() -> Bool {
+    open func cancel() -> Bool {
         return !(self.cancelled.swap(true))
     }
 
 // MARK: - Private Functions
 
-    private func isConnectionError(error: ErrorType) -> Bool {
-        return ((error as NSError).domain == NSURLErrorDomain || (error as NSError).domain == kCFErrorDomainCFNetwork as NSString)
+    fileprivate func isConnectionError(_ error: Error) -> Bool {
+        return ((error as NSError).domain == NSURLErrorDomain || (error as NSError).domain == (kCFErrorDomainCFNetwork as NSString) as String)
     }
 
-    private func yieldResult(result: CallResult<To>?, callback: Callback<Ti, To>)
+    fileprivate func yieldResult(_ result: CallResult<To>?, callback: Callback<Ti, To>)
     {
         if !isCancelled()
         {
@@ -217,15 +217,15 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
             {
                 switch result
                 {
-                    case .Success(let entity):
+                    case .success(let entity):
                         callback.onSuccess(self, entity: entity)
 
-                    case .Failure(let error):
+                    case .failure(let error):
                         callback.onFailure(self, error: error)
                 }
             }
             else {
-                rxm_fatalError("!isCancelled() && (result == null)")
+                rxm_fatalError(message: "!isCancelled() && (result == null)")
             }
         }
         else {
@@ -241,11 +241,11 @@ public class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 
 // MARK: - Variables
 
-    private let tag: String
+    fileprivate let tag: String
 
-    private let requestEntity: RequestEntity<Ti>
+    fileprivate let requestEntity: RequestEntity<Ti>
 
-    private let cancelled = Atomic<Bool>(false)
+    fileprivate let cancelled = Atomic<Bool>(false)
 
 }
 
@@ -262,7 +262,7 @@ private struct AbstractTaskInner
 
 // ----------------------------------------------------------------------------
 
-public class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
+open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 {
 // MARK: - Construction
 
@@ -282,49 +282,49 @@ public class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 
 // MARK: - Properties
 
-    public override func getTag() -> String {
+    open override func getTag() -> String {
         return self.tag
     }
 
-    public override func getRequestEntity() -> RequestEntity<Ti> {
+    open override func getRequestEntity() -> RequestEntity<Ti> {
         return self.requestEntity
     }
 
 // MARK: - Functions
 
-    public func tag(tag: String) -> Self
+    open func tag(_ tag: String) -> Self
     {
         self.tag = tag
         return self
     }
 
-    public func requestEntity(requestEntity: RequestEntity<Ti>) -> Self
+    open func requestEntity(_ requestEntity: RequestEntity<Ti>) -> Self
     {
         self.requestEntity = requestEntity
         return self
     }
 
-    public override func build() -> AbstractTask<Ti, To>
+    open override func build() -> AbstractTask<Ti, To>
     {
         checkInvalidState()
         return newTask()
     }
 
-    public func checkInvalidState()
+    open func checkInvalidState()
     {
         Require.isNotNil(self.tag)
         Require.isNotNil(self.requestEntity)
     }
 
-    public func newTask() -> AbstractTask<Ti, To> {
+    open func newTask() -> AbstractTask<Ti, To> {
         raiseAbstractMethodException()
     }
 
 // MARK: - Variables
 
-    private var tag: String!
+    fileprivate var tag: String!
 
-    private var requestEntity: RequestEntity<Ti>!
+    fileprivate var requestEntity: RequestEntity<Ti>!
 
 }
 

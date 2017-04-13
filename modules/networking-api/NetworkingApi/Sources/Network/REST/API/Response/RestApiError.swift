@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public protocol RestApiError: ErrorType
+public protocol RestApiError: Error
 {
 // MARK: - Properties
 
@@ -20,7 +20,7 @@ public protocol RestApiError: ErrorType
     /**
     * Returns the cause of this {@code RestApiError}, or {@code null} if there is no cause.
     */
-    var cause: ErrorType? { get }
+    var cause: Error? { get }
 
 // MARK: - Functions
 
@@ -40,9 +40,9 @@ public protocol RestApiError: ErrorType
 */
 public enum RestApiErrorType
 {
-    case TransportLayer
-    case ApplicationLayer
-    case TopLevelProtocol
+    case transportLayer
+    case applicationLayer
+    case topLevelProtocol
 }
 
 // ----------------------------------------------------------------------------

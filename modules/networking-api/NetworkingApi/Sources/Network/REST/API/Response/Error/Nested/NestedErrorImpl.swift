@@ -8,15 +8,15 @@
 //
 // ----------------------------------------------------------------------------
 
-public class NestedErrorImpl: NestedError
+open class NestedErrorImpl: NestedError
 {
 // MARK: - Construction
 
-    public convenience init(entity: ResponseEntity<NSData>) {
+    public convenience init(entity: ResponseEntity<Data>) {
         self.init(entity: entity, cause: nil)
     }
 
-    public init(entity: ResponseEntity<NSData>, cause: ErrorType?)
+    public init(entity: ResponseEntity<Data>, cause: Error?)
     {
         // Init instance variables
         self.entity = entity
@@ -25,9 +25,9 @@ public class NestedErrorImpl: NestedError
 
 // MARK: - Properties
 
-    public let entity: ResponseEntity<NSData>
+    open let entity: ResponseEntity<Data>
 
-    public let cause: ErrorType?
+    open let cause: Error?
 
 }
 
@@ -37,11 +37,11 @@ extension NestedErrorImpl: ResponseEntityHolder
 {
 // MARK: - Functions
 
-    public func getResponseEntity() -> ResponseEntity<NSData> {
+    public func getResponseEntity() -> ResponseEntity<Data> {
         return self.entity
     }
 
-    public func getResponseBodyAsBytes() -> NSData? {
+    public func getResponseBodyAsBytes() -> Data? {
         return self.entity.body
     }
 

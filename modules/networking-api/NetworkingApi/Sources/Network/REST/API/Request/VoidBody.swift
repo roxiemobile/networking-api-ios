@@ -12,15 +12,15 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class VoidBody: HttpBody
+open class VoidBody: HttpBody
 {
 // MARK: - Properties
 
-    public var mediaType: MediaType? {
+    open var mediaType: MediaType? {
         return nil
     }
 
-    public var body: NSData? {
+    open var body: Data? {
         return nil
     }
 

@@ -17,7 +17,7 @@ public final class HttpRoute
 {
 // MARK: - Construction
 
-    private init(url: NSURL)
+    fileprivate init(url: URL)
     {
         // Init instance variables
         self.url = url
@@ -25,14 +25,14 @@ public final class HttpRoute
 
 // MARK: - Properties
 
-    public let url: NSURL
+    public let url: URL
 
 // MARK: - Functions
 
-    public static func buildRoute(baseURL: NSURL, path: String? = nil, params: QueryParams? = nil) -> HttpRoute
+    public static func buildRoute(_ baseURL: URL, path: String? = nil, params: QueryParams? = nil) -> HttpRoute
     {
         // Build new URL
-        var urlString = (baseURL.absoluteString ?? "")
+        var urlString = (baseURL.absoluteString)
 
         // Append path to URL
         if let path = path {
@@ -40,19 +40,19 @@ public final class HttpRoute
         }
 
         // Append query params to URL
-        if let params = params where !(params.isEmpty) {
+        if let params = params, !(params.isEmpty) {
             urlString += "?" + buildQueryString(params)
         }
 
         // Build new HTTP route
         var route: HttpRoute!
-        if let url = NSURL(string: urlString) {
+        if let url = URL(string: urlString) {
             route = HttpRoute(url: url)
         }
 
         // Validate result
         if (route == nil) {
-            rxm_fatalError("Could not create HTTP route for path ‘\(path)’.")
+            rxm_fatalError(message: "Could not create HTTP route for path ‘\(path)’.")
         }
         
         // Done
@@ -61,33 +61,33 @@ public final class HttpRoute
 
 // MARK: - Private Functions
 
-    private static func buildQueryString(params: QueryParams) -> String
+    fileprivate static func buildQueryString(_ params: QueryParams) -> String
     {
         var components: [String] = []
 
         for (key, values) in params.items {
-            components.appendContentsOf(buildQueryStringComponents(key, values: values))
+            components.append(contentsOf: buildQueryStringComponents(key, values: values))
         }
 
         // Done
-        return components.joinWithSeparator("&")
+        return components.joined(separator: "&")
     }
 
-    private static func buildQueryStringComponents(key: String, values: [String]) -> [String]
+    fileprivate static func buildQueryStringComponents(_ key: String, values: [String]) -> [String]
     {
-        if values.isEmpty { rxm_fatalError("") }
+        if values.isEmpty { rxm_fatalError(message: "") }
 
         var components: [String] = []
         var encodedValue: String
 
         if (values.count > 1) {
             for value in values {
-                encodedValue = ParameterEncoding.URL.escape(key) + "[]=" + ParameterEncoding.URL.escape(value)
+                encodedValue = URLEncoding().escape(key) + "[]=" + URLEncoding().escape(value)
                 components.append(encodedValue)
             }
         }
         else {
-            encodedValue = ParameterEncoding.URL.escape(key) + "=" + ParameterEncoding.URL.escape(values[0])
+            encodedValue = URLEncoding().escape(key) + "=" + URLEncoding().escape(values[0])
             components.append(encodedValue)
         }
 

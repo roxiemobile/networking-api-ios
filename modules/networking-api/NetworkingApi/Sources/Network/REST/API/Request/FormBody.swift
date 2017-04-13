@@ -14,11 +14,11 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class FormBody: HttpBody
+open class FormBody: HttpBody
 {
 // MARK: - Construction
 
-    private init(builder: FormBodyBuilder)
+    fileprivate init(builder: FormBodyBuilder)
     {
         // Init instance variables
         self.formBody = builder.toData()
@@ -26,23 +26,23 @@ public class FormBody: HttpBody
 
 // MARK: - Properties
 
-    public var mediaType: MediaType? {
+    open var mediaType: MediaType? {
         return MediaType.ApplicationFormUrlencoded
     }
 
-    public var body: NSData? {
+    open var body: Data? {
         return self.formBody
     }
 
 // MARK: - Variables
 
-    private let formBody: NSData?
+    fileprivate let formBody: Data?
 
 }
 
 // ----------------------------------------------------------------------------
 
-public class FormBodyBuilder
+open class FormBodyBuilder
 {
 // MARK: - Construction
 
@@ -52,42 +52,42 @@ public class FormBodyBuilder
 
 // MARK: - Functions
 
-    public func add(name: String, value: String) -> Self
+    open func add(_ name: String, value: String) -> Self
     {
         self.values[name.trim()] = value.trim()
         return self
     }
 
-    public func build() -> FormBody {
+    open func build() -> FormBody {
         return FormBody(builder: self)
     }
 
 // MARK: - Private Functions
 
-    private func toData() -> NSData?
+    fileprivate func toData() -> Data?
     {
         let values = self.values.filter{ !($0.0.isEmpty) }
 
         // Build form url encoded string
         let components = values.map{ key, value -> String in
             // Escape parameters
-            let key = ParameterEncoding.URL.escape(key)
-            let value = ParameterEncoding.URL.escape(value)
+            let key = URLEncoding().escape(key)
+            let value = URLEncoding().escape(value)
 
             // Build string
             return "\(key)=\(value)"
         }
 
         // Join components
-        let stringBody = components.joinWithSeparator("&")
+        let stringBody = components.joined(separator: "&")
 
         // Build bytes array
-        return stringBody.dataUsingEncoding(NSUTF8StringEncoding)
+        return stringBody.data(using: String.Encoding.utf8)
     }
 
 // MARK: - Variables
 
-    private var values: [String: String] = [:]
+    fileprivate var values: [String: String] = [:]
 }
 
 // ----------------------------------------------------------------------------

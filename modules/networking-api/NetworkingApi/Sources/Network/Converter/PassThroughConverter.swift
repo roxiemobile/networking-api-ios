@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class PassThroughConverter: AbstractCallResultConverter<NSData>
+open class PassThroughConverter: AbstractCallResultConverter<Data>
 {
 // MARK: - Construction
 
@@ -18,17 +18,17 @@ public class PassThroughConverter: AbstractCallResultConverter<NSData>
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         return entity
     }
 
-    override public func supportedMediaTypes() -> [MediaType] {
+    override open func supportedMediaTypes() -> [MediaType] {
         return PassThroughConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.All]
+    fileprivate static let SupportedMediaTypes = [MediaType.All]
 
 }
 

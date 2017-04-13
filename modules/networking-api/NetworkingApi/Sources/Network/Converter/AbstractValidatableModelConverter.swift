@@ -13,7 +13,7 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-public class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallResultConverter<T>
+open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallResultConverter<T>
 {
 // MARK: - Construction
 
@@ -23,16 +23,16 @@ public class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCal
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
     {
         var newEntity: ResponseEntity<To>
         var newBody: T?
 
-        if let body = entity.body where !(body.isEmpty)
+        if let body = entity.body, !(body.isEmpty)
         {
             // Try to parse response as JSON string
             var error: NSError?
-            let json = JSON(data: body, options: .AllowFragments, error: &error)
+            let json = JSON(data: body, options: .allowFragments, error: &error)
             if let error = error {
                 throw ConversionError(entity: entity, cause: error)
             }

@@ -8,6 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-public typealias HttpResult = BasicEnumResult<ResponseEntity<NSData>, ErrorType>
+public typealias HttpResult = BasicEnumResult<ResponseEntity<Data>, Error>
 
 // ----------------------------------------------------------------------------

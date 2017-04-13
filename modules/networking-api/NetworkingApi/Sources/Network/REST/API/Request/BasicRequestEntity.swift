@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class BasicRequestEntity<T>: RequestEntity<T>
+open class BasicRequestEntity<T>: RequestEntity<T>
 {
 // MARK: - Construction
 
@@ -27,7 +27,7 @@ public class BasicRequestEntity<T>: RequestEntity<T>
 
 // ----------------------------------------------------------------------------
 
-public class BasicRequestEntityBuilder<T>
+open class BasicRequestEntityBuilder<T>
 {
 // MARK: - Construction
 
@@ -55,37 +55,37 @@ public class BasicRequestEntityBuilder<T>
 
 // MARK: - Properties
 
-    private(set) var url: NSURL?
+    fileprivate(set) var url: URL?
 
-    private(set) var headers: HttpHeaders?
+    fileprivate(set) var headers: HttpHeaders?
 
-    private(set) var cookies: [HttpCookie]?
+    fileprivate(set) var cookies: [HttpCookieProtocol]?
 
-    private(set) var body: T?
+    fileprivate(set) var body: T?
 
 // MARK: - Functions
 
-    public func url(url: NSURL?) -> Self {
+    @discardableResult open func url(_ url: URL?) -> Self {
         self.url = url
         return self
     }
 
-    public func headers(headers: HttpHeaders?) -> Self {
+    @discardableResult open func headers(_ headers: HttpHeaders?) -> Self {
         self.headers = headers
         return self
     }
 
-    public func cookies(cookies: [HttpCookie]?) -> Self {
+    @discardableResult open func cookies(_ cookies: [HttpCookieProtocol]?) -> Self {
         self.cookies = cookies
         return self
     }
 
-    public func body(body: T?) -> Self {
+    @discardableResult open func body(_ body: T?) -> Self {
         self.body = body
         return self
     }
 
-    public func build() -> BasicRequestEntity<T> {
+    open func build() -> BasicRequestEntity<T> {
         return BasicRequestEntity(builder: self)
     }
 

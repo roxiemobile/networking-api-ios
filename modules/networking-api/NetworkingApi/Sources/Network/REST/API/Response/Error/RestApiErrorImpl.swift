@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-public class RestApiErrorImpl: RestApiError
+open class RestApiErrorImpl: RestApiError
 {
 // MARK: - Construction
 
-    public init(cause: ErrorType?)
+    public init(cause: Error?)
     {
         // Init instance variables
         self.cause = cause
@@ -20,11 +20,11 @@ public class RestApiErrorImpl: RestApiError
 
 // MARK: - Properties
 
-    public var type: RestApiErrorType {
+    open var type: RestApiErrorType {
         fatalError()
     }
 
-    public let cause: ErrorType?
+    open let cause: Error?
 
 }
 

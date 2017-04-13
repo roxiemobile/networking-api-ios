@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-public protocol NestedError: ErrorType
+public protocol NestedError: Error
 {
 // MARK: - Properties
 
-    var cause: ErrorType? { get }
+    var cause: Error? { get }
 
 }
 

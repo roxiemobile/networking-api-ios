@@ -12,7 +12,7 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class MediaType: MimeType
+open class MediaType: MimeType
 {
 // MARK: - Construction
 
@@ -83,7 +83,7 @@ public class MediaType: MimeType
 
 // MARK: - Functions
 
-    override func checkParameters(attribute: String, _ value: String) -> Bool
+    override func checkParameters(_ attribute: String, _ value: String) -> Bool
     {
         var result = super.checkParameters(attribute, value)
         if (result)
@@ -129,7 +129,7 @@ public class MediaType: MimeType
      * @param other the reference media type with which to compare
      * @return {@code true} if this media type is compatible with the given media type; {@code false} otherwise
      */
-    public override func isCompatibleWith(other: MimeType) -> Bool {
+    open override func isCompatibleWith(_ other: MimeType) -> Bool {
         return super.isCompatibleWith(other)
     }
 
@@ -165,7 +165,7 @@ public class MediaType: MimeType
      * (as supported by {@link org.springframework.core.convert.ConversionService}.
      * @see #parseMediaType(String)
      */
-    public override class func valueOf(value: String, error: NSErrorPointer? = nil) -> MediaType? {
+    open override class func valueOf(_ value: String, error: NSErrorPointer? = nil) -> MediaType? {
         return parseMediaType(value, error: error)
     }
 
@@ -175,7 +175,7 @@ public class MediaType: MimeType
      * @return the media type
      * @throws InvalidMediaTypeException if the string cannot be parsed
      */
-    public class func parseMediaType(value: String, error: NSErrorPointer? = nil) -> MediaType?
+    open class func parseMediaType(_ value: String, error: NSErrorPointer? = nil) -> MediaType?
     {
         var mediaType: MediaType?
 
@@ -353,7 +353,7 @@ public class MediaType: MimeType
 
 // MARK: - Constants
 
-    private struct Inner {
+    fileprivate struct Inner {
         static let ParamQualityFactor = "q"
     }
 
