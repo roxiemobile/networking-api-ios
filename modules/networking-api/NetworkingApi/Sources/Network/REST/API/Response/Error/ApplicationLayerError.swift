@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ApplicationLayerError: RestApiErrorImpl
+public class ApplicationLayerError: AbstractRestApiError
 {
 // MARK: - Properties
 

@@ -27,13 +27,6 @@ public protocol ResponseEntityHolder
     */
     func getResponseBodyAsString() -> String?
 
-    /**
-    * Sends a printable representation of this {@code RestApiError}'s description
-    * to the consumer.
-    */
-    // TODO: ...
-//    void printErrorDescription(Consumer<String> consumer);
-
 }
 
 // ----------------------------------------------------------------------------
