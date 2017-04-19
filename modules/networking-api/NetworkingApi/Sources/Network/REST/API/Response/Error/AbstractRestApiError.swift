@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  RestApiErrorImpl.swift
+//  AbstractRestApiError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
 //  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
@@ -8,7 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-open class RestApiErrorImpl: RestApiError
+import SwiftCommons
+
+// ----------------------------------------------------------------------------
+
+open class AbstractRestApiError: RestApiError, AbstractClass
 {
 // MARK: - Construction
 
@@ -21,7 +25,7 @@ open class RestApiErrorImpl: RestApiError
 // MARK: - Properties
 
     open var type: RestApiErrorType {
-        fatalError()
+        raiseAbstractMethodException()
     }
 
     open let cause: Error?

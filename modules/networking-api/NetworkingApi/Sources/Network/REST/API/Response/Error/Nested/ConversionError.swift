@@ -8,6 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-open class ConversionError: NestedErrorImpl { }
+open class ConversionError: AbstractNestedError { }
 
 // ----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  NestedErrorImpl.swift
+//  AbstractNestedError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
 //  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
@@ -8,7 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-open class NestedErrorImpl: NestedError
+import SwiftCommons
+
+// ----------------------------------------------------------------------------
+
+open class AbstractNestedError: NestedError, AbstractClass
 {
 // MARK: - Construction
 
@@ -33,7 +37,7 @@ open class NestedErrorImpl: NestedError
 
 // ----------------------------------------------------------------------------
 
-extension NestedErrorImpl: ResponseEntityHolder
+extension AbstractNestedError: ResponseEntityHolder
 {
 // MARK: - Functions
 
@@ -51,6 +55,41 @@ extension NestedErrorImpl: ResponseEntityHolder
 
         if let entity = (try? StringConverter().convert(self.entity)) {
             result = entity.body
+        }
+
+        return result
+    }
+
+}
+
+// ----------------------------------------------------------------------------
+
+extension AbstractNestedError
+{
+// MARK: - Properties
+
+    public var description: String
+    {
+        var result = typeName(self)
+
+        if let cause = self.cause
+        {
+            result += "\nСaused by error: "
+
+            if let description = (cause as? CustomStringConvertible)?.description.trim(), description.isNotEmpty {
+                result += description
+            }
+            else
+            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim(), description.isNotEmpty {
+                result += description
+            }
+            else {
+                result += typeName(cause)
+            }
+        }
+
+        if let responseBody = getResponseBodyAsString() {
+            result += "\nResponse body: \(responseBody)"
         }
 
         return result

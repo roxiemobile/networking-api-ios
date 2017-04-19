@@ -8,11 +8,49 @@
 //
 // ----------------------------------------------------------------------------
 
-public protocol NestedError: Error
+import SwiftCommons
+
+public protocol NestedError: Error, CustomStringConvertible, CustomDebugStringConvertible
+
 {
 // MARK: - Properties
 
     var cause: Error? { get }
+
+}
+
+// ----------------------------------------------------------------------------
+
+extension NestedError
+{
+// MARK: - Properties
+
+    public var description: String
+    {
+        var result = typeName(self)
+
+        if let cause = self.cause
+        {
+            result += "\nСaused by error: "
+
+            if let description = (cause as? CustomStringConvertible)?.description.trim(), description.isNotEmpty {
+                result += description
+            }
+            else
+            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim(), description.isNotEmpty {
+                result += description
+            }
+            else {
+                result += typeName(cause)
+            }
+        }
+
+        return result
+    }
+
+    public var debugDescription: String {
+        return self.description
+    }
 
 }
 

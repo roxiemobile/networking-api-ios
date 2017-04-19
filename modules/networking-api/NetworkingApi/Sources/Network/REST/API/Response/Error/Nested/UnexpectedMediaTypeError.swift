@@ -8,6 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-open class UnexpectedMediaTypeError: NestedErrorImpl { }
+open class UnexpectedMediaTypeError: AbstractNestedError { }
 
 // ----------------------------------------------------------------------------

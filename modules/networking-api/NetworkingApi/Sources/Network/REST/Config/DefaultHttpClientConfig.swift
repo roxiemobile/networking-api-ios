@@ -14,6 +14,12 @@ import SwiftCommons
 
 open class DefaultHttpClientConfig: HttpClientConfig
 {
+// MARK: - Construction
+
+    public init() {
+        // Do nothing
+    }
+
 // MARK: - Methods
 
     open func connectTimeout() -> TimeInterval {
