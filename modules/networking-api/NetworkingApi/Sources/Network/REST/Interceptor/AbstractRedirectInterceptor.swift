@@ -12,11 +12,11 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
+open class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
 {
 // MARK: - Functions
 
-    public func intercept(chain: InterceptorChain) throws -> HttpResponse
+    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
     {
         var result = try chain.proceed(chain.request)
 
@@ -27,7 +27,7 @@ public class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
         return result
     }
 
-    public func onRedirect(httpResponse: HttpResponse) throws -> HttpResponse {
+    open func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse {
         raiseAbstractMethodException()
     }
 

@@ -12,7 +12,7 @@ public protocol RedirectInterceptor: Interceptor
 {
 // MARK: - Functions
 
-    func onRedirect(httpResponse: HttpResponse) throws -> HttpResponse
+    func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse
 
 }
 

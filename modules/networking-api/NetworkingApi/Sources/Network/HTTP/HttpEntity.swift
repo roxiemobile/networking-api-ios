@@ -8,12 +8,12 @@
 //
 // ----------------------------------------------------------------------------
 
-public class HttpEntity<T>
+open class HttpEntity<T>
 {
 // MARK: - Construction
 
     /// Create a new, empty {@code HttpEntity}.
-    private convenience init() {
+    fileprivate convenience init() {
         self.init(body: nil, headers: nil)
     }
 
@@ -48,15 +48,15 @@ public class HttpEntity<T>
 // MARK: - Properties
 
     /// Returns the body of this entity.
-    public let body: T?
+    open let body: T?
 
     /// Returns the headers of this entity.
-    public let headers: HttpHeaders?
+    open let headers: HttpHeaders?
 
 // MARK: - Functions
 
     /// Indicates whether this entity has a body.
-    public func hasBody() -> Bool {
+    open func hasBody() -> Bool {
         return (self.body != nil)
     }
 

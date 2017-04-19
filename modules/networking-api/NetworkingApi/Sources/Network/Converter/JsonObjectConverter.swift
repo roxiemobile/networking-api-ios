@@ -13,7 +13,7 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-public class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
+open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 {
 // MARK: - Construction
 
@@ -23,16 +23,16 @@ public class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
     {
         var newEntity: ResponseEntity<To>
         var newBody: JsonObject?
 
-        if let body = entity.body where !(body.isEmpty)
+        if let body = entity.body, !(body.isEmpty)
         {
             // Try to parse response as JSON string
             var error: NSError?
-            let json = JSON(data: body, options: .AllowFragments, error: &error)
+            let json = JSON(data: body, options: .allowFragments, error: &error)
             if let error = error {
                 throw ConversionError(entity: entity, cause: error)
             }
@@ -51,13 +51,13 @@ public class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
         return newEntity
     }
 
-    override public func supportedMediaTypes() -> [MediaType] {
+    override open func supportedMediaTypes() -> [MediaType] {
         return JsonObjectConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.ApplicationJson]
+    fileprivate static let SupportedMediaTypes = [MediaType.ApplicationJson]
 
 }
 

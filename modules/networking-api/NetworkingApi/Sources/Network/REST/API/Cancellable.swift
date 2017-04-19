@@ -12,7 +12,7 @@ public protocol Cancellable: class
 {
 // MARK: - Functions
 
-    func cancel() -> Bool
+    @discardableResult func cancel() -> Bool
 
 }
 

@@ -8,6 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ConversionError: AbstractNestedError { }
+open class ConversionError: AbstractNestedError { }
 
 // ----------------------------------------------------------------------------

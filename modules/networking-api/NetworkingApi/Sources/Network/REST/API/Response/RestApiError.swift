@@ -20,7 +20,7 @@ public protocol RestApiError: NestedError
     /**
     * Returns the cause of this {@code RestApiError}, or {@code null} if there is no cause.
     */
-    var cause: ErrorType? { get }
+    var cause: Error? { get }
 
 }
 
@@ -31,9 +31,9 @@ public protocol RestApiError: NestedError
 */
 public enum RestApiErrorType
 {
-    case TransportLayer
-    case ApplicationLayer
-    case TopLevelProtocol
+    case transportLayer
+    case applicationLayer
+    case topLevelProtocol
 }
 
 // ----------------------------------------------------------------------------

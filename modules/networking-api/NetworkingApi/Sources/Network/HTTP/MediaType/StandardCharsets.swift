@@ -18,7 +18,7 @@ class StandardCharsets: CharsetProvider
 
 // MARK: - Constants
 
-    private struct Inner
+    fileprivate struct Inner
     {
         // Maps alias names to canonical names
         static let Aliases: [String: String] =
@@ -29,7 +29,7 @@ class StandardCharsets: CharsetProvider
                 if let charset = type.init() as? Charset
                 {
                     for alias in charset.aliases {
-                        output[alias.lowercaseString] = name
+                        output[alias.lowercased()] = name
                     }
                 }
             }

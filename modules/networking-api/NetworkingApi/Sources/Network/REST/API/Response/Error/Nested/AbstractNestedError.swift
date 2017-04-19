@@ -12,15 +12,15 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class AbstractNestedError: NestedError, AbstractClass
+open class AbstractNestedError: NestedError, AbstractClass
 {
 // MARK: - Construction
 
-    public convenience init(entity: ResponseEntity<NSData>) {
+    public convenience init(entity: ResponseEntity<Data>) {
         self.init(entity: entity, cause: nil)
     }
 
-    public init(entity: ResponseEntity<NSData>, cause: ErrorType?)
+    public init(entity: ResponseEntity<Data>, cause: Error?)
     {
         // Init instance variables
         self.entity = entity
@@ -29,9 +29,9 @@ public class AbstractNestedError: NestedError, AbstractClass
 
 // MARK: - Properties
 
-    public let entity: ResponseEntity<NSData>
+    open let entity: ResponseEntity<Data>
 
-    public let cause: ErrorType?
+    open let cause: Error?
 
 }
 
@@ -41,11 +41,11 @@ extension AbstractNestedError: ResponseEntityHolder
 {
 // MARK: - Functions
 
-    public func getResponseEntity() -> ResponseEntity<NSData> {
+    public func getResponseEntity() -> ResponseEntity<Data> {
         return self.entity
     }
 
-    public func getResponseBodyAsBytes() -> NSData? {
+    public func getResponseBodyAsBytes() -> Data? {
         return self.entity.body
     }
 
@@ -76,11 +76,11 @@ extension AbstractNestedError
         {
             result += "\nСaused by error: "
 
-            if let description = (cause as? CustomStringConvertible)?.description.trim() where description.isNotEmpty {
+            if let description = (cause as? CustomStringConvertible)?.description.trim(), description.isNotEmpty {
                 result += description
             }
             else
-            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim() where description.isNotEmpty {
+            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim(), description.isNotEmpty {
                 result += description
             }
             else {

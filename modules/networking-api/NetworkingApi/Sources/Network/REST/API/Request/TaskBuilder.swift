@@ -16,21 +16,21 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class TaskBuilder<Ti, To>: AbstractClass
+open class TaskBuilder<Ti, To>: AbstractClass
 {
 // MARK: - Properties
 
-    public func getTag() -> String {
+    open func getTag() -> String {
         raiseAbstractMethodException()
     }
 
-    public func getRequestEntity() -> RequestEntity<Ti> {
+    open func getRequestEntity() -> RequestEntity<Ti> {
         raiseAbstractMethodException()
     }
 
 // MARK: - Functions
 
-    public func build() -> Task<Ti, To> {
+    open func build() -> Task<Ti, To> {
         raiseAbstractMethodException()
     }
 

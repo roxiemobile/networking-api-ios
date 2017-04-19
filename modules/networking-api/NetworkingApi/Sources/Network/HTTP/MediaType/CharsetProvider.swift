@@ -27,13 +27,13 @@ class CharsetProvider
 
 // MARK: - Functions
 
-    final func charsetForName(charsetName: String) -> Charset?
+    final func charsetForName(_ charsetName: String) -> Charset?
     {
         var charset: Charset?
 
         // Search for Charset by its name
         unowned let instance = self
-        synchronized (self) {
+        synchronized (object: self) {
             charset = instance.lookup(charsetName)
         }
 
@@ -43,9 +43,9 @@ class CharsetProvider
 
 // MARK: - Private Functions
 
-    private func lookup(charsetName: String) -> Charset?
+    fileprivate func lookup(_ charsetName: String) -> Charset?
     {
-        let name = canonicalize(charsetName.lowercaseString)
+        let name = canonicalize(charsetName.lowercased())
         var charset: Charset?
 
         // Check cache first
@@ -54,7 +54,7 @@ class CharsetProvider
         }
         else
         // Do we even support this charset?
-        if let clazz = self.classes[name], object = clazz.init() as? Charset
+        if let clazz = self.classes[name], let object = clazz.init() as? Charset
         {
             charset = object
             self.cache[name] = charset
@@ -64,20 +64,20 @@ class CharsetProvider
         return charset
     }
 
-    private func canonicalize(csn: String) -> String {
+    fileprivate func canonicalize(_ csn: String) -> String {
         return self.aliases[csn] ?? csn
     }
 
 // MARK: - Variables
 
     // Maps alias names to canonical names
-    private let aliases: [String: String]
+    fileprivate let aliases: [String: String]
 
     // Maps canonical names to class names
-    private let classes: [String: NSObject.Type]
+    fileprivate let classes: [String: NSObject.Type]
 
     // Maps canonical names to cached instances
-    private var cache: [String: Charset]
+    fileprivate var cache: [String: Charset]
 
 }
 

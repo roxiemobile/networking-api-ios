@@ -16,7 +16,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class Callback<Ti, To>: AbstractClass
+open class Callback<Ti, To>: AbstractClass
 {
 // MARK: - Construction
 
@@ -26,19 +26,19 @@ public class Callback<Ti, To>: AbstractClass
 
 // MARK: - Functions
 
-    public func onShouldExecute(call: Call<Ti>) -> Bool {
+    open func onShouldExecute(_ call: Call<Ti>) -> Bool {
         raiseAbstractMethodException()
     }
 
-    public func onSuccess(call: Call<Ti>, entity: ResponseEntity<To>) {
+    open func onSuccess(_ call: Call<Ti>, entity: ResponseEntity<To>) {
         raiseAbstractMethodException()
     }
 
-    public func onFailure(call: Call<Ti>, error: RestApiError) {
+    open func onFailure(_ call: Call<Ti>, error: RestApiError) {
         raiseAbstractMethodException()
     }
 
-    public func onCancel(call: Call<Ti>) {
+    open func onCancel(_ call: Call<Ti>) {
         raiseAbstractMethodException()
     }
 

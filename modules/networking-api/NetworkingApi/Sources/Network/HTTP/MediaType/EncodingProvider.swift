@@ -12,7 +12,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class EncodingProvider: NonCreatable
+open class EncodingProvider: NonCreatable
 {
 // MARK: - Functions
 
@@ -28,7 +28,7 @@ public class EncodingProvider: NonCreatable
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    public class func encodingForCharset(charset: Charset) -> UInt? {
+    open class func encodingForCharset(_ charset: Charset) -> UInt? {
         return encodingForCharsetName(charset.name)
     }
 
@@ -45,51 +45,51 @@ public class EncodingProvider: NonCreatable
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    public class func encodingForCharsetName(charsetName: String) -> UInt?
+    open class func encodingForCharsetName(_ charsetName: String) -> UInt?
     {
         var encoding: UInt?
 
-        switch (charsetName.lowercaseString)
+        switch (charsetName.lowercased())
         {
             case Charset.US_ASCII.Const.Name:
-                encoding = NSASCIIStringEncoding
+                encoding = String.Encoding.ascii.rawValue
 
             case Charset.ISO_8859_1.Const.Name:
-                encoding = NSISOLatin1StringEncoding
+                encoding = String.Encoding.isoLatin1.rawValue
             case Charset.ISO_8859_2.Const.Name:
-                encoding = NSISOLatin2StringEncoding
+                encoding = String.Encoding.isoLatin2.rawValue
 
             case Charset.UTF_8.Const.Name:
-                encoding = NSUTF8StringEncoding
+                encoding = String.Encoding.utf8.rawValue
 
             case Charset.UTF_16.Const.Name:
-                encoding = NSUTF16StringEncoding
+                encoding = String.Encoding.utf16.rawValue
             case Charset.UTF_16BE.Const.Name:
-                encoding = NSUTF16BigEndianStringEncoding
+                encoding = String.Encoding.utf16BigEndian.rawValue
             case Charset.UTF_16LE.Const.Name:
-                encoding = NSUTF16LittleEndianStringEncoding
+                encoding = String.Encoding.utf16LittleEndian.rawValue
 
             case Charset.UTF_32.Const.Name:
-                encoding = NSUTF32StringEncoding
+                encoding = String.Encoding.utf32.rawValue
             case Charset.UTF_32BE.Const.Name:
-                encoding = NSUTF32BigEndianStringEncoding
+                encoding = String.Encoding.utf32BigEndian.rawValue
             case Charset.UTF_32LE.Const.Name:
-                encoding = NSUTF32LittleEndianStringEncoding
+                encoding = String.Encoding.utf32LittleEndian.rawValue
 
             case Charset.WINDOWS_1250.Const.Name:
-                encoding = NSWindowsCP1250StringEncoding
+                encoding = String.Encoding.windowsCP1250.rawValue
             case Charset.WINDOWS_1251.Const.Name:
-                encoding = NSWindowsCP1251StringEncoding
+                encoding = String.Encoding.windowsCP1251.rawValue
             case Charset.WINDOWS_1252.Const.Name:
-                encoding = NSWindowsCP1252StringEncoding
+                encoding = String.Encoding.windowsCP1252.rawValue
             case Charset.WINDOWS_1253.Const.Name:
-                encoding = NSWindowsCP1253StringEncoding
+                encoding = String.Encoding.windowsCP1253.rawValue
             case Charset.WINDOWS_1254.Const.Name:
-                encoding = NSWindowsCP1254StringEncoding
+                encoding = String.Encoding.windowsCP1254.rawValue
 
             default:
         // Terminate application with runtime exception
-                rxm_fatalError("‘\(charsetName)’ charset is not supported.")
+                rxm_fatalError(message: "‘\(charsetName)’ charset is not supported.")
         }
 
         return encoding

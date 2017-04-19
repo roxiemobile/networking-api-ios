@@ -17,18 +17,18 @@ public protocol HttpCookieStore
 // MARK: - Properties
 
     /// Get all cookies in cookie store which are not expired.
-    var cookies: [NSHTTPCookie]? { get }
+    var cookies: [HTTPCookie]? { get }
 
 // MARK: - Functions
 
     /// Saves a HTTP cookie to this store.
-    func setCookie(cookie: NSHTTPCookie)
+    func setCookie(_ cookie: HTTPCookie)
 
     /// Retrieves cookies that match the specified URI.
-    func cookiesForURL(URL: NSURL) -> [NSHTTPCookie]?
+    func cookiesForURL(_ URL: URL) -> [HTTPCookie]?
 
     /// Remove the specified cookie from the store.
-    func deleteCookie(cookie: NSHTTPCookie)
+    func deleteCookie(_ cookie: HTTPCookie)
 
 }
 

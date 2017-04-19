@@ -13,14 +13,14 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class HttpLoggingInterceptor: Interceptor
+open class HttpLoggingInterceptor: Interceptor
 {
 // MARK: - Construction
 
     public init()
     {
         // Init instance variables
-        self.customTag = rxm_customTag(self.dynamicType)
+        self.customTag = rxm_customTag(clazz: type(of: self))
     }
 
 // MARK: - Properties
@@ -29,7 +29,7 @@ public class HttpLoggingInterceptor: Interceptor
 
 // MARK: - Functions
 
-    public func intercept(chain: InterceptorChain) throws -> HttpResponse
+    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
     {
         // Log request
         LogUtils.log(self.customTag, request: chain.request)

@@ -15,12 +15,12 @@ public protocol CallResultConverter
     /**
     * Converts result from one format to another.
     */
-    func convert(result: CallResult<Ti>) -> CallResult<To>
+    func convert(_ result: CallResult<Ti>) -> CallResult<To>
 
     /**
     * Converts response entity from one format to another.
     */
-    func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
+    func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
 
 // MARK: - Inner Types
 
