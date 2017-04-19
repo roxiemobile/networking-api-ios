@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class TransportLayerError: RestApiErrorImpl
+public class TransportLayerError: AbstractRestApiError
 {
 // MARK: - Properties
 

@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public protocol RestApiError: ErrorType
+public protocol RestApiError: NestedError
 {
 // MARK: - Properties
 
@@ -21,15 +21,6 @@ public protocol RestApiError: ErrorType
     * Returns the cause of this {@code RestApiError}, or {@code null} if there is no cause.
     */
     var cause: ErrorType? { get }
-
-// MARK: - Functions
-
-    /**
-    * Sends a printable representation of this {@code RestApiError}'s description
-    * to the consumer.
-    */
-    // TODO: ...
-//    void printErrorDescription(Consumer<String> consumer);
 
 }
 
