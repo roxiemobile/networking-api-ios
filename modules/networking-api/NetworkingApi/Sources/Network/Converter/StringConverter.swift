@@ -28,7 +28,7 @@ open class StringConverter: AbstractCallResultConverter<String>
         {
             if let encoding = EncodingProvider.encodingForCharset(entity.headers?.contentType?.charset ?? Inner.DefaultCharset)
             {
-                if let string = NSString(data: body, encoding: encoding) as? String {
+                if let string = String(data: body, encoding: encoding) {
                     newBody = string
                 }
                 else {

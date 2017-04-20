@@ -51,8 +51,17 @@ public final class HttpRoute
         }
 
         // Validate result
-        if (route == nil) {
-            rxm_fatalError(message: "Could not create HTTP route for path ‘\(path)’.")
+        if (route == nil)
+        {
+            var message = "Could not create HTTP route"
+
+            if let path = path {
+                message += " for path ‘\(path)’"
+            }
+
+            message += "."
+
+            rxm_fatalError(message: message)
         }
         
         // Done

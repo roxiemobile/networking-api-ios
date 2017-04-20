@@ -28,7 +28,7 @@ open class EncodingProvider: NonCreatable
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    open class func encodingForCharset(_ charset: Charset) -> UInt? {
+    open class func encodingForCharset(_ charset: Charset) -> String.Encoding? {
         return encodingForCharsetName(charset.name)
     }
 
@@ -45,47 +45,47 @@ open class EncodingProvider: NonCreatable
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    open class func encodingForCharsetName(_ charsetName: String) -> UInt?
+    open class func encodingForCharsetName(_ charsetName: String) -> String.Encoding?
     {
-        var encoding: UInt?
+        var encoding: String.Encoding?
 
         switch (charsetName.lowercased())
         {
             case Charset.US_ASCII.Const.Name:
-                encoding = String.Encoding.ascii.rawValue
+                encoding = String.Encoding.ascii
 
             case Charset.ISO_8859_1.Const.Name:
-                encoding = String.Encoding.isoLatin1.rawValue
+                encoding = String.Encoding.isoLatin1
             case Charset.ISO_8859_2.Const.Name:
-                encoding = String.Encoding.isoLatin2.rawValue
+                encoding = String.Encoding.isoLatin2
 
             case Charset.UTF_8.Const.Name:
-                encoding = String.Encoding.utf8.rawValue
+                encoding = String.Encoding.utf8
 
             case Charset.UTF_16.Const.Name:
-                encoding = String.Encoding.utf16.rawValue
+                encoding = String.Encoding.utf16
             case Charset.UTF_16BE.Const.Name:
-                encoding = String.Encoding.utf16BigEndian.rawValue
+                encoding = String.Encoding.utf16BigEndian
             case Charset.UTF_16LE.Const.Name:
-                encoding = String.Encoding.utf16LittleEndian.rawValue
+                encoding = String.Encoding.utf16LittleEndian
 
             case Charset.UTF_32.Const.Name:
-                encoding = String.Encoding.utf32.rawValue
+                encoding = String.Encoding.utf32
             case Charset.UTF_32BE.Const.Name:
-                encoding = String.Encoding.utf32BigEndian.rawValue
+                encoding = String.Encoding.utf32BigEndian
             case Charset.UTF_32LE.Const.Name:
-                encoding = String.Encoding.utf32LittleEndian.rawValue
+                encoding = String.Encoding.utf32LittleEndian
 
             case Charset.WINDOWS_1250.Const.Name:
-                encoding = String.Encoding.windowsCP1250.rawValue
+                encoding = String.Encoding.windowsCP1250
             case Charset.WINDOWS_1251.Const.Name:
-                encoding = String.Encoding.windowsCP1251.rawValue
+                encoding = String.Encoding.windowsCP1251
             case Charset.WINDOWS_1252.Const.Name:
-                encoding = String.Encoding.windowsCP1252.rawValue
+                encoding = String.Encoding.windowsCP1252
             case Charset.WINDOWS_1253.Const.Name:
-                encoding = String.Encoding.windowsCP1253.rawValue
+                encoding = String.Encoding.windowsCP1253
             case Charset.WINDOWS_1254.Const.Name:
-                encoding = String.Encoding.windowsCP1254.rawValue
+                encoding = String.Encoding.windowsCP1254
 
             default:
         // Terminate application with runtime exception

@@ -28,21 +28,8 @@ extension NestedError
     public var description: String
     {
         var result = typeName(self)
-
-        if let cause = self.cause
-        {
-            result += "\nСaused by error: "
-
-            if let description = (cause as? CustomStringConvertible)?.description.trim(), description.isNotEmpty {
-                result += description
-            }
-            else
-            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim(), description.isNotEmpty {
-                result += description
-            }
-            else {
-                result += typeName(cause)
-            }
+        if let cause = self.cause {
+            result += "\nСaused by error: " + String(describing: cause).trim()
         }
 
         return result
