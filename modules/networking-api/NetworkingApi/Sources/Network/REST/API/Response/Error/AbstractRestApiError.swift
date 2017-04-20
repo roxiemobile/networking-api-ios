@@ -12,11 +12,11 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class AbstractRestApiError: RestApiError, AbstractClass
+open class AbstractRestApiError: RestApiError, AbstractClass
 {
 // MARK: - Construction
 
-    public init(cause: ErrorType?)
+    public init(cause: Error?)
     {
         // Init instance variables
         self.cause = cause
@@ -24,11 +24,11 @@ public class AbstractRestApiError: RestApiError, AbstractClass
 
 // MARK: - Properties
 
-    public var type: RestApiErrorType {
+    open var type: RestApiErrorType {
         raiseAbstractMethodException()
     }
 
-    public let cause: ErrorType?
+    open let cause: Error?
 
 }
 

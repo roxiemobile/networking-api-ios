@@ -12,7 +12,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class Charset: NSObject
+open class Charset: NSObject
 {
 // MARK: - Construction
 
@@ -28,7 +28,7 @@ public class Charset: NSObject
      * @throws FatalError
      *         If the canonical name or any of the aliases are illegal
      */
-    private init(canonicalName: String, aliases: [String]?)
+    fileprivate init(canonicalName: String, aliases: [String]?)
     {
         // Init instance variables
         self.name = canonicalName
@@ -48,10 +48,10 @@ public class Charset: NSObject
 // MARK: - Properties
 
     /// The canonical name of this charset.
-    public let name: String
+    open let name: String
 
     /// The charset's aliases.
-    public let aliases: [String]
+    open let aliases: [String]
 
 // MARK: - Functions
 
@@ -65,7 +65,7 @@ public class Charset: NSObject
      * @return  TRUE if, and only if, support for the named charset
      *          is available
      */
-    public class func isSupported(charsetName: String) -> Bool {
+    open class func isSupported(_ charsetName: String) -> Bool {
         return (lookup(charsetName) != nil)
     }
 
@@ -81,20 +81,20 @@ public class Charset: NSObject
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    public class func forName(charsetName: String) -> Charset
+    @discardableResult open class func forName(_ charsetName: String) -> Charset
     {
         if let charset = lookup(charsetName) {
             return charset
         }
 
         // Terminate application with runtime exception
-        rxm_fatalError("‘\(charsetName)’ charset is not supported.")
+        rxm_fatalError(message: "‘\(charsetName)’ charset is not supported.")
     }
 
 // MARK: - Private Functions
 
-    private class func lookup(charsetName: String) -> Charset? {
-        return Inner.StandardProvider.charsetForName(charsetName.lowercaseString)
+    fileprivate class func lookup(_ charsetName: String) -> Charset? {
+        return Inner.StandardProvider.charsetForName(charsetName.lowercased())
     }
 
     /**
@@ -106,10 +106,10 @@ public class Charset: NSObject
      * @throws  FatalError
      *          If the given name is not a legal charset name
      */
-    private func checkName(name: String)
+    fileprivate func checkName(_ name: String)
     {
         if name.isEmpty {
-            rxm_fatalError("Illegal charset name.")
+            rxm_fatalError(message: "Illegal charset name.")
         }
 
         var idx = 0
@@ -127,13 +127,13 @@ public class Charset: NSObject
             if (ucs == UnicodeScalar("_").value && idx != 0) { idx += 1; continue; }
             if (ucs == UnicodeScalar(".").value && idx != 0) { idx += 1; continue; }
 
-            rxm_fatalError("Illegal charset name.")
+            rxm_fatalError(message: "Illegal charset name.")
         }
     }
 
 // MARK: - Constants
 
-    private struct Inner {
+    fileprivate struct Inner {
         static let StandardProvider = StandardCharsets()
     }
 
@@ -147,18 +147,18 @@ extension Charset // : CustomDebugStringConvertible
 {
 // MARK: - Properties
 
-    public override var description: String {
+    open override var description: String {
         return self.name
     }
 
-    public override var debugDescription: String {
+    open override var debugDescription: String {
         return self.name
     }
 
 }
 
 public func == (lhs: Charset, rhs: Charset) -> Bool {
-    return (lhs.name.caseInsensitiveCompare(rhs.name) == .OrderedSame)
+    return (lhs.name.caseInsensitiveCompare(rhs.name) == .orderedSame)
 }
 
 // ----------------------------------------------------------------------------

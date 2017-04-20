@@ -12,7 +12,7 @@ import UIKit
 
 // ----------------------------------------------------------------------------
 
-public class ImageConverter: AbstractCallResultConverter<UIImage>
+open class ImageConverter: AbstractCallResultConverter<UIImage>
 {
 // MARK: - Construction
 
@@ -22,12 +22,12 @@ public class ImageConverter: AbstractCallResultConverter<UIImage>
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
     {
         var newEntity: ResponseEntity<To>
         var newBody: UIImage?
 
-        if let body = entity.body where !(body.isEmpty)
+        if let body = entity.body, !(body.isEmpty)
         {
             if let image = UIImage(data: body) {
                 newBody = image
@@ -42,13 +42,13 @@ public class ImageConverter: AbstractCallResultConverter<UIImage>
         return newEntity
     }
 
-    override public func supportedMediaTypes() -> [MediaType] {
+    override open func supportedMediaTypes() -> [MediaType] {
         return ImageConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.ImageJpeg, MediaType.ImagePng]
+    fileprivate static let SupportedMediaTypes = [MediaType.ImageJpeg, MediaType.ImagePng]
 
 }
 

@@ -59,7 +59,7 @@ public struct HttpHeaders
 
 // MARK: - Variables
 
-    private var headers: [String: String]
+    fileprivate var headers: [String: String]
 
 }
 
@@ -106,7 +106,7 @@ extension HttpHeaders
      * @see #put(String, List)
      * @see #add(String, String)
      */
-    public mutating func set(name: String, value: String?) {
+    public mutating func set(_ name: String, value: String?) {
         self.headers[name] = value
     }
 
@@ -142,27 +142,27 @@ extension HttpHeaders
         return self.headers.isEmpty
     }
 
-    public func containsKey(name: String) -> Bool {
+    public func containsKey(_ name: String) -> Bool {
         return self.headers.keys.contains(name)
     }
 
-    public func containsValue(value: String) -> Bool {
+    public func containsValue(_ value: String) -> Bool {
         return self.headers.values.contains(value)
     }
 
-    public func get(name: String) -> String? {
+    public func get(_ name: String) -> String? {
         return self.headers[name]
     }
 
-    public mutating func put(name: String, value: String) {
+    public mutating func put(_ name: String, value: String) {
         set(name, value: value)
     }
 
-    public mutating func remove(name: String) {
+    public mutating func remove(_ name: String) {
         set(name, value: nil)
     }
 
-    public mutating func putAll(m: [String: String]) {
+    public mutating func putAll(_ m: [String: String]) {
         for (name, value) in m {
             set(name, value: value)
         }
@@ -307,7 +307,7 @@ extension HttpHeaders
      * Sets a value for the {@code Authorization} header.
      * @param httpAuthentication an http-based authentication representation
      */
-    public mutating func setAuthorization(httpAuthentication: HttpAuthentication?) {
+    public mutating func setAuthorization(_ httpAuthentication: HttpAuthentication?) {
         set(Header.Authorization, value: httpAuthentication?.getHeaderValue())
     }
 

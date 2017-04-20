@@ -12,11 +12,11 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class HttpResponse
+open class HttpResponse
 {
 // MARK: - Construction
 
-    public init(response: NSHTTPURLResponse, body: NSData? = nil, redirectRequest: NSURLRequest? = nil)
+    public init(response: HTTPURLResponse, body: Data? = nil, redirectRequest: URLRequest? = nil)
     {
         // Init instance variables
         self.response = response
@@ -26,11 +26,11 @@ public class HttpResponse
 
 // MARK: - Properties
 
-    public let response: NSHTTPURLResponse
+    open let response: HTTPURLResponse
 
-    public let body: NSData?
+    open let body: Data?
 
-    public let redirectRequest: NSURLRequest?
+    open let redirectRequest: URLRequest?
 
 }
 
@@ -40,7 +40,7 @@ extension HttpResponse
 {
 // MARK: - Construction
 
-    func copy(body body: NSData?) -> HttpResponse {
+    func copy(body: Data?) -> HttpResponse {
         return HttpResponse(response: self.response, body: body, redirectRequest: self.redirectRequest)
     }
 

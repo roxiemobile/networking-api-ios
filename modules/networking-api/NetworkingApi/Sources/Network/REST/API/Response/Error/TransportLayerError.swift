@@ -8,12 +8,12 @@
 //
 // ----------------------------------------------------------------------------
 
-public class TransportLayerError: AbstractRestApiError
+open class TransportLayerError: AbstractRestApiError
 {
 // MARK: - Properties
 
-    public override var type: RestApiErrorType {
-        return .TransportLayer
+    open override var type: RestApiErrorType {
+        return .transportLayer
     }
 
 }

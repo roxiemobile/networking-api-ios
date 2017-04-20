@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class CallbackDecorator<Ti, To>: Callback<Ti, To>
+open class CallbackDecorator<Ti, To>: Callback<Ti, To>
 {
 // MARK: - Construction
 
@@ -25,7 +25,7 @@ public class CallbackDecorator<Ti, To>: Callback<Ti, To>
 
 // MARK: - Functions
 
-    public override func onShouldExecute(call: Call<Ti>) -> Bool
+    open override func onShouldExecute(_ call: Call<Ti>) -> Bool
     {
         guard let callback = self.callback else {
             return true
@@ -34,21 +34,21 @@ public class CallbackDecorator<Ti, To>: Callback<Ti, To>
         return callback.onShouldExecute(call)
     }
 
-    public override func onSuccess(call: Call<Ti>, entity: ResponseEntity<To>) {
+    open override func onSuccess(_ call: Call<Ti>, entity: ResponseEntity<To>) {
         self.callback?.onSuccess(call, entity: entity)
     }
 
-    public override func onFailure(call: Call<Ti>, error: RestApiError) {
+    open override func onFailure(_ call: Call<Ti>, error: RestApiError) {
         self.callback?.onFailure(call, error: error)
     }
 
-    public override func onCancel(call: Call<Ti>) {
+    open override func onCancel(_ call: Call<Ti>) {
         self.callback?.onCancel(call)
     }
 
 // MARK: - Variables
 
-    private let callback: Callback<Ti, To>?
+    fileprivate let callback: Callback<Ti, To>?
 
 }
 
