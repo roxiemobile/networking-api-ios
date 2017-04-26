@@ -29,13 +29,18 @@ public class TaskQueue: NonCreatable
     public static func enqueue<Ti, To>(task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
     {
         let innerTask = InnerTask(task: task, callback: callback, callbackOnUiThread: callbackOnUiThread)
-        self.tasks.value.add(innerTask, key: task.getTag())
+        self.tasks.withValue { tasks in
+            tasks.add(innerTask, key: task.getTag())
+        }
 
         // Execute the task on the background thread
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0))
         {
             innerTask.execute()
-            self.tasks.value.remove(task.getTag(), value: innerTask)
+
+            self.tasks.withValue { tasks in
+                tasks.remove(task.getTag(), value: innerTask)
+            }
         }
 
         // Done
@@ -44,7 +49,11 @@ public class TaskQueue: NonCreatable
 
     public static func cancel(tag: String)
     {
-        for task in self.tasks.value.remove(tag) {
+        let cancelledTasks = self.tasks.withValue { tasks in
+            return tasks.remove(tag)
+        }
+
+        for task in cancelledTasks {
             task.cancel()
         }
     }
