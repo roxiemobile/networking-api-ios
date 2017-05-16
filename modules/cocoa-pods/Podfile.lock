@@ -26,10 +26,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Atomic:
-    :commit: 91229c1b19af6f3fd0c6eab6c172186075495305
+    :commit: a9c4ce02aecb1c8cb3d442549a389d84114a4aa6
     :git: https://github.com/NSemakov/Atomic.git
   SwiftCommons:
-    :commit: 92aba9db8f280fb3bcac97b7b95eed5af180e222
+    :commit: 3a1eae31731076e4fc18dae25846184b1808ed4f
     :git: https://github.com/NSemakov/swift-commons.ios
 
 SPEC CHECKSUMS:
@@ -39,6 +39,6 @@ SPEC CHECKSUMS:
   SwiftCommons: 98c0fde9cfdc6b27d77ff12574abbc3180837346
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: dd797b947a349272758254adbb2720f4a9263e3a
+PODFILE CHECKSUM: b3cf283c800b33782feb85c2444a497d67b35efd
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
