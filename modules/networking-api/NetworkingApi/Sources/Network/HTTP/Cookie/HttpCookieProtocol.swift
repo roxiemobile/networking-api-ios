@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  HttpCookie.swift
+//  HttpCookieProtocol.swift
 //
 //  @author     Alexander Bragin <alexander.bragin@gmail.com>
 //  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
@@ -13,12 +13,12 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-@objc public protocol HttpCookie: RXMCustomStringConvertible
+@objc public protocol HttpCookieProtocol: RXMCustomStringConvertible
 {
 // MARK: - Properties
 
     /// Returns a dictionary representation of the receiver.
-    var properties: [String: AnyObject]? { get }
+    var properties: [HTTPCookiePropertyKey : Any]? { get }
 
     /// Returns the "Domain" attribute.
     var domain: String { get }
@@ -32,13 +32,13 @@ import SwiftCommons
 // MARK: - Functions
 
     /// Reports whether this http cookie has expired according to the time passed in or not.
-    func isExpired(date: NSDate) -> Bool
+    func isExpired(_ date: Date) -> Bool
 
     /// Reports whether this http cookie has expired or not.
     func isExpired() -> Bool
 
     /// Checks if this cookie matches the given URL.
-    func matchesURL(url: NSURL) -> Bool
+    func matchesURL(_ url: URL) -> Bool
 
 }
 

@@ -8,12 +8,12 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ApplicationLayerError: AbstractRestApiError
+open class ApplicationLayerError: AbstractRestApiError
 {
 // MARK: - Properties
 
-    public override var type: RestApiErrorType {
-        return .ApplicationLayer
+    open override var type: RestApiErrorType {
+        return .applicationLayer
     }
 
 }

@@ -15,12 +15,12 @@ public protocol ResponseEntityHolder
     /**
     * Returns the HTTP response entity.
     */
-    func getResponseEntity() -> ResponseEntity<NSData>
+    func getResponseEntity() -> ResponseEntity<Data>
 
     /**
     * Returns the response body as a byte array.
     */
-    func getResponseBodyAsBytes() -> NSData?
+    func getResponseBodyAsBytes() -> Data?
 
     /**
     * Returns the response body as a string.

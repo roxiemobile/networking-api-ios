@@ -15,12 +15,12 @@ public protocol HttpClientConfig
     /**
      * TODO
      */
-    func connectTimeout() -> NSTimeInterval
+    func connectTimeout() -> TimeInterval
 
     /**
      * TODO
      */
-    func readTimeout() -> NSTimeInterval
+    func readTimeout() -> TimeInterval
 
 
     /**

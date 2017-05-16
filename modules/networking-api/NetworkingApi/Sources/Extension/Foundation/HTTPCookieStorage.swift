@@ -12,7 +12,7 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-extension NSHTTPCookieStorage: HttpCookieStore {
+extension HTTPCookieStorage: HttpCookieStore {
     // Do nothing ..
 }
 

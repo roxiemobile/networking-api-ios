@@ -12,11 +12,11 @@
 
 // ----------------------------------------------------------------------------
 
-public class ResponseEntity<T>: RequestEntity<T>
+open class ResponseEntity<T>: RequestEntity<T>
 {
 // MARK: - Construction
 
-    init(url: NSURL?, headers: HttpHeaders?, cookies: [HttpCookie]?, body: T?, status: HttpStatus?, mediaType: MediaType?)
+    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?, status: HttpStatus?, mediaType: MediaType?)
     {
         // Init instance variables
         self.status = status
@@ -28,9 +28,9 @@ public class ResponseEntity<T>: RequestEntity<T>
 
 // MARK: - Properties
 
-    public let status: HttpStatus?
+    open let status: HttpStatus?
 
-    public let mediaType: MediaType?
+    open let mediaType: MediaType?
 
 }
 

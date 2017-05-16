@@ -12,8 +12,8 @@ public enum CallResult<T>
 {
 // MARK: - Construction
 
-    case Success(ResponseEntity<T>)
-    case Failure(RestApiError)
+    case success(ResponseEntity<T>)
+    case failure(RestApiError)
 
 }
 
@@ -23,15 +23,15 @@ extension CallResult: EnumResultType
 {
 // MARK: - Functions
 
-    public func map(type: CallResult) -> BasicEnumResult<SuccessValue, FailureValue>
+    public func map(_ type: CallResult) -> BasicEnumResult<SuccessValue, FailureValue>
     {
         switch self
         {
-            case .Success(let str):
-                return .Success(str)
+            case .success(let str):
+                return .success(str)
 
-            case .Failure(let err):
-                return .Failure(err)
+            case .failure(let err):
+                return .failure(err)
         }
     }
 

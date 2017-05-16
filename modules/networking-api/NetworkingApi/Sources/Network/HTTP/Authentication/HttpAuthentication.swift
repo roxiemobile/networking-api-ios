@@ -12,11 +12,11 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class HttpAuthentication: AbstractClass
+open class HttpAuthentication: AbstractClass
 {
 // MARK: - Functions
 
-    public func getHeaderValue() -> String {
+    open func getHeaderValue() -> String {
         raiseAbstractMethodException()
     }
 

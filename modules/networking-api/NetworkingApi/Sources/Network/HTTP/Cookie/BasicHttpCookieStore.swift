@@ -13,7 +13,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class BasicHttpCookieStore: NSHTTPCookieStorage
+open class BasicHttpCookieStore: HTTPCookieStorage
 {
 // MARK: - Construction
 
@@ -30,19 +30,19 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
 
 // MARK: - Properties
 
-    public override var cookies: [NSHTTPCookie]? {
-        return Array(self.cookieStore.values) as? [NSHTTPCookie]
+    open override var cookies: [HTTPCookie]? {
+        return Array(self.cookieStore.values) as? [HTTPCookie]
     }
 
 // MARK: - Functions
 
-    public override func setCookie(cookie: NSHTTPCookie) {
+    open override func setCookie(_ cookie: HTTPCookie) {
         add(cookie)
     }
 
-    public override func setCookies(cookies: [NSHTTPCookie], forURL URL: NSURL?, mainDocumentURL: NSURL?)
+    open override func setCookies(_ cookies: [HTTPCookie], for URL: URL?, mainDocumentURL: URL?)
     {
-        if (self.cookieAcceptPolicy == .Never) { return }
+        if (self.cookieAcceptPolicy == .never) { return }
 
         var changed = false
 
@@ -51,7 +51,7 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
         {
             let cookie = object
             
-            if (self.cookieAcceptPolicy == .OnlyFromMainDocumentDomain) && (mainDocumentURL != nil)
+            if (self.cookieAcceptPolicy == .onlyFromMainDocumentDomain) && (mainDocumentURL != nil)
             {
                 let domain = cookie.domain
                 let host = mainDocumentURL!.host
@@ -71,15 +71,15 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
         }
     }
 
-    public override func cookiesForURL(URL: NSURL) -> [NSHTTPCookie]? {
-        return get(URL) as? [NSHTTPCookie]
+    open override func cookies(for URL: URL) -> [HTTPCookie]? {
+        return get(URL) as? [HTTPCookie]
     }
 
-    public override func deleteCookie(cookie: NSHTTPCookie) {
+    open override func deleteCookie(_ cookie: HTTPCookie) {
         remove(cookie)
     }
 
-    public override func removeCookiesSinceDate(date: NSDate)
+    open override func removeCookies(since date: Date)
     {
         // NOTE: Shallow copy
         let cookies = self.cookieStore
@@ -99,32 +99,32 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
         }
     }
 
-    @available(iOS, introduced=5.0)
-    public override func sortedCookiesUsingDescriptors(sortOrder: [NSSortDescriptor]) -> [NSHTTPCookie] {
-        let cookies = (Array(self.cookieStore.values) as NSArray).sortedArrayUsingDescriptors(sortOrder)
-        return (cookies as? [NSHTTPCookie]) ?? [NSHTTPCookie]()
+    @available(iOS, introduced: 5.0)
+    open override func sortedCookies(using sortOrder: [NSSortDescriptor]) -> [HTTPCookie] {
+        let cookies = (Array(self.cookieStore.values) as NSArray).sortedArray(using: sortOrder)
+        return (cookies as? [HTTPCookie]) ?? [HTTPCookie]()
     }
 
-    @available(iOS, introduced=8.0)
-    public override func storeCookies(cookies: [NSHTTPCookie], forTask task: NSURLSessionTask) {
-        setCookies(cookies, forURL: task.currentRequest?.URL, mainDocumentURL: nil)
+    @available(iOS, introduced: 8.0)
+    open override func storeCookies(_ cookies: [HTTPCookie], for task: URLSessionTask) {
+        setCookies(cookies, for: task.currentRequest?.url, mainDocumentURL: nil)
     }
 
-    @available(iOS, introduced=8.0)
-    public override func getCookiesForTask(task: NSURLSessionTask, completionHandler: (([NSHTTPCookie]?) -> Void)) {
+    @available(iOS, introduced: 8.0)
+    open override func getCookiesFor(_ task: URLSessionTask, completionHandler: (@escaping ([HTTPCookie]?) -> Void)) {
         completionHandler(self.cookies)
     }
 
 // MARK: - Private Functions
 
-    private func extractCookies(objects: [AnyObject]) -> [String: HttpCookie]
+    fileprivate func extractCookies(_ objects: [AnyObject]) -> [String: HttpCookieProtocol]
     {
-        var cookieStore = [String: HttpCookie]()
+        var cookieStore = [String: HttpCookieProtocol]()
 
         // Look up for valid HTTP cookies only
         for object in objects
         {
-            if let cookie = NSHTTPCookie(object as? HttpCookie) where !cookie.isExpired() {
+            if let cookie = HTTPCookie(object as? HttpCookieProtocol), !cookie.isExpired() {
                 cookieStore[key(cookie)] = cookie
             }
         }
@@ -133,7 +133,7 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
         return cookieStore
     }
 
-    private func key(cookie: HttpCookie) -> String
+    fileprivate func key(_ cookie: HttpCookieProtocol) -> String
     {
         let path = cookie.path
         return (cookie.domain + (":" + path) + ":" + cookie.name)
@@ -141,7 +141,7 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
 
 // MARK: - Variables
 
-    private var cookieStore = [String: HttpCookie]()
+    fileprivate var cookieStore = [String: HttpCookieProtocol]()
 
 }
 
@@ -156,7 +156,7 @@ extension BasicHttpCookieStore
     /**
      * Saves a HTTP cookie to this store.
      */
-    public func add(cookie: HttpCookie) {
+    public func add(_ cookie: HttpCookieProtocol) {
         add(cookie, notify: true)
     }
 
@@ -165,9 +165,9 @@ extension BasicHttpCookieStore
      *
      * @returns not expired cookies.
      */
-    public func get(url: NSURL) -> [HttpCookie]
+    public func get(_ url: URL) -> [HttpCookieProtocol]
     {
-        var cookies = [HttpCookie]()
+        var cookies = [HttpCookieProtocol]()
 
         // Search for corresponded HTTP cookies only
         for (_, cookie) in self.cookieStore
@@ -186,7 +186,7 @@ extension BasicHttpCookieStore
      *
      * @returns TRUE if the specified cookie is contained in this store and removed successfully.
      */
-    public func remove(cookie: HttpCookie) -> Bool {
+    @discardableResult public func remove(_ cookie: HttpCookieProtocol) -> Bool {
         return remove(cookie, notify: true)
     }
 
@@ -195,7 +195,7 @@ extension BasicHttpCookieStore
      *
      * @returns TRUE if any cookies were removed as a result of this call.
      */
-    public func removeAll() -> Bool
+    @discardableResult public func removeAll() -> Bool
     {
         let result = !self.cookieStore.isEmpty
         if  result
@@ -216,9 +216,9 @@ extension BasicHttpCookieStore
     /**
      * Saves a HTTP cookie to this store AND posts notification if needed.
      */
-    private func add(cookie: HttpCookie, notify: Bool) -> Bool
+    @discardableResult fileprivate func add(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool
     {
-        if (self.cookieAcceptPolicy == .Never) { return false }
+        if (self.cookieAcceptPolicy == .never) { return false }
 
         // Add new Cookie to the CookieStore
         self.cookieStore[key(cookie)] = cookie
@@ -237,9 +237,9 @@ extension BasicHttpCookieStore
      *
      * @returns TRUE if the specified cookie is contained in this store and removed successfully.
      */
-    private func remove(cookie: HttpCookie, notify: Bool) -> Bool
+    fileprivate func remove(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool
     {
-        let changed = (self.cookieStore.removeValueForKey(key(cookie)) != nil)
+        let changed = (self.cookieStore.removeValue(forKey: key(cookie)) != nil)
 
         // Post notification if needed
         if changed && notify {
@@ -253,23 +253,23 @@ extension BasicHttpCookieStore
     /**
      * Posts notification NSHTTPCookieManagerCookiesChangedNotification.
      */
-    private func postCookiesChangedNotification()
+    fileprivate func postCookiesChangedNotification()
     {
         weak var instance = self
 
         // .. on main thread
         rxm_dispatch_main_sync()
         {
-            var notificationCenter: NSNotificationCenter!
+            var notificationCenter: NotificationCenter!
 #if os(iOS)
-            notificationCenter = NSNotificationCenter.defaultCenter()
+            notificationCenter = NotificationCenter.default
 #elseif os(OSX)
             notificationCenter = NSDistributedNotificationCenter.defaultCenter()
 #else
             mdc_fatalException("It's that mythical new Apple product.")
 #endif
             // Post notification
-            notificationCenter.postNotificationName(NSHTTPCookieManagerCookiesChangedNotification, object: instance)
+            notificationCenter.post(name: NSNotification.Name.NSHTTPCookieManagerCookiesChanged, object: instance)
         }
     }
 
@@ -283,7 +283,7 @@ extension BasicHttpCookieStore // : CustomDebugStringConvertible
 {
 // MARK: - Properties
 
-    public override var description: String
+    open override var description: String
     {
         var output = ""
 
@@ -301,7 +301,7 @@ extension BasicHttpCookieStore // : CustomDebugStringConvertible
         return output
     }
 
-    public override var debugDescription: String {
+    open override var debugDescription: String {
         return self.description
     }
 

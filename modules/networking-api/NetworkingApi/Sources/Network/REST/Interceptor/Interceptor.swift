@@ -12,7 +12,7 @@ public protocol Interceptor
 {
 // MARK: - Functions
 
-    func intercept(chain: InterceptorChain) throws -> HttpResponse
+    func intercept(_ chain: InterceptorChain) throws -> HttpResponse
 
 }
 
