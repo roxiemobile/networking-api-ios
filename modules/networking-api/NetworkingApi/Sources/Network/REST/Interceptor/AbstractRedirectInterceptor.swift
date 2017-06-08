@@ -14,6 +14,13 @@ import SwiftCommons
 
 open class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
 {
+// MARK: - Construction
+
+    public init () {
+        // Do nothing
+    }
+
+
 // MARK: - Functions
 
     open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
