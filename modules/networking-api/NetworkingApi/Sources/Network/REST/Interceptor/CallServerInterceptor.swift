@@ -45,9 +45,6 @@ class CallServerInterceptor: Interceptor
         config.timeoutIntervalForResource = self.options.connectionTimeout
         config.timeoutIntervalForRequest  = self.options.requestTimeout
 
-        // Issues with NSURLSession Not Sending HTTPAdditionalHeaders
-        // @link https://teamtreehouse.com/forum/issues-with-nsurlsession-not-sending-httpadditionalheaders
-
         // Send POST request using NSURLSession
         // @link http://stackoverflow.com/a/19101084
 
@@ -56,12 +53,6 @@ class CallServerInterceptor: Interceptor
 
         // How to use Alamofire with custom headers
         // @link http://stackoverflow.com/a/26055667
-
-        var urlRequest = urlRequest.urlRequest!
-
-        for (header, value) in config.httpAdditionalHeaders! {
-            urlRequest.setValue(value as? String, forHTTPHeaderField: header as! String)
-        }
 
         // Create manager
         let manager = SessionManager(configuration: config)
