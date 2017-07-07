@@ -37,7 +37,7 @@ open class InterceptorChain
             rxm_fatalError(message: "Invalid intercepter index in chain.")
         }
 
-        let next = InterceptorChain(interceptors: self.interceptors, index: (self.index + 1), request: self.request)
+        let next = InterceptorChain(interceptors: self.interceptors, index: (self.index + 1), request: request)
 
         let interceptor = self.interceptors[self.index]
         let result = try interceptor.intercept(next)

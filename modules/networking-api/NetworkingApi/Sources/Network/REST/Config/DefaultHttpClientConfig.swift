@@ -47,6 +47,10 @@ open class DefaultHttpClientConfig: HttpClientConfig
         static let NetworkInterceptors: [Interceptor] = {
             var networkInterceptors: [Interceptor] = []
 
+            // Interceptor which adds an Alamofire library's version to an User-Agent's header
+            networkInterceptors.append(UserAgentRequestInterceptor())
+
+            // Interceptor which logs request and response information
             if Logger.isLoggable(.debug) {
                 networkInterceptors.append(HttpLoggingInterceptor())
             }
