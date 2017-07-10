@@ -214,23 +214,26 @@ extension HttpHeaders
 {
 // MARK: - Properties
 
-//    /**
-//     * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
-//     * @param acceptableMediaTypes the acceptable media types
-//     */
-//    public void setAccept(List<MediaType> acceptableMediaTypes) {
-//        set(ACCEPT, MediaType.toString(acceptableMediaTypes));
-//    }
+    public var accept: [MediaType]
+    {
+        /**
+         * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
+         * @param acceptableMediaTypes the acceptable media types
+         */
+        set {
+            set(Header.Accept, value: MediaType.toString(mediaTypes: newValue))
+        }
 
-//    /**
-//     * Return the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
-//     * <p>Returns an empty list when the acceptable media types are unspecified.
-//     * @return the acceptable media types
-//     */
-//    public List<MediaType> getAccept() {
-//        String value = getFirst(ACCEPT);
-//        return (value != null ? MediaType.parseMediaTypes(value) : Collections.<MediaType>emptyList());
-//    }
+        /**
+         * Return the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
+         * <p>Returns an empty list when the acceptable media types are unspecified.
+         * @return the acceptable media types
+         */
+        get {
+            let value = get(Header.Accept)
+            return (value != nil) ? MediaType.parseMediaTypes(value!) : []
+        }
+    }
 
 //    /**
 //     * Set the list of acceptable {@linkplain Charset charsets}, as specified by the {@code Accept-Charset} header.
@@ -369,7 +372,8 @@ extension HttpHeaders
 //        return (value != null ? Long.parseLong(value) : -1);
 //    }
 
-    public var contentType: MediaType? {
+    public var contentType: MediaType?
+    {
         /**
          * Set the {@linkplain MediaType media type} of the body, as specified by the {@code Content-Type} header.
          * @param mediaType the media type

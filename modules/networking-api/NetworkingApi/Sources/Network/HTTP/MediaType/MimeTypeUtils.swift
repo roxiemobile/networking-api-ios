@@ -98,23 +98,14 @@ public final class MimeTypeUtils: NonCreatable
 //        return result;
 //    }
 
-//    /**
-//     * Return a string representation of the given list of {@code MimeType} objects.
-//     * @param mimeTypes the string to parse
-//     * @return the list of mime types
-//     * @throws IllegalArgumentException if the String cannot be parsed
-//     */
-//    public static String toString(Collection<? extends MimeType> mimeTypes) {
-//        StringBuilder builder = new StringBuilder();
-//        for (Iterator<? extends MimeType> iterator = mimeTypes.iterator(); iterator.hasNext();) {
-//            MimeType mimeType = iterator.next();
-//            mimeType.appendTo(builder);
-//            if (iterator.hasNext()) {
-//                builder.append(", ");
-//            }
-//        }
-//        return builder.toString();
-//    }
+    /**
+     * Return a string representation of the given list of {@code MimeType} objects.
+     * @param mimeTypes the list of mime types
+     * @return the string mime types
+     */
+    public class func toString(mimeTypes: [MimeType]) -> String {
+        return mimeTypes.map{ $0.description }.joined(separator: ", ")
+    }
 
 //    /**
 //     * Sorts the given list of {@code MimeType} objects by specificity.
