@@ -73,7 +73,7 @@ extension AbstractNestedError
         var result = typeName(self)
 
         if let cause = self.cause {
-            result += "\nСaused by error: " + String(describing: cause).trim()
+            result += "\nCaused by error: " + String(describing: cause).trim()
         }
 
         if let responseBody = getResponseBodyAsString() {
