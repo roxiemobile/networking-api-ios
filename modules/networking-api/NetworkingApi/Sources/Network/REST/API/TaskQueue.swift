@@ -32,7 +32,7 @@ open class TaskQueue: NonCreatable
         self.tasks.value.add(innerTask, key: task.getTag())
 
         // Execute the task on the background thread
-        DispatchQueue.global(qos: .default).async
+        DispatchQueue.global(qos: .utility).async
         {
             innerTask.execute()
             self.tasks.value.remove(task.getTag(), value: innerTask)
