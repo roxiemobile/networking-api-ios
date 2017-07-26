@@ -40,7 +40,7 @@ open class MultiValueDictionary<Key: Hashable, Value>
     {
         var result: Value?
 
-        if let index = (self.values[key]?.index{ ($0 as AnyObject) !== (value as AnyObject) }) {
+        if let index = (self.values[key]?.index{ ($0 as AnyObject) === (value as AnyObject) }) {
             result = self.values[key]?.remove(at: index)
         }
 
