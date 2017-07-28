@@ -23,7 +23,7 @@ public final class MimeTypeUtils: NonCreatable
      * @return the mime type
      * @throws InvalidMimeTypeException if the string cannot be parsed
      */
-    public class func parseMimeType(_ mimeType: String, error: NSErrorPointer? = nil) -> MimeType?
+    public class func parseMimeType(_ mimeType: String, error: NSErrorPointer = nil) -> MimeType?
     {
         if mimeType.isEmpty
         {
@@ -145,10 +145,8 @@ public final class MimeTypeUtils: NonCreatable
 
 // MARK: - Private Functions
 
-    fileprivate class func setError(_ error: NSErrorPointer?, failureReason: String, errorCode: Int = -1) {
-        if let _ = error {
-            error!?.pointee = NSError(domain: "InvalidMimeTypeError", code: errorCode, userInfo: [NSLocalizedDescriptionKey: failureReason])
-        }
+    fileprivate class func setError(_ error: NSErrorPointer, failureReason: String, errorCode: Int = -1) {
+        error?.pointee = NSError(domain: "InvalidMimeTypeError", code: errorCode, userInfo: [NSLocalizedDescriptionKey: failureReason])
     }
 
 // MARK: - Inner Types

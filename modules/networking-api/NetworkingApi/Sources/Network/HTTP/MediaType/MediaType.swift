@@ -166,7 +166,7 @@ open class MediaType: MimeType
      * (as supported by {@link org.springframework.core.convert.ConversionService}.
      * @see #parseMediaType(String)
      */
-    open override class func valueOf(_ value: String, error: NSErrorPointer? = nil) -> MediaType? {
+    open override class func valueOf(_ value: String, error: NSErrorPointer = nil) -> MediaType? {
         return parseMediaType(value, error: error)
     }
 
@@ -176,7 +176,7 @@ open class MediaType: MimeType
      * @return the media type
      * @throws InvalidMediaTypeException if the string cannot be parsed
      */
-    open class func parseMediaType(_ value: String, error: NSErrorPointer? = nil) -> MediaType?
+    open class func parseMediaType(_ value: String, error: NSErrorPointer = nil) -> MediaType?
     {
         var mediaType: MediaType?
 
@@ -194,7 +194,7 @@ open class MediaType: MimeType
      * @return the list of media types
      * @throws IllegalArgumentException if the string cannot be parsed
      */
-    open class func parseMediaTypes(_ value: String, error: NSErrorPointer? = nil) -> [MediaType]
+    open class func parseMediaTypes(_ value: String, error: NSErrorPointer = nil) -> [MediaType]
     {
         var result: [MediaType] = []
 

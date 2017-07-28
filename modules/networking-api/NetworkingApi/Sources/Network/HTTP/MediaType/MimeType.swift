@@ -66,7 +66,7 @@ open class MimeType
      * @param parameters the parameters, may be {@code null}
      * @throws IllegalArgumentException if any of the parameters contain illegal characters
      */
-    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer? = nil)
+    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer = nil)
     {
         // Init instance variables
         self.type = type.lowercased()
@@ -119,7 +119,7 @@ open class MimeType
      * @throws IllegalArgumentException in case of illegal characters
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
      */
-    fileprivate func checkToken(_ token: String, error: NSErrorPointer? = nil) -> Bool
+    fileprivate func checkToken(_ token: String, error: NSErrorPointer = nil) -> Bool
     {
         var result = true
 
@@ -127,9 +127,7 @@ open class MimeType
         {
             if !Inner.Token.contains(ch)
             {
-                if let _ = error {
-                    error!?.pointee = NSError(domain: "IllegalArgumentException", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."])
-                }
+                error?.pointee = NSError(domain: "IllegalArgumentException", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."])
 
                 result = false
                 break
@@ -394,7 +392,7 @@ open class MimeType
      * (as supported by {@link org.springframework.core.convert.ConversionService}.
      * @see MimeTypeUtils#parseMimeType(String)
      */
-    public class func valueOf(_ value: String, error: NSErrorPointer? = nil) -> MimeType? {
+    public class func valueOf(_ value: String, error: NSErrorPointer = nil) -> MimeType? {
         return MimeTypeUtils.parseMimeType(value, error: error)
     }
 
