@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.4.0)
   - Atomic (1.0.3)
-  - NetworkingApi (1.0.0):
+  - NetworkingApi (1.0.1):
     - Alamofire (~> 4.4)
     - Atomic
     - SwiftCommons (~> 1.0.0)
@@ -35,7 +35,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Atomic: 6a65765cb7d197873633e2693ee612f036736689
-  NetworkingApi: 77cdcde6f04e4b56cbca33daaca8073937a9d78f
+  NetworkingApi: f66f6d71e3aab4010fa706b21fd1c3534b3b457e
   SwiftCommons: 9d36feb11da1604a451d69b1d20496bc8d923cea
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
