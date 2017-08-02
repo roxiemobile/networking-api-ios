@@ -111,8 +111,15 @@ public class BasicHttpCookieStore: NSHTTPCookieStorage
     }
 
     @available(iOS, introduced=8.0)
-    public override func getCookiesForTask(task: NSURLSessionTask, completionHandler: (([NSHTTPCookie]?) -> Void)) {
-        completionHandler(self.cookies)
+    public override func getCookiesForTask(task: NSURLSessionTask, completionHandler: (([NSHTTPCookie]?) -> Void))
+    {
+        var cookies: [NSHTTPCookie]?
+
+        if let url = task.currentRequest?.URL {
+            cookies = cookiesForURL(url)
+        }
+
+        completionHandler(cookies)
     }
 
 // MARK: - Private Functions
