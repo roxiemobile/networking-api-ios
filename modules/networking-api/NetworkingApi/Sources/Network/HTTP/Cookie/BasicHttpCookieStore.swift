@@ -111,8 +111,15 @@ open class BasicHttpCookieStore: HTTPCookieStorage
     }
 
     @available(iOS, introduced: 8.0)
-    open override func getCookiesFor(_ task: URLSessionTask, completionHandler: (@escaping ([HTTPCookie]?) -> Void)) {
-        completionHandler(self.cookies)
+    open override func getCookiesFor(_ task: URLSessionTask, completionHandler: (@escaping ([HTTPCookie]?) -> Void))
+    {
+        var result: [HTTPCookie]?
+
+        if let url = task.currentRequest?.url {
+            result = cookies(for: url)
+        }
+
+        completionHandler(result)
     }
 
 // MARK: - Private Functions
