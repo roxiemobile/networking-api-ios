@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class VoidConverter: AbstractCallResultConverter<Void>
+open class VoidConverter: AbstractCallResultConverter<Void>
 {
 // MARK: - Construction
 
@@ -18,17 +18,17 @@ public class VoidConverter: AbstractCallResultConverter<Void>
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) -> ResponseEntity<To> {
+    open override func convert(_ entity: ResponseEntity<Ti>) -> ResponseEntity<To> {
         return BasicResponseEntityBuilder<Void>(entity: entity, body: ()).build()
     }
 
-    override public func supportedMediaTypes() -> [MediaType] {
+    override open func supportedMediaTypes() -> [MediaType] {
         return VoidConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    private static let SupportedMediaTypes = [MediaType.All]
+    fileprivate static let SupportedMediaTypes = [MediaType.All]
 
 }
 

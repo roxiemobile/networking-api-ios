@@ -18,8 +18,8 @@ public class NetworkConfig: NonCreatable
 
     public struct Timeout
     {
-        public static let Connection: NSTimeInterval = 60
-        public static let Request: NSTimeInterval = 60
+        public static let Connection: TimeInterval = 60
+        public static let Request: TimeInterval = 60
     }
 
 }

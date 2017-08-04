@@ -12,7 +12,7 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public class MimeType
+open class MimeType
 {
 // MARK: - Construction
 
@@ -66,11 +66,11 @@ public class MimeType
      * @param parameters the parameters, may be {@code null}
      * @throws IllegalArgumentException if any of the parameters contain illegal characters
      */
-    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer? = nil)
+    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer = nil)
     {
         // Init instance variables
-        self.type = type.lowercaseString
-        self.subtype = subtype.lowercaseString
+        self.type = type.lowercased()
+        self.subtype = subtype.lowercased()
         self.parameters = [String: String]()
 
         // Validate incoming params
@@ -85,20 +85,20 @@ public class MimeType
 // MARK: - Properties
 
     /// Return the primary type.
-    public let type: String
+    open let type: String
 
     /// Return the subtype.
-    public let subtype: String
+    open let subtype: String
 
     /**
      * Return the character set, as indicated by a {@code charset} parameter, if any.
      * @return the character set; or {@code null} if not available
      */
-    public var charset: Charset?
+    open var charset: Charset?
     {
         var charset: Charset?
 
-        if let charsetName = parameter(MimeType.ParamCharset) {
+        if let charsetName = parameter(name: MimeType.ParamCharset) {
             charset = Charset.forName(unquote(charsetName))
         }
 
@@ -109,7 +109,7 @@ public class MimeType
      * Return all generic parameter values.
      * @return a read-only map, possibly empty, never {@code null}
      */
-    public private(set) var parameters: [String: String]
+    open fileprivate(set) var parameters: [String: String]
 
 // MARK: - Functions
 
@@ -119,7 +119,7 @@ public class MimeType
      * @throws IllegalArgumentException in case of illegal characters
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
      */
-    private func checkToken(token: String, error: NSErrorPointer? = nil) -> Bool
+    fileprivate func checkToken(_ token: String, error: NSErrorPointer = nil) -> Bool
     {
         var result = true
 
@@ -127,9 +127,7 @@ public class MimeType
         {
             if !Inner.Token.contains(ch)
             {
-                if let _ = error {
-                    error!.memory = NSError(domain: "IllegalArgumentException", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."])
-                }
+                error?.pointee = NSError(domain: "IllegalArgumentException", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."])
 
                 result = false
                 break
@@ -140,7 +138,7 @@ public class MimeType
         return result
     }
 
-    private func checkParameters(params: [String: String]?) -> [String: String]
+    fileprivate func checkParameters(_ params: [String: String]?) -> [String: String]
     {
         var parameters = [String: String]()
 
@@ -157,7 +155,7 @@ public class MimeType
         return parameters
     }
 
-    func checkParameters(attribute: String, _ value: String) -> Bool
+    func checkParameters(_ attribute: String, _ value: String) -> Bool
     {
         var result = false
 
@@ -178,7 +176,7 @@ public class MimeType
         return result
     }
 
-    private func isQuotedString(str: String) -> Bool
+    fileprivate func isQuotedString(_ str: String) -> Bool
     {
         if (str.length < 2) {
             return false
@@ -188,8 +186,8 @@ public class MimeType
         }
     }
 
-    func unquote(str: String) -> String {
-        return isQuotedString(str) ? str.substringWithRange(str.startIndex.advancedBy(1)..<str.endIndex.advancedBy(-1)) : str
+    func unquote(_ str: String) -> String {
+        return isQuotedString(str) ? str.substring(with: str.characters.index(str.startIndex, offsetBy: 1)..<str.characters.index(str.endIndex, offsetBy: -1)) : str
     }
 
     /**
@@ -281,7 +279,7 @@ public class MimeType
      * @return {@code true} if this media type is compatible with the given media type;
      * {@code false} otherwise
      */
-    public func isCompatibleWith(other: MimeType) -> Bool
+    public func isCompatibleWith(_ other: MimeType) -> Bool
     {
         if isWildcardType() || other.isWildcardType() {
             return true
@@ -296,8 +294,8 @@ public class MimeType
             // Wildcard with suffix? e.g. application/_*+xml
             if isWildcardSubtype() || other.isWildcardSubtype()
             {
-                let selfPlusRange = self.subtype.rangeOfString("+")
-                let otherPlusRange = other.subtype.rangeOfString("+")
+                let selfPlusRange = self.subtype.range(of: "+")
+                let otherPlusRange = other.subtype.range(of: "+")
 
                 if (selfPlusRange == nil && otherPlusRange == nil) {
                     return true
@@ -305,11 +303,11 @@ public class MimeType
                 else
                 if (selfPlusRange != nil && otherPlusRange != nil)
                 {
-                    let selfSubtypeNoSuffix  = self.subtype.substringToIndex(selfPlusRange!.startIndex)
-                    let otherSubtypeNoSuffix = other.subtype.substringToIndex(otherPlusRange!.startIndex)
+                    let selfSubtypeNoSuffix  = self.subtype.substring(to: selfPlusRange!.lowerBound)
+                    let otherSubtypeNoSuffix = other.subtype.substring(to: otherPlusRange!.lowerBound)
 
-                    let selfSubtypeSuffix  = subtype.substringFromIndex(selfPlusRange!.startIndex.successor())
-                    let otherSubtypeSuffix = other.subtype.substringFromIndex(otherPlusRange!.startIndex.successor())
+                    let selfSubtypeSuffix  = self.subtype.substring(from: self.subtype.index(after: selfPlusRange!.lowerBound))
+                    let otherSubtypeSuffix = other.subtype.substring(from: other.subtype.index(after: otherPlusRange!.lowerBound))
 
                     if (selfSubtypeSuffix == otherSubtypeSuffix) && (selfSubtypeNoSuffix == MimeType.WildcardType || otherSubtypeNoSuffix == MimeType.WildcardType) {
                         return true
@@ -394,7 +392,7 @@ public class MimeType
      * (as supported by {@link org.springframework.core.convert.ConversionService}.
      * @see MimeTypeUtils#parseMimeType(String)
      */
-    public class func valueOf(value: String, error: NSErrorPointer? = nil) -> MimeType? {
+    public class func valueOf(_ value: String, error: NSErrorPointer = nil) -> MimeType? {
         return MimeTypeUtils.parseMimeType(value, error: error)
     }
 
@@ -436,16 +434,16 @@ public class MimeType
 
 // MARK: - Private Functions
 
-    private static func initToken() -> Set<Character>
+    fileprivate static func initToken() -> Set<Character>
     {
         var tokens = Set<Character>()
         for idx in 0...128 {
-            tokens.insert(Character(UnicodeScalar(idx)))
+            tokens.insert(Character(UnicodeScalar(idx)!))
         }
 
         // NOTE: Variable names refer to RFC 2616, section 2.2
         for idx in 0...31 {
-            tokens.remove(Character(UnicodeScalar(idx)))
+            tokens.remove(Character(UnicodeScalar(idx)!))
         }
 
         tokens.remove(Character(UnicodeScalar(127)))
@@ -475,7 +473,7 @@ public class MimeType
 
 // MARK: - Constants
 
-    private struct Inner {
+    fileprivate struct Inner {
         static let Token = MimeType.initToken()
     }
 
@@ -503,7 +501,7 @@ extension MimeType: CustomStringConvertible, CustomDebugStringConvertible
 
 // MARK: - Private Functions
 
-    private func description(params: [String: String]) -> String
+    fileprivate func description(_ params: [String: String]) -> String
     {
         var result = ""
 

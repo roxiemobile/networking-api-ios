@@ -14,7 +14,7 @@ public protocol HttpBody
 
     var mediaType: MediaType? { get }
 
-    var body: NSData? { get }
+    var body: Data? { get }
 
 }
 

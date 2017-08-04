@@ -23,7 +23,7 @@ public final class MimeTypeUtils: NonCreatable
      * @return the mime type
      * @throws InvalidMimeTypeException if the string cannot be parsed
      */
-    public class func parseMimeType(mimeType: String, error: NSErrorPointer? = nil) -> MimeType?
+    public class func parseMimeType(_ mimeType: String, error: NSErrorPointer = nil) -> MimeType?
     {
         if mimeType.isEmpty
         {
@@ -33,27 +33,27 @@ public final class MimeTypeUtils: NonCreatable
 
         let parts = mimeType.characters.split { $0 == ";" }.map { String($0) }
 
-        var fullType = parts[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var fullType = parts[0].trimmingCharacters(in: CharacterSet.whitespaces)
         // java.net.HttpURLConnection returns a *; q=.2 Accept header
         if (fullType == MimeType.WildcardType) {
             fullType = "*/*"
         }
 
-        let subRange: Range<String.Index>? = fullType.rangeOfString("/")
+        let subRange: Range<String.Index>? = fullType.range(of: "/")
         if (subRange == nil)
         {
             setError(error, failureReason: "Does not contain ‘/’")
             return nil
         }
 
-        if (subRange!.endIndex == fullType.endIndex)
+        if (subRange!.upperBound == fullType.endIndex)
         {
             setError(error, failureReason: "Does not contain subtype after ‘/’")
             return nil
         }
 
-        let type = fullType.substringToIndex(subRange!.startIndex)
-        let subtype = fullType.substringFromIndex(subRange!.startIndex.successor())
+        let type = fullType.substring(to: subRange!.lowerBound)
+        let subtype = fullType.substring(from: fullType.index(after: subRange!.lowerBound))
         if (type == MimeType.WildcardType) && (subtype != MimeType.WildcardType)
         {
             setError(error, failureReason: "Wildcard type is legal only in ‘*/*’ (all mime types)")
@@ -65,10 +65,10 @@ public final class MimeTypeUtils: NonCreatable
         {
             for parameter in parts
             {
-                if let eqIndex = parameter.rangeOfString("=")
+                if let eqIndex = parameter.range(of: "=")
                 {
-                    let attribute = parameter.substringToIndex(eqIndex.startIndex).trim()
-                    let value = parameter.substringFromIndex(eqIndex.startIndex.successor()).trim()
+                    let attribute = parameter.substring(to: eqIndex.lowerBound).trim()
+                    let value = parameter.substring(from: parameter.index(after: eqIndex.lowerBound)).trim()
                     parameters[attribute] = value
                 }
             }
@@ -98,23 +98,14 @@ public final class MimeTypeUtils: NonCreatable
 //        return result;
 //    }
 
-//    /**
-//     * Return a string representation of the given list of {@code MimeType} objects.
-//     * @param mimeTypes the string to parse
-//     * @return the list of mime types
-//     * @throws IllegalArgumentException if the String cannot be parsed
-//     */
-//    public static String toString(Collection<? extends MimeType> mimeTypes) {
-//        StringBuilder builder = new StringBuilder();
-//        for (Iterator<? extends MimeType> iterator = mimeTypes.iterator(); iterator.hasNext();) {
-//            MimeType mimeType = iterator.next();
-//            mimeType.appendTo(builder);
-//            if (iterator.hasNext()) {
-//                builder.append(", ");
-//            }
-//        }
-//        return builder.toString();
-//    }
+    /**
+     * Return a string representation of the given list of {@code MimeType} objects.
+     * @param mimeTypes the list of mime types
+     * @return the string mime types
+     */
+    public class func toString(mimeTypes: [MimeType]) -> String {
+        return mimeTypes.map{ $0.description }.joined(separator: ", ")
+    }
 
 //    /**
 //     * Sorts the given list of {@code MimeType} objects by specificity.
@@ -154,10 +145,8 @@ public final class MimeTypeUtils: NonCreatable
 
 // MARK: - Private Functions
 
-    private class func setError(error: NSErrorPointer?, failureReason: String, errorCode: Int = -1) {
-        if let _ = error {
-            error!.memory = NSError(domain: "InvalidMimeTypeError", code: errorCode, userInfo: [NSLocalizedDescriptionKey: failureReason])
-        }
+    fileprivate class func setError(_ error: NSErrorPointer, failureReason: String, errorCode: Int = -1) {
+        error?.pointee = NSError(domain: "InvalidMimeTypeError", code: errorCode, userInfo: [NSLocalizedDescriptionKey: failureReason])
     }
 
 // MARK: - Inner Types

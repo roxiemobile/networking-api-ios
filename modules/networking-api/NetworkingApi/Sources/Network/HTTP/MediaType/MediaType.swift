@@ -9,10 +9,11 @@
 // ----------------------------------------------------------------------------
 
 import Foundation
+import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class MediaType: MimeType
+open class MediaType: MimeType
 {
 // MARK: - Construction
 
@@ -83,7 +84,7 @@ public class MediaType: MimeType
 
 // MARK: - Functions
 
-    override func checkParameters(attribute: String, _ value: String) -> Bool
+    override func checkParameters(_ attribute: String, _ value: String) -> Bool
     {
         var result = super.checkParameters(attribute, value)
         if (result)
@@ -129,7 +130,7 @@ public class MediaType: MimeType
      * @param other the reference media type with which to compare
      * @return {@code true} if this media type is compatible with the given media type; {@code false} otherwise
      */
-    public override func isCompatibleWith(other: MimeType) -> Bool {
+    open override func isCompatibleWith(_ other: MimeType) -> Bool {
         return super.isCompatibleWith(other)
     }
 
@@ -165,7 +166,7 @@ public class MediaType: MimeType
      * (as supported by {@link org.springframework.core.convert.ConversionService}.
      * @see #parseMediaType(String)
      */
-    public override class func valueOf(value: String, error: NSErrorPointer? = nil) -> MediaType? {
+    open override class func valueOf(_ value: String, error: NSErrorPointer = nil) -> MediaType? {
         return parseMediaType(value, error: error)
     }
 
@@ -175,7 +176,7 @@ public class MediaType: MimeType
      * @return the media type
      * @throws InvalidMediaTypeException if the string cannot be parsed
      */
-    public class func parseMediaType(value: String, error: NSErrorPointer? = nil) -> MediaType?
+    open class func parseMediaType(_ value: String, error: NSErrorPointer = nil) -> MediaType?
     {
         var mediaType: MediaType?
 
@@ -186,35 +187,37 @@ public class MediaType: MimeType
         return mediaType
     }
 
-//    /**
-//     * Parse the given, comma-separated string into a list of {@code MediaType} objects.
-//     * <p>This method can be used to parse an Accept or Content-Type header.
-//     * @param mediaTypes the string to parse
-//     * @return the list of media types
-//     * @throws IllegalArgumentException if the string cannot be parsed
-//     */
-//    public static List<MediaType> parseMediaTypes(String mediaTypes) {
-//        if (!StringUtils.hasLength(mediaTypes)) {
-//            return Collections.emptyList();
-//        }
-//        String[] tokens = mediaTypes.split(",\\s*");
-//        List<MediaType> result = new ArrayList<MediaType>(tokens.length);
-//        for (String token : tokens) {
-//            result.add(parseMediaType(token));
-//        }
-//        return result;
-//    }
+    /**
+     * Parse the given, comma-separated string into a list of {@code MediaType} objects.
+     * <p>This method can be used to parse an Accept or Content-Type header.
+     * @param mediaTypes the string to parse
+     * @return the list of media types
+     * @throws IllegalArgumentException if the string cannot be parsed
+     */
+    open class func parseMediaTypes(_ value: String, error: NSErrorPointer = nil) -> [MediaType]
+    {
+        var result: [MediaType] = []
 
-//    /**
-//     * Return a string representation of the given list of {@code MediaType} objects.
-//     * <p>This method can be used to for an {@code Accept} or {@code Content-Type} header.
-//     * @param mediaTypes the string to parse
-//     * @return the list of media types
-//     * @throws IllegalArgumentException if the String cannot be parsed
-//     */
-//    public static String toString(Collection<MediaType> mediaTypes) {
-//        return MimeTypeUtils.toString(mediaTypes);
-//    }
+        let tokens = value.components(separatedBy: ",").map{ $0.trim() }
+        for token in tokens where !(token.isEmpty)
+        {
+            if let mediaType = parseMediaType(token, error: error) {
+                result.append(mediaType)
+            }
+        }
+
+        return result
+    }
+
+    /**
+     * Return a string representation of the given list of {@code MediaType} objects.
+     * <p>This method can be used to for an {@code Accept} or {@code Content-Type} header.
+     * @param the list of media types
+     * @return the string media types
+     */
+    open class func toString(mediaTypes: [MediaType]) -> String {
+        return MimeTypeUtils.toString(mimeTypes: mediaTypes)
+    }
 
 //    /**
 //     * Sorts the given list of {@code MediaType} objects by specificity.
@@ -353,7 +356,7 @@ public class MediaType: MimeType
 
 // MARK: - Constants
 
-    private struct Inner {
+    fileprivate struct Inner {
         static let ParamQualityFactor = "q"
     }
 

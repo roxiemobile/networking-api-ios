@@ -16,7 +16,7 @@ public struct HttpStatus
 {
 // MARK: - Construction
 
-    private init(_ code: HttpStatusCode, _ reasonPhrase: String)
+    fileprivate init(_ code: HttpStatusCode, _ reasonPhrase: String)
     {
         // Init instance variables
         self.code = code
@@ -84,7 +84,7 @@ public struct HttpStatus
      * @return the enum constant with the specified numeric value
      * @throws IllegalArgumentException if this enum has no constant for the specified numeric value
      */
-    public static func valueOf(statusCode: Int) -> HttpStatus?
+    public static func valueOf(_ statusCode: Int) -> HttpStatus?
     {
         if let statusCode = HttpStatusCode(rawValue: statusCode)
         {
@@ -92,183 +92,183 @@ public struct HttpStatus
             {
                 // 1xx Informational
 
-                case .Continue:
+                case .continue:
                     return HttpStatus.Continue
 
-                case .SwitchingProtocols:
+                case .switchingProtocols:
                     return HttpStatus.SwitchingProtocols
 
-                case .Processing:
+                case .processing:
                     return HttpStatus.Processing
 
                 // 2xx Success
 
-                case .Ok:
+                case .ok:
                     return HttpStatus.Ok
 
-                case .Created:
+                case .created:
                     return HttpStatus.Created
 
-                case .Accepted:
+                case .accepted:
                     return HttpStatus.Accepted
 
-                case .NonAuthoritativeInformation:
+                case .nonAuthoritativeInformation:
                     return HttpStatus.NonAuthoritativeInformation
 
-                case .NoContent:
+                case .noContent:
                     return HttpStatus.NoContent
 
-                case .ResetContent:
+                case .resetContent:
                     return HttpStatus.ResetContent
 
-                case .PartialContent:
+                case .partialContent:
                     return HttpStatus.PartialContent
 
-                case .MultiStatus:
+                case .multiStatus:
                     return HttpStatus.MultiStatus
 
-                case .AlreadyReported:
+                case .alreadyReported:
                     return HttpStatus.AlreadyReported
 
-                case .ImUsed:
+                case .imUsed:
                     return HttpStatus.ImUsed
 
                 // 3xx Redirection
 
-                case .MultipleChoices:
+                case .multipleChoices:
                     return HttpStatus.MultipleChoices
 
-                case .MovedPermanently:
+                case .movedPermanently:
                     return HttpStatus.MovedPermanently
 
-                case .Found:
+                case .found:
                     return HttpStatus.Found
 
-                case .SeeOther:
+                case .seeOther:
                     return HttpStatus.SeeOther
 
-                case .NotModified:
+                case .notModified:
                     return HttpStatus.NotModified
 
-                case .UseProxy:
+                case .useProxy:
                     return HttpStatus.UseProxy
 
-                case .TemporaryRedirect:
+                case .temporaryRedirect:
                     return HttpStatus.TemporaryRedirect
 
                 // 4xx Client Error
 
-                case .BadRequest:
+                case .badRequest:
                     return HttpStatus.BadRequest
 
-                case .Unauthorized:
+                case .unauthorized:
                     return HttpStatus.Unauthorized
 
-                case .PaymentRequired:
+                case .paymentRequired:
                     return HttpStatus.PaymentRequired
 
-                case .Forbidden:
+                case .forbidden:
                     return HttpStatus.Forbidden
 
-                case .NotFound:
+                case .notFound:
                     return HttpStatus.NotFound
 
-                case .MethodNotAllowed:
+                case .methodNotAllowed:
                     return HttpStatus.MethodNotAllowed
 
-                case .NotAcceptable:
+                case .notAcceptable:
                     return HttpStatus.NotAcceptable
 
-                case .ProxyAuthenticationRequired:
+                case .proxyAuthenticationRequired:
                     return HttpStatus.ProxyAuthenticationRequired
 
-                case .RequestTimeout:
+                case .requestTimeout:
                     return HttpStatus.RequestTimeout
 
-                case .Conflict:
+                case .conflict:
                     return HttpStatus.Conflict
 
-                case .Gone:
+                case .gone:
                     return HttpStatus.Gone
 
-                case .LengthRequired:
+                case .lengthRequired:
                     return HttpStatus.LengthRequired
 
-                case .PreconditionFailed:
+                case .preconditionFailed:
                     return HttpStatus.PreconditionFailed
 
-                case .RequestEntityTooLarge:
+                case .requestEntityTooLarge:
                     return HttpStatus.RequestEntityTooLarge
 
-                case .RequestUriTooLong:
+                case .requestUriTooLong:
                     return HttpStatus.RequestUriTooLong
 
-                case .UnsupportedMediaType:
+                case .unsupportedMediaType:
                     return HttpStatus.UnsupportedMediaType
 
-                case .RequestedRangeNotSatisfiable:
+                case .requestedRangeNotSatisfiable:
                     return HttpStatus.RequestedRangeNotSatisfiable
 
-                case .ExpectationFailed:
+                case .expectationFailed:
                     return HttpStatus.ExpectationFailed
 
-                case .InsufficientSpaceOnResource:
+                case .insufficientSpaceOnResource:
                     return HttpStatus.InsufficientSpaceOnResource
 
-                case .MethodFailure:
+                case .methodFailure:
                     return HttpStatus.MethodFailure
 
-                case .DestinationLocked:
+                case .destinationLocked:
                     return HttpStatus.DestinationLocked
 
-                case .UnprocessableEntity:
+                case .unprocessableEntity:
                     return HttpStatus.UnprocessableEntity
 
-                case .Locked:
+                case .locked:
                     return HttpStatus.Locked
 
-                case .FailedDependency:
+                case .failedDependency:
                     return HttpStatus.FailedDependency
 
-                case .UpgradeRequired:
+                case .upgradeRequired:
                     return HttpStatus.UpgradeRequired
 
                 // 5xx Server Error
 
-                case .InternalServerError:
+                case .internalServerError:
                     return HttpStatus.InternalServerError
 
-                case .NotImplemented:
+                case .notImplemented:
                     return HttpStatus.NotImplemented
 
-                case .BadGateway:
+                case .badGateway:
                     return HttpStatus.BadGateway
 
-                case .ServiceUnavailable:
+                case .serviceUnavailable:
                     return HttpStatus.ServiceUnavailable
 
-                case .GatewayTimeout:
+                case .gatewayTimeout:
                     return HttpStatus.GatewayTimeout
 
-                case .HttpVersionNotSupported:
+                case .httpVersionNotSupported:
                     return HttpStatus.HttpVersionNotSupported
 
-                case .VariantAlsoNegotiates:
+                case .variantAlsoNegotiates:
                     return HttpStatus.VariantAlsoNegotiates
 
-                case .InsufficientStorage:
+                case .insufficientStorage:
                     return HttpStatus.InsufficientStorage
 
-                case .LoopDetected:
+                case .loopDetected:
                     return HttpStatus.LoopDetected
 
-                case .NotExtended:
+                case .notExtended:
                     return HttpStatus.NotExtended
             }
         }
 
         // Terminate application with runtime exception
-        rxm_fatalError("No matching constant for [\(statusCode)].")
+        rxm_fatalError(message: "No matching constant for [\(statusCode)].")
     }
 
     /// Return a string representation of this status code.
@@ -284,19 +284,19 @@ public struct HttpStatus
      * {@code 100 Continue}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.1.1">HTTP/1.1</a>
      */
-    public static let Continue = HttpStatus(HttpStatusCode.Continue, "Continue")
+    public static let Continue = HttpStatus(HttpStatusCode.continue, "Continue")
 
     /**
      * {@code 101 Switching Protocols}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.1.2">HTTP/1.1</a>
      */
-    public static let SwitchingProtocols = HttpStatus(HttpStatusCode.SwitchingProtocols, "Switching Protocols")
+    public static let SwitchingProtocols = HttpStatus(HttpStatusCode.switchingProtocols, "Switching Protocols")
 
     /**
      * {@code 102 Processing}.
      * @see <a href="http://tools.ietf.org/html/rfc2518#section-10.1">WebDAV</a>
      */
-    public static let Processing = HttpStatus(HttpStatusCode.Processing, "Processing")
+    public static let Processing = HttpStatus(HttpStatusCode.processing, "Processing")
 
     // 2xx Success
 
@@ -304,61 +304,61 @@ public struct HttpStatus
      * {@code 200 OK}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.1">HTTP/1.1</a>
      */
-    public static let Ok = HttpStatus(HttpStatusCode.Ok, "OK")
+    public static let Ok = HttpStatus(HttpStatusCode.ok, "OK")
 
     /**
      * {@code 201 Created}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.2">HTTP/1.1</a>
      */
-    public static let Created = HttpStatus(HttpStatusCode.Created, "Created")
+    public static let Created = HttpStatus(HttpStatusCode.created, "Created")
 
     /**
      * {@code 202 Accepted}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.3">HTTP/1.1</a>
      */
-    public static let Accepted = HttpStatus(HttpStatusCode.Accepted, "Accepted")
+    public static let Accepted = HttpStatus(HttpStatusCode.accepted, "Accepted")
 
     /**
      * {@code 203 Non-Authoritative Information}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.4">HTTP/1.1</a>
      */
-    public static let NonAuthoritativeInformation = HttpStatus(HttpStatusCode.NonAuthoritativeInformation, "Non-Authoritative Information")
+    public static let NonAuthoritativeInformation = HttpStatus(HttpStatusCode.nonAuthoritativeInformation, "Non-Authoritative Information")
 
     /**
      * {@code 204 No Content}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.5">HTTP/1.1</a>
      */
-    public static let NoContent = HttpStatus(HttpStatusCode.NoContent, "No Content")
+    public static let NoContent = HttpStatus(HttpStatusCode.noContent, "No Content")
 
     /**
      * {@code 205 Reset Content}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.6">HTTP/1.1</a>
      */
-    public static let ResetContent = HttpStatus(HttpStatusCode.ResetContent, "Reset Content")
+    public static let ResetContent = HttpStatus(HttpStatusCode.resetContent, "Reset Content")
 
     /**
      * {@code 206 Partial Content}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.7">HTTP/1.1</a>
      */
-    public static let PartialContent = HttpStatus(HttpStatusCode.PartialContent, "Partial Content")
+    public static let PartialContent = HttpStatus(HttpStatusCode.partialContent, "Partial Content")
 
     /**
      * {@code 207 Multi-Status}.
      * @see <a href="http://tools.ietf.org/html/rfc4918#section-13">WebDAV</a>
      */
-    public static let MultiStatus = HttpStatus(HttpStatusCode.MultiStatus, "Multi-Status")
+    public static let MultiStatus = HttpStatus(HttpStatusCode.multiStatus, "Multi-Status")
 
     /**
      * {@code 208 Already Reported}.
      * @see <a href="http://tools.ietf.org/html/draft-ietf-webdav-bind-27#section-7.1">WebDAV Binding Extensions</a>
      */
-    public static let AlreadyReported = HttpStatus(HttpStatusCode.AlreadyReported, "Already Reported")
+    public static let AlreadyReported = HttpStatus(HttpStatusCode.alreadyReported, "Already Reported")
 
     /**
      * {@code 226 IM Used}.
      * @see <a href="http://tools.ietf.org/html/rfc3229#section-10.4.1">Delta encoding in HTTP</a>
      */
-    public static let ImUsed = HttpStatus(HttpStatusCode.ImUsed, "IM Used")
+    public static let ImUsed = HttpStatus(HttpStatusCode.imUsed, "IM Used")
 
     // 3xx Redirection
 
@@ -366,19 +366,19 @@ public struct HttpStatus
      * {@code 300 Multiple Choices}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.1">HTTP/1.1</a>
      */
-    public static let MultipleChoices = HttpStatus(HttpStatusCode.MultipleChoices, "Multiple Choices")
+    public static let MultipleChoices = HttpStatus(HttpStatusCode.multipleChoices, "Multiple Choices")
 
     /**
      * {@code 301 Moved Permanently}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.2">HTTP/1.1</a>
      */
-    public static let MovedPermanently = HttpStatus(HttpStatusCode.MovedPermanently, "Moved Permanently")
+    public static let MovedPermanently = HttpStatus(HttpStatusCode.movedPermanently, "Moved Permanently")
 
     /**
      * {@code 302 Found}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.3">HTTP/1.1</a>
      */
-    public static let Found = HttpStatus(HttpStatusCode.Found, "Found")
+    public static let Found = HttpStatus(HttpStatusCode.found, "Found")
 
 //    /**
 //     * {@code 302 Moved Temporarily}.
@@ -390,25 +390,25 @@ public struct HttpStatus
      * {@code 303 See Other}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.4">HTTP/1.1</a>
      */
-    public static let SeeOther = HttpStatus(HttpStatusCode.SeeOther, "See Other")
+    public static let SeeOther = HttpStatus(HttpStatusCode.seeOther, "See Other")
 
     /**
      * {@code 304 Not Modified}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.5">HTTP/1.1</a>
      */
-    public static let NotModified = HttpStatus(HttpStatusCode.NotModified, "Not Modified")
+    public static let NotModified = HttpStatus(HttpStatusCode.notModified, "Not Modified")
 
     /**
      * {@code 305 Use Proxy}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.6">HTTP/1.1</a>
      */
-    public static let UseProxy = HttpStatus(HttpStatusCode.UseProxy, "Use Proxy")
+    public static let UseProxy = HttpStatus(HttpStatusCode.useProxy, "Use Proxy")
 
     /**
      * {@code 307 Temporary Redirect}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3.8">HTTP/1.1</a>
      */
-    public static let TemporaryRedirect = HttpStatus(HttpStatusCode.TemporaryRedirect, "Temporary Redirect")
+    public static let TemporaryRedirect = HttpStatus(HttpStatusCode.temporaryRedirect, "Temporary Redirect")
 
     // 4xx Client Error
 
@@ -416,151 +416,151 @@ public struct HttpStatus
      * {@code 400 Bad Request}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.1">HTTP/1.1</a>
      */
-    public static let BadRequest = HttpStatus(HttpStatusCode.BadRequest, "Bad Request")
+    public static let BadRequest = HttpStatus(HttpStatusCode.badRequest, "Bad Request")
 
     /**
      * {@code 401 Unauthorized}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.2">HTTP/1.1</a>
      */
-    public static let Unauthorized = HttpStatus(HttpStatusCode.Unauthorized, "Unauthorized")
+    public static let Unauthorized = HttpStatus(HttpStatusCode.unauthorized, "Unauthorized")
 
     /**
      * {@code 402 Payment Required}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.3">HTTP/1.1</a>
      */
-    public static let PaymentRequired = HttpStatus(HttpStatusCode.PaymentRequired, "Payment Required")
+    public static let PaymentRequired = HttpStatus(HttpStatusCode.paymentRequired, "Payment Required")
 
     /**
      * {@code 403 Forbidden}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.4">HTTP/1.1</a>
      */
-    public static let Forbidden = HttpStatus(HttpStatusCode.Forbidden, "Forbidden")
+    public static let Forbidden = HttpStatus(HttpStatusCode.forbidden, "Forbidden")
 
     /**
      * {@code 404 Not Found}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.5">HTTP/1.1</a>
      */
-    public static let NotFound = HttpStatus(HttpStatusCode.NotFound, "Not Found")
+    public static let NotFound = HttpStatus(HttpStatusCode.notFound, "Not Found")
 
     /**
      * {@code 405 Method Not Allowed}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.6">HTTP/1.1</a>
      */
-    public static let MethodNotAllowed = HttpStatus(HttpStatusCode.MethodNotAllowed, "Method Not Allowed")
+    public static let MethodNotAllowed = HttpStatus(HttpStatusCode.methodNotAllowed, "Method Not Allowed")
 
     /**
      * {@code 406 Not Acceptable}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.7">HTTP/1.1</a>
      */
-    public static let NotAcceptable = HttpStatus(HttpStatusCode.NotAcceptable, "Not Acceptable")
+    public static let NotAcceptable = HttpStatus(HttpStatusCode.notAcceptable, "Not Acceptable")
 
     /**
      * {@code 407 Proxy Authentication Required}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.8">HTTP/1.1</a>
      */
-    public static let ProxyAuthenticationRequired = HttpStatus(HttpStatusCode.ProxyAuthenticationRequired, "Proxy Authentication Required")
+    public static let ProxyAuthenticationRequired = HttpStatus(HttpStatusCode.proxyAuthenticationRequired, "Proxy Authentication Required")
 
     /**
      * {@code 408 Request Timeout}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.9">HTTP/1.1</a>
      */
-    public static let RequestTimeout = HttpStatus(HttpStatusCode.RequestTimeout, "Request Time-out")
+    public static let RequestTimeout = HttpStatus(HttpStatusCode.requestTimeout, "Request Time-out")
 
     /**
      * {@code 409 Conflict}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.10">HTTP/1.1</a>
      */
-    public static let Conflict = HttpStatus(HttpStatusCode.Conflict, "Conflict")
+    public static let Conflict = HttpStatus(HttpStatusCode.conflict, "Conflict")
 
     /**
      * {@code 410 Gone}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.11">HTTP/1.1</a>
      */
-    public static let Gone = HttpStatus(HttpStatusCode.Gone, "Gone")
+    public static let Gone = HttpStatus(HttpStatusCode.gone, "Gone")
 
     /**
      * {@code 411 Length Required}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.12">HTTP/1.1</a>
      */
-    public static let LengthRequired = HttpStatus(HttpStatusCode.LengthRequired, "Length Required")
+    public static let LengthRequired = HttpStatus(HttpStatusCode.lengthRequired, "Length Required")
 
     /**
      * {@code 412 Precondition failed}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.13">HTTP/1.1</a>
      */
-    public static let PreconditionFailed = HttpStatus(HttpStatusCode.PreconditionFailed, "Precondition Failed")
+    public static let PreconditionFailed = HttpStatus(HttpStatusCode.preconditionFailed, "Precondition Failed")
 
     /**
      * {@code 413 Request Entity Too Large}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.14">HTTP/1.1</a>
      */
-    public static let RequestEntityTooLarge = HttpStatus(HttpStatusCode.RequestEntityTooLarge, "Request Entity Too Large")
+    public static let RequestEntityTooLarge = HttpStatus(HttpStatusCode.requestEntityTooLarge, "Request Entity Too Large")
 
     /**
      * {@code 414 Request-URI Too Long}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.15">HTTP/1.1</a>
      */
-    public static let RequestUriTooLong = HttpStatus(HttpStatusCode.RequestUriTooLong, "Request-URI Too Large")
+    public static let RequestUriTooLong = HttpStatus(HttpStatusCode.requestUriTooLong, "Request-URI Too Large")
 
     /**
      * {@code 415 Unsupported Media Type}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.16">HTTP/1.1</a>
      */
-    public static let UnsupportedMediaType = HttpStatus(HttpStatusCode.UnsupportedMediaType, "Unsupported Media Type")
+    public static let UnsupportedMediaType = HttpStatus(HttpStatusCode.unsupportedMediaType, "Unsupported Media Type")
 
     /**
      * {@code 416 Requested Range Not Satisfiable}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.17">HTTP/1.1</a>
      */
-    public static let RequestedRangeNotSatisfiable = HttpStatus(HttpStatusCode.RequestedRangeNotSatisfiable, "Requested range not satisfiable")
+    public static let RequestedRangeNotSatisfiable = HttpStatus(HttpStatusCode.requestedRangeNotSatisfiable, "Requested range not satisfiable")
 
     /**
      * {@code 417 Expectation Failed}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.4.18">HTTP/1.1</a>
      */
-    public static let ExpectationFailed = HttpStatus(HttpStatusCode.ExpectationFailed, "Expectation Failed")
+    public static let ExpectationFailed = HttpStatus(HttpStatusCode.expectationFailed, "Expectation Failed")
 
     /**
      * {@code 419 Insufficient Space on Resource}.
      * @see <a href="http://tools.ietf.org/html/draft-ietf-webdav-protocol-05#section-10.4">WebDAV Draft</a>
      */
-    public static let InsufficientSpaceOnResource = HttpStatus(HttpStatusCode.InsufficientSpaceOnResource, "Insufficient Space On Resource")
+    public static let InsufficientSpaceOnResource = HttpStatus(HttpStatusCode.insufficientSpaceOnResource, "Insufficient Space On Resource")
 
     /**
      * {@code 420 Method Failure}.
      * @see <a href="http://tools.ietf.org/html/draft-ietf-webdav-protocol-05#section-10.5">WebDAV Draft</a>
      */
-    public static let MethodFailure = HttpStatus(HttpStatusCode.MethodFailure, "Method Failure")
+    public static let MethodFailure = HttpStatus(HttpStatusCode.methodFailure, "Method Failure")
 
     /**
      * {@code 421 Destination Locked}.
      * @see <a href="http://tools.ietf.org/html/draft-ietf-webdav-protocol-05#section-10.6">WebDAV Draft</a>
      */
-    public static let DestinationLocked = HttpStatus(HttpStatusCode.DestinationLocked, "Destination Locked")
+    public static let DestinationLocked = HttpStatus(HttpStatusCode.destinationLocked, "Destination Locked")
 
     /**
      * {@code 422 Unprocessable Entity}.
      * @see <a href="http://tools.ietf.org/html/rfc4918#section-11.2">WebDAV</a>
      */
-    public static let UnprocessableEntity = HttpStatus(HttpStatusCode.UnprocessableEntity, "Unprocessable Entity")
+    public static let UnprocessableEntity = HttpStatus(HttpStatusCode.unprocessableEntity, "Unprocessable Entity")
 
     /**
      * {@code 423 Locked}.
      * @see <a href="http://tools.ietf.org/html/rfc4918#section-11.3">WebDAV</a>
      */
-    public static let Locked = HttpStatus(HttpStatusCode.Locked, "Locked")
+    public static let Locked = HttpStatus(HttpStatusCode.locked, "Locked")
 
     /**
      * {@code 424 Failed Dependency}.
      * @see <a href="http://tools.ietf.org/html/rfc4918#section-11.4">WebDAV</a>
      */
-    public static let FailedDependency = HttpStatus(HttpStatusCode.FailedDependency, "Failed Dependency")
+    public static let FailedDependency = HttpStatus(HttpStatusCode.failedDependency, "Failed Dependency")
 
     /**
      * {@code 426 Upgrade Required}.
      * @see <a href="http://tools.ietf.org/html/rfc2817#section-6">Upgrading to TLS Within HTTP/1.1</a>
      */
-    public static let UpgradeRequired = HttpStatus(HttpStatusCode.UpgradeRequired, "Upgrade Required")
+    public static let UpgradeRequired = HttpStatus(HttpStatusCode.upgradeRequired, "Upgrade Required")
 
     // 5xx Server Error
 
@@ -568,61 +568,61 @@ public struct HttpStatus
      * {@code 500 Internal Server Error}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.1">HTTP/1.1</a>
      */
-    public static let InternalServerError = HttpStatus(HttpStatusCode.InternalServerError, "Internal Server Error")
+    public static let InternalServerError = HttpStatus(HttpStatusCode.internalServerError, "Internal Server Error")
 
     /**
      * {@code 501 Not Implemented}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.2">HTTP/1.1</a>
      */
-    public static let NotImplemented = HttpStatus(HttpStatusCode.NotImplemented, "Not Implemented")
+    public static let NotImplemented = HttpStatus(HttpStatusCode.notImplemented, "Not Implemented")
 
     /**
      * {@code 502 Bad Gateway}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.3">HTTP/1.1</a>
      */
-    public static let BadGateway = HttpStatus(HttpStatusCode.BadGateway, "Bad Gateway")
+    public static let BadGateway = HttpStatus(HttpStatusCode.badGateway, "Bad Gateway")
 
     /**
      * {@code 503 Service Unavailable}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.4">HTTP/1.1</a>
      */
-    public static let ServiceUnavailable = HttpStatus(HttpStatusCode.ServiceUnavailable, "Service Unavailable")
+    public static let ServiceUnavailable = HttpStatus(HttpStatusCode.serviceUnavailable, "Service Unavailable")
 
     /**
      * {@code 504 Gateway Timeout}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.5">HTTP/1.1</a>
      */
-    public static let GatewayTimeout = HttpStatus(HttpStatusCode.GatewayTimeout, "Gateway Time-out")
+    public static let GatewayTimeout = HttpStatus(HttpStatusCode.gatewayTimeout, "Gateway Time-out")
 
     /**
      * {@code 505 HTTP Version Not Supported}.
      * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.5.6">HTTP/1.1</a>
      */
-    public static let HttpVersionNotSupported = HttpStatus(HttpStatusCode.HttpVersionNotSupported, "HTTP Version not supported")
+    public static let HttpVersionNotSupported = HttpStatus(HttpStatusCode.httpVersionNotSupported, "HTTP Version not supported")
 
     /**
      * {@code 506 Variant Also Negotiates}
      * @see <a href="http://tools.ietf.org/html/rfc2295#section-8.1">Transparent Content Negotiation</a>
      */
-    public static let VariantAlsoNegotiates = HttpStatus(HttpStatusCode.VariantAlsoNegotiates, "Variant Also Negotiates")
+    public static let VariantAlsoNegotiates = HttpStatus(HttpStatusCode.variantAlsoNegotiates, "Variant Also Negotiates")
 
     /**
      * {@code 507 Insufficient Storage}
      * @see <a href="http://tools.ietf.org/html/rfc4918#section-11.5">WebDAV</a>
      */
-    public static let InsufficientStorage = HttpStatus(HttpStatusCode.InsufficientStorage, "Insufficient Storage")
+    public static let InsufficientStorage = HttpStatus(HttpStatusCode.insufficientStorage, "Insufficient Storage")
 
     /**
      * {@code 508 Loop Detected}
      * @see <a href="http://tools.ietf.org/html/draft-ietf-webdav-bind-27#section-7.2">WebDAV Binding Extensions</a>
       */
-    public static let LoopDetected = HttpStatus(HttpStatusCode.LoopDetected, "Loop Detected")
+    public static let LoopDetected = HttpStatus(HttpStatusCode.loopDetected, "Loop Detected")
 
     /**
      * {@code 510 Not Extended}
      * @see <a href="http://tools.ietf.org/html/rfc2774#section-7">HTTP Extension Framework</a>
      */
-    public static let NotExtended = HttpStatus(HttpStatusCode.NotExtended, "Not Extended")
+    public static let NotExtended = HttpStatus(HttpStatusCode.notExtended, "Not Extended")
 
 }
 

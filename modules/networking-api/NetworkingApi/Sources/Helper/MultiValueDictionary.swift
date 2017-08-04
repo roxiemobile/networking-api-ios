@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class MultiValueDictionary<Key: Hashable, Value>
+open class MultiValueDictionary<Key: Hashable, Value>
 {
 // MARK: - Construction
 
@@ -18,30 +18,30 @@ public class MultiValueDictionary<Key: Hashable, Value>
 
 // MARK: - Methods
 
-    public func add(value: Value, key: Key)
+    open func add(_ value: Value, key: Key)
     {
         var keyValues = self.values[key] ?? []
         keyValues.append(value)
         self.values[key] = keyValues
     }
 
-    public func get(key: Key) -> [Value] {
+    open func get(_ key: Key) -> [Value] {
         return self.values[key] ?? []
     }
 
-    public func remove(key: Key) -> [Value] {
-        return self.values.removeValueForKey(key) ?? []
+    open func remove(_ key: Key) -> [Value] {
+        return self.values.removeValue(forKey: key) ?? []
     }
 
     /**
      * NOTE: Value must be reference-type
      */
-    public func remove(key: Key, value: Value) -> Value?
+    @discardableResult open func remove(_ key: Key, value: Value) -> Value?
     {
         var result: Value?
 
-        if let index = (self.values[key]?.indexOf{ ($0 as! AnyObject) !== (value as! AnyObject) }) {
-            result = self.values[key]?.removeAtIndex(index)
+        if let index = (self.values[key]?.index{ ($0 as AnyObject) === (value as AnyObject) }) {
+            result = self.values[key]?.remove(at: index)
         }
 
         return result
@@ -49,7 +49,7 @@ public class MultiValueDictionary<Key: Hashable, Value>
 
 // MARK: - Variables
 
-    private var values: [Key: [Value]] = [:]
+    fileprivate var values: [Key: [Value]] = [:]
 
 }
 

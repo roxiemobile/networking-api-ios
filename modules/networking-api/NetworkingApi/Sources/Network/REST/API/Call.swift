@@ -16,7 +16,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class Call<T>: AbstractClass
+open class Call<T>: AbstractClass
 {
 // MARK: - Construction
 
@@ -26,11 +26,11 @@ public class Call<T>: AbstractClass
 
 // MARK: - Properties
 
-    public func getTag() -> String {
+    open func getTag() -> String {
         raiseAbstractMethodException()
     }
 
-    public func getRequestEntity() -> RequestEntity<T> {
+    open func getRequestEntity() -> RequestEntity<T> {
         raiseAbstractMethodException()
     }
 

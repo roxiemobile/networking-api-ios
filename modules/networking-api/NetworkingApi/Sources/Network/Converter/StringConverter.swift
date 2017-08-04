@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class StringConverter: AbstractCallResultConverter<String>
+open class StringConverter: AbstractCallResultConverter<String>
 {
 // MARK: - Construction
 
@@ -18,17 +18,17 @@ public class StringConverter: AbstractCallResultConverter<String>
 
 // MARK: - Functions
 
-    public override func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
     {
         var newEntity: ResponseEntity<To>
         var newBody: String?
 
         // Convert raw data to string
-        if let body = entity.body where !(body.isEmpty)
+        if let body = entity.body, !(body.isEmpty)
         {
             if let encoding = EncodingProvider.encodingForCharset(entity.headers?.contentType?.charset ?? Inner.DefaultCharset)
             {
-                if let string = NSString(data: body, encoding: encoding) as? String {
+                if let string = String(data: body, encoding: encoding) {
                     newBody = string
                 }
                 else {
@@ -42,17 +42,17 @@ public class StringConverter: AbstractCallResultConverter<String>
         return newEntity
     }
 
-    override public func supportedMediaTypes() -> [MediaType] {
+    override open func supportedMediaTypes() -> [MediaType] {
         return StringConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    private struct Inner {
+    fileprivate struct Inner {
         static let DefaultCharset = Charset.forName("ISO-8859-1")
     }
 
-    private static let SupportedMediaTypes = [MediaType.All]
+    fileprivate static let SupportedMediaTypes = [MediaType.All]
 
 }
 

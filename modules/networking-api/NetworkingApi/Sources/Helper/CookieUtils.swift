@@ -17,13 +17,13 @@ public final class CookieUtils: NonCreatable
 {
 // MARK: - Functions
 
-    public class func cookie(cookieStore: HttpCookieStore, name: String) -> NSHTTPCookie?
+    public class func cookie(_ cookieStore: HttpCookieStore, name: String) -> HTTPCookie?
     {
-        var outCookie: NSHTTPCookie?
+        var outCookie: HTTPCookie?
 
         // Search for Cookie with requested name
         for cookie in (cookieStore.cookies ?? []) {
-            if cookie.name.lowercaseString == name.lowercaseString {
+            if cookie.name.lowercased() == name.lowercased() {
                 outCookie = cookie
                 break
             }
@@ -33,14 +33,14 @@ public final class CookieUtils: NonCreatable
         return outCookie
     }
 
-    public class func cookie(cookies: [HttpCookie], name: String) -> NSHTTPCookie?
+    public class func cookie(_ cookies: [HttpCookieProtocol], name: String) -> HTTPCookie?
     {
-        var outCookie: NSHTTPCookie?
+        var outCookie: HTTPCookie?
 
         // Search for Cookie with requested name
         for cookie in cookies {
-            if cookie.name.lowercaseString == name.lowercaseString {
-                outCookie = NSHTTPCookie(cookie)
+            if cookie.name.lowercased() == name.lowercased() {
+                outCookie = HTTPCookie(cookie)
                 break
             }
         }
@@ -49,7 +49,7 @@ public final class CookieUtils: NonCreatable
         return outCookie
     }
 
-    public class func isNullOrExpired(cookie: NSHTTPCookie?, offsetInSeconds offset: NSTimeInterval) -> Bool
+    public class func isNullOrExpired(_ cookie: HTTPCookie?, offsetInSeconds offset: TimeInterval) -> Bool
     {
         guard let cookie = cookie else {
             return true
@@ -62,7 +62,7 @@ public final class CookieUtils: NonCreatable
         }
 
         // Check if cookie has expired
-        return (NSDate(timeIntervalSinceNow: offset).compare(expiresDate) == .OrderedDescending)
+        return (Date(timeIntervalSinceNow: offset).compare(expiresDate) == .orderedDescending)
     }
 
 }
