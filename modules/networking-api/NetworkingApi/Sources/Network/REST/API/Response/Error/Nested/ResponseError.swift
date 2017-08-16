@@ -8,6 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ResponseError: AbstractNestedError { }
+open class ResponseError: AbstractNestedError { }
 
 // ----------------------------------------------------------------------------

@@ -27,18 +27,18 @@ class QueryStringPair
 
 // MARK: - Functions
 
-    func URLEncodedString(encoding: UInt = NSUTF8StringEncoding) -> String
+    func URLEncodedString(_ encoding: UInt = String.Encoding.utf8.rawValue) -> String
     {
         var result = ""
 
         // Append "key"
-        if !(self.field is NSNull), let subString = self.field?.description.trim() where !subString.isEmpty {
-            result += subString.escapeString(encoding)
+        if !(self.field is NSNull), let subString = self.field?.description.trim(), !subString.isEmpty {
+            result += subString.escapeString(encoding: encoding)
         }
 
         // Append "value"
-        if !(self.value is NSNull), let subString = self.value?.description.trim() where !subString.isEmpty {
-            result += (result.isEmpty ? "" : "=") + subString.escapeString(encoding)
+        if !(self.value is NSNull), let subString = self.value?.description.trim(), !subString.isEmpty {
+            result += (result.isEmpty ? "" : "=") + subString.escapeString(encoding: encoding)
         }
 
         // Done

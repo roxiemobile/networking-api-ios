@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class BasicResponseEntity<T>: ResponseEntity<T>
+open class BasicResponseEntity<T>: ResponseEntity<T>
 {
 // MARK: - Construction
 
@@ -29,7 +29,7 @@ public class BasicResponseEntity<T>: ResponseEntity<T>
 
 // ----------------------------------------------------------------------------
 
-public class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
+open class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
 {
 // MARK: - Construction
 
@@ -59,23 +59,23 @@ public class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
 
 // MARK: - Properties
 
-    private(set) var status: HttpStatus?
+    fileprivate(set) var status: HttpStatus?
 
-    private(set) var mediaType: MediaType?
+    fileprivate(set) var mediaType: MediaType?
 
 // MARK: - Functions
 
-    public func status(status: HttpStatus?) -> Self {
+    @discardableResult open func status(_ status: HttpStatus?) -> Self {
         self.status = status
         return self
     }
 
-    public func mediaType(mediaType: MediaType?) -> Self {
+    @discardableResult open func mediaType(_ mediaType: MediaType?) -> Self {
         self.mediaType = mediaType
         return self
     }
 
-    public func build() -> BasicResponseEntity<T> {
+    open func build() -> BasicResponseEntity<T> {
         return BasicResponseEntity(builder: self)
     }
 

@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-public class NoopRedirectInterceptor: AbstractRedirectInterceptor
+open class NoopRedirectInterceptor: AbstractRedirectInterceptor
 {
 // MARK: - Functions
 
-    public override func onRedirect(httpResponse: HttpResponse) throws -> HttpResponse {
+    open override func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse {
         return httpResponse
     }
 

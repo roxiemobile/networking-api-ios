@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ConnectionError: NestedError
+open class ConnectionError: NestedError
 {
 // MARK: - Construction
 
-    public init(cause: ErrorType?)
+    public init(cause: Error?)
     {
         // Init instance variables
         self.cause = cause
@@ -20,7 +20,7 @@ public class ConnectionError: NestedError
 
 // MARK: - Properties
 
-    public let cause: ErrorType?
+    open let cause: Error?
 
 }
 

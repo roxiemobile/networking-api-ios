@@ -12,7 +12,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-public class DefaultHttpClientConfig: HttpClientConfig
+open class DefaultHttpClientConfig: HttpClientConfig
 {
 // MARK: - Construction
 
@@ -22,32 +22,36 @@ public class DefaultHttpClientConfig: HttpClientConfig
 
 // MARK: - Methods
 
-    public func connectTimeout() -> NSTimeInterval {
+    open func connectTimeout() -> TimeInterval {
         return NetworkConfig.Timeout.Connection
     }
 
-    public func readTimeout() -> NSTimeInterval {
+    open func readTimeout() -> TimeInterval {
         return NetworkConfig.Timeout.Connection
     }
 
-    public func interceptors() -> [Interceptor] {
+    open func interceptors() -> [Interceptor] {
         return Inner.Interceptors
     }
 
-    public func networkInterceptors() -> [Interceptor] {
+    open func networkInterceptors() -> [Interceptor] {
         return Inner.NetworkInterceptors
     }
 
 // MARK: - Constants
 
-    private struct Inner
+    fileprivate struct Inner
     {
         static let Interceptors: [Interceptor] = []
 
         static let NetworkInterceptors: [Interceptor] = {
             var networkInterceptors: [Interceptor] = []
 
-            if Logger.isLoggable(.Debug) {
+            // Interceptor which adds an Alamofire library's version to an User-Agent's header
+            networkInterceptors.append(UserAgentRequestInterceptor())
+
+            // Interceptor which logs request and response information
+            if Logger.isLoggable(.debug) {
                 networkInterceptors.append(HttpLoggingInterceptor())
             }
 

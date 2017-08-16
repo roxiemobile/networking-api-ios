@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-public class ShortCircuitRedirectInterceptor: AbstractRedirectInterceptor
+open class ShortCircuitRedirectInterceptor: AbstractRedirectInterceptor
 {
 // MARK: - Functions
 
-    public override func onRedirect(httpResponse: HttpResponse) throws -> HttpResponse {
+    open override func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse {
         throw HttpResponseError(httpResponse: httpResponse)
     }
 

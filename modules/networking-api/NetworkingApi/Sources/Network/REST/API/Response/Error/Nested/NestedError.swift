@@ -10,13 +10,12 @@
 
 import SwiftCommons
 
-// ----------------------------------------------------------------------------
+public protocol NestedError: Error, CustomStringConvertible, CustomDebugStringConvertible
 
-public protocol NestedError: ErrorType, CustomStringConvertible, CustomDebugStringConvertible
 {
 // MARK: - Properties
 
-    var cause: ErrorType? { get }
+    var cause: Error? { get }
 
 }
 
@@ -29,21 +28,8 @@ extension NestedError
     public var description: String
     {
         var result = typeName(self)
-
-        if let cause = self.cause
-        {
-            result += "\nСaused by error: "
-
-            if let description = (cause as? CustomStringConvertible)?.description.trim() where description.isNotEmpty {
-                result += description
-            }
-            else
-            if let description = (cause as? CustomDebugStringConvertible)?.debugDescription.trim() where description.isNotEmpty {
-                result += description
-            }
-            else {
-                result += typeName(cause)
-            }
+        if let cause = self.cause {
+            result += "\nCaused by error: " + String(describing: cause).trim()
         }
 
         return result

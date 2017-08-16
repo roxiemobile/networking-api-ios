@@ -12,8 +12,8 @@ public enum BasicEnumResult<T,E>
 {
 // MARK: - Construction
 
-    case Success(T)
-    case Failure(E)
+    case success(T)
+    case failure(E)
 
 }
 
@@ -23,7 +23,7 @@ public protocol EnumResultType
 {
 // MARK: - Functions
 
-    func map(type: Self) -> BasicEnumResult<SuccessValue, FailureValue>
+    func map(_ type: Self) -> BasicEnumResult<SuccessValue, FailureValue>
 
 // MARK: - Inner Types
 
@@ -39,15 +39,15 @@ extension BasicEnumResult: EnumResultType
 {
 // MARK: - Functions
 
-    public func map(type: BasicEnumResult) -> BasicEnumResult<SuccessValue, FailureValue>
+    public func map(_ type: BasicEnumResult) -> BasicEnumResult<SuccessValue, FailureValue>
     {
         switch self
         {
-            case .Success(let str):
-                return .Success(str)
+            case .success(let str):
+                return .success(str)
 
-            case .Failure(let err):
-                return .Failure(err)
+            case .failure(let err):
+                return .failure(err)
         }
     }
 
@@ -67,22 +67,22 @@ extension EnumResultType
 
     public var value: SuccessValue? {
         switch map(self) {
-            case .Success(let box): return box
-            case .Failure: return nil
+            case .success(let box): return box
+            case .failure: return nil
         }
     }
 
     public var error: FailureValue? {
         switch map(self) {
-            case .Success: return nil
-            case .Failure(let err): return err
+            case .success: return nil
+            case .failure(let err): return err
         }
     }
 
     public var isSuccess: Bool {
         switch map(self) {
-            case .Success: return true
-            case .Failure: return false
+            case .success: return true
+            case .failure: return false
         }
     }
 

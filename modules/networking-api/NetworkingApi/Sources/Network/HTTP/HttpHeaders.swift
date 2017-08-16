@@ -59,7 +59,7 @@ public struct HttpHeaders
 
 // MARK: - Variables
 
-    private var headers: [String: String]
+    fileprivate var headers: [String: String]
 
 }
 
@@ -106,7 +106,7 @@ extension HttpHeaders
      * @see #put(String, List)
      * @see #add(String, String)
      */
-    public mutating func set(name: String, value: String?) {
+    public mutating func set(_ name: String, value: String?) {
         self.headers[name] = value
     }
 
@@ -142,27 +142,27 @@ extension HttpHeaders
         return self.headers.isEmpty
     }
 
-    public func containsKey(name: String) -> Bool {
+    public func containsKey(_ name: String) -> Bool {
         return self.headers.keys.contains(name)
     }
 
-    public func containsValue(value: String) -> Bool {
+    public func containsValue(_ value: String) -> Bool {
         return self.headers.values.contains(value)
     }
 
-    public func get(name: String) -> String? {
+    public func get(_ name: String) -> String? {
         return self.headers[name]
     }
 
-    public mutating func put(name: String, value: String) {
+    public mutating func put(_ name: String, value: String) {
         set(name, value: value)
     }
 
-    public mutating func remove(name: String) {
+    public mutating func remove(_ name: String) {
         set(name, value: nil)
     }
 
-    public mutating func putAll(m: [String: String]) {
+    public mutating func putAll(_ m: [String: String]) {
         for (name, value) in m {
             set(name, value: value)
         }
@@ -214,23 +214,26 @@ extension HttpHeaders
 {
 // MARK: - Properties
 
-//    /**
-//     * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
-//     * @param acceptableMediaTypes the acceptable media types
-//     */
-//    public void setAccept(List<MediaType> acceptableMediaTypes) {
-//        set(ACCEPT, MediaType.toString(acceptableMediaTypes));
-//    }
+    public var accept: [MediaType]
+    {
+        /**
+         * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
+         * @param acceptableMediaTypes the acceptable media types
+         */
+        set {
+            set(Header.Accept, value: MediaType.toString(mediaTypes: newValue))
+        }
 
-//    /**
-//     * Return the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
-//     * <p>Returns an empty list when the acceptable media types are unspecified.
-//     * @return the acceptable media types
-//     */
-//    public List<MediaType> getAccept() {
-//        String value = getFirst(ACCEPT);
-//        return (value != null ? MediaType.parseMediaTypes(value) : Collections.<MediaType>emptyList());
-//    }
+        /**
+         * Return the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
+         * <p>Returns an empty list when the acceptable media types are unspecified.
+         * @return the acceptable media types
+         */
+        get {
+            let value = get(Header.Accept)
+            return (value != nil) ? MediaType.parseMediaTypes(value!) : []
+        }
+    }
 
 //    /**
 //     * Set the list of acceptable {@linkplain Charset charsets}, as specified by the {@code Accept-Charset} header.
@@ -307,7 +310,7 @@ extension HttpHeaders
      * Sets a value for the {@code Authorization} header.
      * @param httpAuthentication an http-based authentication representation
      */
-    public mutating func setAuthorization(httpAuthentication: HttpAuthentication?) {
+    public mutating func setAuthorization(_ httpAuthentication: HttpAuthentication?) {
         set(Header.Authorization, value: httpAuthentication?.getHeaderValue())
     }
 
@@ -369,7 +372,8 @@ extension HttpHeaders
 //        return (value != null ? Long.parseLong(value) : -1);
 //    }
 
-    public var contentType: MediaType? {
+    public var contentType: MediaType?
+    {
         /**
          * Set the {@linkplain MediaType media type} of the body, as specified by the {@code Content-Type} header.
          * @param mediaType the media type

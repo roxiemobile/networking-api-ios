@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public class AbstractCallResultConverter<T>: CallResultConverter
+open class AbstractCallResultConverter<T>: CallResultConverter
 {
 // MARK: - Construction
 
@@ -18,48 +18,48 @@ public class AbstractCallResultConverter<T>: CallResultConverter
 
 // MARK: - Functions
 
-    public func convert(result: CallResult<NSData>) -> CallResult<T>
+    open func convert(_ result: CallResult<Data>) -> CallResult<T>
     {
         var newResult: CallResult<T>
 
         // Handle call result
         switch result
         {
-            case .Success(let entity):
+            case .success(let entity):
                 do {
                     try checkMediaType(entity)
 
                     // Convert response entity
                     let response = try convert(entity)
-                    newResult = .Success(response)
+                    newResult = .success(response)
                 }
                 catch (let cause)
                 {
                     // Build new error with caught exception
                     let error = ApplicationLayerError(cause: cause)
-                    newResult = .Failure(error)
+                    newResult = .failure(error)
                 }
 
-            case .Failure(let error):
+            case .failure(let error):
                 // Copy an original error
-                newResult = .Failure(error)
+                newResult = .failure(error)
         }
 
         // Done
         return newResult
     }
 
-    public func convert(entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
+    open func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         fatalError()
     }
 
-    public func supportedMediaTypes() -> [MediaType] {
+    open func supportedMediaTypes() -> [MediaType] {
         fatalError()
     }
 
 // MARK: - Private Methods
 
-    private func checkMediaType(entity: ResponseEntity<Ti>) throws
+    fileprivate func checkMediaType(_ entity: ResponseEntity<Ti>) throws
     {
         let mediaType = entity.mediaType
         var found = false
@@ -85,7 +85,7 @@ public class AbstractCallResultConverter<T>: CallResultConverter
 
 // MARK: - Inner Types
 
-    public typealias Ti = NSData
+    public typealias Ti = Data
 
     public typealias To = T
 
