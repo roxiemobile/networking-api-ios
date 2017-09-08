@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - Atomic (1.0.3)
   - NetworkingApi (1.0.1):
-    - Alamofire (~> 4.4)
+    - Alamofire (~> 4.5)
     - Atomic
     - SwiftCommons (~> 1.0.0)
   - SwiftCommons (1.0.0):
@@ -12,33 +12,33 @@ PODS:
 DEPENDENCIES:
   - Atomic (from `https://github.com/NSemakov/Atomic.git`, branch `feature/Swift3.0`)
   - NetworkingApi (from `../../`)
-  - SwiftCommons (from `https://github.com/kolyasev/swift-commons.ios.git`, tag `1.0.0`)
+  - SwiftCommons (from `https://github.com/NSemakov/swift-commons.ios.git`, branch `feature/Swift4`)
 
 EXTERNAL SOURCES:
   Atomic:
     :branch: feature/Swift3.0
     :git: https://github.com/NSemakov/Atomic.git
   NetworkingApi:
-    :path: "../../"
+    :path: ../../
   SwiftCommons:
-    :git: https://github.com/kolyasev/swift-commons.ios.git
-    :tag: 1.0.0
+    :branch: feature/Swift4
+    :git: https://github.com/NSemakov/swift-commons.ios.git
 
 CHECKOUT OPTIONS:
   Atomic:
     :commit: a9c4ce02aecb1c8cb3d442549a389d84114a4aa6
     :git: https://github.com/NSemakov/Atomic.git
   SwiftCommons:
-    :git: https://github.com/kolyasev/swift-commons.ios.git
-    :tag: 1.0.0
+    :commit: 305c06ed9d4955805dfa29c359b51f9b85f60b9b
+    :git: https://github.com/NSemakov/swift-commons.ios.git
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Atomic: 6a65765cb7d197873633e2693ee612f036736689
-  NetworkingApi: f66f6d71e3aab4010fa706b21fd1c3534b3b457e
+  NetworkingApi: 43e5f1dc2fac836f441a4733573fa72a8203f0c4
   SwiftCommons: 9d36feb11da1604a451d69b1d20496bc8d923cea
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 28db09fe070d269e6bd3bae277549b748f1c5995
+PODFILE CHECKSUM: 03b2c324f20d227160c0ae438d4c3234709e9ce3
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

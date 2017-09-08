@@ -8,7 +8,7 @@ workspace '../networking-api/NetworkingApi.xcworkspace'
 
 target 'NetworkingApiTests' do
 # pod 'SwiftCommons', git: 'https://github.com/roxiemobile/swift-commons.ios.git', tag: '1.0.0'
-  pod 'SwiftCommons', git: 'https://github.com/kolyasev/swift-commons.ios.git', tag: '1.0.0'
+  pod 'SwiftCommons', :git => 'https://github.com/NSemakov/swift-commons.ios.git', :branch => 'feature/Swift4'
   
   pod 'Atomic', :git => 'https://github.com/NSemakov/Atomic.git', :branch => 'feature/Swift3.0'
   
