@@ -52,8 +52,8 @@ public final class MimeTypeUtils: NonCreatable
             return nil
         }
 
-        let type = fullType.substring(to: subRange!.lowerBound)
-        let subtype = fullType.substring(from: fullType.index(after: subRange!.lowerBound))
+        let type = String(fullType[..<subRange!.lowerBound])
+        let subtype = String(fullType[fullType.index(after: subRange!.lowerBound)...])
         if (type == MimeType.WildcardType) && (subtype != MimeType.WildcardType)
         {
             setError(error, failureReason: "Wildcard type is legal only in ‘*/*’ (all mime types)")
@@ -67,8 +67,8 @@ public final class MimeTypeUtils: NonCreatable
             {
                 if let eqIndex = parameter.range(of: "=")
                 {
-                    let attribute = parameter.substring(to: eqIndex.lowerBound).trim()
-                    let value = parameter.substring(from: parameter.index(after: eqIndex.lowerBound)).trim()
+                    let attribute = String(parameter[..<eqIndex.lowerBound]).trim()
+                    let value = String(parameter[parameter.index(after: eqIndex.lowerBound)...]).trim()
                     parameters[attribute] = value
                 }
             }

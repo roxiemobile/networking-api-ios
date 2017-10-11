@@ -302,7 +302,7 @@ extension BasicHttpCookieStore // : CustomDebugStringConvertible
             output = "cookies:\n" + output
         }
 
-        output = "<\(typeName(self)) cookies count:\(self.cookieStore.count) \(output)>"
+        output = "<\(Roxie.typeName(of: self)) cookies count:\(self.cookieStore.count) \(output)>"
 
         // Done
         return output

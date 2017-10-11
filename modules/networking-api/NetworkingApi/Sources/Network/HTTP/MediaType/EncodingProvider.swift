@@ -89,7 +89,7 @@ open class EncodingProvider: NonCreatable
 
             default:
         // Terminate application with runtime exception
-                rxm_fatalError(message: "‘\(charsetName)’ charset is not supported.")
+                Roxie.fatalError("‘\(charsetName)’ charset is not supported.")
         }
 
         return encoding

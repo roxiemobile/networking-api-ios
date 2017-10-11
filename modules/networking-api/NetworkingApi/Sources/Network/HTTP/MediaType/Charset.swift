@@ -88,7 +88,7 @@ open class Charset: NSObject
         }
 
         // Terminate application with runtime exception
-        rxm_fatalError(message: "‘\(charsetName)’ charset is not supported.")
+        Roxie.fatalError("‘\(charsetName)’ charset is not supported.")
     }
 
 // MARK: - Private Functions
@@ -109,7 +109,7 @@ open class Charset: NSObject
     fileprivate func checkName(_ name: String)
     {
         if name.isEmpty {
-            rxm_fatalError(message: "Illegal charset name.")
+            Roxie.fatalError("Illegal charset name.")
         }
 
         var idx = 0
@@ -127,7 +127,7 @@ open class Charset: NSObject
             if (ucs == UnicodeScalar("_").value && idx != 0) { idx += 1; continue; }
             if (ucs == UnicodeScalar(".").value && idx != 0) { idx += 1; continue; }
 
-            rxm_fatalError(message: "Illegal charset name.")
+            Roxie.fatalError("Illegal charset name.")
         }
     }
 
@@ -169,7 +169,7 @@ extension Charset
 {
     class US_ASCII: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -207,7 +207,7 @@ extension Charset
 {
     class ISO_8859_1: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -238,7 +238,7 @@ extension Charset
 
     class ISO_8859_2: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -275,7 +275,7 @@ extension Charset
 {
     class UTF_8: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -301,7 +301,7 @@ extension Charset
 {
     class UTF_16: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -322,7 +322,7 @@ extension Charset
 
     class UTF_16BE: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -343,7 +343,7 @@ extension Charset
 
     class UTF_16LE: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -370,7 +370,7 @@ extension Charset
 {
     class UTF_32: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -389,7 +389,7 @@ extension Charset
 
     class UTF_32BE: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -408,7 +408,7 @@ extension Charset
 
     class UTF_32LE: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -435,7 +435,7 @@ extension Charset
 {
     class WINDOWS_1250: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -454,7 +454,7 @@ extension Charset
 
     class WINDOWS_1251: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -474,7 +474,7 @@ extension Charset
 
     class WINDOWS_1252: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -493,7 +493,7 @@ extension Charset
 
     class WINDOWS_1253: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
@@ -512,7 +512,7 @@ extension Charset
 
     class WINDOWS_1254: Charset
     {
-        init() {
+        @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 

@@ -21,8 +21,8 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig   = { 'ENABLE_BITCODE' => 'NO' }
 
   # External dependencies
-  s.dependency 'SwiftCommons', '~> 1.0.0'
-  s.dependency 'Alamofire', '~> 4.4'
-  s.dependency 'Atomic'#, '~> 1.0'
+  s.dependency 'SwiftCommons/Core/Data'
+  s.dependency 'Alamofire', '~> 4.5'
+  s.dependency 'SwiftyJSON', '~> 4.0.0-alpha.1'
 
 end

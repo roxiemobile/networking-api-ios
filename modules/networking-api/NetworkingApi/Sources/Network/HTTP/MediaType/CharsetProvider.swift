@@ -33,7 +33,7 @@ class CharsetProvider
 
         // Search for Charset by its name
         unowned let instance = self
-        synchronized (object: self) {
+        synchronized (self) {
             charset = instance.lookup(charsetName)
         }
 
