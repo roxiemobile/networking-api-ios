@@ -187,7 +187,7 @@ public final class RestApiClient
 
     fileprivate func URLRequestForMethod(_ method: HTTPMethod, _ URLString: URLConvertible, headers: [String: String]? = nil) -> URLRequest
     {
-        guard let url = try? URLString.asURL() else { rxm_fatalError(message: "Unexpected URLString") }
+        guard let url = try? URLString.asURL() else { Roxie.fatalError("Unexpected URLString") }
         var mutableURLRequest = URLRequest(url: url)
 
         mutableURLRequest.httpMethod = method.rawValue
@@ -226,14 +226,14 @@ open class RestApiClientBuilder
 
     open func connectTimeout(_ timeout: TimeInterval) -> Self
     {
-        Require.isTrue(timeout >= 0, "timeout < 0")
+        Guard.isTrue(timeout >= 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
     open func requestTimeout(_ timeout: TimeInterval) -> Self
     {
-        Require.isTrue(timeout >= 0, "timeout < 0")
+        Guard.isTrue(timeout >= 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }

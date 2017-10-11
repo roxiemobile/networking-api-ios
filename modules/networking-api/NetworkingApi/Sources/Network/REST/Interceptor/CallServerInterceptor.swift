@@ -113,8 +113,8 @@ class CallServerInterceptor: Interceptor
                     httpResponse = HttpResponse(response: response, body: dataResponse.data)
                 }
                 else {
-                    rxm_fatalError(message: "(response == nil) && (error == nil)")
-            }
+                    Roxie.fatalError("(response == nil) && (error == nil)")
+                }
             }
 
             // Release a waiting thread
@@ -162,14 +162,14 @@ class CallServerInterceptorBuilder
 
     func connectTimeout(_ timeout: TimeInterval) -> Self
     {
-        Require.isTrue(timeout >= 0, "timeout < 0")
+        Guard.isTrue(timeout >= 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
     func requestTimeout(_ timeout: TimeInterval) -> Self
     {
-        Require.isTrue(timeout >= 0, "timeout < 0")
+        Guard.isTrue(timeout >= 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }

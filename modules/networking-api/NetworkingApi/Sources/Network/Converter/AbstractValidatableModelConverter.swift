@@ -31,23 +31,27 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
         if let body = entity.body, !(body.isEmpty)
         {
             // Try to parse response as JSON string
-            var error: NSError?
-            let json = JSON(data: body, options: .allowFragments, error: &error)
-            if let error = error {
+            //var error: NSError?
+            do {
+                let json = try JSON(data: body, options: .allowFragments)
+
+                do {
+                    if let jsonObject = (json.object as? JsonObject) {
+                        newBody = try T.init(params: jsonObject)
+                    }
+                    else {
+                        throw JsonSyntaxError(message: "Could not transform model.")
+                    }
+                }
+                catch let exception as JsonSyntaxError {
+                    throw ConversionError(entity: entity, cause: exception)
+                }
+            }
+            catch {
                 throw ConversionError(entity: entity, cause: error)
             }
 
-            do {
-                if let jsonObject = (json.object as? JsonObject) {
-                    newBody = try T.init(params: jsonObject)
-                }
-                else {
-                    throw JsonSyntaxError(message: "Could not transform model.")
-                }
-            }
-            catch let exception as JsonSyntaxError {
-                throw ConversionError(entity: entity, cause: exception)
-            }
+
         }
 
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()

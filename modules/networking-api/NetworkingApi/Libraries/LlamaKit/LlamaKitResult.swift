@@ -26,7 +26,7 @@ public let LlamaErrorFileKey = "LlamaKit.LMErrorFile"
 public let LlamaErrorLineKey = "LlamaKit.LMErrorLine"
 
 private func defaultError(_ userInfo: [AnyHashable : Any]) -> NSError {
-  return NSError(domain: "", code: 0, userInfo: userInfo)
+    return NSError(domain: "", code: 0, userInfo: (userInfo as! [String : Any]))
 }
 
 private func defaultError(message: String, file: String = #file, line: Int = #line) -> NSError {

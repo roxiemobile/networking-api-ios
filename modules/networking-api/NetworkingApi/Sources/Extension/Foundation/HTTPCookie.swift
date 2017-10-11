@@ -55,7 +55,7 @@ extension HTTPCookie: HttpCookieProtocol
 
         let scheme = (url.scheme?.lowercased() ?? "http")
         let secureLink = (scheme == "https")
-        let path = (StringUtils.isNotEmpty(url.path) ? url.path : "/")
+        let path = (url.path.isNotEmpty ? url.path : "/")
 
         repeat {
             // Apply path-matches rule (RFC 2965 sec. 3.3.4) and check for the possible

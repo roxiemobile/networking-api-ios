@@ -268,7 +268,7 @@ public struct HttpStatus
         }
 
         // Terminate application with runtime exception
-        rxm_fatalError(message: "No matching constant for [\(statusCode)].")
+        Roxie.fatalError("No matching constant for [\(statusCode)].")
     }
 
     /// Return a string representation of this status code.

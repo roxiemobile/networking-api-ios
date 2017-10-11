@@ -34,7 +34,7 @@ open class InterceptorChain
     open func proceed(_ request: URLRequest) throws -> HttpResponse
     {
         guard (self.index < self.interceptors.count) else {
-            rxm_fatalError(message: "Invalid intercepter index in chain.")
+            Roxie.fatalError("Invalid intercepter index in chain.")
         }
 
         let next = InterceptorChain(interceptors: self.interceptors, index: (self.index + 1), request: request)

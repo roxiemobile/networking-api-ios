@@ -8,6 +8,10 @@
 //
 // ----------------------------------------------------------------------------
 
+import Alamofire
+
+// ----------------------------------------------------------------------------
+
 class QueryStringPair
 {
 // MARK: - Construction
@@ -27,18 +31,18 @@ class QueryStringPair
 
 // MARK: - Functions
 
-    func URLEncodedString(_ encoding: UInt = String.Encoding.utf8.rawValue) -> String
+    func URLEncodedString() -> String
     {
         var result = ""
 
         // Append "key"
         if !(self.field is NSNull), let subString = self.field?.description.trim(), !subString.isEmpty {
-            result += subString.escapeString(encoding: encoding)
+            result += Alamofire.URLEncoding().escape(subString)
         }
 
         // Append "value"
         if !(self.value is NSNull), let subString = self.value?.description.trim(), !subString.isEmpty {
-            result += (result.isEmpty ? "" : "=") + subString.escapeString(encoding: encoding)
+            result += (result.isEmpty ? "" : "=") + Alamofire.URLEncoding().escape(subString)
         }
 
         // Done
