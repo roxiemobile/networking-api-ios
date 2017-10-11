@@ -13,7 +13,7 @@ import SwiftCommons
 
 // ----------------------------------------------------------------------------
 
-@objc public protocol HttpCookieProtocol: RXMCustomStringConvertible
+@objc public protocol HttpCookieProtocol: CustomStringConvertibleObjC
 {
 // MARK: - Properties
 

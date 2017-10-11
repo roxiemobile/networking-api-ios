@@ -8,7 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-import Atomic
 import SwiftCommons
 
 // ----------------------------------------------------------------------------
@@ -81,7 +80,7 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      */
     final func call() -> CallResult<To>?
     {
-        Require.isFalse(Thread.isMainThread, "This method must not be called from the main thread!")
+        Guard.isFalse(Thread.isMainThread, "This method must not be called from the main thread!")
         var result: CallResult<To>?
 
         // Send request to the server
@@ -177,7 +176,7 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         switch httpResult
         {
             case .success(_):
-                rxm_fatalError(message: "Trying to call onFailure(_:) method for .Success(_) call result.")
+                Roxie.fatalError("Trying to call onFailure(_:) method for .Success(_) call result.")
 
             case .failure(let error):
                 // Copy an original error
@@ -225,7 +224,7 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
                 }
             }
             else {
-                rxm_fatalError(message: "!isCancelled() && (result == null)")
+                Roxie.fatalError("!isCancelled() && (result == null)")
             }
         }
         else {
@@ -312,8 +311,7 @@ open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 
     open func checkInvalidState()
     {
-        Require.isNotNil(self.tag)
-        Require.isNotNil(self.requestEntity)
+        Guard.notNil(self.requestEntity)
     }
 
     open func newTask() -> AbstractTask<Ti, To> {

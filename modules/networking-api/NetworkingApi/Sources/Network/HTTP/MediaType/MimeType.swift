@@ -72,9 +72,9 @@ open class MimeType
         self.type = type.lowercased()
         self.subtype = subtype.lowercased()
         self.parameters = [String: String]()
-
+        let a = type.underestimatedCount
         // Validate incoming params
-        if (type.length < 1) || !checkToken(type, error: error) || (subtype.length < 1) || !checkToken(subtype, error: error) {
+        if (type.count < 1) || !checkToken(type, error: error) || (subtype.count < 1) || !checkToken(subtype, error: error) {
             return nil
         }
 
@@ -178,7 +178,7 @@ open class MimeType
 
     fileprivate func isQuotedString(_ str: String) -> Bool
     {
-        if (str.length < 2) {
+        if (str.count < 2) {
             return false
         }
         else {

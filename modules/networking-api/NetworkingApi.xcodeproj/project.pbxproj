@@ -18,6 +18,8 @@
 		199B03A81AD558AC0094DF1D /* NetworkingApiTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetworkingApiTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		19DBF0271A6861F400A3F9C3 /* NetworkingApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19DBF02D1A6861F400A3F9C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26F1CC871F8D297900FD893D /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26F1CC891F8D49E400FD893D /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		409526447BC03F815FB9A22A /* Pods_NetworkingApiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD0FD01CD704601522D236C /* Pods_NetworkingApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		664EDD961CC0EA1A007C1D3C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -64,6 +66,8 @@
 		192B755D1A78C78700C98000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26F1CC891F8D49E400FD893D /* SwiftyJSON.framework */,
+				26F1CC871F8D297900FD893D /* SwiftyJSON.framework */,
 				664EDD961CC0EA1A007C1D3C /* MobileCoreServices.framework */,
 				1931B8F01A801748000AD0A1 /* SwiftCommons.framework */,
 				196EDAE61AD9E3BC009D1C9E /* libSwiftCommons.a */,
@@ -219,7 +223,7 @@
 			inputPaths = (
 				"${SRCROOT}/../cocoa-pods/Pods/Target Support Files/Pods-NetworkingApiTests/Pods-NetworkingApiTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Atomic/Atomic.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/NetworkingApi/NetworkingApi.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftCommons/SwiftCommons.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -227,7 +231,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Atomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NetworkingApi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCommons.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -363,6 +367,7 @@
 			baseConfigurationReference = F809E1E897769B5D2EA6D241 /* Pods-NetworkingApiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				INFOPLIST_FILE = NetworkingApiTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ekassir.mobilebank.$(PRODUCT_NAME:rfc1034identifier)";
@@ -377,6 +382,7 @@
 			baseConfigurationReference = 9D1C7DDD934B6ABC61959095 /* Pods-NetworkingApiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				INFOPLIST_FILE = NetworkingApiTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ekassir.mobilebank.$(PRODUCT_NAME:rfc1034identifier)";
