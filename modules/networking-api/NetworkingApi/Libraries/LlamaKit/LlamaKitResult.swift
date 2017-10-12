@@ -25,7 +25,7 @@ public func success<T,E>(value: T) -> LlamaKitResult<T,E> {
 public let LlamaErrorFileKey = "LlamaKit.LMErrorFile"
 public let LlamaErrorLineKey = "LlamaKit.LMErrorLine"
 
-private func defaultError(_ userInfo: [AnyHashable : Any]) -> NSError {
+private func defaultError(_ userInfo: [String : Any]) -> NSError {
   return NSError(domain: "", code: 0, userInfo: userInfo)
 }
 
@@ -38,12 +38,12 @@ private func defaultError(file: String = #file, line: Int = #line) -> NSError {
 }
 
 public func failure<T>(message: String, file: String = #file, line: Int = #line) -> LlamaKitResult<T,NSError> {
-  let userInfo: [AnyHashable : Any] = [NSLocalizedDescriptionKey: message, LlamaErrorFileKey: file, LlamaErrorLineKey: line]
+  let userInfo: [String : Any] = [NSLocalizedDescriptionKey: message, LlamaErrorFileKey: file, LlamaErrorLineKey: line]
   return failure(defaultError(userInfo))
 }
 
 public func failure<T>(file: String = #file, line: Int = #line) -> LlamaKitResult<T,NSError> {
-  let userInfo: [AnyHashable : Any] = [LlamaErrorFileKey: file, LlamaErrorLineKey: line]
+  let userInfo: [String : Any] = [LlamaErrorFileKey: file, LlamaErrorLineKey: line]
   return failure(defaultError(userInfo))
 }
 
@@ -56,12 +56,12 @@ public func failure<T,E>(_ error: E) -> LlamaKitResult<T,E> {
 
 public func `try`<T>(f: ((NSErrorPointer) -> T?), file: String = #file, line: Int = #line) -> LlamaKitResult<T,NSError> {
   var error: NSError?
-    return f(&error).map(success) ?? failure(error ?? defaultError(file: file, line: line))
+  return f(&error).map(success) ?? failure(error ?? defaultError(file: file, line: line))
 }
 
 public func `try`(f: ((NSErrorPointer) -> Bool), file: String = #file, line: Int = #line) -> LlamaKitResult<(),NSError> {
   var error: NSError?
-    return f(&error) ? success(value: ()) : failure(error ?? defaultError(file: file, line: line))
+  return f(&error) ? success(value: ()) : failure(error ?? defaultError(file: file, line: line))
 }
 
 /// Container for a successful value (T) or a failure with an E

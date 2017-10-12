@@ -25,7 +25,7 @@ public protocol HttpCookieStore
     func setCookie(_ cookie: HTTPCookie)
 
     /// Retrieves cookies that match the specified URI.
-    func cookiesForURL(_ URL: URL) -> [HTTPCookie]?
+    func cookies(for URL: URL) -> [HTTPCookie]?
 
     /// Remove the specified cookie from the store.
     func deleteCookie(_ cookie: HTTPCookie)

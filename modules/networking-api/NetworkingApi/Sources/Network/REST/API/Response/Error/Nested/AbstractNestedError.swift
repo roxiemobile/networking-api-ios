@@ -70,7 +70,7 @@ extension AbstractNestedError
 
     public var description: String
     {
-        var result = typeName(self)
+        var result = Roxie.typeName(of: self)
 
         if let cause = self.cause {
             result += "\nCaused by error: " + String(describing: cause).trim()

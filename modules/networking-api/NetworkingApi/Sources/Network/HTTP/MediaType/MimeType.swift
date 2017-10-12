@@ -74,7 +74,7 @@ open class MimeType
         self.parameters = [String: String]()
 
         // Validate incoming params
-        if (type.length < 1) || !checkToken(type, error: error) || (subtype.length < 1) || !checkToken(subtype, error: error) {
+        if (type.count < 1) || !checkToken(type, error: error) || (subtype.count < 1) || !checkToken(subtype, error: error) {
             return nil
         }
 
@@ -178,7 +178,7 @@ open class MimeType
 
     fileprivate func isQuotedString(_ str: String) -> Bool
     {
-        if (str.length < 2) {
+        if (str.count < 2) {
             return false
         }
         else {
@@ -187,7 +187,7 @@ open class MimeType
     }
 
     func unquote(_ str: String) -> String {
-        return isQuotedString(str) ? str.substring(with: str.characters.index(str.startIndex, offsetBy: 1)..<str.characters.index(str.endIndex, offsetBy: -1)) : str
+        return isQuotedString(str) ? str.substring(with: 1..<(str.count - 1)) : str
     }
 
     /**
@@ -303,11 +303,11 @@ open class MimeType
                 else
                 if (selfPlusRange != nil && otherPlusRange != nil)
                 {
-                    let selfSubtypeNoSuffix  = self.subtype.substring(to: selfPlusRange!.lowerBound)
-                    let otherSubtypeNoSuffix = other.subtype.substring(to: otherPlusRange!.lowerBound)
+                    let selfSubtypeNoSuffix  = String(self.subtype[..<selfPlusRange!.lowerBound])
+                    let otherSubtypeNoSuffix = String(other.subtype[..<otherPlusRange!.lowerBound])
 
-                    let selfSubtypeSuffix  = self.subtype.substring(from: self.subtype.index(after: selfPlusRange!.lowerBound))
-                    let otherSubtypeSuffix = other.subtype.substring(from: other.subtype.index(after: otherPlusRange!.lowerBound))
+                    let selfSubtypeSuffix  = String(self.subtype[self.subtype.index(after: selfPlusRange!.lowerBound)...])
+                    let otherSubtypeSuffix = String(other.subtype[other.subtype.index(after: otherPlusRange!.lowerBound)...])
 
                     if (selfSubtypeSuffix == otherSubtypeSuffix) && (selfSubtypeNoSuffix == MimeType.WildcardType || otherSubtypeNoSuffix == MimeType.WildcardType) {
                         return true

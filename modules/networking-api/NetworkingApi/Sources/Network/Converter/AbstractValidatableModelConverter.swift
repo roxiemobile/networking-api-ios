@@ -31,9 +31,11 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
         if let body = entity.body, !(body.isEmpty)
         {
             // Try to parse response as JSON string
-            var error: NSError?
-            let json = JSON(data: body, options: .allowFragments, error: &error)
-            if let error = error {
+            let json: JSON
+            do {
+                json = try JSON(data: body, options: .allowFragments)
+            }
+            catch {
                 throw ConversionError(entity: entity, cause: error)
             }
 
@@ -45,9 +47,10 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
                     throw JsonSyntaxError(message: "Could not transform model.")
                 }
             }
-            catch let exception as JsonSyntaxError {
-                throw ConversionError(entity: entity, cause: exception)
+            catch let error as JsonSyntaxError {
+                throw ConversionError(entity: entity, cause: error)
             }
+
         }
 
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()

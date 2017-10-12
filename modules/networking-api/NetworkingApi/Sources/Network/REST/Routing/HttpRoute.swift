@@ -61,7 +61,7 @@ public final class HttpRoute
 
             message += "."
 
-            rxm_fatalError(message: message)
+            Roxie.fatalError(message)
         }
         
         // Done
@@ -84,7 +84,7 @@ public final class HttpRoute
 
     fileprivate static func buildQueryStringComponents(_ key: String, values: [String]) -> [String]
     {
-        if values.isEmpty { rxm_fatalError(message: "") }
+        if values.isEmpty { Roxie.fatalError("") }
 
         var components: [String] = []
         var encodedValue: String

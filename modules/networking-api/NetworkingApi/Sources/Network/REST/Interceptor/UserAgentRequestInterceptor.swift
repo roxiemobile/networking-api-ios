@@ -50,7 +50,7 @@ open class UserAgentRequestInterceptor: Interceptor
     private struct Inner
     {
         static let UserAgent: String = {
-            let version = AlamofireBundle?.shortVersionString ?? "Unknown"
+            let version = AlamofireBundle?.shortVersion ?? "Unknown"
             return "Alamofire/\(version)"
         }()
         static let AlamofireBundle = Bundle(identifier: "org.cocoapods.Alamofire")
