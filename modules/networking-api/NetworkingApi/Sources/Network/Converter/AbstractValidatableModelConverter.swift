@@ -30,9 +30,8 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
 
         if let body = entity.body, !(body.isEmpty)
         {
-            let json: JSON
-
             // Try to parse response as JSON string
+            let json: JSON
             do {
                 json = try JSON(data: body, options: .allowFragments)
             }
