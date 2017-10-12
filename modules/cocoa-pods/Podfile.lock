@@ -35,7 +35,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftCommons:
-    :commit: 90574c247a55f465d4d39493b5d7705fdbcce45d
+    :commit: b1b1681cdf6185818ba8ea28fc4982080894f3b3
     :git: https://github.com/roxiemobile/swift-commons.ios.git
 
 SPEC CHECKSUMS:

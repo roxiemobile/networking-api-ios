@@ -72,7 +72,7 @@ open class MimeType
         self.type = type.lowercased()
         self.subtype = subtype.lowercased()
         self.parameters = [String: String]()
-        let a = type.underestimatedCount
+
         // Validate incoming params
         if (type.count < 1) || !checkToken(type, error: error) || (subtype.count < 1) || !checkToken(subtype, error: error) {
             return nil
@@ -187,9 +187,7 @@ open class MimeType
     }
 
     func unquote(_ str: String) -> String {
-        let start = str.characters.index(str.startIndex, offsetBy: 1)
-        let end = str.characters.index(str.endIndex, offsetBy: -1)
-        return isQuotedString(str) ? String(str[start..<end]) : str
+        return isQuotedString(str) ? str.substring(with: 1..<(str.count - 1)) : str
     }
 
     /**

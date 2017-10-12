@@ -22,7 +22,7 @@ class LogUtils: NonCreatable
     {
         guard Logger.isLoggable(.debug) else { return }
 
-        let hashString = stringFrom(request.hashValue)
+        let hashString = String(format:"%08lx", request.hashValue)
 
         // Log URL
         let url = (request.url?.absoluteString ?? "")
@@ -42,7 +42,7 @@ class LogUtils: NonCreatable
     {
         guard Logger.isLoggable(.debug) else { return }
 
-        let hashString = stringFrom(response.hashValue)
+        let hashString = String(format:"%08lx", response.hashValue)
 
         // Log Status
         if let status = HttpStatus.valueOf(response.statusCode) {
@@ -59,12 +59,6 @@ class LogUtils: NonCreatable
         if let body = String(data: (body ?? Data()), encoding: String.Encoding.utf8) {
             Logger.d(type, String(format: "[%p/resp-body] %@", response, body), file: file, line: line)
         }
-    }
-
-// MARK: - Private Functions
-
-    private static func stringFrom(_ number: Int) -> String {
-        return String(format:"%08lx", number)
     }
 
 }

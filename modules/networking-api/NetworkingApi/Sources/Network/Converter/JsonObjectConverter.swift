@@ -30,20 +30,22 @@ open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 
         if let body = entity.body, !(body.isEmpty)
         {
+            let json: JSON
+
             // Try to parse response as JSON string
             do {
-                let json = try JSON(data: body, options: .allowFragments)
-
-                // Try to parse ParcelableModel
-                if let jsonObject = (json.object as? JsonObject) {
-                    newBody = jsonObject
-                }
-                else {
-                    throw ConversionError(entity: entity)
-                }
+                json = try JSON(data: body, options: .allowFragments)
             }
             catch {
                 throw ConversionError(entity: entity, cause: error)
+            }
+
+            // Try to parse ParcelableModel
+            if let jsonObject = (json.object as? JsonObject) {
+                newBody = jsonObject
+            }
+            else {
+                throw ConversionError(entity: entity)
             }
         }
 

@@ -226,14 +226,14 @@ open class RestApiClientBuilder
 
     open func connectTimeout(_ timeout: TimeInterval) -> Self
     {
-        Guard.isTrue(timeout >= 0, "timeout < 0")
+        Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
     open func requestTimeout(_ timeout: TimeInterval) -> Self
     {
-        Guard.isTrue(timeout >= 0, "timeout < 0")
+        Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }
