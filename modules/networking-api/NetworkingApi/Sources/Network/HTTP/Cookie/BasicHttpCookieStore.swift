@@ -10,6 +10,7 @@
 
 import Foundation
 import SwiftCommons
+import Dispatch
 
 // ----------------------------------------------------------------------------
 
@@ -265,7 +266,7 @@ extension BasicHttpCookieStore
         weak var instance = self
 
         // .. on main thread
-        rxm_dispatch_main_sync()
+        Dispatch.async(Queue.main)
         {
             var notificationCenter: NotificationCenter!
 #if os(iOS)
