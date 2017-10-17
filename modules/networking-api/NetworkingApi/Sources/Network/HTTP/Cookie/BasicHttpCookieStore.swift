@@ -266,7 +266,7 @@ extension BasicHttpCookieStore
         weak var instance = self
 
         // .. on main thread
-        Dispatch.async(Queue.main)
+        Dispatch.sync(Queue.main)
         {
             var notificationCenter: NotificationCenter!
 #if os(iOS)
