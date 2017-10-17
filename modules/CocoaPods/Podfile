@@ -1,0 +1,15 @@
+platform :ios, '8.0'
+use_frameworks!
+
+workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
+
+
+target 'NetworkingApi.Core.Extensions' do
+  project '../RoxieMobile.NetworkingApi/Core.Extensions/NetworkingApi.Core.Extensions.xcodeproj'
+
+# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+
+  target 'NetworkingApi.Core.Extensions.UnitTests' do
+    inherit! :search_paths
+  end
+end
