@@ -24,5 +24,6 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftCommons/Core/Data'
   s.dependency 'Alamofire', '~> 4.5'
   s.dependency 'SwiftyJSON', '~> 3.1'
+  s.dependency 'Dispatch', '~> 2.0'
 
 end

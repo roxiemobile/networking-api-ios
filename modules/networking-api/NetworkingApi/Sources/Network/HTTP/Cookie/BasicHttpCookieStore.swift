@@ -10,7 +10,7 @@
 
 import Foundation
 import SwiftCommons
-import Dispatch
+import DispatchFramework
 
 // ----------------------------------------------------------------------------
 
