@@ -4,12 +4,34 @@ use_frameworks!
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 
 
+target 'NetworkingApi.Core.Converters' do
+  project '../RoxieMobile.NetworkingApi/Core.Converters/NetworkingApi.Core.Converters.xcodeproj'
+
+# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+
+  target 'NetworkingApi.Core.Converters.UnitTests' do
+    inherit! :search_paths
+  end
+end
+
+
 target 'NetworkingApi.Core.Extensions' do
   project '../RoxieMobile.NetworkingApi/Core.Extensions/NetworkingApi.Core.Extensions.xcodeproj'
 
 # pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
 
   target 'NetworkingApi.Core.Extensions.UnitTests' do
+    inherit! :search_paths
+  end
+end
+
+
+target 'NetworkingApi.Core.Net' do
+  project '../RoxieMobile.NetworkingApi/Core.Net/NetworkingApi.Core.Net.xcodeproj'
+
+# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+
+  target 'NetworkingApi.Core.Net.UnitTests' do
     inherit! :search_paths
   end
 end

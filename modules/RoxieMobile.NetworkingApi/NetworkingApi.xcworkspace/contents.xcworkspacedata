@@ -2,7 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Core.Converters/NetworkingApi.Core.Converters.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Core.Extensions/NetworkingApi.Core.Extensions.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Core.Net/NetworkingApi.Core.Net.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:../CocoaPods/Pods/Pods.xcodeproj">
