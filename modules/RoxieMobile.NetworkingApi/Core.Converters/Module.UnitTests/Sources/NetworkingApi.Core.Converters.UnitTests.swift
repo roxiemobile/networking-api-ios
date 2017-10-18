@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  SwiftCommons.Core.Converters.UnitTests.swift
+//  NetworkingApi.Core.Converters.UnitTests.swift
 //
 //  @author     Alexander Bragin <bragin-av@roxiemobile.com>
 //  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
@@ -8,12 +8,12 @@
 //
 // ----------------------------------------------------------------------------
 
-@testable import SwiftCommonsCoreConverters
+@testable import NetworkingApiCoreConverters
 import XCTest
 
 // ----------------------------------------------------------------------------
 
-class SwiftCommons_Core_Converters_UnitTests: XCTestCase
+class NetworkingApi_Core_Converters_UnitTests: XCTestCase
 {
     override func setUp() {
         super.setUp()

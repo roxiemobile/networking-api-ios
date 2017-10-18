@@ -7,20 +7,9 @@ workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 target 'NetworkingApi.Core.Converters' do
   project '../RoxieMobile.NetworkingApi/Core.Converters/NetworkingApi.Core.Converters.xcodeproj'
 
-# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+  pod 'NetworkingApi/Core/Net', path: '../../'
 
   target 'NetworkingApi.Core.Converters.UnitTests' do
-    inherit! :search_paths
-  end
-end
-
-
-target 'NetworkingApi.Core.Extensions' do
-  project '../RoxieMobile.NetworkingApi/Core.Extensions/NetworkingApi.Core.Extensions.xcodeproj'
-
-# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
-
-  target 'NetworkingApi.Core.Extensions.UnitTests' do
     inherit! :search_paths
   end
 end
@@ -29,7 +18,10 @@ end
 target 'NetworkingApi.Core.Net' do
   project '../RoxieMobile.NetworkingApi/Core.Net/NetworkingApi.Core.Net.xcodeproj'
 
-# pod 'NetworkingApi/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+  pod 'Alamofire', '~> 4.5.1'
+  pod 'Dispatch', '~> 2.0.3'
+  pod 'SwiftCommons/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
+  pod 'SwiftyJSON', '~> 3.1.4'
 
   target 'NetworkingApi.Core.Net.UnitTests' do
     inherit! :search_paths

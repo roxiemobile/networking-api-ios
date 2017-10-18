@@ -1,3 +1,56 @@
-PODFILE CHECKSUM: 3b196162ff150c28a84cf108900674b6d2cb3d1f
+PODS:
+  - Alamofire (4.5.1)
+  - CryptoSwift (0.8.0)
+  - Dispatch (2.0.3)
+  - NetworkingApi/Core/Net (0.0.1):
+    - Alamofire (~> 4.5.1)
+    - Dispatch (~> 2.0.3)
+    - SwiftCommons/Core/Data
+    - SwiftyJSON (~> 3.1.4)
+  - SwiftCommons/Core/Abstractions (0.0.1)
+  - SwiftCommons/Core/Concurrent (0.0.1)
+  - SwiftCommons/Core/Data (0.0.1):
+    - CryptoSwift (~> 0.8.0)
+    - SwiftCommons/Core/Diagnostics (= 0.0.1)
+  - SwiftCommons/Core/Diagnostics (0.0.1):
+    - SwiftCommons/Core/Concurrent (= 0.0.1)
+    - SwiftCommons/Core/Extensions (= 0.0.1)
+  - SwiftCommons/Core/Extensions (0.0.1):
+    - SwiftCommons/Core/Abstractions (= 0.0.1)
+    - SwiftCommons/Core/Logging (= 0.0.1)
+  - SwiftCommons/Core/Lang (0.0.1)
+  - SwiftCommons/Core/Logging (0.0.1):
+    - SwiftCommons/Core/Concurrent (= 0.0.1)
+    - SwiftCommons/Core/Lang (= 0.0.1)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5.1)
+  - Dispatch (~> 2.0.3)
+  - NetworkingApi/Core/Net (from `../../`)
+  - SwiftCommons/Core/Data (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `sandbox`)
+  - SwiftyJSON (~> 3.1.4)
+
+EXTERNAL SOURCES:
+  NetworkingApi:
+    :path: ../../
+  SwiftCommons:
+    :branch: sandbox
+    :git: https://github.com/roxiemobile/swift-commons.ios.git
+
+CHECKOUT OPTIONS:
+  SwiftCommons:
+    :commit: d4f89e9ec0518fcf0639c965d6ad3ed59638b1e3
+    :git: https://github.com/roxiemobile/swift-commons.ios.git
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
+  Dispatch: 65e7f979d5c9dde4e475ca178c7616f6c16868db
+  NetworkingApi: 23ea7e247d63ede7e18f30bbe31753294f9eec43
+  SwiftCommons: 5a0b26a93c5d581de967bd48ac92e43553766e4b
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: deeaa4d1a5e160e0629f56e1f381e95fe9f908fa
 
 COCOAPODS: 1.3.1

@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		190C770B1F96BF96002C3847 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C77061F96BF91002C3847 /* Atomic.swift */; };
-		190C770C1F96BF96002C3847 /* Lockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C77071F96BF91002C3847 /* Lockable.swift */; };
-		190C770E1F96BF96002C3847 /* PerformOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C77091F96BF91002C3847 /* PerformOnce.swift */; };
-		190C77111F96C4AD002C3847 /* PthreadLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C77101F96C4AD002C3847 /* PthreadLock.swift */; };
-		190C77131F96C5B5002C3847 /* UnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190C77121F96C5B5002C3847 /* UnfairLock.swift */; };
 		195D39541F72CE4900118D17 /* libNetworkingApiCoreConverters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C017241F72CC3A00D29F73 /* libNetworkingApiCoreConverters.a */; };
-		19C7B7551F8648EF0030F1D8 /* Synchronized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C7B7541F8648EB0030F1D8 /* Synchronized.swift */; };
-		19C7B7561F8648F30030F1D8 /* TryCatchFinally.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C7B7511F8648EB0030F1D8 /* TryCatchFinally.m */; };
-		19C7B7571F8648F40030F1D8 /* TryCatchFinally.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C7B7521F8648EB0030F1D8 /* TryCatchFinally.swift */; };
-		19C7B7581F8648F70030F1D8 /* TryCatchFinally.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C7B7501F8648EB0030F1D8 /* TryCatchFinally.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19C190A71F9766520049E315 /* AbstractCallResultConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909E1F9766490049E315 /* AbstractCallResultConverter.swift */; };
+		19C190A81F9766520049E315 /* AbstractValidatableModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */; };
+		19C190A91F9766520049E315 /* ImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909C1F9766490049E315 /* ImageConverter.swift */; };
+		19C190AA1F9766520049E315 /* JsonObjectConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909F1F9766490049E315 /* JsonObjectConverter.swift */; };
+		19C190AB1F9766520049E315 /* PassThroughConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909A1F9766490049E315 /* PassThroughConverter.swift */; };
+		19C190AC1F9766520049E315 /* StringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909D1F9766490049E315 /* StringConverter.swift */; };
+		19C190AD1F9766520049E315 /* VoidConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909B1F9766490049E315 /* VoidConverter.swift */; };
 		19EB0CD01F72E1770029F302 /* NetworkingApi.Core.Converters.UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0CCF1F72E1770029F302 /* NetworkingApi.Core.Converters.UnitTests.swift */; };
 		49994FB3463BE7A5286EB8FB /* Pods_NetworkingApi_Core_Converters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC34E2D39E01B0D4D4DA6C9 /* Pods_NetworkingApi_Core_Converters.framework */; };
 		BFEDE38E0348FDDEAFFF5D88 /* Pods_NetworkingApi_Core_Converters_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8405EB1B11EF0D94DEF172 /* Pods_NetworkingApi_Core_Converters_UnitTests.framework */; };
@@ -37,19 +35,17 @@
 /* Begin PBXFileReference section */
 		0BCD0B794B4FB4AFFA92B781 /* Pods-NetworkingApi.Core.Converters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Core.Converters.debug.xcconfig"; path = "../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Core.Converters/Pods-NetworkingApi.Core.Converters.debug.xcconfig"; sourceTree = "<group>"; };
 		11839627740B730D31D0CED4 /* Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig"; path = "../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Core.Converters.UnitTests/Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		190C77061F96BF91002C3847 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
-		190C77071F96BF91002C3847 /* Lockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lockable.swift; sourceTree = "<group>"; };
-		190C77091F96BF91002C3847 /* PerformOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformOnce.swift; sourceTree = "<group>"; };
-		190C77101F96C4AD002C3847 /* PthreadLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PthreadLock.swift; sourceTree = "<group>"; };
-		190C77121F96C5B5002C3847 /* UnfairLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfairLock.swift; sourceTree = "<group>"; };
 		195D394F1F72CE4900118D17 /* NetworkingApiCoreConverters.UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingApiCoreConverters.UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19792A361F72E7200001768B /* NetworkingApi.Core.Converters-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetworkingApi.Core.Converters-Bridging-Header.h"; sourceTree = "<group>"; };
 		19792A371F72E72A0001768B /* NetworkingApi.Core.Converters.UnitTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetworkingApi.Core.Converters.UnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		19C017241F72CC3A00D29F73 /* libNetworkingApiCoreConverters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetworkingApiCoreConverters.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		19C7B7501F8648EB0030F1D8 /* TryCatchFinally.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TryCatchFinally.h; sourceTree = "<group>"; };
-		19C7B7511F8648EB0030F1D8 /* TryCatchFinally.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TryCatchFinally.m; sourceTree = "<group>"; };
-		19C7B7521F8648EB0030F1D8 /* TryCatchFinally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryCatchFinally.swift; sourceTree = "<group>"; };
-		19C7B7541F8648EB0030F1D8 /* Synchronized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synchronized.swift; sourceTree = "<group>"; };
+		19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractValidatableModelConverter.swift; sourceTree = "<group>"; };
+		19C1909A1F9766490049E315 /* PassThroughConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughConverter.swift; sourceTree = "<group>"; };
+		19C1909B1F9766490049E315 /* VoidConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidConverter.swift; sourceTree = "<group>"; };
+		19C1909C1F9766490049E315 /* ImageConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConverter.swift; sourceTree = "<group>"; };
+		19C1909D1F9766490049E315 /* StringConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConverter.swift; sourceTree = "<group>"; };
+		19C1909E1F9766490049E315 /* AbstractCallResultConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCallResultConverter.swift; sourceTree = "<group>"; };
+		19C1909F1F9766490049E315 /* JsonObjectConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonObjectConverter.swift; sourceTree = "<group>"; };
 		19EB0CA71F72DF640029F302 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19EB0CCF1F72E1770029F302 /* NetworkingApi.Core.Converters.UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingApi.Core.Converters.UnitTests.swift; sourceTree = "<group>"; };
 		8A93E6EB7A470931B5FF46D5 /* Pods-NetworkingApi.Core.Converters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Core.Converters.release.xcconfig"; path = "../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Core.Converters/Pods-NetworkingApi.Core.Converters.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,18 +75,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		190C77051F96BF91002C3847 /* SCAAtomic */ = {
-			isa = PBXGroup;
-			children = (
-				190C77061F96BF91002C3847 /* Atomic.swift */,
-				190C77071F96BF91002C3847 /* Lockable.swift */,
-				190C77091F96BF91002C3847 /* PerformOnce.swift */,
-				190C77101F96C4AD002C3847 /* PthreadLock.swift */,
-				190C77121F96C5B5002C3847 /* UnfairLock.swift */,
-			);
-			path = SCAAtomic;
-			sourceTree = "<group>";
-		};
 		195D39501F72CE4900118D17 /* Module.UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,32 +115,6 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
-		19C7B74E1F8648EB0030F1D8 /* TryCatchFinally */ = {
-			isa = PBXGroup;
-			children = (
-				19C7B74F1F8648EB0030F1D8 /* Bridging */,
-				19C7B7521F8648EB0030F1D8 /* TryCatchFinally.swift */,
-			);
-			path = TryCatchFinally;
-			sourceTree = "<group>";
-		};
-		19C7B74F1F8648EB0030F1D8 /* Bridging */ = {
-			isa = PBXGroup;
-			children = (
-				19C7B7501F8648EB0030F1D8 /* TryCatchFinally.h */,
-				19C7B7511F8648EB0030F1D8 /* TryCatchFinally.m */,
-			);
-			path = Bridging;
-			sourceTree = "<group>";
-		};
-		19C7B7531F8648EB0030F1D8 /* Synchronized */ = {
-			isa = PBXGroup;
-			children = (
-				19C7B7541F8648EB0030F1D8 /* Synchronized.swift */,
-			);
-			path = Synchronized;
-			sourceTree = "<group>";
-		};
 		19EB0C9E1F72DF0D0029F302 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +125,13 @@
 		19EB0CA01F72DF0D0029F302 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				19C1909E1F9766490049E315 /* AbstractCallResultConverter.swift */,
+				19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */,
+				19C1909C1F9766490049E315 /* ImageConverter.swift */,
+				19C1909F1F9766490049E315 /* JsonObjectConverter.swift */,
+				19C1909A1F9766490049E315 /* PassThroughConverter.swift */,
+				19C1909D1F9766490049E315 /* StringConverter.swift */,
+				19C1909B1F9766490049E315 /* VoidConverter.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -174,9 +139,6 @@
 		19EB0CA21F72DF0D0029F302 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				190C77051F96BF91002C3847 /* SCAAtomic */,
-				19C7B7531F8648EB0030F1D8 /* Synchronized */,
-				19C7B74E1F8648EB0030F1D8 /* TryCatchFinally */,
 				19792A361F72E7200001768B /* NetworkingApi.Core.Converters-Bridging-Header.h */,
 			);
 			path = Libraries;
@@ -233,7 +195,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19C7B7581F8648F70030F1D8 /* TryCatchFinally.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,14 +388,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				190C77131F96C5B5002C3847 /* UnfairLock.swift in Sources */,
-				190C770B1F96BF96002C3847 /* Atomic.swift in Sources */,
-				19C7B7571F8648F40030F1D8 /* TryCatchFinally.swift in Sources */,
-				190C770C1F96BF96002C3847 /* Lockable.swift in Sources */,
-				19C7B7551F8648EF0030F1D8 /* Synchronized.swift in Sources */,
-				19C7B7561F8648F30030F1D8 /* TryCatchFinally.m in Sources */,
-				190C77111F96C4AD002C3847 /* PthreadLock.swift in Sources */,
-				190C770E1F96BF96002C3847 /* PerformOnce.swift in Sources */,
+				19C190A81F9766520049E315 /* AbstractValidatableModelConverter.swift in Sources */,
+				19C190AA1F9766520049E315 /* JsonObjectConverter.swift in Sources */,
+				19C190AB1F9766520049E315 /* PassThroughConverter.swift in Sources */,
+				19C190A71F9766520049E315 /* AbstractCallResultConverter.swift in Sources */,
+				19C190AD1F9766520049E315 /* VoidConverter.swift in Sources */,
+				19C190A91F9766520049E315 /* ImageConverter.swift in Sources */,
+				19C190AC1F9766520049E315 /* StringConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

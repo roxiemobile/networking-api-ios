@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-//  SwiftCommons.Core.Net.UnitTests.swift
+//  NetworkingApi.Core.Net.UnitTests.swift
 //
 //  @author     Alexander Bragin <bragin-av@roxiemobile.com>
 //  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
@@ -8,12 +8,12 @@
 //
 // ----------------------------------------------------------------------------
 
-@testable import SwiftCommonsCoreNet
+@testable import NetworkingApiCoreNet
 import XCTest
 
 // ----------------------------------------------------------------------------
 
-class SwiftCommons_Core_Net_UnitTests: XCTestCase
+class NetworkingApi_Core_Net_UnitTests: XCTestCase
 {
     override func setUp() {
         super.setUp()
