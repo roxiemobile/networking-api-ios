@@ -19,7 +19,8 @@ target 'NetworkingApi.Core.Net' do
   project '../RoxieMobile.NetworkingApi/Core.Net/NetworkingApi.Core.Net.xcodeproj'
 
   pod 'Alamofire', '~> 4.5.1'
-  pod 'Dispatch', '~> 2.0.3'
+# pod 'Dispatch', '~> 2.0.3'
+  pod 'SwiftCommons/Core/Concurrent', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
   pod 'SwiftCommons/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
   pod 'SwiftyJSON', '~> 3.1.4'
 

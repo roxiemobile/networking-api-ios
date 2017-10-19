@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
 
       # Dependencies
       sp.dependency 'Alamofire', '~> 4.5.1'
-      sp.dependency 'Dispatch', '~> 2.0.3'
+#     sp.dependency 'Dispatch', '~> 2.0.3'
       sp.dependency 'SwiftCommons/Core/Data'
       sp.dependency 'SwiftyJSON', '~> 3.1.4'
     end
