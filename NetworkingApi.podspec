@@ -31,7 +31,10 @@ Pod::Spec.new do |s|
 
     # TODO: Write a description
     sc.subspec 'Converters' do |sp|
-      sp.source_files = 'modules/RoxieMobile.NetworkingApi/Core.Converters/Module/**/*.{swift,h,m,c}'
+      src_path = 'modules/RoxieMobile.NetworkingApi/Core.Converters'
+
+      # Configuration
+      sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
 
       # Dependencies
       sp.dependency 'NetworkingApi/Core/Net', s.version.to_s
@@ -39,7 +42,10 @@ Pod::Spec.new do |s|
 
     # TODO: Write a description
     sc.subspec 'Net' do |sp|
-      sp.source_files = 'modules/RoxieMobile.NetworkingApi/Core.Net/Module/**/*.{swift,h,m,c}'
+      src_path = 'modules/RoxieMobile.NetworkingApi/Core.Net'
+
+      # Configuration
+      sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
 
       # Dependencies
       sp.dependency 'Alamofire', '~> 4.5.1'

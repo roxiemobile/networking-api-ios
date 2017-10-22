@@ -38,16 +38,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftCommons:
-    :commit: 2313060b51c8518159b9e83a066b094522026e5c
+    :commit: 9ce32e097e7b9b75b1a824bff2b2dac66d3388b6
     :git: https://github.com/roxiemobile/swift-commons.ios.git
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
-  NetworkingApi: 4fee9b283cc5090f70bd886397041fc99a2d840a
-  SwiftCommons: 5a0b26a93c5d581de967bd48ac92e43553766e4b
+  NetworkingApi: 82575ccdfcdfbd0d10190e74dcd361bda591795c
+  SwiftCommons: c231da391b282c94c54af08f416f75e7a85c9a8b
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 2ffdcac86656f321f751d1d2a0b0a8be5ee93661
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0.beta.1
