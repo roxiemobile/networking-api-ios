@@ -39,8 +39,8 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
             }
 
             do {
-                if let jsonObject = (json.object as? JsonObject) {
-                    newBody = try T.init(params: jsonObject)
+                if let json = (json.object as? JsonObject) {
+                    newBody = try T.init(JSON: json)
                 }
                 else {
                     throw JsonSyntaxError(message: "Could not transform model.")
