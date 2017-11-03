@@ -8,6 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
+import Foundation
 import NetworkingApi
 import SwiftCommons
 import SwiftyJSON
