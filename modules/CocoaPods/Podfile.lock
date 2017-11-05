@@ -1,14 +1,14 @@
 PODS:
-  - Alamofire (4.5.1)
-  - CryptoSwift (0.8.0)
+  - Alamofire/Static (4.5.1)
+  - CryptoSwift/Static (0.8.0)
   - NetworkingApi/Core/Net (0.0.1):
-    - Alamofire (~> 4.5.1)
+    - Alamofire/Static (~> 4.5.1)
     - SwiftCommons/Core/Data
-    - SwiftyJSON (~> 3.1.4)
+    - SwiftyJSON/Static (~> 3.1.4)
   - SwiftCommons/Core/Abstractions (0.0.1)
   - SwiftCommons/Core/Concurrent (0.0.1)
   - SwiftCommons/Core/Data (0.0.1):
-    - CryptoSwift (~> 0.8.0)
+    - CryptoSwift/Static (~> 0.8.0)
     - SwiftCommons/Core/Diagnostics (= 0.0.1)
   - SwiftCommons/Core/Diagnostics (0.0.1):
     - SwiftCommons/Core/Concurrent (= 0.0.1)
@@ -20,14 +20,14 @@ PODS:
   - SwiftCommons/Core/Logging (0.0.1):
     - SwiftCommons/Core/Concurrent (= 0.0.1)
     - SwiftCommons/Core/Lang (= 0.0.1)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON/Static (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5.1)
+  - Alamofire/Static (~> 4.5.1)
   - NetworkingApi/Core/Net (from `../../`)
   - SwiftCommons/Core/Concurrent (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `sandbox`)
   - SwiftCommons/Core/Data (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `sandbox`)
-  - SwiftyJSON (~> 3.1.4)
+  - SwiftyJSON/Static (~> 3.1.4)
 
 EXTERNAL SOURCES:
   NetworkingApi:
@@ -38,16 +38,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftCommons:
-    :commit: 3be2f3f6da0685e5318929ab2884a897be773c3b
+    :commit: 4235157bcfa4181ef8b10bd72c8c9d8489b75b95
     :git: https://github.com/roxiemobile/swift-commons.ios.git
 
 SPEC CHECKSUMS:
-  Alamofire: e6bf125062d947e85fd35dfee4c76ca21c390289
-  CryptoSwift: c28f3263c92617abf722118d5a51e264ac27082c
-  NetworkingApi: 9947e653595f13f484846d29828475cd570f14ec
-  SwiftCommons: c231da391b282c94c54af08f416f75e7a85c9a8b
-  SwiftyJSON: 499760a120809fead67638bab84ac4bc440d6874
+  Alamofire: 4b993e7266f0907cdee0111f89fb520c3149a0a1
+  CryptoSwift: b013d05129134ab1f9637525703f45082c724953
+  NetworkingApi: 72156614e721edac756cd882a35a746d668d5ec5
+  SwiftCommons: 549e6c448e0f2c15bc004216332773cd3072eda7
+  SwiftyJSON: 3d638f2fcbdd455625b4957ec843c379ad61acde
 
-PODFILE CHECKSUM: a9a0046a4657dcd9a70b37b810e51dbb2ed50346
+PODFILE CHECKSUM: c1a2cebf847ff15fb67f2831f6035caa3fd9b9e0
 
 COCOAPODS: 1.4.0.beta.2

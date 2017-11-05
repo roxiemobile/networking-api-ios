@@ -48,10 +48,10 @@ Pod::Spec.new do |s|
       sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
 
       # Dependencies
-      sp.dependency 'Alamofire', '~> 4.5.1'
+      sp.dependency 'Alamofire/Static', '~> 4.5.1'
 #     sp.dependency 'Dispatch', '~> 2.0.3'
       sp.dependency 'SwiftCommons/Core/Data'
-      sp.dependency 'SwiftyJSON', '~> 3.1.4'
+      sp.dependency 'SwiftyJSON/Static', '~> 3.1.4'
     end
   end
 end
