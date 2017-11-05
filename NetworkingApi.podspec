@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
     # TODO: Write a description
     sc.subspec 'Converters' do |sp|
-      src_path = 'modules/RoxieMobile.NetworkingApi/Core.Converters'
+      src_path = 'Modules/RoxieMobile.NetworkingApi/Core.Converters'
 
       # Configuration
       sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
 
     # TODO: Write a description
     sc.subspec 'Net' do |sp|
-      src_path = 'modules/RoxieMobile.NetworkingApi/Core.Net'
+      src_path = 'Modules/RoxieMobile.NetworkingApi/Core.Net'
 
       # Configuration
       sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
