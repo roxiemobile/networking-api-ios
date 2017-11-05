@@ -48,7 +48,7 @@ open class TaskQueue: NonCreatable
 
     open static func cancel(_ tag: String)
     {
-        let cancelledTasks = self.tasks.withValue { tasks in
+        let cancelledTasks = self.tasks.map { tasks in
             return tasks.remove(tag)
         }
 
@@ -60,7 +60,6 @@ open class TaskQueue: NonCreatable
 // MARK: - Variables
 
     fileprivate static let tasks = Atomic(MultiValueDictionary<String, Cancellable>())
-
 }
 
 // ----------------------------------------------------------------------------
@@ -91,7 +90,6 @@ private final class InnerTask<Ti, To>: Cancellable
     fileprivate let task: Task<Ti, To>
 
     fileprivate let callback: InnerCallback<Ti, To>
-
 }
 
 // ----------------------------------------------------------------------------
@@ -174,7 +172,6 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
     fileprivate let queue: DispatchQueue
 
     fileprivate let done = Atomic<Bool>(false)
-
 }
 
 // ----------------------------------------------------------------------------
