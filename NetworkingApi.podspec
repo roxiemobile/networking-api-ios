@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source                = { git: 'https://github.com/roxiemobile/networking-api.ios.git', tag: "v#{s.version}" }
   s.preserve_path         = 'LICENSE.txt'
 
-  s.pod_target_xcconfig   = { 'ENABLE_BITCODE' => 'NO', 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig   = { 'SWIFT_VERSION' => '4.0' }
 
   s.default_subspecs      = 'Core/Converters',
                             'Core/Net'
@@ -49,7 +49,6 @@ Pod::Spec.new do |s|
 
       # Dependencies
       sp.dependency 'Alamofire/Static', '~> 4.5.1'
-      sp.dependency 'Dispatch/Static', '~> 2.0.4'
       sp.dependency 'SwiftCommons/Core/Data'
       sp.dependency 'SwiftyJSON/Static', '~> 3.1.4'
     end
