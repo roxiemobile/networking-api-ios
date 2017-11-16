@@ -5,7 +5,7 @@ PODS:
   - NetworkingApi/Core/Net (0.0.1):
     - Alamofire/Static (~> 4.5.1)
     - SwiftCommons/Core/Data
-    - SwiftyJSON/Static (~> 3.1.4)
+    - SwiftyJSON/Static (~> 4.0.0)
   - SwiftCommons/Core/Abstractions (0.0.1)
   - SwiftCommons/Core/Concurrent (0.0.1):
     - Dispatch/Static (~> 2.0.4)
@@ -22,13 +22,13 @@ PODS:
   - SwiftCommons/Core/Logging (0.0.1):
     - SwiftCommons/Core/Concurrent (= 0.0.1)
     - SwiftCommons/Core/Lang (= 0.0.1)
-  - SwiftyJSON/Static (3.1.4)
+  - SwiftyJSON/Static (4.0.0)
 
 DEPENDENCIES:
   - Alamofire/Static (~> 4.5.1)
   - NetworkingApi/Core/Net (from `../../`)
   - SwiftCommons/Core/Data (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `sandbox`)
-  - SwiftyJSON/Static (~> 3.1.4)
+  - SwiftyJSON/Static (~> 4.0.0)
 
 EXTERNAL SOURCES:
   NetworkingApi:
@@ -46,10 +46,10 @@ SPEC CHECKSUMS:
   Alamofire: 4b993e7266f0907cdee0111f89fb520c3149a0a1
   CryptoSwift: b013d05129134ab1f9637525703f45082c724953
   Dispatch: 3456ea74f98635cecb671828660ef4abad607e5c
-  NetworkingApi: 7de717f568d9cdb358fccade72f8ba46c27c75a0
+  NetworkingApi: 5323a5e8a228cad3ae579a1eca468d15317898bf
   SwiftCommons: ddf49dd77eafca9f0df57220cfd55781e16b384e
-  SwiftyJSON: 3d638f2fcbdd455625b4957ec843c379ad61acde
+  SwiftyJSON: 648259193898b2e9ed021733b150c28960728bd7
 
-PODFILE CHECKSUM: c2fb73eb8df8587d54f756b4b69c6a57b77d0e6e
+PODFILE CHECKSUM: c5afd534ceb86e9be9c7dfce0c43fc0fbf65025e
 
 COCOAPODS: 1.4.0.beta.2

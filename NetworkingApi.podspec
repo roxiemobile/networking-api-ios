@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
       # Dependencies
       sp.dependency 'Alamofire/Static', '~> 4.5.1'
       sp.dependency 'SwiftCommons/Core/Data'
-      sp.dependency 'SwiftyJSON/Static', '~> 3.1.4'
+      sp.dependency 'SwiftyJSON/Static', '~> 4.0.0'
     end
   end
 end

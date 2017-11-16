@@ -30,12 +30,14 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
         var newEntity: ResponseEntity<To>
         var newBody: T?
 
-        if let body = entity.body, !(body.isEmpty)
+        if let body = entity.body, body.isNotEmpty
         {
             // Try to parse response as JSON string
-            var error: NSError?
-            let json = JSON(data: body, options: .allowFragments, error: &error)
-            if let error = error {
+            let json: JSON
+            do {
+                json = try JSON(data: body, options: .allowFragments)
+            }
+            catch {
                 throw ConversionError(entity: entity, cause: error)
             }
 

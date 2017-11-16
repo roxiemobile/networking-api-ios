@@ -22,7 +22,7 @@ target 'NetworkingApi.Core.Net' do
 
   pod 'Alamofire/Static', '~> 4.5.1'
   pod 'SwiftCommons/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
-  pod 'SwiftyJSON/Static', '~> 3.1.4'
+  pod 'SwiftyJSON/Static', '~> 4.0.0'
 
   target 'NetworkingApi.Core.Net.UnitTests' do
     inherit! :search_paths
