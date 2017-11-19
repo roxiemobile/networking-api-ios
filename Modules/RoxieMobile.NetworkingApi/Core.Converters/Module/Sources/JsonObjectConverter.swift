@@ -25,32 +25,26 @@ open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 
 // MARK: - Functions
 
-    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
-    {
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         var newEntity: ResponseEntity<To>
         var newBody: JsonObject?
 
-        if let body = entity.body, body.isNotEmpty
-        {
-            // Try to parse response as JSON string
-            let json: JSON
+        if let body = entity.body, body.isNotEmpty {
             do {
-                json = try JSON(data: body, options: .allowFragments)
+                // Try to parse response as JSON string
+                if let JSON = try JSON(data: body, options: .allowFragments).object as? JsonObject {
+                    newBody = JSON
+                }
+                else {
+                    throw JsonSyntaxError(message: "Failed to convert response body to JSON object.")
+                }
             }
             catch {
                 throw ConversionError(entity: entity, cause: error)
             }
-
-            // Try to parse ParcelableModel
-            if let jsonObject = (json.object as? JsonObject) {
-                newBody = jsonObject
-            }
-            else {
-                throw ConversionError(entity: entity)
-            }
         }
 
-        // Create new response entity
+        // Create response entity
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()
         return newEntity
     }
@@ -62,7 +56,6 @@ open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 // MARK: - Constants
 
     fileprivate static let SupportedMediaTypes = [MediaType.ApplicationJson]
-
 }
 
 // ----------------------------------------------------------------------------

@@ -25,40 +25,29 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
 
 // MARK: - Functions
 
-    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
-    {
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         var newEntity: ResponseEntity<To>
         var newBody: T?
 
-        if let body = entity.body, body.isNotEmpty
-        {
-            // Try to parse response as JSON string
-            let json: JSON
+        if let body = entity.body, body.isNotEmpty {
             do {
-                json = try JSON(data: body, options: .allowFragments)
+                // Try to parse response as JSON string
+                if let JSON = try JSON(data: body, options: .allowFragments).object as? JsonObject {
+                    newBody = try T.init(from: JSON)
+                }
+                else {
+                    throw JsonSyntaxError(message: "Failed to convert response body to JSON object.")
+                }
             }
             catch {
                 throw ConversionError(entity: entity, cause: error)
             }
-
-            do {
-                if let json = (json.object as? JsonObject) {
-                    newBody = try T.init(JSON: json)
-                }
-                else {
-                    throw JsonSyntaxError(message: "Could not transform model.")
-                }
-            }
-            catch let error as JsonSyntaxError {
-                throw ConversionError(entity: entity, cause: error)
-            }
-
         }
 
+        // Create response entity
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()
         return newEntity
     }
-
 }
 
 // ----------------------------------------------------------------------------
