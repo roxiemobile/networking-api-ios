@@ -27,14 +27,15 @@ open class PassThroughConverter: AbstractCallResultConverter<Data>
         return entity
     }
 
-    override open func supportedMediaTypes() -> [MediaType] {
+    open override func supportedMediaTypes() -> [MediaType] {
         return PassThroughConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    fileprivate static let SupportedMediaTypes = [MediaType.All]
-
+    private static let SupportedMediaTypes = [
+        MediaType.All
+    ]
 }
 
 // ----------------------------------------------------------------------------

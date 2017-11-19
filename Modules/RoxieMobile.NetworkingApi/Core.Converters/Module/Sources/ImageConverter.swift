@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------------
 
 import NetworkingApi
+import SwiftCommons
 import UIKit
 
 // ----------------------------------------------------------------------------
@@ -23,34 +24,40 @@ open class ImageConverter: AbstractCallResultConverter<UIImage>
 
 // MARK: - Functions
 
-    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
-    {
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         var newEntity: ResponseEntity<To>
         var newBody: UIImage?
 
-        if let body = entity.body, !(body.isEmpty)
-        {
-            if let image = UIImage(data: body) {
-                newBody = image
+        if let body = entity.body, body.isNotEmpty {
+            do {
+                // Try to parse response body as image
+                if let image = UIImage(data: body) {
+                    newBody = image
+                }
+                else {
+                    throw JsonSyntaxError(message: "Failed to convert response body to image.")
+                }
             }
-            else {
-                throw ConversionError(entity: entity)
+            catch {
+                throw ConversionError(entity: entity, cause: error)
             }
         }
 
-        // Create new response entity
+        // Create response entity
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()
         return newEntity
     }
 
-    override open func supportedMediaTypes() -> [MediaType] {
+    open override func supportedMediaTypes() -> [MediaType] {
         return ImageConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    fileprivate static let SupportedMediaTypes = [MediaType.ImageJpeg, MediaType.ImagePng]
-
+    private static let SupportedMediaTypes = [
+        MediaType.ImageJpeg,
+        MediaType.ImagePng
+    ]
 }
 
 // ----------------------------------------------------------------------------

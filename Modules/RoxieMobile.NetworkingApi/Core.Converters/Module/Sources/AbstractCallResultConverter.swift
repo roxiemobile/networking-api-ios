@@ -23,13 +23,12 @@ open class AbstractCallResultConverter<T>: CallResultConverter
 
 // MARK: - Functions
 
-    open func convert(_ result: CallResult<Data>) -> CallResult<T>
-    {
+    open func convert(_ result: CallResult<Data>) -> CallResult<T> {
         var newResult: CallResult<T>
 
         // Handle call result
-        switch result
-        {
+        switch result {
+
             case .success(let entity):
                 do {
                     try checkMediaType(entity)
@@ -64,8 +63,7 @@ open class AbstractCallResultConverter<T>: CallResultConverter
 
 // MARK: - Private Methods
 
-    fileprivate func checkMediaType(_ entity: ResponseEntity<Ti>) throws
-    {
+    private func checkMediaType(_ entity: ResponseEntity<Ti>) throws {
         let mediaType = entity.mediaType
         var found = false
 
@@ -93,7 +91,6 @@ open class AbstractCallResultConverter<T>: CallResultConverter
     public typealias Ti = Data
 
     public typealias To = T
-
 }
 
 // ----------------------------------------------------------------------------

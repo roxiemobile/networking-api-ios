@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191516E41FC2238500CD45CB /* AbstractValidatableModelArrayConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191516E31FC2238500CD45CB /* AbstractValidatableModelArrayConverter.swift */; };
 		195D39541F72CE4900118D17 /* libNetworkingApiCoreConverters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C017241F72CC3A00D29F73 /* libNetworkingApiCoreConverters.a */; };
 		19C190A71F9766520049E315 /* AbstractCallResultConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1909E1F9766490049E315 /* AbstractCallResultConverter.swift */; };
 		19C190A81F9766520049E315 /* AbstractValidatableModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		0BCD0B794B4FB4AFFA92B781 /* Pods-NetworkingApi.Core.Converters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Core.Converters.debug.xcconfig"; path = "../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Core.Converters/Pods-NetworkingApi.Core.Converters.debug.xcconfig"; sourceTree = "<group>"; };
 		11839627740B730D31D0CED4 /* Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig"; path = "../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Core.Converters.UnitTests/Pods-NetworkingApi.Core.Converters.UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		191516E31FC2238500CD45CB /* AbstractValidatableModelArrayConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractValidatableModelArrayConverter.swift; sourceTree = "<group>"; };
 		195D394F1F72CE4900118D17 /* NetworkingApiCoreConverters.UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingApiCoreConverters.UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C017241F72CC3A00D29F73 /* libNetworkingApiCoreConverters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetworkingApiCoreConverters.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractValidatableModelConverter.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				19C1909E1F9766490049E315 /* AbstractCallResultConverter.swift */,
+				191516E31FC2238500CD45CB /* AbstractValidatableModelArrayConverter.swift */,
 				19C190991F9766490049E315 /* AbstractValidatableModelConverter.swift */,
 				19C1909C1F9766490049E315 /* ImageConverter.swift */,
 				19C1909F1F9766490049E315 /* JsonObjectConverter.swift */,
@@ -390,6 +393,7 @@
 				19C190A71F9766520049E315 /* AbstractCallResultConverter.swift in Sources */,
 				19C190AD1F9766520049E315 /* VoidConverter.swift in Sources */,
 				19C190A91F9766520049E315 /* ImageConverter.swift in Sources */,
+				191516E41FC2238500CD45CB /* AbstractValidatableModelArrayConverter.swift in Sources */,
 				19C190AC1F9766520049E315 /* StringConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

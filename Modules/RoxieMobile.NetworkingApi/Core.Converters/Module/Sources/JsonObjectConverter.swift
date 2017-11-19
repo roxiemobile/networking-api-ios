@@ -8,7 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-import Foundation
 import NetworkingApi
 import SwiftCommons
 import SwiftyJSON
@@ -31,9 +30,9 @@ open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
 
         if let body = entity.body, body.isNotEmpty {
             do {
-                // Try to parse response as JSON string
-                if let JSON = try JSON(data: body, options: .allowFragments).object as? JsonObject {
-                    newBody = JSON
+                // Try to parse response body as JSON object
+                if let jsonObject = try JSON(data: body, options: .allowFragments).object as? JsonObject {
+                    newBody = jsonObject
                 }
                 else {
                     throw JsonSyntaxError(message: "Failed to convert response body to JSON object.")
@@ -49,13 +48,15 @@ open class JsonObjectConverter: AbstractCallResultConverter<JsonObject>
         return newEntity
     }
 
-    override open func supportedMediaTypes() -> [MediaType] {
+    open override func supportedMediaTypes() -> [MediaType] {
         return JsonObjectConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    fileprivate static let SupportedMediaTypes = [MediaType.ApplicationJson]
+    private static let SupportedMediaTypes = [
+        MediaType.ApplicationJson
+    ]
 }
 
 // ----------------------------------------------------------------------------

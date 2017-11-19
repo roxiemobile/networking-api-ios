@@ -8,7 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-import Foundation
 import NetworkingApi
 import SwiftCommons
 import SwiftyJSON
@@ -31,9 +30,9 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
 
         if let body = entity.body, body.isNotEmpty {
             do {
-                // Try to parse response as JSON string
-                if let JSON = try JSON(data: body, options: .allowFragments).object as? JsonObject {
-                    newBody = try T.init(from: JSON)
+                // Try to parse response body as JSON object
+                if let jsonObject = try JSON(data: body, options: .allowFragments).object as? JsonObject {
+                    newBody = try T.init(from: jsonObject)
                 }
                 else {
                     throw JsonSyntaxError(message: "Failed to convert response body to JSON object.")

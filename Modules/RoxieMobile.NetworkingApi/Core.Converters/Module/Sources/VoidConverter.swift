@@ -26,14 +26,15 @@ open class VoidConverter: AbstractCallResultConverter<Void>
         return BasicResponseEntityBuilder<Void>(entity: entity, body: ()).build()
     }
 
-    override open func supportedMediaTypes() -> [MediaType] {
+    open override func supportedMediaTypes() -> [MediaType] {
         return VoidConverter.SupportedMediaTypes
     }
 
 // MARK: - Constants
 
-    fileprivate static let SupportedMediaTypes = [MediaType.All]
-
+    private static let SupportedMediaTypes = [
+        MediaType.All
+    ]
 }
 
 // ----------------------------------------------------------------------------

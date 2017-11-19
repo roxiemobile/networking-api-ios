@@ -22,26 +22,23 @@ open class StringConverter: AbstractCallResultConverter<String>
 
 // MARK: - Functions
 
-    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To>
-    {
+    open override func convert(_ entity: ResponseEntity<Ti>) throws -> ResponseEntity<To> {
         var newEntity: ResponseEntity<To>
         var newBody: String?
 
-        // Convert raw data to string
-        if let body = entity.body, !(body.isEmpty)
-        {
-            if let encoding = EncodingProvider.encodingForCharset(entity.headers?.contentType?.charset ?? Inner.DefaultCharset)
-            {
-                if let string = String(data: body, encoding: encoding) {
-                    newBody = string
-                }
-                else {
-                    throw ConversionError(entity: entity)
-                }
+        if let body = entity.body, body.isNotEmpty {
+
+            // Try to parse response body as string
+            if let encoding = EncodingProvider.encodingForCharset(entity.headers?.contentType?.charset ?? Inner.DefaultCharset),
+               let string = String(data: body, encoding: encoding) {
+                newBody = string
+            }
+            else {
+                throw ConversionError(entity: entity)
             }
         }
 
-        // Create new response entity
+        // Create response entity
         newEntity = BasicResponseEntityBuilder(entity: entity, body: newBody).build()
         return newEntity
     }
@@ -52,12 +49,13 @@ open class StringConverter: AbstractCallResultConverter<String>
 
 // MARK: - Constants
 
-    fileprivate struct Inner {
+    private struct Inner {
         static let DefaultCharset = Charset.forName("ISO-8859-1")
     }
 
-    fileprivate static let SupportedMediaTypes = [MediaType.All]
-
+    private static let SupportedMediaTypes = [
+        MediaType.All
+    ]
 }
 
 // ----------------------------------------------------------------------------
