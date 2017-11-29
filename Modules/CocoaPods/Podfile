@@ -6,25 +6,46 @@ use_frameworks!
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 
 
-target 'NetworkingApi.Core.Converters' do
-  project '../RoxieMobile.NetworkingApi/Core.Converters/NetworkingApi.Core.Converters.xcodeproj'
+target 'NetworkingApi.Converters' do
+  project '../RoxieMobile.NetworkingApi/Sources/Converters/NetworkingApi.Converters.xcodeproj'
 
-  pod 'NetworkingApi/Core/Net', path: '../../'
-
-  target 'NetworkingApi.Core.Converters.UnitTests' do
-    inherit! :search_paths
-  end
+  # Dependencies
+  pod 'SwiftCommonsData', git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftyJSON/Static', '~> 4.0.0'
 end
 
 
-target 'NetworkingApi.Core.Net' do
-  project '../RoxieMobile.NetworkingApi/Core.Net/NetworkingApi.Core.Net.xcodeproj'
+target 'NetworkingApi.Helpers' do
+  project '../RoxieMobile.NetworkingApi/Sources/Helpers/NetworkingApi.Helpers.xcodeproj'
 
+  # Dependencies
   pod 'Alamofire/Static', '~> 4.5.1'
-  pod 'SwiftCommons/Core/Data', :git => 'https://github.com/roxiemobile/swift-commons.ios.git', :branch => 'sandbox'
-  pod 'SwiftyJSON/Static', '~> 4.0.0'
+  pod 'SwiftCommonsLang',    git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsLogging', git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+end
 
-  target 'NetworkingApi.Core.Net.UnitTests' do
-    inherit! :search_paths
-  end
+
+target 'NetworkingApi.Http' do
+  project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
+
+  # Dependencies
+  pod 'SwiftCommonsConcurrent',   git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsDiagnostics',  git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsLang',         git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+
+  # DELETE:
+  pod 'SwiftCommonsAbstractions', git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsExtensions',   git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsLogging',      git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftCommonsObjC',         git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+end
+
+
+target 'NetworkingApi.Rest' do
+  project '../RoxieMobile.NetworkingApi/Sources/Rest/NetworkingApi.Rest.xcodeproj'
+
+  # Dependencies
+  pod 'Alamofire/Static', '~> 4.5.1'
+  pod 'SwiftCommonsData', git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+  pod 'SwiftyJSON/Static', '~> 4.0.0'
 end

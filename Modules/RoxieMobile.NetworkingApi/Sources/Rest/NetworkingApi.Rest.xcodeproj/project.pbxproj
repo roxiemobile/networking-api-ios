@@ -1,0 +1,680 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		193960C21FCF357C00A90559 /* NetworkingApiHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193960C31FCF357C00A90559 /* NetworkingApiHelpers.framework */; };
+		1951730B1FCF2D0000BAF35C /* NetworkingApiHttp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951730C1FCF2D0000BAF35C /* NetworkingApiHttp.framework */; };
+		199EAD3B1FCF245C0073001B /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD021FCF245B0073001B /* NetworkConfig.swift */; };
+		199EAD3C1FCF245C0073001B /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD041FCF245C0073001B /* Call.swift */; };
+		199EAD3D1FCF245C0073001B /* Callback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD051FCF245C0073001B /* Callback.swift */; };
+		199EAD3E1FCF245C0073001B /* CallbackDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD061FCF245C0073001B /* CallbackDecorator.swift */; };
+		199EAD3F1FCF245C0073001B /* CallResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD071FCF245C0073001B /* CallResult.swift */; };
+		199EAD401FCF245C0073001B /* CallResultConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD081FCF245C0073001B /* CallResultConverter.swift */; };
+		199EAD411FCF245C0073001B /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD091FCF245C0073001B /* Cancellable.swift */; };
+		199EAD421FCF245C0073001B /* HttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD0A1FCF245C0073001B /* HttpBody.swift */; };
+		199EAD431FCF245C0073001B /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD0B1FCF245C0073001B /* HttpResponse.swift */; };
+		199EAD441FCF245C0073001B /* HttpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD0C1FCF245C0073001B /* HttpResult.swift */; };
+		199EAD451FCF245C0073001B /* AbstractTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD0E1FCF245C0073001B /* AbstractTask.swift */; };
+		199EAD461FCF245C0073001B /* BasicRequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD0F1FCF245C0073001B /* BasicRequestEntity.swift */; };
+		199EAD471FCF245C0073001B /* DataBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD101FCF245C0073001B /* DataBody.swift */; };
+		199EAD481FCF245C0073001B /* FormBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD111FCF245C0073001B /* FormBody.swift */; };
+		199EAD491FCF245C0073001B /* JsonBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD121FCF245C0073001B /* JsonBody.swift */; };
+		199EAD4A1FCF245C0073001B /* RequestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD131FCF245C0073001B /* RequestEntity.swift */; };
+		199EAD4B1FCF245C0073001B /* TaskBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD141FCF245C0073001B /* TaskBuilder.swift */; };
+		199EAD4C1FCF245C0073001B /* VoidBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD151FCF245C0073001B /* VoidBody.swift */; };
+		199EAD4D1FCF245C0073001B /* BasicResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD171FCF245C0073001B /* BasicResponseEntity.swift */; };
+		199EAD4E1FCF245C0073001B /* AbstractRestApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD191FCF245C0073001B /* AbstractRestApiError.swift */; };
+		199EAD4F1FCF245C0073001B /* ApplicationLayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD1A1FCF245C0073001B /* ApplicationLayerError.swift */; };
+		199EAD501FCF245C0073001B /* AbstractNestedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD1C1FCF245C0073001B /* AbstractNestedError.swift */; };
+		199EAD511FCF245C0073001B /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD1D1FCF245C0073001B /* ConnectionError.swift */; };
+		199EAD521FCF245C0073001B /* ConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD1E1FCF245C0073001B /* ConversionError.swift */; };
+		199EAD531FCF245C0073001B /* HttpResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD1F1FCF245C0073001B /* HttpResponseError.swift */; };
+		199EAD541FCF245C0073001B /* NestedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD201FCF245C0073001B /* NestedError.swift */; };
+		199EAD551FCF245C0073001B /* ResponseEntityHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD211FCF245C0073001B /* ResponseEntityHolder.swift */; };
+		199EAD561FCF245C0073001B /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD221FCF245C0073001B /* ResponseError.swift */; };
+		199EAD571FCF245C0073001B /* UnexpectedMediaTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD231FCF245C0073001B /* UnexpectedMediaTypeError.swift */; };
+		199EAD581FCF245C0073001B /* TransportLayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD241FCF245C0073001B /* TransportLayerError.swift */; };
+		199EAD591FCF245C0073001B /* ResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD251FCF245C0073001B /* ResponseEntity.swift */; };
+		199EAD5A1FCF245C0073001B /* RestApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD261FCF245C0073001B /* RestApiError.swift */; };
+		199EAD5B1FCF245C0073001B /* RestApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD271FCF245C0073001B /* RestApiClient.swift */; };
+		199EAD5C1FCF245C0073001B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD281FCF245C0073001B /* Result.swift */; };
+		199EAD5D1FCF245C0073001B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD291FCF245C0073001B /* Task.swift */; };
+		199EAD5E1FCF245C0073001B /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD2A1FCF245C0073001B /* TaskQueue.swift */; };
+		199EAD5F1FCF245C0073001B /* HttpRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD2C1FCF245C0073001B /* HttpRoute.swift */; };
+		199EAD601FCF245C0073001B /* DefaultHttpClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD2E1FCF245C0073001B /* DefaultHttpClientConfig.swift */; };
+		199EAD611FCF245C0073001B /* HttpClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD2F1FCF245C0073001B /* HttpClientConfig.swift */; };
+		199EAD621FCF245C0073001B /* AbstractRedirectInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD311FCF245C0073001B /* AbstractRedirectInterceptor.swift */; };
+		199EAD631FCF245C0073001B /* CallServerInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD321FCF245C0073001B /* CallServerInterceptor.swift */; };
+		199EAD641FCF245C0073001B /* HttpLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD331FCF245C0073001B /* HttpLoggingInterceptor.swift */; };
+		199EAD651FCF245C0073001B /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD341FCF245C0073001B /* Interceptor.swift */; };
+		199EAD661FCF245C0073001B /* InterceptorChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD351FCF245C0073001B /* InterceptorChain.swift */; };
+		199EAD671FCF245C0073001B /* NoopRedirectInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD361FCF245C0073001B /* NoopRedirectInterceptor.swift */; };
+		199EAD681FCF245C0073001B /* RedirectInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD371FCF245C0073001B /* RedirectInterceptor.swift */; };
+		199EAD691FCF245C0073001B /* ShortCircuitRedirectInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD381FCF245C0073001B /* ShortCircuitRedirectInterceptor.swift */; };
+		199EAD6A1FCF245C0073001B /* UserAgentRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD391FCF245C0073001B /* UserAgentRequestInterceptor.swift */; };
+		199EAD6B1FCF245C0073001B /* HttpKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD3A1FCF245C0073001B /* HttpKeys.swift */; };
+		19C434EB1FCC9E2900984A2D /* NetworkingApiRest.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C434EA1FCC9E2900984A2D /* NetworkingApiRest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19C434ED1FCC9F0800984A2D /* NetworkingApiRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C434EC1FCC9F0800984A2D /* NetworkingApiRest.m */; };
+		FFFBFBE6FD9E6CAC1CEC14DC /* Pods_NetworkingApi_Rest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		193960C31FCF357C00A90559 /* NetworkingApiHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingApiHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		194320D01FCC9A7100480FDD /* NetworkingApiRest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkingApiRest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		194320D31FCC9A7100480FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1951730C1FCF2D0000BAF35C /* NetworkingApiHttp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingApiHttp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1976D4C41FCB7C9100C07C72 /* NetworkingApi.Rest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = NetworkingApi.Rest.xcconfig; sourceTree = "<group>"; };
+		199EAD021FCF245B0073001B /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		199EAD041FCF245C0073001B /* Call.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
+		199EAD051FCF245C0073001B /* Callback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Callback.swift; sourceTree = "<group>"; };
+		199EAD061FCF245C0073001B /* CallbackDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackDecorator.swift; sourceTree = "<group>"; };
+		199EAD071FCF245C0073001B /* CallResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallResult.swift; sourceTree = "<group>"; };
+		199EAD081FCF245C0073001B /* CallResultConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallResultConverter.swift; sourceTree = "<group>"; };
+		199EAD091FCF245C0073001B /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		199EAD0A1FCF245C0073001B /* HttpBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBody.swift; sourceTree = "<group>"; };
+		199EAD0B1FCF245C0073001B /* HttpResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpResponse.swift; sourceTree = "<group>"; };
+		199EAD0C1FCF245C0073001B /* HttpResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpResult.swift; sourceTree = "<group>"; };
+		199EAD0E1FCF245C0073001B /* AbstractTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTask.swift; sourceTree = "<group>"; };
+		199EAD0F1FCF245C0073001B /* BasicRequestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicRequestEntity.swift; sourceTree = "<group>"; };
+		199EAD101FCF245C0073001B /* DataBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBody.swift; sourceTree = "<group>"; };
+		199EAD111FCF245C0073001B /* FormBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBody.swift; sourceTree = "<group>"; };
+		199EAD121FCF245C0073001B /* JsonBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBody.swift; sourceTree = "<group>"; };
+		199EAD131FCF245C0073001B /* RequestEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEntity.swift; sourceTree = "<group>"; };
+		199EAD141FCF245C0073001B /* TaskBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskBuilder.swift; sourceTree = "<group>"; };
+		199EAD151FCF245C0073001B /* VoidBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidBody.swift; sourceTree = "<group>"; };
+		199EAD171FCF245C0073001B /* BasicResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicResponseEntity.swift; sourceTree = "<group>"; };
+		199EAD191FCF245C0073001B /* AbstractRestApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRestApiError.swift; sourceTree = "<group>"; };
+		199EAD1A1FCF245C0073001B /* ApplicationLayerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLayerError.swift; sourceTree = "<group>"; };
+		199EAD1C1FCF245C0073001B /* AbstractNestedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractNestedError.swift; sourceTree = "<group>"; };
+		199EAD1D1FCF245C0073001B /* ConnectionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
+		199EAD1E1FCF245C0073001B /* ConversionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversionError.swift; sourceTree = "<group>"; };
+		199EAD1F1FCF245C0073001B /* HttpResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpResponseError.swift; sourceTree = "<group>"; };
+		199EAD201FCF245C0073001B /* NestedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedError.swift; sourceTree = "<group>"; };
+		199EAD211FCF245C0073001B /* ResponseEntityHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntityHolder.swift; sourceTree = "<group>"; };
+		199EAD221FCF245C0073001B /* ResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		199EAD231FCF245C0073001B /* UnexpectedMediaTypeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnexpectedMediaTypeError.swift; sourceTree = "<group>"; };
+		199EAD241FCF245C0073001B /* TransportLayerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportLayerError.swift; sourceTree = "<group>"; };
+		199EAD251FCF245C0073001B /* ResponseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEntity.swift; sourceTree = "<group>"; };
+		199EAD261FCF245C0073001B /* RestApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiError.swift; sourceTree = "<group>"; };
+		199EAD271FCF245C0073001B /* RestApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiClient.swift; sourceTree = "<group>"; };
+		199EAD281FCF245C0073001B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		199EAD291FCF245C0073001B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		199EAD2A1FCF245C0073001B /* TaskQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskQueue.swift; sourceTree = "<group>"; };
+		199EAD2C1FCF245C0073001B /* HttpRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRoute.swift; sourceTree = "<group>"; };
+		199EAD2E1FCF245C0073001B /* DefaultHttpClientConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultHttpClientConfig.swift; sourceTree = "<group>"; };
+		199EAD2F1FCF245C0073001B /* HttpClientConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClientConfig.swift; sourceTree = "<group>"; };
+		199EAD311FCF245C0073001B /* AbstractRedirectInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRedirectInterceptor.swift; sourceTree = "<group>"; };
+		199EAD321FCF245C0073001B /* CallServerInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallServerInterceptor.swift; sourceTree = "<group>"; };
+		199EAD331FCF245C0073001B /* HttpLoggingInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpLoggingInterceptor.swift; sourceTree = "<group>"; };
+		199EAD341FCF245C0073001B /* Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		199EAD351FCF245C0073001B /* InterceptorChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptorChain.swift; sourceTree = "<group>"; };
+		199EAD361FCF245C0073001B /* NoopRedirectInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoopRedirectInterceptor.swift; sourceTree = "<group>"; };
+		199EAD371FCF245C0073001B /* RedirectInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedirectInterceptor.swift; sourceTree = "<group>"; };
+		199EAD381FCF245C0073001B /* ShortCircuitRedirectInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortCircuitRedirectInterceptor.swift; sourceTree = "<group>"; };
+		199EAD391FCF245C0073001B /* UserAgentRequestInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentRequestInterceptor.swift; sourceTree = "<group>"; };
+		199EAD3A1FCF245C0073001B /* HttpKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpKeys.swift; sourceTree = "<group>"; };
+		19C434EA1FCC9E2900984A2D /* NetworkingApiRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingApiRest.h; sourceTree = "<group>"; };
+		19C434EC1FCC9F0800984A2D /* NetworkingApiRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingApiRest.m; sourceTree = "<group>"; };
+		2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi_Rest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D3AC4386AB45645B3BBE195 /* Pods-NetworkingApi.Rest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Rest.debug.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Rest/Pods-NetworkingApi.Rest.debug.xcconfig"; sourceTree = "<group>"; };
+		87CD13A811E4C88EE4A52FE2 /* Pods-NetworkingApi.Rest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Rest.release.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Rest/Pods-NetworkingApi.Rest.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		194320CC1FCC9A7100480FDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				193960C21FCF357C00A90559 /* NetworkingApiHelpers.framework in Frameworks */,
+				1951730B1FCF2D0000BAF35C /* NetworkingApiHttp.framework in Frameworks */,
+				FFFBFBE6FD9E6CAC1CEC14DC /* Pods_NetworkingApi_Rest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1976D4C21FCB7C9100C07C72 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1976D4C41FCB7C9100C07C72 /* NetworkingApi.Rest.xcconfig */,
+				194320D31FCC9A7100480FDD /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		199EAD031FCF245C0073001B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD0D1FCF245C0073001B /* Request */,
+				199EAD161FCF245C0073001B /* Response */,
+				199EAD041FCF245C0073001B /* Call.swift */,
+				199EAD051FCF245C0073001B /* Callback.swift */,
+				199EAD061FCF245C0073001B /* CallbackDecorator.swift */,
+				199EAD071FCF245C0073001B /* CallResult.swift */,
+				199EAD081FCF245C0073001B /* CallResultConverter.swift */,
+				199EAD091FCF245C0073001B /* Cancellable.swift */,
+				199EAD0A1FCF245C0073001B /* HttpBody.swift */,
+				199EAD0B1FCF245C0073001B /* HttpResponse.swift */,
+				199EAD0C1FCF245C0073001B /* HttpResult.swift */,
+				199EAD271FCF245C0073001B /* RestApiClient.swift */,
+				199EAD281FCF245C0073001B /* Result.swift */,
+				199EAD291FCF245C0073001B /* Task.swift */,
+				199EAD2A1FCF245C0073001B /* TaskQueue.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		199EAD0D1FCF245C0073001B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD0E1FCF245C0073001B /* AbstractTask.swift */,
+				199EAD0F1FCF245C0073001B /* BasicRequestEntity.swift */,
+				199EAD101FCF245C0073001B /* DataBody.swift */,
+				199EAD111FCF245C0073001B /* FormBody.swift */,
+				199EAD121FCF245C0073001B /* JsonBody.swift */,
+				199EAD131FCF245C0073001B /* RequestEntity.swift */,
+				199EAD141FCF245C0073001B /* TaskBuilder.swift */,
+				199EAD151FCF245C0073001B /* VoidBody.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		199EAD161FCF245C0073001B /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD181FCF245C0073001B /* Error */,
+				199EAD171FCF245C0073001B /* BasicResponseEntity.swift */,
+				199EAD251FCF245C0073001B /* ResponseEntity.swift */,
+				199EAD261FCF245C0073001B /* RestApiError.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		199EAD181FCF245C0073001B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD1B1FCF245C0073001B /* Nested */,
+				199EAD191FCF245C0073001B /* AbstractRestApiError.swift */,
+				199EAD1A1FCF245C0073001B /* ApplicationLayerError.swift */,
+				199EAD241FCF245C0073001B /* TransportLayerError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		199EAD1B1FCF245C0073001B /* Nested */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD1C1FCF245C0073001B /* AbstractNestedError.swift */,
+				199EAD1D1FCF245C0073001B /* ConnectionError.swift */,
+				199EAD1E1FCF245C0073001B /* ConversionError.swift */,
+				199EAD1F1FCF245C0073001B /* HttpResponseError.swift */,
+				199EAD201FCF245C0073001B /* NestedError.swift */,
+				199EAD211FCF245C0073001B /* ResponseEntityHolder.swift */,
+				199EAD221FCF245C0073001B /* ResponseError.swift */,
+				199EAD231FCF245C0073001B /* UnexpectedMediaTypeError.swift */,
+			);
+			path = Nested;
+			sourceTree = "<group>";
+		};
+		199EAD2B1FCF245C0073001B /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD2C1FCF245C0073001B /* HttpRoute.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		199EAD2D1FCF245C0073001B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD2E1FCF245C0073001B /* DefaultHttpClientConfig.swift */,
+				199EAD2F1FCF245C0073001B /* HttpClientConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		199EAD301FCF245C0073001B /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD311FCF245C0073001B /* AbstractRedirectInterceptor.swift */,
+				199EAD321FCF245C0073001B /* CallServerInterceptor.swift */,
+				199EAD331FCF245C0073001B /* HttpLoggingInterceptor.swift */,
+				199EAD341FCF245C0073001B /* Interceptor.swift */,
+				199EAD351FCF245C0073001B /* InterceptorChain.swift */,
+				199EAD361FCF245C0073001B /* NoopRedirectInterceptor.swift */,
+				199EAD371FCF245C0073001B /* RedirectInterceptor.swift */,
+				199EAD381FCF245C0073001B /* ShortCircuitRedirectInterceptor.swift */,
+				199EAD391FCF245C0073001B /* UserAgentRequestInterceptor.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		19C0171B1F72CC3A00D29F73 = {
+			isa = PBXGroup;
+			children = (
+				19EB0CA01F72DF0D0029F302 /* Sources */,
+				1976D4C21FCB7C9100C07C72 /* Configuration */,
+				19EB0C9E1F72DF0D0029F302 /* Resources */,
+				19EB0CA21F72DF0D0029F302 /* Dependencies */,
+				19C017251F72CC3A00D29F73 /* Products */,
+				79A4A12F6DDAE99464CDCDDA /* Frameworks */,
+				AAF278A2B3212849DFD14DFC /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		19C017251F72CC3A00D29F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				194320D01FCC9A7100480FDD /* NetworkingApiRest.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19EB0C9E1F72DF0D0029F302 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		19EB0CA01F72DF0D0029F302 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				199EAD031FCF245C0073001B /* API */,
+				199EAD2D1FCF245C0073001B /* Config */,
+				199EAD301FCF245C0073001B /* Interceptor */,
+				199EAD2B1FCF245C0073001B /* Routing */,
+				199EAD3A1FCF245C0073001B /* HttpKeys.swift */,
+				199EAD021FCF245B0073001B /* NetworkConfig.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		19EB0CA21F72DF0D0029F302 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				19C434EA1FCC9E2900984A2D /* NetworkingApiRest.h */,
+				19C434EC1FCC9F0800984A2D /* NetworkingApiRest.m */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		79A4A12F6DDAE99464CDCDDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				193960C31FCF357C00A90559 /* NetworkingApiHelpers.framework */,
+				1951730C1FCF2D0000BAF35C /* NetworkingApiHttp.framework */,
+				2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAF278A2B3212849DFD14DFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D3AC4386AB45645B3BBE195 /* Pods-NetworkingApi.Rest.debug.xcconfig */,
+				87CD13A811E4C88EE4A52FE2 /* Pods-NetworkingApi.Rest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		194320CD1FCC9A7100480FDD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19C434EB1FCC9E2900984A2D /* NetworkingApiRest.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		194320CF1FCC9A7100480FDD /* NetworkingApi.Rest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 194320D51FCC9A7100480FDD /* Build configuration list for PBXNativeTarget "NetworkingApi.Rest" */;
+			buildPhases = (
+				77D4348FB9A4F93939719790 /* [CP] Check Pods Manifest.lock */,
+				194320CB1FCC9A7100480FDD /* Sources */,
+				194320CC1FCC9A7100480FDD /* Frameworks */,
+				194320CD1FCC9A7100480FDD /* Headers */,
+				194320CE1FCC9A7100480FDD /* Resources */,
+				A009D0E4C5FAD310B33F0041 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetworkingApi.Rest;
+			productName = NetworkingApi.Rest;
+			productReference = 194320D01FCC9A7100480FDD /* NetworkingApiRest.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		19C0171C1F72CC3A00D29F73 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Alexander Bragin";
+				TargetAttributes = {
+					194320CF1FCC9A7100480FDD = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 19C0171F1F72CC3A00D29F73 /* Build configuration list for PBXProject "NetworkingApi.Rest" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 19C0171B1F72CC3A00D29F73;
+			productRefGroup = 19C017251F72CC3A00D29F73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				194320CF1FCC9A7100480FDD /* NetworkingApi.Rest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		194320CE1FCC9A7100480FDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		77D4348FB9A4F93939719790 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NetworkingApi.Rest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A009D0E4C5FAD310B33F0041 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Rest/Pods-NetworkingApi.Rest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		194320CB1FCC9A7100480FDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				199EAD431FCF245C0073001B /* HttpResponse.swift in Sources */,
+				199EAD5B1FCF245C0073001B /* RestApiClient.swift in Sources */,
+				199EAD601FCF245C0073001B /* DefaultHttpClientConfig.swift in Sources */,
+				199EAD541FCF245C0073001B /* NestedError.swift in Sources */,
+				199EAD661FCF245C0073001B /* InterceptorChain.swift in Sources */,
+				199EAD531FCF245C0073001B /* HttpResponseError.swift in Sources */,
+				199EAD621FCF245C0073001B /* AbstractRedirectInterceptor.swift in Sources */,
+				199EAD4F1FCF245C0073001B /* ApplicationLayerError.swift in Sources */,
+				199EAD491FCF245C0073001B /* JsonBody.swift in Sources */,
+				199EAD521FCF245C0073001B /* ConversionError.swift in Sources */,
+				199EAD5E1FCF245C0073001B /* TaskQueue.swift in Sources */,
+				199EAD4E1FCF245C0073001B /* AbstractRestApiError.swift in Sources */,
+				199EAD4B1FCF245C0073001B /* TaskBuilder.swift in Sources */,
+				199EAD3B1FCF245C0073001B /* NetworkConfig.swift in Sources */,
+				199EAD421FCF245C0073001B /* HttpBody.swift in Sources */,
+				199EAD5C1FCF245C0073001B /* Result.swift in Sources */,
+				199EAD611FCF245C0073001B /* HttpClientConfig.swift in Sources */,
+				199EAD631FCF245C0073001B /* CallServerInterceptor.swift in Sources */,
+				199EAD3C1FCF245C0073001B /* Call.swift in Sources */,
+				199EAD411FCF245C0073001B /* Cancellable.swift in Sources */,
+				199EAD571FCF245C0073001B /* UnexpectedMediaTypeError.swift in Sources */,
+				199EAD461FCF245C0073001B /* BasicRequestEntity.swift in Sources */,
+				199EAD5D1FCF245C0073001B /* Task.swift in Sources */,
+				199EAD3E1FCF245C0073001B /* CallbackDecorator.swift in Sources */,
+				199EAD5F1FCF245C0073001B /* HttpRoute.swift in Sources */,
+				199EAD401FCF245C0073001B /* CallResultConverter.swift in Sources */,
+				199EAD4C1FCF245C0073001B /* VoidBody.swift in Sources */,
+				199EAD581FCF245C0073001B /* TransportLayerError.swift in Sources */,
+				199EAD681FCF245C0073001B /* RedirectInterceptor.swift in Sources */,
+				199EAD651FCF245C0073001B /* Interceptor.swift in Sources */,
+				199EAD561FCF245C0073001B /* ResponseError.swift in Sources */,
+				199EAD501FCF245C0073001B /* AbstractNestedError.swift in Sources */,
+				199EAD481FCF245C0073001B /* FormBody.swift in Sources */,
+				199EAD6A1FCF245C0073001B /* UserAgentRequestInterceptor.swift in Sources */,
+				199EAD3D1FCF245C0073001B /* Callback.swift in Sources */,
+				199EAD6B1FCF245C0073001B /* HttpKeys.swift in Sources */,
+				199EAD551FCF245C0073001B /* ResponseEntityHolder.swift in Sources */,
+				199EAD451FCF245C0073001B /* AbstractTask.swift in Sources */,
+				199EAD691FCF245C0073001B /* ShortCircuitRedirectInterceptor.swift in Sources */,
+				199EAD641FCF245C0073001B /* HttpLoggingInterceptor.swift in Sources */,
+				199EAD3F1FCF245C0073001B /* CallResult.swift in Sources */,
+				199EAD511FCF245C0073001B /* ConnectionError.swift in Sources */,
+				199EAD441FCF245C0073001B /* HttpResult.swift in Sources */,
+				199EAD671FCF245C0073001B /* NoopRedirectInterceptor.swift in Sources */,
+				199EAD591FCF245C0073001B /* ResponseEntity.swift in Sources */,
+				19C434ED1FCC9F0800984A2D /* NetworkingApiRest.m in Sources */,
+				199EAD471FCF245C0073001B /* DataBody.swift in Sources */,
+				199EAD5A1FCF245C0073001B /* RestApiError.swift in Sources */,
+				199EAD4D1FCF245C0073001B /* BasicResponseEntity.swift in Sources */,
+				199EAD4A1FCF245C0073001B /* RequestEntity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		194320D61FCC9A7100480FDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D3AC4386AB45645B3BBE195 /* Pods-NetworkingApi.Rest.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Configuration/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		194320D71FCC9A7100480FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87CD13A811E4C88EE4A52FE2 /* Pods-NetworkingApi.Rest.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Configuration/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		19C0172B1F72CC3A00D29F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1976D4C41FCB7C9100C07C72 /* NetworkingApi.Rest.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		19C0172C1F72CC3A00D29F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1976D4C41FCB7C9100C07C72 /* NetworkingApi.Rest.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		194320D51FCC9A7100480FDD /* Build configuration list for PBXNativeTarget "NetworkingApi.Rest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				194320D61FCC9A7100480FDD /* Debug */,
+				194320D71FCC9A7100480FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19C0171F1F72CC3A00D29F73 /* Build configuration list for PBXProject "NetworkingApi.Rest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19C0172B1F72CC3A00D29F73 /* Debug */,
+				19C0172C1F72CC3A00D29F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 19C0171C1F72CC3A00D29F73 /* Project object */;
+}
