@@ -34,5 +34,6 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
+  s.dependency 'Alamofire/Static', '~> 4.5.1'
   s.dependency 'NetworkingApiHttp', s.version.to_s
 end
