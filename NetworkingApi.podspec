@@ -9,48 +9,45 @@ Pod::Spec.new do |s|
 
   s.platform              = :ios
   s.ios.deployment_target = '8.0'
+
+  s.cocoapods_version     = '>= 1.4.0.beta.2'
   s.static_framework      = true
 
-  s.authors               = { 'Roxie Mobile Ltd.' => 'sales@roxiemobile.com', 'Alexander Bragin' => 'bragin-av@roxiemobile.com', 'Denis Kolyasev' => 'kolyasevda@ekassir.com' }
-  s.license               = { type: 'BSD-4-Clause', file: 'LICENSE.txt' }
-
   s.homepage              = 'https://github.com/roxiemobile/networking-api.ios'
+  s.authors               = { 'Roxie Mobile Ltd.' => 'sales@roxiemobile.com', 'Alexander Bragin' => 'bragin-av@roxiemobile.com', 'Denis Kolyasev' => 'kolyasevda@ekassir.com' }
+  s.license               = 'BSD-4-Clause'
 
-  s.source                = { git: 'https://github.com/roxiemobile/networking-api.ios.git', tag: "v#{s.version}" }
-  s.preserve_path         = 'LICENSE.txt'
+# MARK: - Configuration
 
-  s.pod_target_xcconfig   = { 'SWIFT_VERSION' => '4.0' }
+  s.source = {
+    git: 'https://github.com/roxiemobile/networking-api.ios.git',
+    tag: s.version.to_s
+  }
 
-  s.default_subspecs      = 'Core/Converters',
-                            'Core/Net'
+  s.default_subspecs = 'Converters',
+                       'Helpers',
+                       'Http',
+                       'Rest'
 
 # MARK: - Modules
 
   # TODO: Write a description
-  s.subspec 'Core' do |sc|
+  s.subspec 'Converters' do |sp|
+    sp.dependency 'NetworkingApiConverters', s.version.to_s
+  end
 
-    # TODO: Write a description
-    sc.subspec 'Converters' do |sp|
-      src_path = 'Modules/RoxieMobile.NetworkingApi/Core.Converters'
+  # TODO: Write a description
+  s.subspec 'Helpers' do |sp|
+    sp.dependency 'NetworkingApiHelpers', s.version.to_s
+  end
 
-      # Configuration
-      sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
+  # TODO: Write a description
+  s.subspec 'Http' do |sp|
+    sp.dependency 'NetworkingApiHttp', s.version.to_s
+  end
 
-      # Dependencies
-      sp.dependency 'NetworkingApi/Core/Net', s.version.to_s
-    end
-
-    # TODO: Write a description
-    sc.subspec 'Net' do |sp|
-      src_path = 'Modules/RoxieMobile.NetworkingApi/Core.Net'
-
-      # Configuration
-      sp.source_files  = "#{src_path}/Module/**/*.{swift,h,m,c,modulemap}"
-
-      # Dependencies
-      sp.dependency 'Alamofire/Static', '~> 4.5.1'
-      sp.dependency 'SwiftCommons/Core/Data'
-      sp.dependency 'SwiftyJSON/Static', '~> 4.0.0'
-    end
+  # TODO: Write a description
+  s.subspec 'Rest' do |sp|
+    sp.dependency 'NetworkingApiRest', s.version.to_s
   end
 end

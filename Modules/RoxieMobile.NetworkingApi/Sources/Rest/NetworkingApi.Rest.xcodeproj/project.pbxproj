@@ -60,6 +60,7 @@
 		199EAD6B1FCF245C0073001B /* HttpKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD3A1FCF245C0073001B /* HttpKeys.swift */; };
 		19C434EB1FCC9E2900984A2D /* NetworkingApiRest.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C434EA1FCC9E2900984A2D /* NetworkingApiRest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19C434ED1FCC9F0800984A2D /* NetworkingApiRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C434EC1FCC9F0800984A2D /* NetworkingApiRest.m */; };
+		19D553DF1FCF83460036174D /* NetworkingApiObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D553E01FCF83460036174D /* NetworkingApiObjC.framework */; };
 		FFFBFBE6FD9E6CAC1CEC14DC /* Pods_NetworkingApi_Rest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		199EAD3A1FCF245C0073001B /* HttpKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpKeys.swift; sourceTree = "<group>"; };
 		19C434EA1FCC9E2900984A2D /* NetworkingApiRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingApiRest.h; sourceTree = "<group>"; };
 		19C434EC1FCC9F0800984A2D /* NetworkingApiRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingApiRest.m; sourceTree = "<group>"; };
+		19D553E01FCF83460036174D /* NetworkingApiObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingApiObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi_Rest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3AC4386AB45645B3BBE195 /* Pods-NetworkingApi.Rest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Rest.debug.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Rest/Pods-NetworkingApi.Rest.debug.xcconfig"; sourceTree = "<group>"; };
 		87CD13A811E4C88EE4A52FE2 /* Pods-NetworkingApi.Rest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Rest.release.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Rest/Pods-NetworkingApi.Rest.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			files = (
 				193960C21FCF357C00A90559 /* NetworkingApiHelpers.framework in Frameworks */,
 				1951730B1FCF2D0000BAF35C /* NetworkingApiHttp.framework in Frameworks */,
+				19D553DF1FCF83460036174D /* NetworkingApiObjC.framework in Frameworks */,
 				FFFBFBE6FD9E6CAC1CEC14DC /* Pods_NetworkingApi_Rest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +311,7 @@
 		79A4A12F6DDAE99464CDCDDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19D553E01FCF83460036174D /* NetworkingApiObjC.framework */,
 				193960C31FCF357C00A90559 /* NetworkingApiHelpers.framework */,
 				1951730C1FCF2D0000BAF35C /* NetworkingApiHttp.framework */,
 				2506FF9151FED0140EFDE56B /* Pods_NetworkingApi_Rest.framework */,
@@ -503,7 +507,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D3AC4386AB45645B3BBE195 /* Pods-NetworkingApi.Rest.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -516,8 +519,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -527,7 +528,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 87CD13A811E4C88EE4A52FE2 /* Pods-NetworkingApi.Rest.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -539,7 +539,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

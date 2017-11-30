@@ -2,6 +2,12 @@ PODS:
   - Alamofire/Static (4.5.1)
   - CryptoSwift/Static (0.8.0)
   - Dispatch/Static (2.0.4)
+  - SwiftCommons/Data (0.0.1):
+    - SwiftCommonsData (= 0.0.1)
+  - SwiftCommons/Diagnostics (0.0.1):
+    - SwiftCommonsDiagnostics (= 0.0.1)
+  - SwiftCommons/Logging (0.0.1):
+    - SwiftCommonsLogging (= 0.0.1)
   - SwiftCommonsAbstractions (0.0.1)
   - SwiftCommonsConcurrent (0.0.1):
     - Dispatch/Static (~> 2.0.4)
@@ -24,6 +30,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire/Static (~> 4.5.1)
+  - SwiftCommons/Data (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
+  - SwiftCommons/Diagnostics (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
+  - SwiftCommons/Logging (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
   - SwiftCommonsAbstractions (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
   - SwiftCommonsConcurrent (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
   - SwiftCommonsData (from `https://github.com/roxiemobile/swift-commons.ios.git`, branch `feature/refactoring-of-project-structure`)
@@ -35,6 +44,9 @@ DEPENDENCIES:
   - SwiftyJSON/Static (~> 4.0.0)
 
 EXTERNAL SOURCES:
+  SwiftCommons:
+    :branch: feature/refactoring-of-project-structure
+    :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsAbstractions:
     :branch: feature/refactoring-of-project-structure
     :git: https://github.com/roxiemobile/swift-commons.ios.git
@@ -61,35 +73,39 @@ EXTERNAL SOURCES:
     :git: https://github.com/roxiemobile/swift-commons.ios.git
 
 CHECKOUT OPTIONS:
+  SwiftCommons:
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
+    :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsAbstractions:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsConcurrent:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsData:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsDiagnostics:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsExtensions:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsLang:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsLogging:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
   SwiftCommonsObjC:
-    :commit: 7626f0557fc5dd5b67c0ca4eb597b1a00eb549bf
+    :commit: dd62ea4d8ee4a925ce9b69408ec024e353e25a06
     :git: https://github.com/roxiemobile/swift-commons.ios.git
 
 SPEC CHECKSUMS:
   Alamofire: ef88c6261c63ccf2c0da3d8e726f071b871186d6
   CryptoSwift: b013d05129134ab1f9637525703f45082c724953
   Dispatch: 3456ea74f98635cecb671828660ef4abad607e5c
+  SwiftCommons: 1d65aae1b0268dd87880a7ab5aa197755050593c
   SwiftCommonsAbstractions: d505f1da252edd31f211e4c63a1aa2b00af3b195
   SwiftCommonsConcurrent: cd6d81df5dea84776bdff04dc754b094f435a249
   SwiftCommonsData: d854bf1146dd3290ef0162e1b9b4f4ad9788c450
@@ -100,6 +116,6 @@ SPEC CHECKSUMS:
   SwiftCommonsObjC: c90a44fb94bef52a7d12bf53c4ca5e90aadb52fc
   SwiftyJSON: 648259193898b2e9ed021733b150c28960728bd7
 
-PODFILE CHECKSUM: acfcd9b4c781560496bdc9c0c68c7d6d953a79a0
+PODFILE CHECKSUM: c55b4f76091ae88af80a94f311ab42040a7e1ce1
 
 COCOAPODS: 1.4.0.beta.2

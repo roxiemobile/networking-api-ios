@@ -10,15 +10,15 @@
 
 import Foundation
 import NetworkingApiHttp
+import NetworkingApiObjC
 
 // ----------------------------------------------------------------------------
 
-open class UserAgentRequestInterceptor: Interceptor
+public final class UserAgentRequestInterceptor: Interceptor
 {
-// MARK: - Functions
+// MARK: - Methods
 
-    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
-    {
+    public func intercept(_ chain: InterceptorChain) throws -> HttpResponse {
         var request = chain.request
 
         let userAgent = newUserAgent(headers: request.allHTTPHeaderFields)
@@ -27,14 +27,12 @@ open class UserAgentRequestInterceptor: Interceptor
         return try chain.proceed(request)
     }
 
-// MARK: - Actions
+// MARK: - Private Methods
 
-    private func newUserAgent(headers: [String: String]?) -> String
-    {
+    private func newUserAgent(headers: [String: String]?) -> String {
         let userAgent: String
 
-        if let originalUserAgent = headers?[HttpHeaders.Header.UserAgent]
-        {
+        if let originalUserAgent = headers?[HttpHeaders.Header.UserAgent] {
             userAgent = (originalUserAgent + " " + Inner.UserAgent)
         }
         else {
@@ -46,15 +44,9 @@ open class UserAgentRequestInterceptor: Interceptor
 
 // MARK: - Constants
 
-    private struct Inner
-    {
-        static let UserAgent: String = {
-            let version = AlamofireBundle?.shortVersion ?? "Unknown"
-            return "Alamofire/\(version)"
-        }()
-        static let AlamofireBundle = Bundle(identifier: "org.cocoapods.Alamofire")
+    private struct Inner {
+        static let UserAgent = DefaultUserAgent.value
     }
-
 }
 
 // ----------------------------------------------------------------------------

@@ -14,6 +14,9 @@
       location = "group:Sources/Rest/NetworkingApi.Rest.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Sources/ObjC/NetworkingApi.ObjC.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:../CocoaPods/Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
