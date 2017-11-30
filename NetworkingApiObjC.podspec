@@ -25,7 +25,11 @@ Pod::Spec.new do |s|
   }
 
   base_dir = 'Modules/RoxieMobile.NetworkingApi/Sources/ObjC/'
-  s.source_files = base_dir + '{Sources,Dependencies}/**/*.swift'
+  s.source_files = base_dir + '{Sources,Dependencies}/**/*.{h,m,c}'
+
+  s.public_header_files = [
+    base_dir + 'Sources/DefaultUserAgent.h'
+  ]
 
   s.pod_target_xcconfig = {
     'GCC_PREPROCESSOR_DEFINITIONS' => "$(inherited) NETWORKINGAPI_FRAMEWORK_VERSION=@\\\"#{s.version}\\\"",

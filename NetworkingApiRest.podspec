@@ -34,5 +34,8 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
+  s.dependency 'Alamofire/Static', '~> 4.5.1'
   s.dependency 'NetworkingApiHelpers', s.version.to_s
+  s.dependency 'NetworkingApiObjC', s.version.to_s
+  s.dependency 'SwiftyJSON/Static', '~> 4.0.0'
 end

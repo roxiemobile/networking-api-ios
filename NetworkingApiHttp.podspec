@@ -31,4 +31,8 @@ Pod::Spec.new do |s|
     'GCC_PREPROCESSOR_DEFINITIONS' => "$(inherited) NETWORKINGAPI_FRAMEWORK_VERSION=@\\\"#{s.version}\\\"",
     'SWIFT_VERSION' => '4.0'
   }
+
+# MARK: - Dependencies
+
+  s.dependency 'SwiftCommons/Diagnostics', '~> 0.0.1' # FIXME:
 end
