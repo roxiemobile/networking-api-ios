@@ -35,5 +35,5 @@ Pod::Spec.new do |s|
 # MARK: - Dependencies
 
   s.dependency 'NetworkingApiRest', s.version.to_s
-  s.dependency 'SwiftCommons/Data', '~> 0.0.1' # FIXME:
+  s.dependency 'SwiftCommons/Data', '~> 1.1.0'
 end

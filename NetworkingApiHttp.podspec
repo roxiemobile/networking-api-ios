@@ -34,5 +34,5 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
-  s.dependency 'SwiftCommons/Diagnostics', '~> 0.0.1' # FIXME:
+  s.dependency 'SwiftCommons/Diagnostics', '~> 1.1.0'
 end
