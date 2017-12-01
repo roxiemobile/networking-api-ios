@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 # MARK: - Description
 
   s.name                  = 'NetworkingApiHelpers'
-  s.summary               = 'TODO:'
+  s.summary               = 'A collection of utility classes used by other modules of this library.'
   s.version               = '0.0.1'
 
   s.platform              = :ios

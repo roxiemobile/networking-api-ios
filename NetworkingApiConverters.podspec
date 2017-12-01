@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 # MARK: - Description
 
   s.name                  = 'NetworkingApiConverters'
-  s.summary               = 'TODO:'
+  s.summary               = 'A collection of useful converters for the asynchronous REST API client.'
   s.version               = '0.0.1'
 
   s.platform              = :ios

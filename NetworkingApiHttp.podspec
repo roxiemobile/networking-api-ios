@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 # MARK: - Description
 
   s.name                  = 'NetworkingApiHttp'
-  s.summary               = 'TODO:'
+  s.summary               = 'A collection of useful type extensions and utility classes used for communication over HTTP protocol.'
   s.version               = '0.0.1'
 
   s.platform              = :ios

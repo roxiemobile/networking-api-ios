@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 # MARK: - Description
 
   s.name                  = 'NetworkingApiRest'
-  s.summary               = 'TODO:'
+  s.summary               = 'An asynchronous REST API client that makes an access to a RESTful Web Services easier.'
   s.version               = '0.0.1'
 
   s.platform              = :ios

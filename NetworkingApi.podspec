@@ -27,26 +27,32 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Converters',
                        'Helpers',
                        'Http',
+                       'ObjC',
                        'Rest'
 
 # MARK: - Modules
 
-  # TODO: Write a description
+  # A collection of useful converters for the asynchronous REST API client.
   s.subspec 'Converters' do |sp|
     sp.dependency 'NetworkingApiConverters', s.version.to_s
   end
 
-  # TODO: Write a description
+  # A collection of utility classes used by other modules of this library.
   s.subspec 'Helpers' do |sp|
     sp.dependency 'NetworkingApiHelpers', s.version.to_s
   end
 
-  # TODO: Write a description
+  # A collection of useful type extensions and utility classes used for communication over HTTP protocol.
   s.subspec 'Http' do |sp|
     sp.dependency 'NetworkingApiHttp', s.version.to_s
   end
 
-  # TODO: Write a description
+  # A collection of Objective-C frameworks, utility classes and 3rd party libraries used by other modules of this library.
+  s.subspec 'ObjC' do |sp|
+    sp.dependency 'NetworkingApiObjC', s.version.to_s
+  end
+
+  # An asynchronous REST API client that makes an access to a RESTful Web Services easier.
   s.subspec 'Rest' do |sp|
     sp.dependency 'NetworkingApiRest', s.version.to_s
   end
