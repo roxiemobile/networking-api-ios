@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Sources/Converters/NetworkingApi.Converters.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Helpers/NetworkingApi.Helpers.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Http/NetworkingApi.Http.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Rest/NetworkingApi.Rest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/ObjC/NetworkingApi.ObjC.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../CocoaPods/Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,71 @@
+source 'https://github.com/roxiemobile/shared-cocoa-frameworks.ios.git'
+
+platform :ios, '8.0'
+use_frameworks!
+
+workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
+
+def pod_import(name)
+  pod name, git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+end
+
+def inject_shared_dependencies_1
+  pod 'SwiftyJSON/Static', '~> 4.0.0'
+  pod_import 'SwiftCommons/Data'
+
+  # DELETE:
+  pod_import 'SwiftCommonsAbstractions'
+  pod_import 'SwiftCommonsConcurrent'
+  pod_import 'SwiftCommonsData'
+  pod_import 'SwiftCommonsDiagnostics'
+  pod_import 'SwiftCommonsExtensions'
+  pod_import 'SwiftCommonsLang'
+  pod_import 'SwiftCommonsLogging'
+  pod_import 'SwiftCommonsObjC'
+end
+
+def inject_shared_dependencies_2
+  pod 'Alamofire/Static', '~> 4.5.1'
+end
+
+
+target 'NetworkingApi.Converters' do
+  project '../RoxieMobile.NetworkingApi/Sources/Converters/NetworkingApi.Converters.xcodeproj'
+
+  # Dependencies
+  inject_shared_dependencies_1
+end
+
+
+target 'NetworkingApi.Helpers' do
+  project '../RoxieMobile.NetworkingApi/Sources/Helpers/NetworkingApi.Helpers.xcodeproj'
+
+  # Dependencies
+  inject_shared_dependencies_2
+  pod_import 'SwiftCommons/Logging'
+end
+
+
+target 'NetworkingApi.Http' do
+  project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
+
+  # Dependencies
+  pod_import 'SwiftCommons/Diagnostics'
+end
+
+
+target 'NetworkingApi.Rest' do
+  project '../RoxieMobile.NetworkingApi/Sources/Rest/NetworkingApi.Rest.xcodeproj'
+
+  # Dependencies
+  inject_shared_dependencies_1
+  inject_shared_dependencies_2
+end
+
+
+target 'NetworkingApi.ObjC' do
+  project '../RoxieMobile.NetworkingApi/Sources/ObjC/NetworkingApi.ObjC.xcodeproj'
+
+  # Dependencies
+  inject_shared_dependencies_2
+end
