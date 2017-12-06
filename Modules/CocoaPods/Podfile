@@ -1,31 +1,22 @@
-source 'https://github.com/roxiemobile/shared-cocoa-frameworks.ios.git'
+source 'https://github.com/roxiemobile/static-cocoa-frameworks.ios.git'
 
 platform :ios, '8.0'
 use_frameworks!
 
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 
-def pod_import(name)
-  pod name, git: 'https://github.com/roxiemobile/swift-commons.ios.git', branch: 'feature/refactoring-of-project-structure'
+def pod_from(name, *args)
+  name = name.split('/').tap { |arr| arr[0] = "#{arr[0]}-SCF" }.reject(&:empty?).join('/')
+  pod(name, *args)
 end
 
 def inject_shared_dependencies_1
-  pod 'SwiftyJSON/Static', '~> 4.0.0'
-  pod_import 'SwiftCommons/Data'
-
-  # DELETE:
-  pod_import 'SwiftCommonsAbstractions'
-  pod_import 'SwiftCommonsConcurrent'
-  pod_import 'SwiftCommonsData'
-  pod_import 'SwiftCommonsDiagnostics'
-  pod_import 'SwiftCommonsExtensions'
-  pod_import 'SwiftCommonsLang'
-  pod_import 'SwiftCommonsLogging'
-  pod_import 'SwiftCommonsObjC'
+  pod_from 'SwiftyJSON', '~> 4.0.0'
+  pod_from 'SwiftCommons/Data', '~> 1.1.0'
 end
 
 def inject_shared_dependencies_2
-  pod 'Alamofire/Static', '~> 4.5.1'
+  pod_from 'Alamofire', '~> 4.6.0'
 end
 
 
@@ -42,7 +33,7 @@ target 'NetworkingApi.Helpers' do
 
   # Dependencies
   inject_shared_dependencies_2
-  pod_import 'SwiftCommons/Logging'
+  pod_from 'SwiftCommons/Logging', '~> 1.1.0'
 end
 
 
@@ -50,7 +41,7 @@ target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
-  pod_import 'SwiftCommons/Diagnostics'
+  pod_from 'SwiftCommons/Diagnostics', '~> 1.1.0'
 end
 
 

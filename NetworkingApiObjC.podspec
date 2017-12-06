@@ -38,5 +38,5 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
-  s.dependency 'Alamofire', '~> 4.5.1'
+  s.dependency 'Alamofire', '~> 4.6.0'
 end
