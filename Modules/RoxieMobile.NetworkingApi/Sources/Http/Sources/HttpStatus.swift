@@ -90,7 +90,7 @@ public struct HttpStatus
         {
             switch statusCode
             {
-                // 1xx Informational
+                // --- 1xx Informational ---
 
                 case .continue:
                     return HttpStatus.Continue
@@ -101,7 +101,7 @@ public struct HttpStatus
                 case .processing:
                     return HttpStatus.Processing
 
-                // 2xx Success
+                // --- 2xx Success ---
 
                 case .ok:
                     return HttpStatus.Ok
@@ -133,7 +133,7 @@ public struct HttpStatus
                 case .imUsed:
                     return HttpStatus.ImUsed
 
-                // 3xx Redirection
+                // --- 3xx Redirection ---
 
                 case .multipleChoices:
                     return HttpStatus.MultipleChoices
@@ -156,7 +156,7 @@ public struct HttpStatus
                 case .temporaryRedirect:
                     return HttpStatus.TemporaryRedirect
 
-                // 4xx Client Error
+                // --- 4xx Client Error ---
 
                 case .badRequest:
                     return HttpStatus.BadRequest
@@ -233,7 +233,40 @@ public struct HttpStatus
                 case .upgradeRequired:
                     return HttpStatus.UpgradeRequired
 
-                // 5xx Server Error
+                case .preconditionRequired:
+                    return HttpStatus.PreconditionRequired
+
+                case .tooManyRequests:
+                    return HttpStatus.TooManyRequests
+
+                case .requestHeaderFieldsTooLarge:
+                    return HttpStatus.RequestHeaderFieldsTooLarge
+
+                case .loginTimeOut:
+                    return HttpStatus.LoginTimeOut
+
+                case .noResponse:
+                    return HttpStatus.NoResponse
+
+                case .retryWith:
+                    return HttpStatus.RetryWith
+
+                case .redirect:
+                    return HttpStatus.Redirect
+
+                case .sslCertificateError:
+                    return HttpStatus.SslCertificateError
+
+                case .sslCertificateRequired:
+                    return HttpStatus.SslCertificateRequired
+
+                case .httpRequestSentToHttpsPort:
+                    return HttpStatus.HttpRequestSentToHttpsPort
+
+                case .clientClosedRequest:
+                    return HttpStatus.ClientClosedRequest
+
+                // --- 5xx Server Error ---
 
                 case .internalServerError:
                     return HttpStatus.InternalServerError
@@ -264,6 +297,33 @@ public struct HttpStatus
 
                 case .notExtended:
                     return HttpStatus.NotExtended
+
+                case .networkAuthenticationRequired:
+                    return HttpStatus.NetworkAuthenticationRequired
+
+                case .unknownError:
+                    return HttpStatus.UnknownError
+
+                case .webServerIsDown:
+                    return HttpStatus.WebServerIsDown
+
+                case .connectionTimedOut:
+                    return HttpStatus.ConnectionTimedOut
+
+                case .originIsUnreachable:
+                    return HttpStatus.OriginIsUnreachable
+
+                case .aTimeoutOccurred:
+                    return HttpStatus.ATimeoutOccurred
+
+                case .sslHandshakeFailed:
+                    return HttpStatus.SslHandshakeFailed
+
+                case .invalidSslCertificate:
+                    return HttpStatus.InvalidSslCertificate
+
+                case .railgunError:
+                    return HttpStatus.RailgunError
             }
         }
 
@@ -278,7 +338,7 @@ public struct HttpStatus
 
 // MARK: - Constants
 
-    // 1xx Informational
+    // --- 1xx Informational ---
 
     /**
      * {@code 100 Continue}.
@@ -298,7 +358,7 @@ public struct HttpStatus
      */
     public static let Processing = HttpStatus(HttpStatusCode.processing, "Processing")
 
-    // 2xx Success
+    // --- 2xx Success ---
 
     /**
      * {@code 200 OK}.
@@ -360,7 +420,7 @@ public struct HttpStatus
      */
     public static let ImUsed = HttpStatus(HttpStatusCode.imUsed, "IM Used")
 
-    // 3xx Redirection
+    // --- 3xx Redirection ---
 
     /**
      * {@code 300 Multiple Choices}.
@@ -410,7 +470,7 @@ public struct HttpStatus
      */
     public static let TemporaryRedirect = HttpStatus(HttpStatusCode.temporaryRedirect, "Temporary Redirect")
 
-    // 4xx Client Error
+    // --- 4xx Client Error ---
 
     /**
      * {@code 400 Bad Request}.
@@ -562,7 +622,73 @@ public struct HttpStatus
      */
     public static let UpgradeRequired = HttpStatus(HttpStatusCode.upgradeRequired, "Upgrade Required")
 
-    // 5xx Server Error
+    /**
+     * {@code 428 Precondition Required}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-3">Additional HTTP Status Codes</a>
+     */
+    public static let PreconditionRequired = HttpStatus(HttpStatusCode.preconditionRequired, "Precondition Required")
+
+    /**
+     * {@code 429 Too Many Requests}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-4">Additional HTTP Status Codes</a>
+     */
+    public static let TooManyRequests = HttpStatus(HttpStatusCode.tooManyRequests, "Too Many Requests")
+
+    /**
+     * {@code 431 Request Header Fields Too Large}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-5">Additional HTTP Status Codes</a>
+     */
+    public static let RequestHeaderFieldsTooLarge = HttpStatus(HttpStatusCode.requestHeaderFieldsTooLarge, "Request Header Fields Too Large")
+
+    /**
+     * {@code 440 Login Time-out}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    public static let LoginTimeOut = HttpStatus(HttpStatusCode.loginTimeOut, "Login Time-out")
+
+    /**
+     * {@code 444 No Response}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    public static let NoResponse = HttpStatus(HttpStatusCode.noResponse, "No Response")
+
+    /**
+     * {@code 449 Retry With}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    public static let RetryWith = HttpStatus(HttpStatusCode.retryWith, "Retry With")
+
+    /**
+     * {@code 451 Redirect}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    public static let Redirect = HttpStatus(HttpStatusCode.redirect, "Redirect")
+
+    /**
+     * {@code 495 SSL Certificate Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    public static let SslCertificateError = HttpStatus(HttpStatusCode.sslCertificateError, "SSL Certificate Error")
+
+    /**
+     * {@code 496 SSL Certificate Required}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    public static let SslCertificateRequired = HttpStatus(HttpStatusCode.sslCertificateRequired, "SSL Certificate Required")
+
+    /**
+     * {@code 497 HTTP Request Sent to HTTPS Port}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    public static let HttpRequestSentToHttpsPort = HttpStatus(HttpStatusCode.httpRequestSentToHttpsPort, "HTTP Request Sent to HTTPS Port")
+
+    /**
+     * {@code 499 Client Closed Request}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    public static let ClientClosedRequest = HttpStatus(HttpStatusCode.clientClosedRequest, "Client Closed Request")
+
+    // --- 5xx Server Error ---
 
     /**
      * {@code 500 Internal Server Error}.
@@ -624,6 +750,59 @@ public struct HttpStatus
      */
     public static let NotExtended = HttpStatus(HttpStatusCode.notExtended, "Not Extended")
 
+    /**
+     * {@code 511 Network Authentication Required}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-6">Additional HTTP Status Codes</a>
+     */
+    public static let NetworkAuthenticationRequired = HttpStatus(HttpStatusCode.networkAuthenticationRequired, "Network Authentication Required")
+
+    /**
+     * {@code 520 Unknown Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let UnknownError = HttpStatus(HttpStatusCode.unknownError, "Unknown Error")
+
+    /**
+     * {@code 521 Web Server Is Down}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let WebServerIsDown = HttpStatus(HttpStatusCode.webServerIsDown, "Web Server Is Down")
+
+    /**
+     * {@code 522 Connection Timed Out}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let ConnectionTimedOut = HttpStatus(HttpStatusCode.connectionTimedOut, "Connection Timed Out")
+
+    /**
+     * {@code 523 Origin Is Unreachable}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let OriginIsUnreachable = HttpStatus(HttpStatusCode.originIsUnreachable, "Origin Is Unreachable")
+
+    /**
+     * {@code 524 A Timeout Occurred}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let ATimeoutOccurred = HttpStatus(HttpStatusCode.aTimeoutOccurred, "A Timeout Occurred")
+
+    /**
+     * {@code 525 SSL Handshake Failed}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let SslHandshakeFailed = HttpStatus(HttpStatusCode.sslHandshakeFailed, "SSL Handshake Failed")
+
+    /**
+     * {@code 526 Invalid SSL Certificate}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let InvalidSslCertificate = HttpStatus(HttpStatusCode.invalidSslCertificate, "Invalid SSL Certificate")
+
+    /**
+     * {@code 527 Railgun Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    public static let RailgunError = HttpStatus(HttpStatusCode.railgunError, "Railgun Error")
 }
 
 // ----------------------------------------------------------------------------

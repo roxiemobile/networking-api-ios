@@ -294,6 +294,72 @@ public enum HttpStatusCode: Int
      */
     case upgradeRequired = 426
 
+    /**
+     * {@code 428 Precondition Required}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-3">Additional HTTP Status Codes</a>
+     */
+    case preconditionRequired = 428
+
+    /**
+     * {@code 429 Too Many Requests}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-4">Additional HTTP Status Codes</a>
+     */
+    case tooManyRequests = 429
+
+    /**
+     * {@code 431 Request Header Fields Too Large}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-5">Additional HTTP Status Codes</a>
+     */
+    case requestHeaderFieldsTooLarge = 431
+
+    /**
+     * {@code 440 Login Time-out}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    case loginTimeOut = 440
+
+    /**
+     * {@code 444 No Response}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    case noResponse = 444
+
+    /**
+     * {@code 449 Retry With}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    case retryWith = 449
+
+    /**
+     * {@code 451 Redirect}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Internet_Information_Services">Internet Information Services</a>
+     */
+    case redirect = 451
+
+    /**
+     * {@code 495 SSL Certificate Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    case sslCertificateError = 495
+
+    /**
+     * {@code 496 SSL Certificate Required}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    case sslCertificateRequired = 496
+
+    /**
+     * {@code 497 HTTP Request Sent to HTTPS Port}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    case httpRequestSentToHttpsPort = 497
+
+    /**
+     * {@code 499 Client Closed Request}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#nginx">nginx</a>
+     */
+    case clientClosedRequest = 499
+
 // MARK: - 5xx Server Error
 
     /**
@@ -356,6 +422,59 @@ public enum HttpStatusCode: Int
      */
     case notExtended = 510
 
+    /**
+     * {@code 511 Network Authentication Required}.
+     * @see <a href="http://tools.ietf.org/html/rfc6585#section-6">Additional HTTP Status Codes</a>
+     */
+    case networkAuthenticationRequired = 511
+
+    /**
+     * {@code 520 Unknown Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case unknownError = 520
+
+    /**
+     * {@code 521 Web Server Is Down}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case webServerIsDown = 521
+
+    /**
+     * {@code 522 Connection Timed Out}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case connectionTimedOut = 522
+
+    /**
+     * {@code 523 Origin Is Unreachable}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case originIsUnreachable = 523
+
+    /**
+     * {@code 524 A Timeout Occurred}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case aTimeoutOccurred = 524
+
+    /**
+     * {@code 525 SSL Handshake Failed}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case sslHandshakeFailed = 525
+
+    /**
+     * {@code 526 Invalid SSL Certificate}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case invalidSslCertificate = 526
+
+    /**
+     * {@code 527 Railgun Error}.
+     * @see <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#Cloudflare">Cloudflare</a>
+     */
+    case railgunError = 527
 }
 
 // ----------------------------------------------------------------------------
