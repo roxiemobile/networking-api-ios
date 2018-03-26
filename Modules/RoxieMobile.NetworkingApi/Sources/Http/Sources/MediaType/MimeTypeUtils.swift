@@ -31,7 +31,7 @@ public final class MimeTypeUtils: NonCreatable
             return nil
         }
 
-        let parts = mimeType.characters.split { $0 == ";" }.map { String($0) }
+        let parts = mimeType.split { $0 == ";" }.map { String($0) }
 
         var fullType = parts[0].trimmingCharacters(in: CharacterSet.whitespaces)
         // java.net.HttpURLConnection returns a *; q=.2 Accept header

@@ -123,7 +123,7 @@ open class MimeType
     {
         var result = true
 
-        for ch in token.characters
+        for ch in token
         {
             if !Inner.Token.contains(ch)
             {

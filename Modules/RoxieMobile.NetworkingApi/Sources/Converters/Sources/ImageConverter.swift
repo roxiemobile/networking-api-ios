@@ -36,7 +36,7 @@ open class ImageConverter: AbstractCallResultConverter<UIImage>
                     newBody = image
                 }
                 else {
-                    throw JsonSyntaxError(message: "Failed to convert response body to image.")
+                    throw JsonSyntaxError(reason: "Failed to convert response body to image.")
                 }
             }
             catch {

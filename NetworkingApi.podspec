@@ -8,10 +8,11 @@ Pod::Spec.new do |s|
   s.version               = '1.1.2'
 
   s.platform              = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.cocoapods_version     = '>= 1.4.0.beta.2'
+  s.cocoapods_version     = '>= 1.4.0'
   s.static_framework      = true
+  s.swift_version         = '4.0'
 
   s.homepage              = 'https://github.com/roxiemobile/networking-api.ios'
   s.authors               = { 'Roxie Mobile Ltd.' => 'sales@roxiemobile.com', 'Alexander Bragin' => 'bragin-av@roxiemobile.com', 'Denis Kolyasev' => 'kolyasevda@ekassir.com' }

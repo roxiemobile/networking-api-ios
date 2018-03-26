@@ -35,7 +35,7 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
                     newBody = try T.init(from: jsonObject)
                 }
                 else {
-                    throw JsonSyntaxError(message: "Failed to convert response body to JSON object.")
+                    throw JsonSyntaxError(reason: "Failed to convert response body to JSON object.")
                 }
             }
             catch {

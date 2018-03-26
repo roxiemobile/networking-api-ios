@@ -38,12 +38,12 @@ open class AbstractValidatableModelArrayConverter<T: ValidatableModel>: Abstract
                             return try T.init(from: jsonObject)
                         }
                         else {
-                            throw JsonSyntaxError(message: "Failed to convert element of array[\(index)] to JSON object.")
+                            throw JsonSyntaxError(reason: "Failed to convert element of array[\(index)] to JSON object.")
                         }
                     }
                 }
                 else {
-                    throw JsonSyntaxError(message: "Failed to convert response body to JSON array.")
+                    throw JsonSyntaxError(reason: "Failed to convert response body to JSON array.")
                 }
             }
             catch {

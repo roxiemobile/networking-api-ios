@@ -114,7 +114,7 @@ open class Charset: NSObject
         }
 
         var idx = 0
-        for ch in name.characters
+        for ch in name
         {
             let str =  String(ch).unicodeScalars
             let ucs =  str[str.startIndex].value
