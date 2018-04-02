@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   s.name                  = 'NetworkingApiHttp'
   s.summary               = 'A collection of useful type extensions and utility classes used for communication over HTTP protocol.'
-  s.version               = '1.2.0'
+  s.version               = '1.2.1'
 
   s.platform              = :ios
   s.ios.deployment_target = '9.0'
