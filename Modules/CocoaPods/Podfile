@@ -12,7 +12,7 @@ end
 
 def inject_shared_dependencies_1
   pod_from 'SwiftyJSON', '~> 4.0.0'
-  pod_from 'SwiftCommons/Data', '~> 1.2.5'
+  pod_from 'SwiftCommons/Data', '~> 1.2.6'
 end
 
 def inject_shared_dependencies_2
@@ -33,7 +33,7 @@ target 'NetworkingApi.Helpers' do
 
   # Dependencies
   inject_shared_dependencies_2
-  pod_from 'SwiftCommons/Logging', '~> 1.2.5'
+  pod_from 'SwiftCommons/Logging', '~> 1.2.6'
 end
 
 
@@ -41,7 +41,7 @@ target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
-  pod_from 'SwiftCommons/Diagnostics', '~> 1.2.5'
+  pod_from 'SwiftCommons/Diagnostics', '~> 1.2.6'
 end
 
 
