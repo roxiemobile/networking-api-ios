@@ -49,10 +49,10 @@ open class Charset: NSObject
 // MARK: - Properties
 
     /// The canonical name of this charset.
-    open let name: String
+    public let name: String
 
     /// The charset's aliases.
-    open let aliases: [String]
+    public let aliases: [String]
 
 // MARK: - Functions
 

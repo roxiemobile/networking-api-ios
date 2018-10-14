@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.platform              = :ios
   s.ios.deployment_target = '9.0'
-  s.swift_version         = '4.0'
+  s.swift_version         = '4.2'
 
   s.cocoapods_version     = '>= 1.4.0'
   s.static_framework      = true
@@ -34,9 +34,9 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
-  s.dependency 'Alamofire', '~> 4.7.0'
+  s.dependency 'Alamofire', '~> 4.7.3'
   s.dependency 'NetworkingApiHelpers', s.version.to_s
   s.dependency 'NetworkingApiObjC', s.version.to_s
-  s.dependency 'SwiftCommons/Data', '~> 1.2.6'
-  s.dependency 'SwiftyJSON', '~> 4.0.0'
+  s.dependency 'SwiftCommons/Data', '~> 1.3.0'
+  s.dependency 'SwiftyJSON', '~> 4.2.0'
 end

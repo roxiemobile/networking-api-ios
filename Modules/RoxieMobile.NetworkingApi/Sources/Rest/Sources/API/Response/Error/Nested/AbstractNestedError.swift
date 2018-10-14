@@ -31,9 +31,9 @@ open class AbstractNestedError: NestedError, AbstractClass
 
 // MARK: - Properties
 
-    open let entity: ResponseEntity<Data>
+    public let entity: ResponseEntity<Data>
 
-    open let cause: Error?
+    public let cause: Error?
 
 }
 

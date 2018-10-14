@@ -48,10 +48,10 @@ open class HttpEntity<T>
 // MARK: - Properties
 
     /// Returns the body of this entity.
-    open let body: T?
+    public let body: T?
 
     /// Returns the headers of this entity.
-    open let headers: HttpHeaders?
+    public let headers: HttpHeaders?
 
 // MARK: - Functions
 

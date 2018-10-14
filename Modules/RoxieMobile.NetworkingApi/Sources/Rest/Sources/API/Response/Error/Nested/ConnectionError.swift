@@ -20,7 +20,7 @@ open class ConnectionError: NestedError
 
 // MARK: - Properties
 
-    open let cause: Error?
+    public let cause: Error?
 
 }
 

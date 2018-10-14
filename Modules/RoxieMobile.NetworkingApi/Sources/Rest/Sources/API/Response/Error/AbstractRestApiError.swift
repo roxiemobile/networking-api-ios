@@ -28,7 +28,7 @@ open class AbstractRestApiError: RestApiError, AbstractClass
         raiseAbstractMethodException()
     }
 
-    open let cause: Error?
+    public let cause: Error?
 }
 
 // ----------------------------------------------------------------------------

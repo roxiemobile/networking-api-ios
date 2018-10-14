@@ -26,11 +26,11 @@ open class HttpResponse
 
 // MARK: - Properties
 
-    open let response: HTTPURLResponse
+    public let response: HTTPURLResponse
 
-    open let body: Data?
+    public let body: Data?
 
-    open let redirectRequest: URLRequest?
+    public let redirectRequest: URLRequest?
 }
 
 // ----------------------------------------------------------------------------

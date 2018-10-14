@@ -24,7 +24,7 @@ open class HttpResponseError: Error
 
 // MARK: - Properties
 
-    open let httpResponse: HttpResponse
+    public let httpResponse: HttpResponse
 
 }
 

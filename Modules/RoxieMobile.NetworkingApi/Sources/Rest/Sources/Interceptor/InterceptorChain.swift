@@ -27,7 +27,7 @@ open class InterceptorChain
 
 // MARK: - Properties
 
-    open let request: URLRequest
+    public let request: URLRequest
 
 // MARK: - Functions
 

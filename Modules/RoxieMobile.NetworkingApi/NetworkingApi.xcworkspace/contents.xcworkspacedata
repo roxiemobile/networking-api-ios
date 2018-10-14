@@ -11,10 +11,10 @@
       location = "group:Sources/Http/NetworkingApi.Http.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Sources/Rest/NetworkingApi.Rest.xcodeproj">
+      location = "group:Sources/ObjC/NetworkingApi.ObjC.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Sources/ObjC/NetworkingApi.ObjC.xcodeproj">
+      location = "group:Sources/Rest/NetworkingApi.Rest.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:../CocoaPods/Pods/Pods.xcodeproj">

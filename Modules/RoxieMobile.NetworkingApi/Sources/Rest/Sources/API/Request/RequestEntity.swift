@@ -29,13 +29,13 @@ open class RequestEntity<T>
 
 // MARK: - Properties
 
-    open let url: URL?
+    public let url: URL?
 
-    open let headers: HttpHeaders?
+    public let headers: HttpHeaders?
 
-    open let cookies: [HttpCookieProtocol]?
+    public let cookies: [HttpCookieProtocol]?
 
-    open let body: T?
+    public let body: T?
 
 }
 

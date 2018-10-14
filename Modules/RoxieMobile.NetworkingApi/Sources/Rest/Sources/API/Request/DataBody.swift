@@ -26,9 +26,9 @@ open class DataBody: HttpBody
 
 // MARK: - Properties
 
-    open let mediaType: MediaType?
+    public let mediaType: MediaType?
 
-    open let body: Data?
+    public let body: Data?
 
 }
 

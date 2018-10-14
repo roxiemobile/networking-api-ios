@@ -30,9 +30,9 @@ open class ResponseEntity<T>: RequestEntity<T>
 
 // MARK: - Properties
 
-    open let status: HttpStatus?
+    public let status: HttpStatus?
 
-    open let mediaType: MediaType?
+    public let mediaType: MediaType?
 }
 
 // ----------------------------------------------------------------------------

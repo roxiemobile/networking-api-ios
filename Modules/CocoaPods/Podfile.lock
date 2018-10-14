@@ -1,79 +1,95 @@
 PODS:
-  - Alamofire-SCF (4.7.0):
-    - Alamofire-SCF/StaticCocoaFramework (= 4.7.0)
-  - Alamofire-SCF/StaticCocoaFramework (4.7.0)
-  - CryptoSwift-SCF (0.8.3):
-    - CryptoSwift-SCF/StaticCocoaFramework (= 0.8.3)
-  - CryptoSwift-SCF/StaticCocoaFramework (0.8.3)
-  - Dispatch-SCF (2.0.4):
-    - Dispatch-SCF/StaticCocoaFramework (= 2.0.4)
-  - Dispatch-SCF/StaticCocoaFramework (2.0.4)
-  - SwiftCommons-SCF/Data (1.2.6):
-    - SwiftCommonsData-SCF (= 1.2.6)
-  - SwiftCommons-SCF/Diagnostics (1.2.6):
-    - SwiftCommonsDiagnostics-SCF (= 1.2.6)
-  - SwiftCommons-SCF/Logging (1.2.6):
-    - SwiftCommonsLogging-SCF (= 1.2.6)
-  - SwiftCommonsAbstractions-SCF (1.2.6):
-    - SwiftCommonsAbstractions-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsAbstractions-SCF/StaticCocoaFramework (1.2.6)
-  - SwiftCommonsConcurrent-SCF (1.2.6):
-    - SwiftCommonsConcurrent-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsConcurrent-SCF/StaticCocoaFramework (1.2.6):
-    - Dispatch-SCF (~> 2.0.4)
-    - SwiftCommonsObjC-SCF (= 1.2.6)
-  - SwiftCommonsData-SCF (1.2.6):
-    - SwiftCommonsData-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsData-SCF/StaticCocoaFramework (1.2.6):
-    - CryptoSwift-SCF (~> 0.8.3)
-    - SwiftCommonsDiagnostics-SCF (= 1.2.6)
-  - SwiftCommonsDiagnostics-SCF (1.2.6):
-    - SwiftCommonsDiagnostics-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsDiagnostics-SCF/StaticCocoaFramework (1.2.6):
-    - SwiftCommonsConcurrent-SCF (= 1.2.6)
-    - SwiftCommonsExtensions-SCF (= 1.2.6)
-  - SwiftCommonsExtensions-SCF (1.2.6):
-    - SwiftCommonsExtensions-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsExtensions-SCF/StaticCocoaFramework (1.2.6):
-    - SwiftCommonsAbstractions-SCF (= 1.2.6)
-    - SwiftCommonsLogging-SCF (= 1.2.6)
-  - SwiftCommonsLang-SCF (1.2.6):
-    - SwiftCommonsLang-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsLang-SCF/StaticCocoaFramework (1.2.6)
-  - SwiftCommonsLogging-SCF (1.2.6):
-    - SwiftCommonsLogging-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsLogging-SCF/StaticCocoaFramework (1.2.6):
-    - SwiftCommonsConcurrent-SCF (= 1.2.6)
-    - SwiftCommonsLang-SCF (= 1.2.6)
-  - SwiftCommonsObjC-SCF (1.2.6):
-    - SwiftCommonsObjC-SCF/StaticCocoaFramework (= 1.2.6)
-  - SwiftCommonsObjC-SCF/StaticCocoaFramework (1.2.6)
-  - SwiftyJSON-SCF (4.0.0):
-    - SwiftyJSON-SCF/StaticCocoaFramework (= 4.0.0)
-  - SwiftyJSON-SCF/StaticCocoaFramework (4.0.0)
+  - Alamofire-SCF42 (4.7.3):
+    - Alamofire-SCF42/StaticCocoaFramework (= 4.7.3)
+  - Alamofire-SCF42/StaticCocoaFramework (4.7.3)
+  - CryptoSwift-SCF42 (0.12.0):
+    - CryptoSwift-SCF42/StaticCocoaFramework (= 0.12.0)
+  - CryptoSwift-SCF42/StaticCocoaFramework (0.12.0)
+  - Dispatch-SCF42 (2.0.4):
+    - Dispatch-SCF42/StaticCocoaFramework (= 2.0.4)
+  - Dispatch-SCF42/StaticCocoaFramework (2.0.4)
+  - SwiftCommons-SCF42/Data (1.3.0):
+    - SwiftCommonsData-SCF42 (= 1.3.0)
+  - SwiftCommons-SCF42/Diagnostics (1.3.0):
+    - SwiftCommonsDiagnostics-SCF42 (= 1.3.0)
+  - SwiftCommons-SCF42/Logging (1.3.0):
+    - SwiftCommonsLogging-SCF42 (= 1.3.0)
+  - SwiftCommonsAbstractions-SCF42 (1.3.0):
+    - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (1.3.0)
+  - SwiftCommonsConcurrent-SCF42 (1.3.0):
+    - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (1.3.0):
+    - Dispatch-SCF42 (~> 2.0.4)
+    - SwiftCommonsObjC-SCF42 (= 1.3.0)
+  - SwiftCommonsData-SCF42 (1.3.0):
+    - SwiftCommonsData-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsData-SCF42/StaticCocoaFramework (1.3.0):
+    - CryptoSwift-SCF42 (~> 0.12.0)
+    - SwiftCommonsDiagnostics-SCF42 (= 1.3.0)
+  - SwiftCommonsDiagnostics-SCF42 (1.3.0):
+    - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (1.3.0):
+    - SwiftCommonsConcurrent-SCF42 (= 1.3.0)
+    - SwiftCommonsExtensions-SCF42 (= 1.3.0)
+  - SwiftCommonsExtensions-SCF42 (1.3.0):
+    - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (1.3.0):
+    - SwiftCommonsAbstractions-SCF42 (= 1.3.0)
+    - SwiftCommonsLogging-SCF42 (= 1.3.0)
+  - SwiftCommonsLang-SCF42 (1.3.0):
+    - SwiftCommonsLang-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsLang-SCF42/StaticCocoaFramework (1.3.0)
+  - SwiftCommonsLogging-SCF42 (1.3.0):
+    - SwiftCommonsLogging-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsLogging-SCF42/StaticCocoaFramework (1.3.0):
+    - SwiftCommonsConcurrent-SCF42 (= 1.3.0)
+    - SwiftCommonsLang-SCF42 (= 1.3.0)
+  - SwiftCommonsObjC-SCF42 (1.3.0):
+    - SwiftCommonsObjC-SCF42/StaticCocoaFramework (= 1.3.0)
+  - SwiftCommonsObjC-SCF42/StaticCocoaFramework (1.3.0)
+  - SwiftyJSON-SCF42 (4.2.0):
+    - SwiftyJSON-SCF42/StaticCocoaFramework (= 4.2.0)
+  - SwiftyJSON-SCF42/StaticCocoaFramework (4.2.0)
 
 DEPENDENCIES:
-  - Alamofire-SCF (~> 4.7.0)
-  - SwiftCommons-SCF/Data (~> 1.2.6)
-  - SwiftCommons-SCF/Diagnostics (~> 1.2.6)
-  - SwiftCommons-SCF/Logging (~> 1.2.6)
-  - SwiftyJSON-SCF (~> 4.0.0)
+  - Alamofire-SCF42 (~> 4.7.3)
+  - SwiftCommons-SCF42/Data (~> 1.3.0)
+  - SwiftCommons-SCF42/Diagnostics (~> 1.3.0)
+  - SwiftCommons-SCF42/Logging (~> 1.3.0)
+  - SwiftyJSON-SCF42 (~> 4.2.0)
+
+SPEC REPOS:
+  https://github.com/roxiemobile/static-cocoa-frameworks.ios.git:
+    - Alamofire-SCF42
+    - CryptoSwift-SCF42
+    - Dispatch-SCF42
+    - SwiftCommons-SCF42
+    - SwiftCommonsAbstractions-SCF42
+    - SwiftCommonsConcurrent-SCF42
+    - SwiftCommonsData-SCF42
+    - SwiftCommonsDiagnostics-SCF42
+    - SwiftCommonsExtensions-SCF42
+    - SwiftCommonsLang-SCF42
+    - SwiftCommonsLogging-SCF42
+    - SwiftCommonsObjC-SCF42
+    - SwiftyJSON-SCF42
 
 SPEC CHECKSUMS:
-  Alamofire-SCF: c7505346358105c470efd6e748a7178429d5614f
-  CryptoSwift-SCF: b50fb8c9bf3e28b27ed9c454b8e9f7102471b589
-  Dispatch-SCF: 260f244bfae3213f83e77cb99b275cefa4c3ba62
-  SwiftCommons-SCF: 8795226f9661b5f88b91355fb4a9496dae5ad1bb
-  SwiftCommonsAbstractions-SCF: 0e96ce53601799667a0e3bc1aaf4e61562486489
-  SwiftCommonsConcurrent-SCF: 7c4e5a9d61c1da8b1028d219a7e8ed6c14a15b0c
-  SwiftCommonsData-SCF: a9d2195bd725dff83a5999ae36b1e442ed0fe1af
-  SwiftCommonsDiagnostics-SCF: 76556cf4fda7088381b7143c3ce8b75f5c106521
-  SwiftCommonsExtensions-SCF: 07921fcf6e11c1d5003e032314bf971db16e5e71
-  SwiftCommonsLang-SCF: d63ca3ece3255070fe59dd0b8ab3a44ab30111a7
-  SwiftCommonsLogging-SCF: 2abe32423848b5f3bb4b337b175c18d39de0335e
-  SwiftCommonsObjC-SCF: b5629003d7107d8fb7396e12a5c4abcb14f74445
-  SwiftyJSON-SCF: 2bb4daea8dba562b375d2507ebb9dfca91d464ef
+  Alamofire-SCF42: 2a2d5ccb2d024664a92d7c483ae0bcb36c55cf40
+  CryptoSwift-SCF42: 7286da9570797cde5c8f1f9f065e3d920ff97a8a
+  Dispatch-SCF42: 011000aa52bfd7b8e2e50a55f78dc1ff5c9cdd4b
+  SwiftCommons-SCF42: 5d9c4928f17c769eb166d08c7d5226895ccbe258
+  SwiftCommonsAbstractions-SCF42: ebf7b396d57d46269d36be6a1e12519876f0fc63
+  SwiftCommonsConcurrent-SCF42: 1f2d3912ee16ec9b7bbadfa358f53c3ddde095bd
+  SwiftCommonsData-SCF42: 18a6889ff9290892d7bf4fc7e647d79882014efc
+  SwiftCommonsDiagnostics-SCF42: 5d03973be1865a60218d06e96a0f5a0c224115c0
+  SwiftCommonsExtensions-SCF42: 0529d16ed27fda629b69660e948e128a08b70cb5
+  SwiftCommonsLang-SCF42: 816ccacb2b9ea493a9b0c4131d0338123dcda45f
+  SwiftCommonsLogging-SCF42: 96a2f47616ce265a5a4708abbc5dd7cb41cfc238
+  SwiftCommonsObjC-SCF42: 7eaa84a16af1716bf0ba7f5a79c22ae4ae653141
+  SwiftyJSON-SCF42: ae78d265f716be5231db197250105f20d725bb8d
 
-PODFILE CHECKSUM: 76f1616127cffcf4bddd7efc7be8676131002833
+PODFILE CHECKSUM: f3e760b328b7352c3c9277c4980f172bc58ca4ae
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

@@ -85,10 +85,10 @@ open class MimeType
 // MARK: - Properties
 
     /// Return the primary type.
-    open let type: String
+    public let type: String
 
     /// Return the subtype.
-    open let subtype: String
+    public let subtype: String
 
     /**
      * Return the character set, as indicated by a {@code charset} parameter, if any.

@@ -20,15 +20,15 @@ open class TaskQueue: NonCreatable
 {
 // MARK: - Functions
 
-    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
+    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
         return enqueue(task, callback: nil)
     }
 
-    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
+    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
         return enqueue(task, callback: callback, callbackOnUiThread: Thread.isMainThread)
     }
 
-    @discardableResult open static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
+    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
     {
         let innerTask = InnerTask(task: task, callback: callback, callbackOnUiThread: callbackOnUiThread)
         self.tasks.withValue { tasks in
@@ -49,7 +49,7 @@ open class TaskQueue: NonCreatable
         return innerTask
     }
 
-    open static func cancel(_ tag: String)
+    public static func cancel(_ tag: String)
     {
         let cancelledTasks = self.tasks.map { tasks in
             return tasks.remove(tag)

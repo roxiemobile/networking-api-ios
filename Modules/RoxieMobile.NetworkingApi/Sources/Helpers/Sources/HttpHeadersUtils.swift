@@ -17,7 +17,7 @@ open class HttpHeadersUtils: NonCreatable
 {
 // MARK: - Functions
 
-    open static func merge(_ headers: HttpHeaders?, _ otherHeaders: HttpHeaders?) -> HttpHeaders
+    public static func merge(_ headers: HttpHeaders?, _ otherHeaders: HttpHeaders?) -> HttpHeaders
     {
         var result = HttpHeaders()
 
