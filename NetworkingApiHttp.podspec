@@ -34,5 +34,5 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
-  s.dependency 'SwiftCommons/Diagnostics', '~> 1.3.0'
+  s.dependency 'SwiftCommons/Diagnostics', '~> 1.3.1'
 end
