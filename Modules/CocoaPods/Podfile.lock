@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire-SCF42 (4.8.0):
-    - Alamofire-SCF42/StaticCocoaFramework (= 4.8.0)
-  - Alamofire-SCF42/StaticCocoaFramework (4.8.0)
-  - CryptoSwift-SCF42 (0.12.0):
-    - CryptoSwift-SCF42/StaticCocoaFramework (= 0.12.0)
-  - CryptoSwift-SCF42/StaticCocoaFramework (0.12.0)
+  - Alamofire-SCF42 (4.8.1):
+    - Alamofire-SCF42/StaticCocoaFramework (= 4.8.1)
+  - Alamofire-SCF42/StaticCocoaFramework (4.8.1)
+  - CryptoSwift-SCF42 (0.13.1):
+    - CryptoSwift-SCF42/StaticCocoaFramework (= 0.13.1)
+  - CryptoSwift-SCF42/StaticCocoaFramework (0.13.1)
   - Dispatch-SCF42 (2.0.4):
     - Dispatch-SCF42/StaticCocoaFramework (= 2.0.4)
   - Dispatch-SCF42/StaticCocoaFramework (2.0.4)
@@ -25,7 +25,7 @@ PODS:
   - SwiftCommonsData-SCF42 (1.3.1):
     - SwiftCommonsData-SCF42/StaticCocoaFramework (= 1.3.1)
   - SwiftCommonsData-SCF42/StaticCocoaFramework (1.3.1):
-    - CryptoSwift-SCF42 (~> 0.12.0)
+    - CryptoSwift-SCF42 (~> 0.13.1)
     - SwiftCommonsDiagnostics-SCF42 (= 1.3.1)
   - SwiftCommonsDiagnostics-SCF42 (1.3.1):
     - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (= 1.3.1)
@@ -53,7 +53,7 @@ PODS:
   - SwiftyJSON-SCF42/StaticCocoaFramework (4.2.0)
 
 DEPENDENCIES:
-  - Alamofire-SCF42 (~> 4.8.0)
+  - Alamofire-SCF42 (~> 4.8.1)
   - SwiftCommons-SCF42/Data (~> 1.3.1)
   - SwiftCommons-SCF42/Diagnostics (~> 1.3.1)
   - SwiftCommons-SCF42/Logging (~> 1.3.1)
@@ -76,20 +76,20 @@ SPEC REPOS:
     - SwiftyJSON-SCF42
 
 SPEC CHECKSUMS:
-  Alamofire-SCF42: 1ebc83c7b53f631fca507fd8ece98f014280a90c
-  CryptoSwift-SCF42: cc85bd353015941d9326837abf6bd0f4f210cad7
-  Dispatch-SCF42: 3fa0a873308875f06eeee6e9b70bc1d28f1a00cb
+  Alamofire-SCF42: ea0916e476357257ca5dba2751210be70c84d76f
+  CryptoSwift-SCF42: 7159beeb8374000b4cfca49acfe2a77fb08a90be
+  Dispatch-SCF42: f84b61a3d2af8da6bc5d3e7e9cc2d87c0f512291
   SwiftCommons-SCF42: 080980c1899358e6d4434e87b5a0140a1bcb51fc
-  SwiftCommonsAbstractions-SCF42: a9352d34d9df63c22528c7801450b9941f8ad193
-  SwiftCommonsConcurrent-SCF42: 7d385f846e198265b378198866aa6004decf97cd
-  SwiftCommonsData-SCF42: 4c918b75b97283a84b3ceaf12347c6cd7b7a8aed
-  SwiftCommonsDiagnostics-SCF42: 07c7a303afccf7a919029c64acb3f489dcd33969
-  SwiftCommonsExtensions-SCF42: a06305d80b28fc46aac446f75e72f755b4c16bfe
-  SwiftCommonsLang-SCF42: c95dfa8bb5b301965bc3c5b993e81f0c3e597a16
-  SwiftCommonsLogging-SCF42: 52d204ce19d8666f93c99b4bdbb0dc37be3b7791
-  SwiftCommonsObjC-SCF42: ae1974e44b89bfafcbb52014bdb9d3affd03754e
-  SwiftyJSON-SCF42: 10880c7b25506a7a19f282d9d8e34c5ca4dc11bd
+  SwiftCommonsAbstractions-SCF42: a2033a0743d7bcc167f3e79b90fe7a2e65772089
+  SwiftCommonsConcurrent-SCF42: 5fb8aaecd9d0216af5fd9348f687c6f06a7c21e1
+  SwiftCommonsData-SCF42: 2eb1da97313077dd765bdfb63f4dadf16e0d8692
+  SwiftCommonsDiagnostics-SCF42: c7ad48954bc0a65cfa289f7afba475a7b57d8bdd
+  SwiftCommonsExtensions-SCF42: dad0d3fd93b974db493dcca2054d5e4200c29655
+  SwiftCommonsLang-SCF42: 4a17f4578b70968e12ecd5b0b4825dd0e22b19ce
+  SwiftCommonsLogging-SCF42: 380882d9628d1e50c079b7ad5c0fde0976fdee81
+  SwiftCommonsObjC-SCF42: 7789a7b997a8e26eb13ffa4c07314bec7a93e7c3
+  SwiftyJSON-SCF42: 96fda60eade7049506ef76e2c64c25ecc112a46a
 
-PODFILE CHECKSUM: 7a2e27192cae18c1f1f64f2c1a77aeec546dc5e9
+PODFILE CHECKSUM: e21f9bdd10d30dc69df241cfb6b48c52a0b0f760
 
 COCOAPODS: 1.5.3
