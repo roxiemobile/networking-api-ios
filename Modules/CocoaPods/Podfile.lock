@@ -8,55 +8,63 @@ PODS:
   - Dispatch-SCF42 (2.0.4):
     - Dispatch-SCF42/StaticCocoaFramework (= 2.0.4)
   - Dispatch-SCF42/StaticCocoaFramework (2.0.4)
-  - SwiftCommons-SCF42/Data (1.3.1):
-    - SwiftCommonsData-SCF42 (= 1.3.1)
-  - SwiftCommons-SCF42/Diagnostics (1.3.1):
-    - SwiftCommonsDiagnostics-SCF42 (= 1.3.1)
-  - SwiftCommons-SCF42/Logging (1.3.1):
-    - SwiftCommonsLogging-SCF42 (= 1.3.1)
-  - SwiftCommonsAbstractions-SCF42 (1.3.1):
-    - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (1.3.1)
-  - SwiftCommonsConcurrent-SCF42 (1.3.1):
-    - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (1.3.1):
+  - GHODictionary-SCF42 (1.1.0):
+    - GHODictionary-SCF42/StaticCocoaFramework (= 1.1.0)
+  - GHODictionary-SCF42/StaticCocoaFramework (1.1.0)
+  - MPMessagePack-SCF42 (1.5.1):
+    - MPMessagePack-SCF42/StaticCocoaFramework (= 1.5.1)
+  - MPMessagePack-SCF42/StaticCocoaFramework (1.5.1):
+    - GHODictionary-SCF42 (~> 1.1.0)
+  - SwiftCommons-SCF42/Data (1.4.0):
+    - SwiftCommonsData-SCF42 (= 1.4.0)
+  - SwiftCommons-SCF42/Diagnostics (1.4.0):
+    - SwiftCommonsDiagnostics-SCF42 (= 1.4.0)
+  - SwiftCommons-SCF42/Logging (1.4.0):
+    - SwiftCommonsLogging-SCF42 (= 1.4.0)
+  - SwiftCommonsAbstractions-SCF42 (1.4.0):
+    - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsAbstractions-SCF42/StaticCocoaFramework (1.4.0)
+  - SwiftCommonsConcurrent-SCF42 (1.4.0):
+    - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsConcurrent-SCF42/StaticCocoaFramework (1.4.0):
     - Dispatch-SCF42 (~> 2.0.4)
-    - SwiftCommonsObjC-SCF42 (= 1.3.1)
-  - SwiftCommonsData-SCF42 (1.3.1):
-    - SwiftCommonsData-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsData-SCF42/StaticCocoaFramework (1.3.1):
+    - SwiftCommonsObjC-SCF42 (= 1.4.0)
+  - SwiftCommonsData-SCF42 (1.4.0):
+    - SwiftCommonsData-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsData-SCF42/StaticCocoaFramework (1.4.0):
     - CryptoSwift-SCF42 (~> 0.13.1)
-    - SwiftCommonsDiagnostics-SCF42 (= 1.3.1)
-  - SwiftCommonsDiagnostics-SCF42 (1.3.1):
-    - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (1.3.1):
-    - SwiftCommonsConcurrent-SCF42 (= 1.3.1)
-    - SwiftCommonsExtensions-SCF42 (= 1.3.1)
-  - SwiftCommonsExtensions-SCF42 (1.3.1):
-    - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (1.3.1):
-    - SwiftCommonsAbstractions-SCF42 (= 1.3.1)
-    - SwiftCommonsLogging-SCF42 (= 1.3.1)
-  - SwiftCommonsLang-SCF42 (1.3.1):
-    - SwiftCommonsLang-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsLang-SCF42/StaticCocoaFramework (1.3.1)
-  - SwiftCommonsLogging-SCF42 (1.3.1):
-    - SwiftCommonsLogging-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsLogging-SCF42/StaticCocoaFramework (1.3.1):
-    - SwiftCommonsConcurrent-SCF42 (= 1.3.1)
-    - SwiftCommonsLang-SCF42 (= 1.3.1)
-  - SwiftCommonsObjC-SCF42 (1.3.1):
-    - SwiftCommonsObjC-SCF42/StaticCocoaFramework (= 1.3.1)
-  - SwiftCommonsObjC-SCF42/StaticCocoaFramework (1.3.1)
+    - MPMessagePack-SCF42 (~> 1.5.1)
+    - SwiftCommonsDiagnostics-SCF42 (= 1.4.0)
+  - SwiftCommonsDiagnostics-SCF42 (1.4.0):
+    - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsDiagnostics-SCF42/StaticCocoaFramework (1.4.0):
+    - SwiftCommonsConcurrent-SCF42 (= 1.4.0)
+    - SwiftCommonsExtensions-SCF42 (= 1.4.0)
+  - SwiftCommonsExtensions-SCF42 (1.4.0):
+    - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsExtensions-SCF42/StaticCocoaFramework (1.4.0):
+    - SwiftCommonsAbstractions-SCF42 (= 1.4.0)
+    - SwiftCommonsLogging-SCF42 (= 1.4.0)
+  - SwiftCommonsLang-SCF42 (1.4.0):
+    - SwiftCommonsLang-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsLang-SCF42/StaticCocoaFramework (1.4.0)
+  - SwiftCommonsLogging-SCF42 (1.4.0):
+    - SwiftCommonsLogging-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsLogging-SCF42/StaticCocoaFramework (1.4.0):
+    - SwiftCommonsConcurrent-SCF42 (= 1.4.0)
+    - SwiftCommonsLang-SCF42 (= 1.4.0)
+  - SwiftCommonsObjC-SCF42 (1.4.0):
+    - SwiftCommonsObjC-SCF42/StaticCocoaFramework (= 1.4.0)
+  - SwiftCommonsObjC-SCF42/StaticCocoaFramework (1.4.0)
   - SwiftyJSON-SCF42 (4.2.0):
     - SwiftyJSON-SCF42/StaticCocoaFramework (= 4.2.0)
   - SwiftyJSON-SCF42/StaticCocoaFramework (4.2.0)
 
 DEPENDENCIES:
   - Alamofire-SCF42 (~> 4.8.1)
-  - SwiftCommons-SCF42/Data (~> 1.3.1)
-  - SwiftCommons-SCF42/Diagnostics (~> 1.3.1)
-  - SwiftCommons-SCF42/Logging (~> 1.3.1)
+  - SwiftCommons-SCF42/Data (~> 1.4.0)
+  - SwiftCommons-SCF42/Diagnostics (~> 1.4.0)
+  - SwiftCommons-SCF42/Logging (~> 1.4.0)
   - SwiftyJSON-SCF42 (~> 4.2.0)
 
 SPEC REPOS:
@@ -64,6 +72,8 @@ SPEC REPOS:
     - Alamofire-SCF42
     - CryptoSwift-SCF42
     - Dispatch-SCF42
+    - GHODictionary-SCF42
+    - MPMessagePack-SCF42
     - SwiftCommons-SCF42
     - SwiftCommonsAbstractions-SCF42
     - SwiftCommonsConcurrent-SCF42
@@ -76,20 +86,22 @@ SPEC REPOS:
     - SwiftyJSON-SCF42
 
 SPEC CHECKSUMS:
-  Alamofire-SCF42: ea0916e476357257ca5dba2751210be70c84d76f
-  CryptoSwift-SCF42: 7159beeb8374000b4cfca49acfe2a77fb08a90be
-  Dispatch-SCF42: f84b61a3d2af8da6bc5d3e7e9cc2d87c0f512291
-  SwiftCommons-SCF42: 080980c1899358e6d4434e87b5a0140a1bcb51fc
-  SwiftCommonsAbstractions-SCF42: a2033a0743d7bcc167f3e79b90fe7a2e65772089
-  SwiftCommonsConcurrent-SCF42: 5fb8aaecd9d0216af5fd9348f687c6f06a7c21e1
-  SwiftCommonsData-SCF42: 2eb1da97313077dd765bdfb63f4dadf16e0d8692
-  SwiftCommonsDiagnostics-SCF42: c7ad48954bc0a65cfa289f7afba475a7b57d8bdd
-  SwiftCommonsExtensions-SCF42: dad0d3fd93b974db493dcca2054d5e4200c29655
-  SwiftCommonsLang-SCF42: 4a17f4578b70968e12ecd5b0b4825dd0e22b19ce
-  SwiftCommonsLogging-SCF42: 380882d9628d1e50c079b7ad5c0fde0976fdee81
-  SwiftCommonsObjC-SCF42: 7789a7b997a8e26eb13ffa4c07314bec7a93e7c3
-  SwiftyJSON-SCF42: 96fda60eade7049506ef76e2c64c25ecc112a46a
+  Alamofire-SCF42: 4349a648e30a4b1d11f75f73753dd77c29ba85e3
+  CryptoSwift-SCF42: 7dd3f9ae91fe4f509c50714ae5bbd389a64fef95
+  Dispatch-SCF42: fc46e7885fca268f45e14ac086e3e6ddd009b1c7
+  GHODictionary-SCF42: da06fadc19545432dd309e5413ce8de6e7a83d42
+  MPMessagePack-SCF42: af3002a379490c16d2fd3a6afd9a7cf6f6860aa6
+  SwiftCommons-SCF42: 48f55a2ac88b16bd9e14eb5687a6b31c920f8d11
+  SwiftCommonsAbstractions-SCF42: 30ee017eda9ced7fc4224eb1f65d9c466b647e34
+  SwiftCommonsConcurrent-SCF42: ede6271984659b8ca3a803c94a4de192d2374088
+  SwiftCommonsData-SCF42: 8aa1f02fb471c7347685bbd4e01fb51255e99954
+  SwiftCommonsDiagnostics-SCF42: 4637a88a2ff776afc72f7b0f4570e11063749838
+  SwiftCommonsExtensions-SCF42: 62d63b14bfd4b6612d68c08e092f006c6fc1d915
+  SwiftCommonsLang-SCF42: 051d2d1b6ba79b5cdc77e6f2a81d855e9270a394
+  SwiftCommonsLogging-SCF42: 0b6005c9492eb30453e545b06ade6bcd51d9b11f
+  SwiftCommonsObjC-SCF42: f6b0a13522254ee5ade4bb5f64881933d28d31e9
+  SwiftyJSON-SCF42: ab8d0e22fdceaf3158be4f1e28443c0b47b65478
 
-PODFILE CHECKSUM: e21f9bdd10d30dc69df241cfb6b48c52a0b0f760
+PODFILE CHECKSUM: d6aba0b32f9357aca6acbaa39e5f220651cf9a8c
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5
