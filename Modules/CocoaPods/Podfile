@@ -6,17 +6,17 @@ use_frameworks!
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 
 def pod_from(name, *args)
-  name = name.split('/').tap { |arr| arr[0] = "#{arr[0]}-SCF42" }.reject(&:empty?).join('/')
+  name = name.split('/').tap { |arr| arr[0] = "#{arr[0]}-SCF53" }.reject(&:empty?).join('/')
   pod(name, *args)
 end
 
 def inject_shared_dependencies_1
-  pod_from 'SwiftyJSON', '~> 4.2.0'
-  pod_from 'SwiftCommons/Data', '~> 1.4.0'
+  pod_from 'SwiftyJSON', '~> 5.0.0'
+  pod_from 'SwiftCommons/Data', '~> 1.5.0'
 end
 
 def inject_shared_dependencies_2
-  pod_from 'Alamofire', '~> 4.8.1'
+  pod_from 'Alamofire', '~> 4.9.1'
 end
 
 
@@ -33,7 +33,7 @@ target 'NetworkingApi.Helpers' do
 
   # Dependencies
   inject_shared_dependencies_2
-  pod_from 'SwiftCommons/Logging', '~> 1.4.0'
+  pod_from 'SwiftCommons/Logging', '~> 1.5.0'
 end
 
 
@@ -41,7 +41,7 @@ target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
-  pod_from 'SwiftCommons/Diagnostics', '~> 1.4.0'
+  pod_from 'SwiftCommons/Diagnostics', '~> 1.5.0'
 end
 
 
