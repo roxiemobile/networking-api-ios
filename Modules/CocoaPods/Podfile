@@ -1,9 +1,13 @@
 source 'https://github.com/roxiemobile/static-cocoa-frameworks.ios.git'
+source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '9.0'
 use_frameworks!
 
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
+
+
+# MARK: - Methods
 
 def pod_from(name, *args)
   name = name.split('/').tap { |arr| arr[0] = "#{arr[0]}-SCF53" }.reject(&:empty?).join('/')
@@ -19,31 +23,37 @@ def inject_shared_dependencies_2
   pod_from 'Alamofire', '~> 4.9.1'
 end
 
+def inject_shared_dependencies_3
+  pod 'SwiftLint', '~> 0.40.3'
+end
+
+
+# MARK: - Sources
 
 target 'NetworkingApi.Converters' do
   project '../RoxieMobile.NetworkingApi/Sources/Converters/NetworkingApi.Converters.xcodeproj'
 
   # Dependencies
   inject_shared_dependencies_1
+  inject_shared_dependencies_3
 end
-
 
 target 'NetworkingApi.Helpers' do
   project '../RoxieMobile.NetworkingApi/Sources/Helpers/NetworkingApi.Helpers.xcodeproj'
 
   # Dependencies
   inject_shared_dependencies_2
+  inject_shared_dependencies_3
   pod_from 'SwiftCommons/Logging', '~> 1.5.0'
 end
-
 
 target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
+  inject_shared_dependencies_3
   pod_from 'SwiftCommons/Diagnostics', '~> 1.5.0'
 end
-
 
 target 'NetworkingApi.Rest' do
   project '../RoxieMobile.NetworkingApi/Sources/Rest/NetworkingApi.Rest.xcodeproj'
@@ -51,8 +61,8 @@ target 'NetworkingApi.Rest' do
   # Dependencies
   inject_shared_dependencies_1
   inject_shared_dependencies_2
+  inject_shared_dependencies_3
 end
-
 
 target 'NetworkingApi.ObjC' do
   project '../RoxieMobile.NetworkingApi/Sources/ObjC/NetworkingApi.ObjC.xcodeproj'
