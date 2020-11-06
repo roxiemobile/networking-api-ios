@@ -56,6 +56,7 @@ PODS:
   - SwiftCommonsObjC-SCF53 (1.5.0):
     - SwiftCommonsObjC-SCF53/StaticCocoaFramework (= 1.5.0)
   - SwiftCommonsObjC-SCF53/StaticCocoaFramework (1.5.0)
+  - SwiftLint (0.40.3)
   - SwiftyJSON-SCF53 (5.0.0):
     - SwiftyJSON-SCF53/StaticCocoaFramework (= 5.0.0)
   - SwiftyJSON-SCF53/StaticCocoaFramework (5.0.0)
@@ -65,9 +66,12 @@ DEPENDENCIES:
   - SwiftCommons-SCF53/Data (~> 1.5.0)
   - SwiftCommons-SCF53/Diagnostics (~> 1.5.0)
   - SwiftCommons-SCF53/Logging (~> 1.5.0)
+  - SwiftLint (~> 0.40.3)
   - SwiftyJSON-SCF53 (~> 5.0.0)
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SwiftLint
   https://github.com/roxiemobile/static-cocoa-frameworks.ios.git:
     - Alamofire-SCF53
     - CryptoSwift-SCF53
@@ -100,8 +104,9 @@ SPEC CHECKSUMS:
   SwiftCommonsLang-SCF53: 7fd8094d317c5377c19da2f1e4e678c67b2b06d0
   SwiftCommonsLogging-SCF53: 44cf3d0ed29aeaac6f694a72bbdaf7739178f53d
   SwiftCommonsObjC-SCF53: 25fa8250442ca373913d95f351cf59fe10761cd8
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyJSON-SCF53: d3151aa85836cdc8c0f0b622912436cecd578ab3
 
-PODFILE CHECKSUM: 685c909397e31c7c3bd27659f74f86ab1574b826
+PODFILE CHECKSUM: e543703c2844a0d8cde093dc2cab7a9e27948f97
 
 COCOAPODS: 1.10.0
