@@ -8,7 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-import DispatchFramework
 import Foundation
 import SwiftCommonsConcurrent
 import SwiftCommonsLang
@@ -267,7 +266,7 @@ extension BasicHttpCookieStore
         weak var instance = self
 
         // .. on main thread
-        Dispatch.sync(Queue.main)
+        DispatchQueue.main.sync
         {
             var notificationCenter: NotificationCenter!
 #if os(iOS)

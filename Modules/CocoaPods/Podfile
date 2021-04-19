@@ -1,62 +1,51 @@
-source 'https://github.com/roxiemobile/static-cocoa-frameworks.ios.git'
+source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '9.0'
-use_frameworks!
+platform :ios, '12.0'
+use_frameworks! :linkage => :static
 
 workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 
-def pod_from(name, *args)
-  name = name.split('/').tap { |arr| arr[0] = "#{arr[0]}-SCF53" }.reject(&:empty?).join('/')
-  pod(name, *args)
-end
+
+# MARK: - Methods
 
 def inject_shared_dependencies_1
-  pod_from 'SwiftyJSON', '~> 5.0.0'
-  pod_from 'SwiftCommons/Data', '~> 1.5.0'
+  pod 'SwiftCommons/Data', '~> 1.6.0'
+  pod 'SwiftyJSON', '~> 5.0.1'
 end
 
 def inject_shared_dependencies_2
-  pod_from 'Alamofire', '~> 4.9.1'
+  pod 'Alamofire', '~> 4.9.1'
 end
 
 
-target 'NetworkingApi.Converters' do
-  project '../RoxieMobile.NetworkingApi/Sources/Converters/NetworkingApi.Converters.xcodeproj'
-
-  # Dependencies
-  inject_shared_dependencies_1
-end
-
+# MARK: - Sources
 
 target 'NetworkingApi.Helpers' do
   project '../RoxieMobile.NetworkingApi/Sources/Helpers/NetworkingApi.Helpers.xcodeproj'
 
   # Dependencies
   inject_shared_dependencies_2
-  pod_from 'SwiftCommons/Logging', '~> 1.5.0'
+  pod 'SwiftCommons/Logging', '~> 1.6.0'
 end
-
 
 target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
-  pod_from 'SwiftCommons/Diagnostics', '~> 1.5.0'
+  pod 'SwiftCommons/Diagnostics', '~> 1.6.0'
 end
 
+target 'NetworkingApi.ObjC' do
+  project '../RoxieMobile.NetworkingApi/Sources/ObjC/NetworkingApi.ObjC.xcodeproj'
+
+  # Dependencies
+  inject_shared_dependencies_2
+end
 
 target 'NetworkingApi.Rest' do
   project '../RoxieMobile.NetworkingApi/Sources/Rest/NetworkingApi.Rest.xcodeproj'
 
   # Dependencies
   inject_shared_dependencies_1
-  inject_shared_dependencies_2
-end
-
-
-target 'NetworkingApi.ObjC' do
-  project '../RoxieMobile.NetworkingApi/Sources/ObjC/NetworkingApi.ObjC.xcodeproj'
-
-  # Dependencies
   inject_shared_dependencies_2
 end
