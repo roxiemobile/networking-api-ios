@@ -8,6 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
+import NetworkingApiHelpers
 import NetworkingApiHttp
 import NetworkingApiObjC
 
