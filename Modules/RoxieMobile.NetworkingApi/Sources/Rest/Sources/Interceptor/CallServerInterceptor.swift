@@ -3,8 +3,8 @@
 //  CallServerInterceptor.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2017, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,13 +16,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-class CallServerInterceptor: Interceptor
-{
+class CallServerInterceptor: Interceptor {
+
 // MARK: - Construction
 
-    fileprivate init(builder: CallServerInterceptorBuilder)
-    {
-        // Init instance variables
+    fileprivate init(builder: CallServerInterceptorBuilder) {
         self.options = builder.options
     }
 
@@ -34,8 +32,8 @@ class CallServerInterceptor: Interceptor
 
 // MARK: - Private Functions
 
-    fileprivate func performRequest(_ urlRequest: URLRequest) throws -> HttpResponse
-    {
+    fileprivate func performRequest(_ urlRequest: URLRequest) throws -> HttpResponse {
+
         var httpResponse: HttpResponse!
         var httpError: Error?
 
@@ -45,16 +43,16 @@ class CallServerInterceptor: Interceptor
         config.httpAdditionalHeaders = [:]
         config.httpCookieStorage = (self.options.cookieStore as? HTTPCookieStorage)
         config.timeoutIntervalForResource = self.options.connectionTimeout
-        config.timeoutIntervalForRequest  = self.options.requestTimeout
+        config.timeoutIntervalForRequest = self.options.requestTimeout
 
         // Send POST request using NSURLSession
-        // @link http://stackoverflow.com/a/19101084
+        // @link https://stackoverflow.com/a/19101084
 
         // How to POST NSMutableURLRequest alogn with custome header fields using Alamofire
-        // @link http://stackoverflow.com/q/27025811
+        // @link https://stackoverflow.com/q/27025811
 
         // How to use Alamofire with custom headers
-        // @link http://stackoverflow.com/a/26055667
+        // @link https://stackoverflow.com/a/26055667
 
         // Create manager
         let manager = SessionManager(configuration: config)
@@ -63,19 +61,22 @@ class CallServerInterceptor: Interceptor
         // Create suspended request
         let request = manager.request(urlRequest)
 
-        if let sessionDelegate = request.session.delegate as? SessionDelegate
-        {
+        if let sessionDelegate = request.session.delegate as? SessionDelegate {
+
             // Handle authentication challenge
-            sessionDelegate.sessionDidReceiveChallenge = { session, challenge in
+            sessionDelegate.sessionDidReceiveChallenge = { _, _ in
                 return (.performDefaultHandling, nil)
             }
-            sessionDelegate.taskDidReceiveChallenge = { session, task, challenge in
+            sessionDelegate.taskDidReceiveChallenge = { _, _, _ in
                 return (.performDefaultHandling, nil)
             }
 
             // Handle redirects
-            sessionDelegate.taskWillPerformHTTPRedirection = { session, task, response, request in
-                // iOS 8.1 uses "Content-Type" header from original request after redirect that may leads to 415 Unsupported Media Type error
+            sessionDelegate.taskWillPerformHTTPRedirection = { _, _, response, request in
+
+                // iOS 8.1 uses "Content-Type" header from original request after redirect that may leads
+                // to 415 Unsupported Media Type error.
+
                 // HACK: Remove "Content-Type" header from new request
                 var mutableRequest = request
                 mutableRequest.setValue("", forHTTPHeaderField: HttpHeaders.Header.ContentType)
@@ -97,26 +98,21 @@ class CallServerInterceptor: Interceptor
 
         // Handle response
         request.response(queue: queue) { (dataResponse) in
-            if let redirectHttpResponse = httpResponse
-            {
+
+            if let redirectHttpResponse = httpResponse {
                 // Append body to response
                 httpResponse = redirectHttpResponse.copy(body: dataResponse.data)
             }
-            else {
             // Handle request errors
-            if let error = dataResponse.error
-            {
+            else if let error = dataResponse.error {
                 httpError = error
             }
-            else
-                // Handle HTTP response
-                if let response = dataResponse.response
-                {
-                    httpResponse = HttpResponse(response: response, body: dataResponse.data)
-                }
-                else {
-                    Roxie.fatalError("(response == nil) && (error == nil)")
-                }
+            // Handle HTTP response
+            else if let response = dataResponse.response {
+                httpResponse = HttpResponse(response: response, body: dataResponse.data)
+            }
+            else {
+                Roxie.fatalError("(response == nil) && (error == nil)")
             }
 
             // Release a waiting thread
@@ -137,8 +133,7 @@ class CallServerInterceptor: Interceptor
 
 // MARK: - Inner Types
 
-    fileprivate struct Options
-    {
+    fileprivate struct Options {
         fileprivate var cookieStore: HttpCookieStore?
         fileprivate var connectionTimeout = NetworkConfig.Timeout.Connection
         fileprivate var requestTimeout = NetworkConfig.Timeout.Request
@@ -147,30 +142,26 @@ class CallServerInterceptor: Interceptor
 // MARK: - Variables
 
     fileprivate let options: Options
-
 }
 
 // ----------------------------------------------------------------------------
 
-class CallServerInterceptorBuilder
-{
+class CallServerInterceptorBuilder {
+
 // MARK: - Functions
 
-    func cookieStore(_ cookieStore: HttpCookieStore?) -> Self
-    {
+    func cookieStore(_ cookieStore: HttpCookieStore?) -> Self {
         self.options.cookieStore = cookieStore
         return self
     }
 
-    func connectTimeout(_ timeout: TimeInterval) -> Self
-    {
+    func connectTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
-    func requestTimeout(_ timeout: TimeInterval) -> Self
-    {
+    func requestTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
@@ -183,7 +174,4 @@ class CallServerInterceptorBuilder
 // MARK: - Variables
 
     fileprivate var options = CallServerInterceptor.Options()
-
 }
-
-// ----------------------------------------------------------------------------

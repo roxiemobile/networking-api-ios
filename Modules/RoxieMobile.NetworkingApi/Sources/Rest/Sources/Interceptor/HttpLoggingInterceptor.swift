@@ -3,8 +3,8 @@
 //  HttpLoggingInterceptor.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2017, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,12 +13,12 @@ import NetworkingApiHelpers
 
 // ----------------------------------------------------------------------------
 
-open class HttpLoggingInterceptor: Interceptor
-{
+open class HttpLoggingInterceptor: Interceptor {
+
 // MARK: - Functions
 
-    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
-    {
+    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse {
+
         // Log request
         LogUtils.log(Inner.TAG, request: chain.request)
 
@@ -37,7 +37,4 @@ open class HttpLoggingInterceptor: Interceptor
     private struct Inner {
         static let TAG = HttpLoggingInterceptor.self
     }
-
 }
-
-// ----------------------------------------------------------------------------

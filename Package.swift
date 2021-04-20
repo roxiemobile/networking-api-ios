@@ -32,6 +32,11 @@ let package = Package(
             type: .static,
             targets: ["NetworkingApiObjC"]
         ),
+        .library(
+            name: "NetworkingApiRest",
+            type: .static,
+            targets: ["NetworkingApiRest"]
+        ),
     ],
     dependencies: [
         .package(
@@ -43,6 +48,10 @@ let package = Package(
             url: "https://github.com/roxiemobile/swift-commons.ios",
             .upToNextMinor(from: "1.6.0")
         ),
+        .package(
+            url: "https://github.com/SwiftyJSON/SwiftyJSON",
+            .upToNextMinor(from: "5.0.1")
+        ),
     ],
     targets: [
         .target(
@@ -51,6 +60,7 @@ let package = Package(
                 .target(name: "NetworkingApiHelpers"),
                 .target(name: "NetworkingApiHttp"),
                 .target(name: "NetworkingApiObjC"),
+                .target(name: "NetworkingApiRest"),
             ]
         ),
 
@@ -78,6 +88,15 @@ let package = Package(
             exclude: [
                 "NetworkingApiObjC.swift",
             ]
+        ),
+        .target(
+            name: "NetworkingApiRest",
+            dependencies: [
+                .byName(name: "SwiftyJSON"),
+                .product(name: "SwiftCommonsData", package: "SwiftCommons"),
+                .target(name: "NetworkingApiHelpers"),
+            ],
+            path: "Modules/RoxieMobile.NetworkingApi/Sources/Rest/Sources"
         ),
     ],
     swiftLanguageVersions: [.v5]

@@ -2,9 +2,9 @@
 //
 //  NetworkConfig.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,16 +13,12 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public class NetworkConfig: NonCreatable
-{
+public class NetworkConfig: NonCreatable {
+
 // MARK: - Constants
 
-    public struct Timeout
-    {
+    public struct Timeout {
         public static let Connection: TimeInterval = 60
         public static let Request: TimeInterval = 60
     }
-
 }
-
-// ----------------------------------------------------------------------------

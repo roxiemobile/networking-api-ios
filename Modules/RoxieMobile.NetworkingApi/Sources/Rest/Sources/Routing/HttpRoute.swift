@@ -3,8 +3,8 @@
 //  HttpRoute.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,13 +16,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public final class HttpRoute
-{
+public final class HttpRoute {
+
 // MARK: - Construction
 
-    fileprivate init(url: URL)
-    {
-        // Init instance variables
+    fileprivate init(url: URL) {
         self.url = url
     }
 
@@ -32,8 +30,8 @@ public final class HttpRoute
 
 // MARK: - Functions
 
-    public static func buildRoute(_ baseURL: URL, path: String? = nil, params: QueryParams? = nil) -> HttpRoute
-    {
+    public static func buildRoute(_ baseURL: URL, path: String? = nil, params: QueryParams? = nil) -> HttpRoute {
+
         // Build new URL
         var urlString = (baseURL.absoluteString)
 
@@ -54,8 +52,8 @@ public final class HttpRoute
         }
 
         // Validate result
-        if (route == nil)
-        {
+        if (route == nil) {
+
             var message = "Could not create HTTP route"
 
             if let path = path {
@@ -66,15 +64,14 @@ public final class HttpRoute
 
             Roxie.fatalError(message)
         }
-        
+
         // Done
         return route
     }
 
 // MARK: - Private Functions
 
-    fileprivate static func buildQueryString(_ params: QueryParams) -> String
-    {
+    fileprivate static func buildQueryString(_ params: QueryParams) -> String {
         var components: [String] = []
 
         for (key, values) in params.items {
@@ -85,8 +82,7 @@ public final class HttpRoute
         return components.joined(separator: "&")
     }
 
-    fileprivate static func buildQueryStringComponents(_ key: String, values: [String]) -> [String]
-    {
+    fileprivate static func buildQueryStringComponents(_ key: String, values: [String]) -> [String] {
         if values.isEmpty { Roxie.fatalError("") }
 
         var components: [String] = []
@@ -106,7 +102,4 @@ public final class HttpRoute
         // Done
         return components
     }
-
 }
-
-// ----------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 //  RestApiClient.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,13 +16,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public final class RestApiClient
-{
+public final class RestApiClient {
+
 // MARK: - Construction
 
-    fileprivate init(builder: RestApiClientBuilder)
-    {
-        // Init instance variables
+    fileprivate init(builder: RestApiClientBuilder) {
         self.options = builder.options
     }
 
@@ -58,8 +56,8 @@ public final class RestApiClient
 
 // MARK: - Private Functions
 
-    fileprivate func execute(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> HttpResult
-    {
+    fileprivate func execute(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> HttpResult {
+
         let result: HttpResult
         let cookieStore = BasicHttpCookieStore(cookies: entity.cookies)
 
@@ -78,13 +76,11 @@ public final class RestApiClient
             // Handle response
             result = HttpResult.success(handleHttpResponse(response, cookieStore))
         }
-        catch let error as HttpResponseError
-        {
+        catch let error as HttpResponseError {
             // Handle interrupted HTTP requests
             result = HttpResult.success(handleHttpResponse(error.httpResponse, cookieStore))
         }
-        catch let error
-        {
+        catch let error {
             // Handle any other errors
             result = HttpResult.failure(error)
         }
@@ -93,8 +89,11 @@ public final class RestApiClient
         return result
     }
 
-    fileprivate func executeWithAllInterceptors(_ urlRequest: URLRequest, cookieStore: HttpCookieStore) throws -> HttpResponse
-    {
+    fileprivate func executeWithAllInterceptors(
+        _ urlRequest: URLRequest,
+        cookieStore: HttpCookieStore
+    ) throws -> HttpResponse {
+
         var interceptors: [Interceptor] = []
 
         interceptors.append(contentsOf: self.options.interceptors)
@@ -104,8 +103,11 @@ public final class RestApiClient
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
     }
 
-    fileprivate func executeWithNetworkInterceptors(_ urlRequest: URLRequest, cookieStore: HttpCookieStore) throws -> HttpResponse
-    {
+    fileprivate func executeWithNetworkInterceptors(
+        _ urlRequest: URLRequest,
+        cookieStore: HttpCookieStore
+    ) throws -> HttpResponse {
+
         var interceptors: [Interceptor] = []
 
         interceptors.append(contentsOf: self.options.networkInterceptors)
@@ -114,8 +116,12 @@ public final class RestApiClient
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
     }
 
-    fileprivate func execute(_ urlRequest: URLRequest, withInterceptors interceptors: [Interceptor], cookieStore: HttpCookieStore) throws -> HttpResponse
-    {
+    fileprivate func execute(
+        _ urlRequest: URLRequest,
+        withInterceptors interceptors: [Interceptor],
+        cookieStore: HttpCookieStore
+    ) throws -> HttpResponse {
+
         // Create first chain element
         let chain = InterceptorChain(interceptors: interceptors, index: 0, request: urlRequest)
 
@@ -123,23 +129,22 @@ public final class RestApiClient
         return try chain.proceed(urlRequest)
     }
 
-    fileprivate func newCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor
-    {
+    fileprivate func newCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
         return CallServerInterceptorBuilder()
-                .cookieStore(cookieStore)
-                .connectTimeout(self.options.connectionTimeout)
-                .requestTimeout(self.options.requestTimeout)
-                .build()
+            .cookieStore(cookieStore)
+            .connectTimeout(self.options.connectionTimeout)
+            .requestTimeout(self.options.requestTimeout)
+            .build()
     }
 
-    fileprivate func newRequest(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> URLRequest
-    {
+    fileprivate func newRequest(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> URLRequest {
+
         // Build HTTP request
         var request = URLRequestForMethod(method, entity.url!, headers: entity.headers?.allHeaderFields)
 
         // Create HTTP request body
-        if let entityBody = entity.body
-        {
+        if let entityBody = entity.body {
+
             request.httpBody = entityBody.body
             request.setValue(entityBody.mediaType?.description, forHTTPHeaderField: HttpHeaders.Header.ContentType)
         }
@@ -148,8 +153,11 @@ public final class RestApiClient
         return request
     }
 
-    fileprivate func handleHttpResponse(_ httpResponse: HttpResponse, _ cookieStore: HttpCookieStore) -> ResponseEntity<Data>
-    {
+    fileprivate func handleHttpResponse(
+        _ httpResponse: HttpResponse,
+        _ cookieStore: HttpCookieStore
+    ) -> ResponseEntity<Data> {
+
         var statusCode = HttpStatus.InternalServerError
         var headers = [String: String]()
 
@@ -168,12 +176,12 @@ public final class RestApiClient
         // Create response entity
         let httpHeaders = HttpHeaders(headers)
         let entityBuilder = BasicResponseEntityBuilder<Data>()
-                .url(httpResponse.response.url)
-                .headers(httpHeaders)
-                .status(statusCode)
-                // @see https://tools.ietf.org/html/rfc7231#section-3.1.1.5
-                .mediaType(MediaType.ApplicationOctetStream)
-                .cookies(cookieStore.cookies)
+            .url(httpResponse.response.url)
+            .headers(httpHeaders)
+            .status(statusCode)
+            // @see https://tools.ietf.org/html/rfc7231#section-3.1.1.5
+            .mediaType(MediaType.ApplicationOctetStream)
+            .cookies(cookieStore.cookies)
 
         if let responseBody = httpResponse.body {
             entityBuilder.body(responseBody)
@@ -187,9 +195,16 @@ public final class RestApiClient
         return entityBuilder.build()
     }
 
-    fileprivate func URLRequestForMethod(_ method: HTTPMethod, _ URLString: URLConvertible, headers: [String: String]? = nil) -> URLRequest
-    {
-        guard let url = try? URLString.asURL() else { Roxie.fatalError("Unexpected URLString") }
+    fileprivate func URLRequestForMethod(
+        _ method: HTTPMethod,
+        _ URLString: URLConvertible,
+        headers: [String: String]? = nil
+    ) -> URLRequest {
+
+        guard let url = try? URLString.asURL() else {
+            Roxie.fatalError("Unexpected URLString")
+        }
+
         var mutableURLRequest = URLRequest(url: url)
 
         mutableURLRequest.httpMethod = method.rawValue
@@ -205,8 +220,7 @@ public final class RestApiClient
 
 // MARK: - Inner Types
 
-    fileprivate struct Options
-    {
+    fileprivate struct Options {
         fileprivate var connectionTimeout = NetworkConfig.Timeout.Connection
         fileprivate var requestTimeout = NetworkConfig.Timeout.Request
 
@@ -217,37 +231,32 @@ public final class RestApiClient
 // MARK: - Variables
 
     fileprivate let options: Options
-
 }
 
 // ----------------------------------------------------------------------------
 
-open class RestApiClientBuilder
-{
+open class RestApiClientBuilder {
+
 // MARK: - Functions
 
-    open func connectTimeout(_ timeout: TimeInterval) -> Self
-    {
+    open func connectTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
-    open func requestTimeout(_ timeout: TimeInterval) -> Self
-    {
+    open func requestTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.requestTimeout = timeout
         return self
     }
 
-    open func interceptors(_ interceptors: [Interceptor]) -> Self
-    {
+    open func interceptors(_ interceptors: [Interceptor]) -> Self {
         self.options.interceptors = interceptors
         return self
     }
 
-    open func networkInterceptors(_ networkInterceptors: [Interceptor]) -> Self
-    {
+    open func networkInterceptors(_ networkInterceptors: [Interceptor]) -> Self {
         self.options.networkInterceptors = networkInterceptors
         return self
     }
@@ -259,7 +268,4 @@ open class RestApiClientBuilder
 // MARK: - Variables
 
     fileprivate var options = RestApiClient.Options()
-
 }
-
-// ----------------------------------------------------------------------------

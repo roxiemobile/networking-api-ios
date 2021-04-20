@@ -3,19 +3,16 @@
 //  TransportLayerError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class TransportLayerError: AbstractRestApiError
-{
+open class TransportLayerError: AbstractRestApiError {
+
 // MARK: - Properties
 
     open override var type: RestApiErrorType {
         return .transportLayer
     }
-
 }
-
-// ----------------------------------------------------------------------------

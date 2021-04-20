@@ -3,14 +3,14 @@
 //  Task.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
 // FIXME: Should be generic protocol!
-open class Task<Ti, To>: Call<Ti>
-{
+open class Task<Ti, To>: Call<Ti> {
+
 // MARK: - Construction
 
     public override init() {
@@ -30,7 +30,4 @@ open class Task<Ti, To>: Call<Ti>
     open func clone() -> Task<Ti, To> {
         raiseAbstractMethodException()
     }
-
 }
-
-// ----------------------------------------------------------------------------

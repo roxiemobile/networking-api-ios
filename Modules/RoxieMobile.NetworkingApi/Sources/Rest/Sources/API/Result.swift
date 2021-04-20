@@ -3,24 +3,23 @@
 //  Result.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-public enum BasicEnumResult<T,E>
-{
+public enum BasicEnumResult<T, E> {
+
 // MARK: - Construction
 
     case success(T)
     case failure(E)
-
 }
 
 // ----------------------------------------------------------------------------
 
-public protocol EnumResultType
-{
+public protocol EnumResultType {
+
 // MARK: - Functions
 
     func map(_ type: Self) -> BasicEnumResult<SuccessValue, FailureValue>
@@ -30,19 +29,17 @@ public protocol EnumResultType
     associatedtype SuccessValue
 
     associatedtype FailureValue
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension BasicEnumResult: EnumResultType
-{
+extension BasicEnumResult: EnumResultType {
+
 // MARK: - Functions
 
-    public func map(_ type: BasicEnumResult) -> BasicEnumResult<SuccessValue, FailureValue>
-    {
-        switch self
-        {
+    public func map(_ type: BasicEnumResult) -> BasicEnumResult<SuccessValue, FailureValue> {
+        switch self {
+
             case .success(let str):
                 return .success(str)
 
@@ -56,13 +53,12 @@ extension BasicEnumResult: EnumResultType
     public typealias SuccessValue = T
 
     public typealias FailureValue = E
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension EnumResultType
-{
+extension EnumResultType {
+
 // MARK: - Properties
 
     public var value: SuccessValue? {
@@ -85,7 +81,4 @@ extension EnumResultType
             case .failure: return false
         }
     }
-
 }
-
-// ----------------------------------------------------------------------------

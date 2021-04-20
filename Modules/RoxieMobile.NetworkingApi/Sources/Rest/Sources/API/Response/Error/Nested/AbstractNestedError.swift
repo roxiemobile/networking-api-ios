@@ -3,8 +3,8 @@
 //  AbstractNestedError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,17 +14,15 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class AbstractNestedError: NestedError, AbstractClass
-{
+open class AbstractNestedError: NestedError, AbstractClass {
+
 // MARK: - Construction
 
     public convenience init(entity: ResponseEntity<Data>) {
         self.init(entity: entity, cause: nil)
     }
 
-    public init(entity: ResponseEntity<Data>, cause: Error?)
-    {
-        // Init instance variables
+    public init(entity: ResponseEntity<Data>, cause: Error?) {
         self.entity = entity
         self.cause = cause
     }
@@ -34,13 +32,12 @@ open class AbstractNestedError: NestedError, AbstractClass
     public let entity: ResponseEntity<Data>
 
     public let cause: Error?
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension AbstractNestedError: ResponseEntityHolder
-{
+extension AbstractNestedError: ResponseEntityHolder {
+
 // MARK: - Methods
 
     public func getResponseEntity() -> ResponseEntity<Data> {
@@ -56,6 +53,7 @@ extension AbstractNestedError: ResponseEntityHolder
 
         // Convert raw data to string
         if let body = self.entity.body, body.isNotEmpty {
+
             let charsetName = self.entity.headers?.contentType?.charset ?? Charset.forName("UTF8")
             if let encoding = EncodingProvider.encodingForCharset(charsetName) {
                 result = String(data: body, encoding: encoding)
@@ -68,12 +66,11 @@ extension AbstractNestedError: ResponseEntityHolder
 
 // ----------------------------------------------------------------------------
 
-extension AbstractNestedError
-{
+extension AbstractNestedError {
+
 // MARK: - Properties
 
-    public var description: String
-    {
+    public var description: String {
         var result = Roxie.typeName(of: self)
 
         if let cause = self.cause {
@@ -86,7 +83,4 @@ extension AbstractNestedError
 
         return result
     }
-
 }
-
-// ----------------------------------------------------------------------------

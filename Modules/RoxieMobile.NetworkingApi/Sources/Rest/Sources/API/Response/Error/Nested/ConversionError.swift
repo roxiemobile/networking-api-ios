@@ -3,11 +3,11 @@
 //  ConversionError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class ConversionError: AbstractNestedError { }
-
-// ----------------------------------------------------------------------------
+open class ConversionError: AbstractNestedError {
+    // Do nothing
+}

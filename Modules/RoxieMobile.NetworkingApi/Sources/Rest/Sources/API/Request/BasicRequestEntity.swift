@@ -3,8 +3,8 @@
 //  BasicRequestEntity.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,13 +13,11 @@ import NetworkingApiHttp
 
 // ----------------------------------------------------------------------------
 
-open class BasicRequestEntity<T>: RequestEntity<T>
-{
+open class BasicRequestEntity<T>: RequestEntity<T> {
+
 // MARK: - Construction
 
-    init(builder: BasicRequestEntityBuilder<T>)
-    {
-        // Parent processing
+    init(builder: BasicRequestEntityBuilder<T>) {
         super.init(
             url: builder.url,
             headers: builder.headers,
@@ -27,31 +25,26 @@ open class BasicRequestEntity<T>: RequestEntity<T>
             body: builder.body
         )
     }
-
 }
 
 // ----------------------------------------------------------------------------
 
-open class BasicRequestEntityBuilder<T>
-{
+open class BasicRequestEntityBuilder<T> {
+
 // MARK: - Construction
 
     public init() {
         // Do nothing
     }
 
-    public init(entity: RequestEntity<T>)
-    {
-        // Init instance variables
+    public init(entity: RequestEntity<T>) {
         self.url = entity.url
         self.headers = entity.headers
         self.cookies = entity.cookies
         self.body = entity.body
     }
 
-    public init<Ti>(entity: RequestEntity<Ti>, body: T?)
-    {
-        // Init instance variables
+    public init<Ti>(entity: RequestEntity<Ti>, body: T?) {
         self.url = entity.url
         self.headers = entity.headers
         self.cookies = entity.cookies
@@ -93,7 +86,4 @@ open class BasicRequestEntityBuilder<T>
     open func build() -> BasicRequestEntity<T> {
         return BasicRequestEntity(builder: self)
     }
-
 }
-
-// ----------------------------------------------------------------------------

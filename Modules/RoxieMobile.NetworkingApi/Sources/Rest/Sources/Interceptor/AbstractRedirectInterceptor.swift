@@ -3,8 +3,8 @@
 //  AbstractRedirectInterceptor.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2017, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,19 +12,18 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
-{
+open class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass {
+
 // MARK: - Construction
 
-    public init () {
+    public init() {
         // Do nothing
     }
 
 
 // MARK: - Functions
 
-    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse
-    {
+    open func intercept(_ chain: InterceptorChain) throws -> HttpResponse {
         var result = try chain.proceed(chain.request)
 
         if (result.redirectRequest != nil) {
@@ -37,7 +36,4 @@ open class AbstractRedirectInterceptor: RedirectInterceptor, AbstractClass
     open func onRedirect(_ httpResponse: HttpResponse) throws -> HttpResponse {
         raiseAbstractMethodException()
     }
-
 }
-
-// ----------------------------------------------------------------------------

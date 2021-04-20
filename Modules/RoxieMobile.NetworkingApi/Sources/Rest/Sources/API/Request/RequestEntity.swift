@@ -3,8 +3,8 @@
 //  RequestEntity.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,13 +14,11 @@ import NetworkingApiHttp
 // ----------------------------------------------------------------------------
 
 // FIXME: Should be generic protocol!
-open class RequestEntity<T>
-{
+open class RequestEntity<T> {
+
 // MARK: - Construction
 
-    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?)
-    {
-        // Init instance variables
+    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?) {
         self.url = url
         self.headers = headers
         self.cookies = cookies
@@ -36,7 +34,4 @@ open class RequestEntity<T>
     public let cookies: [HttpCookieProtocol]?
 
     public let body: T?
-
 }
-
-// ----------------------------------------------------------------------------

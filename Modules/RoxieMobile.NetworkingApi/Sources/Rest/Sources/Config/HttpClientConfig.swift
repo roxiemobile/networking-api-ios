@@ -3,8 +3,8 @@
 //  HttpClientConfig.swift
 //
 //  @author     Nikita Semakov <SemakovNV@ekassir.com>
-//  @copyright  Copyright (c) 2017, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public protocol HttpClientConfig
-{
+public protocol HttpClientConfig {
+
 // MARK: - Methods
 
     /**
@@ -37,7 +37,4 @@ public protocol HttpClientConfig
      * TODO
      */
     func networkInterceptors() -> [Interceptor]
-
 }
-
-// ----------------------------------------------------------------------------

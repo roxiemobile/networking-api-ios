@@ -3,8 +3,8 @@
 //  JsonBody.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -15,13 +15,11 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-open class JsonBody: HttpBody
-{
+open class JsonBody: HttpBody {
+
 // MARK: - Construction
 
-    public init(body: JsonElement?)
-    {
-        // Init instance variables
+    public init(body: JsonElement?) {
         self.jsonBody = body
     }
 
@@ -41,12 +39,9 @@ open class JsonBody: HttpBody
 // MARK: - Constants
 
     fileprivate static let MediaTypeJson =
-            MediaType.valueOf(MediaType.ApplicationJsonValue + "; charset=" + HttpKeys.EncodingName.UTF_8)
+        MediaType.valueOf(MediaType.ApplicationJsonValue + "; charset=" + HttpKeys.EncodingName.UTF_8)
 
 // MARK: - Variables
-    
+
     fileprivate let jsonBody: JsonElement?
-
 }
-
-// ----------------------------------------------------------------------------

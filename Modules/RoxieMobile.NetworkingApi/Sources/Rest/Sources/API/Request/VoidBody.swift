@@ -3,8 +3,8 @@
 //  VoidBody.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,8 +13,8 @@ import NetworkingApiHttp
 
 // ----------------------------------------------------------------------------
 
-open class VoidBody: HttpBody
-{
+open class VoidBody: HttpBody {
+
 // MARK: - Properties
 
     open var mediaType: MediaType? {
@@ -24,7 +24,4 @@ open class VoidBody: HttpBody
     open var body: Data? {
         return nil
     }
-
 }
-
-// ----------------------------------------------------------------------------

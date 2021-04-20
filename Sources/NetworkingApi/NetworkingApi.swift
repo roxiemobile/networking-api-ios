@@ -11,6 +11,7 @@
 import NetworkingApiHelpers
 import NetworkingApiHttp
 import NetworkingApiObjC
+import NetworkingApiRest
 
 // ----------------------------------------------------------------------------
 

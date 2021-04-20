@@ -3,8 +3,8 @@
 //  FormBody.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,13 +14,11 @@ import NetworkingApiHttp
 
 // ----------------------------------------------------------------------------
 
-open class FormBody: HttpBody
-{
+open class FormBody: HttpBody {
+
 // MARK: - Construction
 
-    fileprivate init(builder: FormBodyBuilder)
-    {
-        // Init instance variables
+    fileprivate init(builder: FormBodyBuilder) {
         self.formBody = builder.toData()
     }
 
@@ -37,13 +35,12 @@ open class FormBody: HttpBody
 // MARK: - Variables
 
     fileprivate let formBody: Data?
-
 }
 
 // ----------------------------------------------------------------------------
 
-open class FormBodyBuilder
-{
+open class FormBodyBuilder {
+
 // MARK: - Construction
 
     public init() {
@@ -52,8 +49,7 @@ open class FormBodyBuilder
 
 // MARK: - Functions
 
-    open func add(_ name: String, value: String) -> Self
-    {
+    open func add(_ name: String, value: String) -> Self {
         self.values[name.trim()] = value.trim()
         return self
     }
@@ -64,12 +60,13 @@ open class FormBodyBuilder
 
 // MARK: - Private Functions
 
-    fileprivate func toData() -> Data?
-    {
-        let values = self.values.filter{ !($0.0.isEmpty) }
+    fileprivate func toData() -> Data? {
+
+        let values = self.values.filter { !($0.0.isEmpty) }
 
         // Build form url encoded string
-        let components = values.map{ key, value -> String in
+        let components = values.map { key, value -> String in
+
             // Escape parameters
             let key = URLEncoding().escape(key)
             let value = URLEncoding().escape(value)
@@ -89,5 +86,3 @@ open class FormBodyBuilder
 
     fileprivate var values: [String: String] = [:]
 }
-
-// ----------------------------------------------------------------------------
