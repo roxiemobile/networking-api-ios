@@ -3,8 +3,8 @@
 //  BasicResponseEntity.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,13 +12,11 @@ import NetworkingApiHttp
 
 // ----------------------------------------------------------------------------
 
-open class BasicResponseEntity<T>: ResponseEntity<T>
-{
+open class BasicResponseEntity<T>: ResponseEntity<T> {
+
 // MARK: - Construction
 
-    init(builder: BasicResponseEntityBuilder<T>)
-    {
-        // Parent processing
+    init(builder: BasicResponseEntityBuilder<T>) {
         super.init(
             url: builder.url,
             headers: builder.headers,
@@ -28,22 +26,19 @@ open class BasicResponseEntity<T>: ResponseEntity<T>
             mediaType: builder.mediaType
         )
     }
-
 }
 
 // ----------------------------------------------------------------------------
 
-open class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
-{
+open class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T> {
+
 // MARK: - Construction
 
     public override init() {
         super.init()
     }
 
-    public init(entity: ResponseEntity<T>)
-    {
-        // Init instance variables
+    public init(entity: ResponseEntity<T>) {
         self.status = entity.status
         self.mediaType = entity.mediaType
 
@@ -51,9 +46,7 @@ open class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
         super.init(entity: entity)
     }
 
-    public init<Ti>(entity: ResponseEntity<Ti>, body: T?)
-    {
-        // Init instance variables
+    public init<Ti>(entity: ResponseEntity<Ti>, body: T?) {
         self.status = entity.status
         self.mediaType = entity.mediaType
 
@@ -82,7 +75,4 @@ open class BasicResponseEntityBuilder<T>: BasicRequestEntityBuilder<T>
     open func build() -> BasicResponseEntity<T> {
         return BasicResponseEntity(builder: self)
     }
-
 }
-
-// ----------------------------------------------------------------------------

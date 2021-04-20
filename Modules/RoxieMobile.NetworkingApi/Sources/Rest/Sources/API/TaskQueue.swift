@@ -3,8 +3,8 @@
 //  TaskQueue.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,28 +16,34 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class TaskQueue: NonCreatable
-{
+open class TaskQueue: NonCreatable {
+
 // MARK: - Functions
 
-    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
+    @discardableResult
+    public static func enqueue<Ti, To>(_ task: Task<Ti, To>) -> Cancellable {
         return enqueue(task, callback: nil)
     }
 
-    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
+    @discardableResult
+    public static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?) -> Cancellable {
         return enqueue(task, callback: callback, callbackOnUiThread: Thread.isMainThread)
     }
 
-    @discardableResult public static func enqueue<Ti, To>(_ task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) -> Cancellable
-    {
+    @discardableResult
+    public static func enqueue<Ti, To>(
+        _ task: Task<Ti, To>,
+        callback: Callback<Ti, To>?,
+        callbackOnUiThread: Bool
+    ) -> Cancellable {
+
         let innerTask = InnerTask(task: task, callback: callback, callbackOnUiThread: callbackOnUiThread)
         self.tasks.withValue { tasks in
             tasks.add(innerTask, key: task.getTag())
         }
 
         // Execute the task on the background thread
-        DispatchQueue.global(qos: .utility).async
-        {
+        DispatchQueue.global(qos: .utility).async {
             innerTask.execute()
 
             self.tasks.withValue { tasks in
@@ -49,8 +55,8 @@ open class TaskQueue: NonCreatable
         return innerTask
     }
 
-    public static func cancel(_ tag: String)
-    {
+    public static func cancel(_ tag: String) {
+
         let cancelledTasks = self.tasks.map { tasks in
             return tasks.remove(tag)
         }
@@ -67,13 +73,11 @@ open class TaskQueue: NonCreatable
 
 // ----------------------------------------------------------------------------
 
-private final class InnerTask<Ti, To>: Cancellable
-{
+private final class InnerTask<Ti, To>: Cancellable {
+
 // MARK: - Construction
 
-    init(task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool)
-    {
-        // Init instance variables
+    init(task: Task<Ti, To>, callback: Callback<Ti, To>?, callbackOnUiThread: Bool) {
         self.task = task.clone()
         self.callback = InnerCallback(callback: callback, callbackOnUiThread: callbackOnUiThread)
     }
@@ -97,16 +101,15 @@ private final class InnerTask<Ti, To>: Cancellable
 
 // ----------------------------------------------------------------------------
 
-private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
-{
+private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To> {
+
 // MARK: - Construction
 
-    init(callback: Callback<Ti, To>?, callbackOnUiThread: Bool)
-    {
-        // Init instance variables
+    init(callback: Callback<Ti, To>?, callbackOnUiThread: Bool) {
+
         self.queue = callbackOnUiThread ?
-                DispatchQueue.main :
-                DispatchQueue.global(qos: .default)
+            DispatchQueue.main :
+            DispatchQueue.global(qos: .default)
 
         // Parent processing
         super.init(callback: callback ?? CallbackDecorator())
@@ -114,8 +117,7 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
 
 // MARK: - Functions
 
-    override func onShouldExecute(_ call: Call<Ti>) -> Bool
-    {
+    override func onShouldExecute(_ call: Call<Ti>) -> Bool {
         guard !(self.done.value) else { return false }
 
         var result = false
@@ -127,8 +129,7 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
         return result
     }
 
-    override func onSuccess(_ call: Call<Ti>, entity: ResponseEntity<To>)
-    {
+    override func onSuccess(_ call: Call<Ti>, entity: ResponseEntity<To>) {
         guard !(self.done.swap(true)) else { return }
 
         self.queue.async {
@@ -136,8 +137,7 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
         }
     }
 
-    override func onFailure(_ call: Call<Ti>, error: RestApiError)
-    {
+    override func onFailure(_ call: Call<Ti>, error: RestApiError) {
         guard !(self.done.swap(true)) else { return }
 
         self.queue.async {
@@ -145,8 +145,7 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
         }
     }
 
-    override func onCancel(_ call: Call<Ti>)
-    {
+    override func onCancel(_ call: Call<Ti>) {
         guard !(self.done.swap(true)) else { return }
 
         self.queue.async {
@@ -154,12 +153,10 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
         }
     }
 
-    func cancel(_ call: Call<Ti>) -> Bool
-    {
+    func cancel(_ call: Call<Ti>) -> Bool {
         let result = !self.done.swap(true)
 
-        if result
-        {
+        if result {
             (call as? Cancellable)?.cancel()
 
             self.queue.async {
@@ -176,5 +173,3 @@ private final class InnerCallback<Ti, To>: CallbackDecorator<Ti, To>
 
     fileprivate let done = Atomic<Bool>(false)
 }
-
-// ----------------------------------------------------------------------------

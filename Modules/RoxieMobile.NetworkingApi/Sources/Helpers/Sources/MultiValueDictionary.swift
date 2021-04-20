@@ -3,13 +3,13 @@
 //  MultiValueDictionary.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class MultiValueDictionary<Key: Hashable, Value>
-{
+open class MultiValueDictionary<Key: Hashable, Value> {
+
 // MARK: - Construction
 
     public init() {
@@ -18,8 +18,7 @@ open class MultiValueDictionary<Key: Hashable, Value>
 
 // MARK: - Methods
 
-    open func add(_ value: Value, key: Key)
-    {
+    open func add(_ value: Value, key: Key) {
         var keyValues = self.values[key] ?? []
         keyValues.append(value)
         self.values[key] = keyValues
@@ -36,11 +35,10 @@ open class MultiValueDictionary<Key: Hashable, Value>
     /**
      * NOTE: Value must be reference-type
      */
-    @discardableResult open func remove(_ key: Key, value: Value) -> Value?
-    {
+    @discardableResult open func remove(_ key: Key, value: Value) -> Value? {
         var result: Value?
 
-        if let index = (self.values[key]?.firstIndex{ ($0 as AnyObject) === (value as AnyObject) }) {
+        if let index = (self.values[key]?.firstIndex { ($0 as AnyObject) === (value as AnyObject) }) {
             result = self.values[key]?.remove(at: index)
         }
 
@@ -50,7 +48,4 @@ open class MultiValueDictionary<Key: Hashable, Value>
 // MARK: - Variables
 
     fileprivate var values: [Key: [Value]] = [:]
-
 }
-
-// ----------------------------------------------------------------------------

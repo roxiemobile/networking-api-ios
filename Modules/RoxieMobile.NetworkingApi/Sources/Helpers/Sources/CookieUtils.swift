@@ -2,9 +2,9 @@
 //
 //  CookieUtils.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,12 +14,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public final class CookieUtils: NonCreatable
-{
+public final class CookieUtils: NonCreatable {
+
 // MARK: - Functions
 
-    public class func cookie(_ cookieStore: HttpCookieStore, name: String) -> HTTPCookie?
-    {
+    public class func cookie(_ cookieStore: HttpCookieStore, name: String) -> HTTPCookie? {
         var outCookie: HTTPCookie?
 
         // Search for Cookie with requested name
@@ -34,8 +33,7 @@ public final class CookieUtils: NonCreatable
         return outCookie
     }
 
-    public class func cookie(_ cookies: [HttpCookieProtocol], name: String) -> HTTPCookie?
-    {
+    public class func cookie(_ cookies: [HttpCookieProtocol], name: String) -> HTTPCookie? {
         var outCookie: HTTPCookie?
 
         // Search for Cookie with requested name
@@ -50,22 +48,21 @@ public final class CookieUtils: NonCreatable
         return outCookie
     }
 
-    public class func isNullOrExpired(_ cookie: HTTPCookie?, offsetInSeconds offset: TimeInterval) -> Bool
-    {
+    public class func isNullOrExpired(_ cookie: HTTPCookie?, offsetInSeconds offset: TimeInterval) -> Bool {
+
         guard let cookie = cookie else {
             return true
         }
 
         guard let expiresDate = cookie.expiresDate else {
-            // From Apple documentation: nil if there is no specific expiration date such as in the case of “session-only” cookies
+            // From Apple documentation: nil if there is no specific expiration date such
+            // as in the case of “session-only” cookies
             // @link: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSHTTPCookie_Class
+            // swiftlint:disable:previous line_length
             return false
         }
 
         // Check if cookie has expired
         return (Date(timeIntervalSinceNow: offset).compare(expiresDate) == .orderedDescending)
     }
-
 }
-
-// ----------------------------------------------------------------------------

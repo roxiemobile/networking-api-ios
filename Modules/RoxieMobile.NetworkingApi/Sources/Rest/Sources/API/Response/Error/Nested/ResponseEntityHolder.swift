@@ -3,8 +3,8 @@
 //  ResponseEntityHolder.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public protocol ResponseEntityHolder
-{
+public protocol ResponseEntityHolder {
+
 // MARK: - Functions
 
     /**
@@ -30,7 +30,4 @@ public protocol ResponseEntityHolder
     * Returns the response body as a string.
     */
     func getResponseBodyAsString() -> String?
-
 }
-
-// ----------------------------------------------------------------------------

@@ -4,14 +4,13 @@
 //
 //  @author     Alexander Bragin <bragin-av@roxiemobile.com>
 //  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
-//  @link       http://www.roxiemobile.com/
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
 #import "DefaultUserAgent.h"
 
 @import Alamofire;
-//#import <Alamofire/Alamofire-umbrella.h>
 
 // ----------------------------------------------------------------------------
 
@@ -50,7 +49,7 @@ const NSString *kAlamofireFrameworkVersion = nil;
         [components addObject:[NSString stringWithFormat:@"Alamofire/%@", kAlamofireFrameworkVersion ?: kUndefined]];
 
         // Create immutable array
-        sharedComponents = [[NSArray alloc] initWithArray: components];
+        sharedComponents = [[NSArray alloc] initWithArray:components];
     });
 
     // Done
@@ -79,7 +78,6 @@ const NSString *kAlamofireFrameworkVersion = nil;
 {
     NSString *message = [NSString stringWithFormat:@"+new is not a valid initializer for the class %@", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:message userInfo:nil];
-    return nil;
 }
 
 // ----------------------------------------------------------------------------
@@ -88,7 +86,6 @@ const NSString *kAlamofireFrameworkVersion = nil;
 {
     NSString *message = [NSString stringWithFormat:@"-init is not a valid initializer for the class %@", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:message userInfo:nil];
-    return nil;
 }
 
 // ----------------------------------------------------------------------------

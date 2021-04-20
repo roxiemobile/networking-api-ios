@@ -3,8 +3,8 @@
 //  AbstractTask.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,13 +16,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
-{
+open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable {
+
 // MARK: - Construction
 
-    public init(builder: AbstractTaskBuilder<Ti, To>)
-    {
-        // Init instance variables
+    public init(builder: AbstractTaskBuilder<Ti, To>) {
         self.tag = builder.tag
         self.requestEntity = builder.requestEntity
     }
@@ -55,8 +53,8 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     /**
     * Synchronously send the request and return its response.
     */
-    open override func execute(_ callback: Callback<Ti, To>?)
-    {
+    open override func execute(_ callback: Callback<Ti, To>?) {
+
         var shouldExecute = true
         var result: CallResult<To>?
 
@@ -82,8 +80,8 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
      * Performs the request and returns the response.
      * May return null if this call was canceled.
      */
-    final func call() -> CallResult<To>?
-    {
+    final func call() -> CallResult<To>? {
+
         Guard.isFalse(Thread.isMainThread, "This method must not be called from the main thread!")
         var result: CallResult<To>?
 
@@ -92,11 +90,11 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         var error: RestApiError?
 
         // Are HTTP response is still needed?
-        if !isCancelled()
-        {
+        if !isCancelled() {
+
             // Handle HTTP response
-            switch httpResult
-            {
+            switch httpResult {
+
                 case .success(let entity):
                     // Create a new call result
                     if let status = entity.status, status.is2xxSuccessful() {
@@ -134,35 +132,34 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         raiseAbstractMethodException()
     }
 
-    open func newClient() -> RestApiClient
-    {
+    open func newClient() -> RestApiClient {
+
         // Get HTTP client config
         let config = getHttpClientConfig()
 
         // Create/init HTTP client
         let builder = RestApiClientBuilder()
-                // Set the timeout until a connection is established
-                .connectTimeout(config.connectTimeout())
-                // Set the default socket timeout which is the timeout for waiting for data
-                .requestTimeout(config.readTimeout())
-                // Set an application interceptors
-                .interceptors(config.interceptors())
-                // Set an network interceptors
-                .networkInterceptors(config.networkInterceptors())
+            // Set the timeout until a connection is established
+            .connectTimeout(config.connectTimeout())
+            // Set the default socket timeout which is the timeout for waiting for data
+            .requestTimeout(config.readTimeout())
+            // Set an application interceptors
+            .interceptors(config.interceptors())
+            // Set an network interceptors
+            .networkInterceptors(config.networkInterceptors())
 
         // Done
         return builder.build()
     }
 
-    open func newRequestEntity(_ route: HttpRoute) -> RequestEntity<HttpBody>
-    {
+    open func newRequestEntity(_ route: HttpRoute) -> RequestEntity<HttpBody> {
         let entity = self.requestEntity
 
         // Create HTTP request entity
         return BasicRequestEntityBuilder(entity: entity, body: entity.body)
-                .url(route.url)
-                .headers(httpHeaders())
-                .build()
+            .url(route.url)
+            .headers(httpHeaders())
+            .build()
     }
 
     open func httpHeaders() -> HttpHeaders {
@@ -173,13 +170,13 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
         raiseAbstractMethodException()
     }
 
-    open func onFailure(_ httpResult: CallResult<Data>) -> CallResult<To>
-    {
+    open func onFailure(_ httpResult: CallResult<Data>) -> CallResult<To> {
         var result: CallResult<To>
 
-        switch httpResult
-        {
+        switch httpResult {
+
             case .success(_):
+                // swiftlint:disable:previous empty_enum_arguments
                 Roxie.fatalError("Trying to call onFailure(_:) method for .Success(_) call result.")
 
             case .failure(let error):
@@ -209,17 +206,17 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
 // MARK: - Private Functions
 
     fileprivate func isConnectionError(_ error: Error) -> Bool {
-        return ((error as NSError).domain == NSURLErrorDomain || (error as NSError).domain == (kCFErrorDomainCFNetwork as NSString) as String)
+        return (error as NSError).domain == NSURLErrorDomain
+            || (error as NSError).domain == (kCFErrorDomainCFNetwork as NSString) as String
     }
 
-    fileprivate func yieldResult(_ result: CallResult<To>?, callback: Callback<Ti, To>)
-    {
-        if !isCancelled()
-        {
-            if let result = result
-            {
-                switch result
-                {
+    fileprivate func yieldResult(_ result: CallResult<To>?, callback: Callback<Ti, To>) {
+
+        if !isCancelled() {
+            if let result = result {
+
+                switch result {
+
                     case .success(let entity):
                         callback.onSuccess(self, entity: entity)
 
@@ -249,36 +246,30 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable
     fileprivate let requestEntity: RequestEntity<Ti>
 
     fileprivate let cancelled = Atomic<Bool>(false)
-
 }
 
 // ----------------------------------------------------------------------------
 
 // WORKAROUND: Type 'Inner' nested in generic type 'AbstractTask' is not allowed
-private struct AbstractTaskInner
-{
+private struct AbstractTaskInner {
+
 // MARK: - Constants
 
     static let HttpClientConfig = DefaultHttpClientConfig()
-
 }
 
 // ----------------------------------------------------------------------------
 
-open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
-{
+open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To> {
+
 // MARK: - Construction
 
-    public override init()
-    {
-        // Init instance variables
+    public override init() {
         self.tag = nil
         self.requestEntity = nil
     }
 
-    public init(task: Task<Ti, To>)
-    {
-        // Init instance variables
+    public init(task: Task<Ti, To>) {
         self.tag = task.getTag()
         self.requestEntity = task.getRequestEntity()
     }
@@ -295,26 +286,22 @@ open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
 
 // MARK: - Functions
 
-    open func tag(_ tag: String) -> Self
-    {
+    open func tag(_ tag: String) -> Self {
         self.tag = tag
         return self
     }
 
-    open func requestEntity(_ requestEntity: RequestEntity<Ti>) -> Self
-    {
+    open func requestEntity(_ requestEntity: RequestEntity<Ti>) -> Self {
         self.requestEntity = requestEntity
         return self
     }
 
-    open override func build() -> AbstractTask<Ti, To>
-    {
+    open override func build() -> AbstractTask<Ti, To> {
         checkInvalidState()
         return newTask()
     }
 
-    open func checkInvalidState()
-    {
+    open func checkInvalidState() {
         Guard.notNil(self.requestEntity)
     }
 
@@ -327,7 +314,4 @@ open class AbstractTaskBuilder<Ti: HttpBody, To>: TaskBuilder<Ti, To>
     fileprivate var tag: String!
 
     fileprivate var requestEntity: RequestEntity<Ti>!
-
 }
-
-// ----------------------------------------------------------------------------

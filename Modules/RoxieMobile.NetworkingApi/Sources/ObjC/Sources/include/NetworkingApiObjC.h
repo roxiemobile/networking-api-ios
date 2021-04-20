@@ -1,17 +1,13 @@
 // ----------------------------------------------------------------------------
 //
-//  NetworkingApiHttp.m
+//  NetworkingApiObjC.h
 //
 //  @author     Alexander Bragin <bragin-av@roxiemobile.com>
-//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
-//  @link       http://www.roxiemobile.com/
+//  @copyright  Copyright (c) 2021, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-#import "NetworkingApiHttp.h"
-
-// ----------------------------------------------------------------------------
-
-// TODO
+#import "../DefaultUserAgent/DefaultUserAgent.h"
 
 // ----------------------------------------------------------------------------

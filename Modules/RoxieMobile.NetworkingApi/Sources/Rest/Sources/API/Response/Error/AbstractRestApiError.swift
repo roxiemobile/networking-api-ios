@@ -3,8 +3,8 @@
 //  AbstractRestApiError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,13 +12,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class AbstractRestApiError: RestApiError, AbstractClass
-{
+open class AbstractRestApiError: RestApiError, AbstractClass {
+
 // MARK: - Construction
 
-    public init(cause: Error?)
-    {
-        // Init instance variables
+    public init(cause: Error?) {
         self.cause = cause
     }
 
@@ -30,5 +28,3 @@ open class AbstractRestApiError: RestApiError, AbstractClass
 
     public let cause: Error?
 }
-
-// ----------------------------------------------------------------------------

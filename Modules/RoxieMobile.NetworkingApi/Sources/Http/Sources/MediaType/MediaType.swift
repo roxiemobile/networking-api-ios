@@ -3,17 +3,19 @@
 //  MediaType.swift
 //
 //  @author     Irina Zavilkina <ZavilkinaIB@ekassir.com>
-//  @copyright  Copyright (c) 2015, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
+// ----------------------------------------------------------------------------
+// swiftlint:disable file_length
 // ----------------------------------------------------------------------------
 
 import Foundation
 
 // ----------------------------------------------------------------------------
 
-open class MediaType: MimeType
-{
+open class MediaType: MimeType {
+
 // MARK: - Construction
 
 //    /**
@@ -56,7 +58,11 @@ open class MediaType: MimeType
      * @throws IllegalArgumentException if any of the parameters contain illegal characters
      */
     public convenience init?(type: String, subtype: String, qualityValue: Double) {
-        self.init(type: type, subtype: subtype, params: [Inner.ParamQualityFactor: String(format: "%.2f", qualityValue)])
+        self.init(
+            type: type,
+            subtype: subtype,
+            params: [Inner.ParamQualityFactor: String(format: "%.2f", qualityValue)]
+        )
     }
 
 //    /**
@@ -83,13 +89,13 @@ open class MediaType: MimeType
 
 // MARK: - Functions
 
-    override func checkParameters(_ attribute: String, _ value: String) -> Bool
-    {
+    override func checkParameters(_ attribute: String, _ value: String) -> Bool {
+
         var result = super.checkParameters(attribute, value)
-        if (result)
-        {
-            if (attribute == Inner.ParamQualityFactor)
-            {
+        if (result) {
+
+            if (attribute == Inner.ParamQualityFactor) {
+
                 let newValue = unquote(value)
                 let quality = (newValue as NSString).doubleValue
 
@@ -113,8 +119,9 @@ open class MediaType: MimeType
 
 //    /**
 //     * Indicate whether this {@code MediaType} includes the given media type.
-//     * <p>For instance, {@code text/_*} includes {@code text/plain} and {@code text/html}, and {@code application/_*+xml}
-//     * includes {@code application/soap+xml}, etc. This method is <b>not</b> symmetric.
+//     * <p>For instance, {@code text/_*} includes {@code text/plain} and {@code text/html},
+//     * and {@code application/_*+xml} includes {@code application/soap+xml}, etc.
+//     * This method is <b>not</b> symmetric.
 //     * @param other the reference media type with which to compare
 //     * @return {@code true} if this media type includes the given media type; {@code false} otherwise
 //     */
@@ -175,8 +182,7 @@ open class MediaType: MimeType
      * @return the media type
      * @throws InvalidMediaTypeException if the string cannot be parsed
      */
-    open class func parseMediaType(_ value: String, error: NSErrorPointer = nil) -> MediaType?
-    {
+    open class func parseMediaType(_ value: String, error: NSErrorPointer = nil) -> MediaType? {
         var mediaType: MediaType?
 
         if let mimeType = MimeTypeUtils.parseMimeType(value, error: error) {
@@ -193,13 +199,12 @@ open class MediaType: MimeType
      * @return the list of media types
      * @throws IllegalArgumentException if the string cannot be parsed
      */
-    open class func parseMediaTypes(_ value: String, error: NSErrorPointer = nil) -> [MediaType]
-    {
+    open class func parseMediaTypes(_ value: String, error: NSErrorPointer = nil) -> [MediaType] {
         var result: [MediaType] = []
 
-        let tokens = value.components(separatedBy: ",").map{ $0.trim() }
-        for token in tokens where !(token.isEmpty)
-        {
+        let tokens = value.components(separatedBy: ",").map { $0.trim() }
+        for token in tokens where !(token.isEmpty) {
+
             if let mediaType = parseMediaType(token, error: error) {
                 result.append(mediaType)
             }
@@ -242,7 +247,7 @@ open class MediaType: MimeType
 //     * <blockquote>audio/basic == text/html</blockquote>
 //     * <blockquote>audio/basic == audio/wave</blockquote>
 //     * @param mediaTypes the list of media types to be sorted
-//     * @see <a href="http://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
+//     * @see <a href="https://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
 //     * and Content, section 5.3.2</a>
 //     */
 //    public static void sortBySpecificity(List<MediaType> mediaTypes) {
@@ -330,7 +335,8 @@ open class MediaType: MimeType
 //                else {
 //                    int paramsSize1 = mediaType1.getParameters().size();
 //                    int paramsSize2 = mediaType2.getParameters().size();
-//                    return (paramsSize2 < paramsSize1 ? -1 : (paramsSize2 == paramsSize1 ? 0 : 1)); // audio/basic;level=1 < audio/basic
+//                    return (paramsSize2 < paramsSize1
+//                            ? -1 : (paramsSize2 == paramsSize1 ? 0 : 1)); // audio/basic;level=1 < audio/basic
 //                }
 //            }
 //        }
@@ -414,7 +420,4 @@ open class MediaType: MimeType
     /// Public constant media type for {@code text/xml}.
     public static let TextXml = MediaType.valueOf(TextXmlValue)!
     public static let TextXmlValue = "text/xml"
-
 }
-
-// ----------------------------------------------------------------------------

@@ -3,13 +3,13 @@
 //  RestApiError.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-public protocol RestApiError: NestedError
-{
+public protocol RestApiError: NestedError {
+
 // MARK: - Properties
 
     /**
@@ -21,7 +21,6 @@ public protocol RestApiError: NestedError
     * Returns the cause of this {@code RestApiError}, or {@code null} if there is no cause.
     */
     var cause: Error? { get }
-
 }
 
 // ----------------------------------------------------------------------------
@@ -29,11 +28,8 @@ public protocol RestApiError: NestedError
 /**
 * The type of an error.
 */
-public enum RestApiErrorType
-{
+public enum RestApiErrorType {
     case transportLayer
     case applicationLayer
     case topLevelProtocol
 }
-
-// ----------------------------------------------------------------------------

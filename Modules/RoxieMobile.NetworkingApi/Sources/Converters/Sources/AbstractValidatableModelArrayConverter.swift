@@ -3,8 +3,8 @@
 //  AbstractValidatableModelArrayConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-open class AbstractValidatableModelArrayConverter<T: ValidatableModel>: AbstractCallResultConverter<[T]>
-{
+open class AbstractValidatableModelArrayConverter<T: ValidatableModel>: AbstractCallResultConverter<[T]> {
+
 // MARK: - Construction
 
     public override init() {
@@ -38,7 +38,8 @@ open class AbstractValidatableModelArrayConverter<T: ValidatableModel>: Abstract
                             return try T.init(from: jsonObject)
                         }
                         else {
-                            throw JsonSyntaxError(reason: "Failed to convert element of array[\(index)] to JSON object.")
+                            let errorMessage = "Failed to convert element of array[\(index)] to JSON object."
+                            throw JsonSyntaxError(reason: errorMessage)
                         }
                     }
                 }
@@ -56,5 +57,3 @@ open class AbstractValidatableModelArrayConverter<T: ValidatableModel>: Abstract
         return newEntity
     }
 }
-
-// ----------------------------------------------------------------------------

@@ -2,9 +2,9 @@
 //
 //  CharsetProvider.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,13 +14,11 @@ import SwiftCommonsConcurrent
 // ----------------------------------------------------------------------------
 
 // NOTE: Abstract class
-class CharsetProvider
-{
+class CharsetProvider {
+
 // MARK: - Construction
 
-    init(aliases: [String: String], classes: [String: NSObject.Type])
-    {
-        // Init instance variables
+    init(aliases: [String: String], classes: [String: NSObject.Type]) {
         self.aliases = aliases
         self.classes = classes
         self.cache = [:]
@@ -28,13 +26,12 @@ class CharsetProvider
 
 // MARK: - Functions
 
-    final func charsetForName(_ charsetName: String) -> Charset?
-    {
+    final func charsetForName(_ charsetName: String) -> Charset? {
         var charset: Charset?
 
         // Search for Charset by its name
         unowned let instance = self
-        synchronized (self) {
+        synchronized(self) {
             charset = instance.lookup(charsetName)
         }
 
@@ -44,8 +41,8 @@ class CharsetProvider
 
 // MARK: - Private Functions
 
-    fileprivate func lookup(_ charsetName: String) -> Charset?
-    {
+    fileprivate func lookup(_ charsetName: String) -> Charset? {
+
         let name = canonicalize(charsetName.lowercased())
         var charset: Charset?
 
@@ -53,10 +50,8 @@ class CharsetProvider
         if let cs = self.cache[name] {
             charset = cs
         }
-        else
         // Do we even support this charset?
-        if let clazz = self.classes[name], let object = clazz.init() as? Charset
-        {
+        else if let clazz = self.classes[name], let object = clazz.init() as? Charset {
             charset = object
             self.cache[name] = charset
         }
@@ -79,7 +74,4 @@ class CharsetProvider
 
     // Maps canonical names to cached instances
     fileprivate var cache: [String: Charset]
-
 }
-
-// ----------------------------------------------------------------------------

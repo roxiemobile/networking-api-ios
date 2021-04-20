@@ -3,8 +3,8 @@
 //  HttpHeadersUtils.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,12 +13,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class HttpHeadersUtils: NonCreatable
-{
+open class HttpHeadersUtils: NonCreatable {
+
 // MARK: - Functions
 
-    public static func merge(_ headers: HttpHeaders?, _ otherHeaders: HttpHeaders?) -> HttpHeaders
-    {
+    public static func merge(_ headers: HttpHeaders?, _ otherHeaders: HttpHeaders?) -> HttpHeaders {
         var result = HttpHeaders()
 
         // Put all Headers from first argument
@@ -33,10 +32,8 @@ open class HttpHeadersUtils: NonCreatable
                 result.put(key, value: value)
             }
         }
-        
+
         // Done
         return result
     }
 }
-
-// ----------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 //  TaskBuilder.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -16,8 +16,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class TaskBuilder<Ti, To>: AbstractClass
-{
+open class TaskBuilder<Ti, To>: AbstractClass {
+
 // MARK: - Properties
 
     open func getTag() -> String {
@@ -33,7 +33,4 @@ open class TaskBuilder<Ti, To>: AbstractClass
     open func build() -> Task<Ti, To> {
         raiseAbstractMethodException()
     }
-
 }
-
-// ----------------------------------------------------------------------------

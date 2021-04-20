@@ -3,8 +3,8 @@
 //  AbstractCallResultConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ import NetworkingApiRest
 
 // ----------------------------------------------------------------------------
 
-open class AbstractCallResultConverter<T>: CallResultConverter
-{
+open class AbstractCallResultConverter<T>: CallResultConverter {
+
 // MARK: - Construction
 
     public init() {
@@ -38,8 +38,8 @@ open class AbstractCallResultConverter<T>: CallResultConverter
                     let response = try convert(entity)
                     newResult = .success(response)
                 }
-                catch (let cause)
-                {
+                catch (let cause) {
+
                     // Build new error with caught exception
                     let error = ApplicationLayerError(cause: cause)
                     newResult = .failure(error)
@@ -69,12 +69,9 @@ open class AbstractCallResultConverter<T>: CallResultConverter
         var found = false
 
         // Search for compatible MediaType
-        if let mediaType = mediaType
-        {
-            for type in supportedMediaTypes()
-            {
-                if mediaType.isCompatibleWith(type)
-                {
+        if let mediaType = mediaType {
+            for type in supportedMediaTypes() {
+                if mediaType.isCompatibleWith(type) {
                     found = true
                     break
                 }
@@ -93,5 +90,3 @@ open class AbstractCallResultConverter<T>: CallResultConverter
 
     public typealias To = T
 }
-
-// ----------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 //  HttpAuthentication.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class HttpAuthentication: AbstractClass
-{
+open class HttpAuthentication: AbstractClass {
+
 // MARK: - Functions
 
     open func getHeaderValue() -> String {
@@ -25,8 +25,8 @@ open class HttpAuthentication: AbstractClass
 // MARK: - @protocol Printable, DebugPrintable
 // ----------------------------------------------------------------------------
 
-extension HttpAuthentication: CustomStringConvertible, CustomDebugStringConvertible
-{
+extension HttpAuthentication: CustomStringConvertible, CustomDebugStringConvertible {
+
 // MARK: - Properties
 
     public var description: String {
@@ -37,5 +37,3 @@ extension HttpAuthentication: CustomStringConvertible, CustomDebugStringConverti
         return self.description
     }
 }
-
-// ----------------------------------------------------------------------------

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Sources/Converters">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Helpers">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Http">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/ObjC">
+   </FileRef>
+   <FileRef
+      location = "group:Sources/Rest">
+   </FileRef>
+</Workspace>

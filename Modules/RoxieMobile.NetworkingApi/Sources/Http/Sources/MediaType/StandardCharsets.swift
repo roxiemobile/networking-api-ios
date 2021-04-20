@@ -2,9 +2,9 @@
 //
 //  StandardCharsets.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-class StandardCharsets: CharsetProvider
-{
+class StandardCharsets: CharsetProvider {
+
 // MARK: - Construction
 
     init() {
@@ -22,16 +22,15 @@ class StandardCharsets: CharsetProvider
 
 // MARK: - Constants
 
-    fileprivate struct Inner
-    {
+    fileprivate struct Inner {
+
         // Maps alias names to canonical names
-        static let Aliases: [String: String] =
-        {
+        static let Aliases: [String: String] = {
+
             var output = [String: String]()
-            for (name, type) in Inner.Classes
-            {
-                if let charset = type.init() as? Charset
-                {
+            for (name, type) in Inner.Classes {
+                if let charset = type.init() as? Charset {
+
                     for alias in charset.aliases {
                         output[alias.lowercased()] = name
                     }
@@ -43,8 +42,7 @@ class StandardCharsets: CharsetProvider
         }()
 
         // Maps canonical names to class names
-        static let Classes: [String: NSObject.Type] =
-        {
+        static let Classes: [String: NSObject.Type] = {
             return [
                 Charset.US_ASCII.Const.Name: Charset.US_ASCII.self,
 
@@ -69,7 +67,4 @@ class StandardCharsets: CharsetProvider
             ]
         }()
     }
-
 }
-
-// ----------------------------------------------------------------------------

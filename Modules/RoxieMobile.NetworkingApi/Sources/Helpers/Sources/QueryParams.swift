@@ -3,17 +3,16 @@
 //  QueryParams.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class QueryParams: ExpressibleByDictionaryLiteral
-{
+open class QueryParams: ExpressibleByDictionaryLiteral {
+
 // MARK: - Construction
 
-    public required init(dictionaryLiteral elements: (String, String)...)
-    {
+    public required init(dictionaryLiteral elements: (String, String)...) {
         for (key, value) in elements {
             add(key, value)
         }
@@ -47,5 +46,3 @@ open class QueryParams: ExpressibleByDictionaryLiteral
 
     public typealias Value = String
 }
-
-// ----------------------------------------------------------------------------

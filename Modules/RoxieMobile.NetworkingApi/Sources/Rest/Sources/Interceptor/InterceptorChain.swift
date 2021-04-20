@@ -3,8 +3,8 @@
 //  InterceptorChain.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2017, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,13 +13,11 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class InterceptorChain
-{
+open class InterceptorChain {
+
 // MARK: - Construction
 
-    init(interceptors: [Interceptor], index: Int, request: URLRequest)
-    {
-        // Init instance variables
+    init(interceptors: [Interceptor], index: Int, request: URLRequest) {
         self.interceptors = interceptors
         self.index = index
         self.request = request
@@ -31,8 +29,8 @@ open class InterceptorChain
 
 // MARK: - Functions
 
-    open func proceed(_ request: URLRequest) throws -> HttpResponse
-    {
+    open func proceed(_ request: URLRequest) throws -> HttpResponse {
+
         guard (self.index < self.interceptors.count) else {
             Roxie.fatalError("Invalid intercepter index in chain.")
         }
@@ -50,7 +48,4 @@ open class InterceptorChain
     fileprivate let interceptors: [Interceptor]
 
     fileprivate let index: Int
-
 }
-
-// ----------------------------------------------------------------------------

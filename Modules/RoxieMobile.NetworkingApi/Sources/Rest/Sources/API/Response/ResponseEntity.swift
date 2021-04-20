@@ -3,8 +3,8 @@
 //  ResponseEntity.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,13 +14,19 @@ import NetworkingApiHttp
 // ----------------------------------------------------------------------------
 
 // FIXME: Should be generic protocol!
-open class ResponseEntity<T>: RequestEntity<T>
-{
+open class ResponseEntity<T>: RequestEntity<T> {
+
 // MARK: - Construction
 
-    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?, status: HttpStatus?, mediaType: MediaType?)
-    {
-        // Init instance variables
+    init(
+        url: URL?,
+        headers: HttpHeaders?,
+        cookies: [HttpCookieProtocol]?,
+        body: T?,
+        status: HttpStatus?,
+        mediaType: MediaType?
+    ) {
+
         self.status = status
         self.mediaType = mediaType
 
@@ -34,5 +40,3 @@ open class ResponseEntity<T>: RequestEntity<T>
 
     public let mediaType: MediaType?
 }
-
-// ----------------------------------------------------------------------------

@@ -3,34 +3,30 @@
 //  CallbackDecorator.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class CallbackDecorator<Ti, To>: Callback<Ti, To>
-{
+open class CallbackDecorator<Ti, To>: Callback<Ti, To> {
+
 // MARK: - Construction
 
     public override init() {
-        // Init instance variables
         self.callback = nil
     }
 
-    public init(callback: Callback<Ti, To>)
-    {
-        // Init instance variables
+    public init(callback: Callback<Ti, To>) {
         self.callback = callback
     }
 
 // MARK: - Functions
 
-    open override func onShouldExecute(_ call: Call<Ti>) -> Bool
-    {
+    open override func onShouldExecute(_ call: Call<Ti>) -> Bool {
+
         guard let callback = self.callback else {
             return true
         }
-
         return callback.onShouldExecute(call)
     }
 
@@ -49,7 +45,4 @@ open class CallbackDecorator<Ti, To>: Callback<Ti, To>
 // MARK: - Variables
 
     fileprivate let callback: Callback<Ti, To>?
-
 }
-
-// ----------------------------------------------------------------------------

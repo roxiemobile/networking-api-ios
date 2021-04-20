@@ -2,9 +2,9 @@
 //
 //  QueryStringPair.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,13 +13,11 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-class QueryStringPair
-{
+class QueryStringPair {
+
 // MARK: - Construction
 
-    init(field: AnyObject?, value: AnyObject?)
-    {
-        // Init instance variables
+    init(field: AnyObject?, value: AnyObject?) {
         self.field = field
         self.value = value
     }
@@ -32,8 +30,7 @@ class QueryStringPair
 
 // MARK: - Functions
 
-    func URLEncodedString() -> String
-    {
+    func URLEncodedString() -> String {
         var result = ""
 
         // Append "key"
@@ -50,5 +47,3 @@ class QueryStringPair
         return result
     }
 }
-
-// ----------------------------------------------------------------------------

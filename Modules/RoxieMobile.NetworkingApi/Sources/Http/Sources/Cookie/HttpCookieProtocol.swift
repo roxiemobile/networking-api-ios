@@ -2,9 +2,9 @@
 //
 //  HttpCookieProtocol.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,12 +14,12 @@ import SwiftCommonsLang
 // ----------------------------------------------------------------------------
 
 @objc
-public protocol HttpCookieProtocol: CustomStringConvertibleObjC
-{
+public protocol HttpCookieProtocol: CustomStringConvertibleObjC {
+
 // MARK: - Properties
 
     /// Returns a dictionary representation of the receiver.
-    var properties: [HTTPCookiePropertyKey : Any]? { get }
+    var properties: [HTTPCookiePropertyKey: Any]? { get }
 
     /// Returns the "Domain" attribute.
     var domain: String { get }
@@ -41,5 +41,3 @@ public protocol HttpCookieProtocol: CustomStringConvertibleObjC
     /// Checks if this cookie matches the given URL.
     func matchesURL(_ url: URL) -> Bool
 }
-
-// ----------------------------------------------------------------------------
