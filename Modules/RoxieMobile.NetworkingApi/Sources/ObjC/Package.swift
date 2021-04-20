@@ -6,21 +6,17 @@ import PackageDescription
 // @link https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html
 
 let package = Package(
-    name: "NetworkingApi",
+    name: "NetworkingApi.ObjC",
     platforms: [
         .iOS(.v12),
     ],
     products: [
         .library(
-            name: "NetworkingApi",
-            type: .static,
-            targets: ["NetworkingApi"]
-        ),
-
-        .library(
             name: "NetworkingApiObjC",
             type: .static,
-            targets: ["NetworkingApiObjC"]
+            targets: [
+                "NetworkingApiObjC",
+            ]
         ),
     ],
     dependencies: [
@@ -31,18 +27,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "NetworkingApi",
-            dependencies: [
-                .target(name: "NetworkingApiObjC"),
-            ]
-        ),
-
-        .target(
             name: "NetworkingApiObjC",
             dependencies: [
                 .byName(name: "Alamofire"),
             ],
-            path: "Modules/RoxieMobile.NetworkingApi/Sources/ObjC/Sources",
+            path: "Sources",
             exclude: [
                 "NetworkingApiObjC.swift",
             ]
