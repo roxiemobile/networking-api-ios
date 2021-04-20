@@ -3,8 +3,8 @@
 //  AbstractValidatableModelConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ import SwiftyJSON
 
 // ----------------------------------------------------------------------------
 
-open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallResultConverter<T>
-{
+open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallResultConverter<T> {
+
 // MARK: - Construction
 
     public override init() {
@@ -48,5 +48,3 @@ open class AbstractValidatableModelConverter<T: ValidatableModel>: AbstractCallR
         return newEntity
     }
 }
-
-// ----------------------------------------------------------------------------

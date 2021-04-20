@@ -3,8 +3,8 @@
 //  StringConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,8 +13,8 @@ import NetworkingApiRest
 
 // ----------------------------------------------------------------------------
 
-open class StringConverter: AbstractCallResultConverter<String>
-{
+open class StringConverter: AbstractCallResultConverter<String> {
+
 // MARK: - Construction
 
     public override init() {
@@ -28,10 +28,12 @@ open class StringConverter: AbstractCallResultConverter<String>
         var newBody: String?
 
         if let body = entity.body, body.isNotEmpty {
+            let charset = entity.headers?.contentType?.charset ?? Inner.DefaultCharset
 
             // Try to parse response body as string
-            if let encoding = EncodingProvider.encodingForCharset(entity.headers?.contentType?.charset ?? Inner.DefaultCharset),
+            if let encoding = EncodingProvider.encodingForCharset(charset),
                let string = String(data: body, encoding: encoding) {
+
                 newBody = string
             }
             else {
@@ -55,8 +57,6 @@ open class StringConverter: AbstractCallResultConverter<String>
     }
 
     private static let SupportedMediaTypes = [
-        MediaType.All
+        MediaType.All,
     ]
 }
-
-// ----------------------------------------------------------------------------

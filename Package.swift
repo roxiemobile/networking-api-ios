@@ -18,6 +18,11 @@ let package = Package(
         ),
 
         .library(
+            name: "NetworkingApiConverters",
+            type: .static,
+            targets: ["NetworkingApiConverters"]
+        ),
+        .library(
             name: "NetworkingApiHelpers",
             type: .static,
             targets: ["NetworkingApiHelpers"]
@@ -57,6 +62,7 @@ let package = Package(
         .target(
             name: "NetworkingApi",
             dependencies: [
+                .target(name: "NetworkingApiConverters"),
                 .target(name: "NetworkingApiHelpers"),
                 .target(name: "NetworkingApiHttp"),
                 .target(name: "NetworkingApiObjC"),
@@ -64,6 +70,13 @@ let package = Package(
             ]
         ),
 
+        .target(
+            name: "NetworkingApiConverters",
+            dependencies: [
+                .target(name: "NetworkingApiRest"),
+            ],
+            path: "Modules/RoxieMobile.NetworkingApi/Sources/Converters/Sources"
+        ),
         .target(
             name: "NetworkingApiHelpers",
             dependencies: [

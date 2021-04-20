@@ -3,8 +3,8 @@
 //  VoidConverter.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,8 +13,8 @@ import NetworkingApiRest
 
 // ----------------------------------------------------------------------------
 
-open class VoidConverter: AbstractCallResultConverter<Void>
-{
+open class VoidConverter: AbstractCallResultConverter<Void> {
+
 // MARK: - Construction
 
     public override init() {
@@ -34,8 +34,6 @@ open class VoidConverter: AbstractCallResultConverter<Void>
 // MARK: - Constants
 
     private static let SupportedMediaTypes = [
-        MediaType.All
+        MediaType.All,
     ]
 }
-
-// ----------------------------------------------------------------------------
