@@ -2,9 +2,9 @@
 //
 //  BasicHttpCookieStore.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class BasicHttpCookieStore: HTTPCookieStorage
-{
+open class BasicHttpCookieStore: HTTPCookieStorage {
+
 // MARK: - Construction
 
     public init(cookies: [AnyObject]?) {
@@ -41,22 +41,24 @@ open class BasicHttpCookieStore: HTTPCookieStorage
         add(cookie)
     }
 
-    open override func setCookies(_ cookies: [HTTPCookie], for URL: URL?, mainDocumentURL: URL?)
-    {
-        if (self.cookieAcceptPolicy == .never) { return }
+    open override func setCookies(_ cookies: [HTTPCookie], for URL: URL?, mainDocumentURL: URL?) {
+
+        if (self.cookieAcceptPolicy == .never) {
+            return
+        }
 
         var changed = false
 
         // Add Cookies to the CookieStore
-        for object in cookies
-        {
+        for object in cookies {
+
             let cookie = object
-            
-            if (self.cookieAcceptPolicy == .onlyFromMainDocumentDomain) && (mainDocumentURL != nil)
-            {
+
+            if (self.cookieAcceptPolicy == .onlyFromMainDocumentDomain) && (mainDocumentURL != nil) {
+
                 let domain = cookie.domain
                 let host = mainDocumentURL!.host
-                
+
                 if (host != nil) && ((domain.hasPrefix(".") && host!.hasSuffix(domain)) || (host! == domain)) {
                     changed = add(cookie, notify: false) || changed
                 }
@@ -80,15 +82,14 @@ open class BasicHttpCookieStore: HTTPCookieStorage
         remove(cookie)
     }
 
-    open override func removeCookies(since date: Date)
-    {
+    open override func removeCookies(since date: Date) {
+
         // NOTE: Shallow copy
         let cookies = self.cookieStore
         var changed = false
 
         // Remove NON expired HTTP cookies only
-        for (_, cookie) in cookies
-        {
+        for (_, cookie) in cookies {
             if !cookie.isExpired(date) {
                 changed = remove(cookie, notify: false) || changed
             }
@@ -112,8 +113,7 @@ open class BasicHttpCookieStore: HTTPCookieStorage
     }
 
     @available(iOS, introduced: 8.0)
-    open override func getCookiesFor(_ task: URLSessionTask, completionHandler: (@escaping ([HTTPCookie]?) -> Void))
-    {
+    open override func getCookiesFor(_ task: URLSessionTask, completionHandler: @escaping ([HTTPCookie]?) -> Void) {
         var result: [HTTPCookie]?
 
         if let url = task.currentRequest?.url {
@@ -125,13 +125,11 @@ open class BasicHttpCookieStore: HTTPCookieStorage
 
 // MARK: - Private Functions
 
-    fileprivate func extractCookies(_ objects: [AnyObject]) -> [String: HttpCookieProtocol]
-    {
+    fileprivate func extractCookies(_ objects: [AnyObject]) -> [String: HttpCookieProtocol] {
         var cookieStore = [String: HttpCookieProtocol]()
 
         // Look up for valid HTTP cookies only
-        for object in objects
-        {
+        for object in objects {
             if let cookie = HTTPCookie(object as? HttpCookieProtocol), !cookie.isExpired() {
                 cookieStore[key(cookie)] = cookie
             }
@@ -141,8 +139,7 @@ open class BasicHttpCookieStore: HTTPCookieStorage
         return cookieStore
     }
 
-    fileprivate func key(_ cookie: HttpCookieProtocol) -> String
-    {
+    fileprivate func key(_ cookie: HttpCookieProtocol) -> String {
         let path = cookie.path
         return (cookie.domain + (":" + path) + ":" + cookie.name)
     }
@@ -150,15 +147,14 @@ open class BasicHttpCookieStore: HTTPCookieStorage
 // MARK: - Variables
 
     fileprivate var cookieStore = [String: HttpCookieProtocol]()
-
 }
 
 // ----------------------------------------------------------------------------
 // MARK: - @protocol HttpCookieStore
 // ----------------------------------------------------------------------------
 
-extension BasicHttpCookieStore
-{
+extension BasicHttpCookieStore {
+
 // MARK: - Functions
 
     /**
@@ -173,13 +169,12 @@ extension BasicHttpCookieStore
      *
      * @returns not expired cookies.
      */
-    public func get(_ url: URL) -> [HttpCookieProtocol]
-    {
+    public func get(_ url: URL) -> [HttpCookieProtocol] {
+
         var cookies = [HttpCookieProtocol]()
 
         // Search for corresponded HTTP cookies only
-        for (_, cookie) in self.cookieStore
-        {
+        for (_, cookie) in self.cookieStore {
             if cookie.matchesURL(url) {
                 cookies.append(cookie)
             }
@@ -203,11 +198,11 @@ extension BasicHttpCookieStore
      *
      * @returns TRUE if any cookies were removed as a result of this call.
      */
-    @discardableResult public func removeAll() -> Bool
-    {
+    @discardableResult public func removeAll() -> Bool {
+
         let result = !self.cookieStore.isEmpty
-        if  result
-        {
+        if (result) {
+
             // Remove all Cookies from CookieStore
             self.cookieStore.removeAll()
 
@@ -224,9 +219,11 @@ extension BasicHttpCookieStore
     /**
      * Saves a HTTP cookie to this store AND posts notification if needed.
      */
-    @discardableResult fileprivate func add(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool
-    {
-        if (self.cookieAcceptPolicy == .never) { return false }
+    @discardableResult fileprivate func add(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool {
+
+        if (self.cookieAcceptPolicy == .never) {
+            return false
+        }
 
         // Add new Cookie to the CookieStore
         self.cookieStore[key(cookie)] = cookie
@@ -245,8 +242,8 @@ extension BasicHttpCookieStore
      *
      * @returns TRUE if the specified cookie is contained in this store and removed successfully.
      */
-    fileprivate func remove(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool
-    {
+    fileprivate func remove(_ cookie: HttpCookieProtocol, notify: Bool) -> Bool {
+
         let changed = (self.cookieStore.removeValue(forKey: key(cookie)) != nil)
 
         // Post notification if needed
@@ -261,13 +258,12 @@ extension BasicHttpCookieStore
     /**
      * Posts notification NSHTTPCookieManagerCookiesChangedNotification.
      */
-    fileprivate func postCookiesChangedNotification()
-    {
+    fileprivate func postCookiesChangedNotification() {
         weak var instance = self
 
         // .. on main thread
-        DispatchQueue.main.sync
-        {
+        DispatchQueue.main.sync {
+
             var notificationCenter: NotificationCenter!
 #if os(iOS)
             notificationCenter = NotificationCenter.default
@@ -280,19 +276,17 @@ extension BasicHttpCookieStore
             notificationCenter.post(name: NSNotification.Name.NSHTTPCookieManagerCookiesChanged, object: instance)
         }
     }
-
 }
 
 // ----------------------------------------------------------------------------
 // MARK: - @protocol Printable, DebugPrintable
 // ----------------------------------------------------------------------------
 
-extension BasicHttpCookieStore // : CustomDebugStringConvertible
-{
+extension BasicHttpCookieStore { // : CustomDebugStringConvertible
+
 // MARK: - Properties
 
-    open override var description: String
-    {
+    open override var description: String {
         var output = ""
 
         for cookie in self.cookieStore.values {
@@ -312,7 +306,4 @@ extension BasicHttpCookieStore // : CustomDebugStringConvertible
     open override var debugDescription: String {
         return self.description
     }
-
 }
-
-// ----------------------------------------------------------------------------

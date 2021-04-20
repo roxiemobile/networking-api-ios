@@ -2,9 +2,9 @@
 //
 //  AbstractAuthenticationRequest.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -13,8 +13,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public final class MimeTypeUtils: NonCreatable
-{
+public final class MimeTypeUtils: NonCreatable {
+
 // MARK: - Functions
 
     /**
@@ -23,10 +23,9 @@ public final class MimeTypeUtils: NonCreatable
      * @return the mime type
      * @throws InvalidMimeTypeException if the string cannot be parsed
      */
-    public class func parseMimeType(_ mimeType: String, error: NSErrorPointer = nil) -> MimeType?
-    {
-        if mimeType.isEmpty
-        {
+    public class func parseMimeType(_ mimeType: String, error: NSErrorPointer = nil) -> MimeType? {
+
+        if mimeType.isEmpty {
             setError(error, failureReason: "'mimeType' must not be empty")
             return nil
         }
@@ -40,33 +39,29 @@ public final class MimeTypeUtils: NonCreatable
         }
 
         let subRange: Range<String.Index>? = fullType.range(of: "/")
-        if (subRange == nil)
-        {
+        if (subRange == nil) {
             setError(error, failureReason: "Does not contain ‘/’")
             return nil
         }
 
-        if (subRange!.upperBound == fullType.endIndex)
-        {
+        if (subRange!.upperBound == fullType.endIndex) {
             setError(error, failureReason: "Does not contain subtype after ‘/’")
             return nil
         }
 
         let type = String(fullType[..<subRange!.lowerBound])
         let subtype = String(fullType[fullType.index(after: subRange!.lowerBound)...])
-        if (type == MimeType.WildcardType) && (subtype != MimeType.WildcardType)
-        {
+        if (type == MimeType.WildcardType) && (subtype != MimeType.WildcardType) {
             setError(error, failureReason: "Wildcard type is legal only in ‘*/*’ (all mime types)")
             return nil
         }
 
         var parameters = [String: String]()
-        if (parts.count > 1)
-        {
-            for parameter in parts
-            {
-                if let eqIndex = parameter.range(of: "=")
-                {
+        if (parts.count > 1) {
+
+            for parameter in parts {
+                if let eqIndex = parameter.range(of: "=") {
+
                     let attribute = String(parameter[..<eqIndex.lowerBound]).trim()
                     let value = String(parameter[parameter.index(after: eqIndex.lowerBound)...]).trim()
                     parameters[attribute] = value
@@ -104,7 +99,7 @@ public final class MimeTypeUtils: NonCreatable
      * @return the string mime types
      */
     public class func toString(mimeTypes: [MimeType]) -> String {
-        return mimeTypes.map{ $0.description }.joined(separator: ", ")
+        return mimeTypes.map { $0.description }.joined(separator: ", ")
     }
 
 //    /**
@@ -128,7 +123,7 @@ public final class MimeTypeUtils: NonCreatable
 //     * <blockquote>audio/basic == text/html</blockquote> <blockquote>audio/basic ==
 //     * audio/wave</blockquote>
 //     * @param mimeTypes the list of mime types to be sorted
-//     * @see <a href="http://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
+//     * @see <a href="https://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics
 //     * and Content, section 5.3.2</a>
 //     */
 //    public static void sortBySpecificity(List<MimeType> mimeTypes) {
@@ -146,7 +141,11 @@ public final class MimeTypeUtils: NonCreatable
 // MARK: - Private Functions
 
     fileprivate class func setError(_ error: NSErrorPointer, failureReason: String, errorCode: Int = -1) {
-        error?.pointee = NSError(domain: "InvalidMimeTypeError", code: errorCode, userInfo: [NSLocalizedDescriptionKey: failureReason])
+        error?.pointee = NSError(
+            domain: "InvalidMimeTypeError",
+            code: errorCode,
+            userInfo: [NSLocalizedDescriptionKey: failureReason]
+        )
     }
 
 // MARK: - Inner Types
@@ -206,7 +205,4 @@ public final class MimeTypeUtils: NonCreatable
     /// Public constant media type for {@code text/xml}.
     public static let TextXml = MimeType.valueOf(TextXmlValue)!
     public static let TextXmlValue = "text/xml"
-
 }
-
-// ----------------------------------------------------------------------------

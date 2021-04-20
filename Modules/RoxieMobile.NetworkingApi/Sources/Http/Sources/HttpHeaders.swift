@@ -2,18 +2,20 @@
 //
 //  HttpHeaders.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
+// ----------------------------------------------------------------------------
+// swiftlint:disable file_length
 // ----------------------------------------------------------------------------
 
 import Foundation
 
 // ----------------------------------------------------------------------------
 
-public struct HttpHeaders
-{
+public struct HttpHeaders {
+
 // MARK: - Construction
 
     /// Constructs a new, empty instance of the {@code HttpHeaders} object.
@@ -22,9 +24,7 @@ public struct HttpHeaders
     }
 
     /// Constructor that can create read-only {@code HttpHeader} instances.
-    public init(_ headers: [String: String])
-    {
-        // Init instance variables
+    public init(_ headers: [String: String]) {
         self.headers = headers
     }
 
@@ -36,8 +36,7 @@ public struct HttpHeaders
 
 // MARK: - Constants
 
-    public struct Header
-    {
+    public struct Header {
         public static let Accept = "Accept"
         public static let AcceptCharset = "Accept-Charset"
         public static let Allow = "Allow"
@@ -60,13 +59,12 @@ public struct HttpHeaders
 // MARK: - Variables
 
     fileprivate var headers: [String: String]
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension HttpHeaders
-{
+extension HttpHeaders {
+
 // MARK: - Functions
 
     // Single string methods
@@ -123,13 +121,12 @@ extension HttpHeaders
 //        }
 //        return singleValueMap;
 //    }
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension HttpHeaders
-{
+extension HttpHeaders {
+
 // MARK: - Functions
 
     // Map implementation
@@ -162,8 +159,8 @@ extension HttpHeaders
         set(name, value: nil)
     }
 
-    public mutating func putAll(_ m: [String: String]) {
-        for (name, value) in m {
+    public mutating func putAll(_ map: [String: String]) {
+        for (name, value) in map {
             set(name, value: value)
         }
     }
@@ -205,24 +202,15 @@ extension HttpHeaders
 //    public String toString() {
 //        return this.headers.toString();
 //    }
-
 }
 
 // ----------------------------------------------------------------------------
 
-extension HttpHeaders
-{
+extension HttpHeaders {
+
 // MARK: - Properties
 
-    public var accept: [MediaType]
-    {
-        /**
-         * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
-         * @param acceptableMediaTypes the acceptable media types
-         */
-        set {
-            set(Header.Accept, value: MediaType.toString(mediaTypes: newValue))
-        }
+    public var accept: [MediaType] {
 
         /**
          * Return the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
@@ -232,6 +220,14 @@ extension HttpHeaders
         get {
             let value = get(Header.Accept)
             return (value != nil) ? MediaType.parseMediaTypes(value!) : []
+        }
+
+        /**
+         * Set the list of acceptable {@linkplain MediaType media types}, as specified by the {@code Accept} header.
+         * @param acceptableMediaTypes the acceptable media types
+         */
+        set {
+            set(Header.Accept, value: MediaType.toString(mediaTypes: newValue))
         }
     }
 
@@ -372,23 +368,7 @@ extension HttpHeaders
 //        return (value != null ? Long.parseLong(value) : -1);
 //    }
 
-    public var contentType: MediaType?
-    {
-        /**
-         * Set the {@linkplain MediaType media type} of the body, as specified by the {@code Content-Type} header.
-         * @param mediaType the media type
-         */
-        set {
-            if let mediaType = newValue
-            {
-                assert(mediaType.isWildcardType(), "‘Content-Type’ cannot contain wildcard type ‘*’")
-                assert(mediaType.isWildcardSubtype(), "‘Content-Type’ cannot contain wildcard subtype ‘*’")
-                set(Header.ContentType, value: mediaType.description)
-            }
-            else {
-                set(Header.ContentType, value: nil)
-            }
-        }
+    public var contentType: MediaType? {
 
         /**
          * Return the {@linkplain MediaType media type} of the body, as specified by the {@code Content-Type} header.
@@ -398,6 +378,21 @@ extension HttpHeaders
         get {
             let value = get(Header.ContentType)
             return (value != nil) ? MediaType.parseMediaType(value!) : nil
+        }
+
+        /**
+         * Set the {@linkplain MediaType media type} of the body, as specified by the {@code Content-Type} header.
+         * @param mediaType the media type
+         */
+        set {
+            if let mediaType = newValue {
+                assert(mediaType.isWildcardType(), "‘Content-Type’ cannot contain wildcard type ‘*’")
+                assert(mediaType.isWildcardSubtype(), "‘Content-Type’ cannot contain wildcard subtype ‘*’")
+                set(Header.ContentType, value: mediaType.description)
+            }
+            else {
+                set(Header.ContentType, value: nil)
+            }
         }
     }
 
@@ -412,7 +407,8 @@ extension HttpHeaders
 
 //    /**
 //     * Returns the date and time at which the message was created, as specified by the {@code Date} header.
-//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT. Returns -1 when the date is unknown.
+//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT.
+//     *    Returns -1 when the date is unknown.
 //     * @return the creation date/time
 //     * @throws IllegalArgumentException if the value can't be converted to a date
 //     */
@@ -426,8 +422,10 @@ extension HttpHeaders
 //     */
 //    public void setETag(String eTag) {
 //        if (eTag != null) {
-//            Assert.isTrue(eTag.startsWith("\"") || eTag.startsWith("W/"), "Invalid eTag, does not start with W/ or \"");
-//            Assert.isTrue(eTag.endsWith("\""), "Invalid eTag, does not end with \"");
+//            Assert.isTrue(eTag.startsWith("\"") || eTag.startsWith("W/"),
+//                "Invalid eTag, does not start with W/ or \"");
+//            Assert.isTrue(eTag.endsWith("\""),
+//                "Invalid eTag, does not end with \"");
 //        }
 //        set(ETAG, eTag);
 //    }
@@ -451,7 +449,8 @@ extension HttpHeaders
 
 //    /**
 //     * Returns the date and time at which the message is no longer valid, as specified by the {@code Expires} header.
-//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT. Returns -1 when the date is unknown.
+//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT.
+//     *    Returns -1 when the date is unknown.
 //     * @return the expires value
 //     */
 //    public long getExpires() {
@@ -469,7 +468,8 @@ extension HttpHeaders
 
 //    /**
 //     * Returns the value of the {@code IfModifiedSince} header.
-//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT. Returns -1 when the date is unknown.
+//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT.
+//     *    Returns -1 when the date is unknown.
 //     * @return the header value
 //     */
 //    public long getIfNotModifiedSince() {
@@ -528,7 +528,8 @@ extension HttpHeaders
 
 //    /**
 //     * Returns the time the resource was last changed, as specified by the {@code Last-Modified} header.
-//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT. Returns -1 when the date is unknown.
+//     * <p>The date is returned as the number of milliseconds since January 1, 1970 GMT.
+//     *    Returns -1 when the date is unknown.
 //     * @return the last modified date
 //     */
 //    public long getLastModified() {
@@ -605,7 +606,4 @@ extension HttpHeaders
 //    };
 
 //    private static TimeZone GMT = TimeZone.getTimeZone("GMT");
-
 }
-
-// ----------------------------------------------------------------------------

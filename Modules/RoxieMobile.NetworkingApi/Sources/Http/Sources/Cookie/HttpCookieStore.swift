@@ -2,9 +2,9 @@
 //
 //  HttpCookieStore.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import Foundation
 
 // ----------------------------------------------------------------------------
 
-public protocol HttpCookieStore
-{
+public protocol HttpCookieStore {
+
 // MARK: - Properties
 
     /// Get all cookies in cookie store which are not expired.
@@ -29,7 +29,4 @@ public protocol HttpCookieStore
 
     /// Remove the specified cookie from the store.
     func deleteCookie(_ cookie: HTTPCookie)
-
 }
-
-// ----------------------------------------------------------------------------

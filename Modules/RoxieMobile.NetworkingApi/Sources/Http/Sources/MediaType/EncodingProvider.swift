@@ -2,9 +2,9 @@
 //
 //  EncodingProvider.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,8 +12,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class EncodingProvider: NonCreatable
-{
+open class EncodingProvider: NonCreatable {
+
 // MARK: - Functions
 
     /**
@@ -45,12 +45,13 @@ open class EncodingProvider: NonCreatable
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    open class func encodingForCharsetName(_ charsetName: String) -> String.Encoding?
-    {
+    open class func encodingForCharsetName(_ charsetName: String) -> String.Encoding? {
+        // swiftlint:disable:previous cyclomatic_complexity
+
         var encoding: String.Encoding?
 
-        switch (charsetName.lowercased())
-        {
+        switch (charsetName.lowercased()) {
+
             case Charset.US_ASCII.Const.Name:
                 encoding = String.Encoding.ascii
 
@@ -95,5 +96,3 @@ open class EncodingProvider: NonCreatable
         return encoding
     }
 }
-
-// ----------------------------------------------------------------------------

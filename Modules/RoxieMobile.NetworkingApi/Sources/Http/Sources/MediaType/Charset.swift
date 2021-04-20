@@ -2,10 +2,12 @@
 //
 //  Charset.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
+// ----------------------------------------------------------------------------
+// swiftlint:disable file_length
 // ----------------------------------------------------------------------------
 
 import Foundation
@@ -13,8 +15,8 @@ import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-open class Charset: NSObject
-{
+open class Charset: NSObject {
+
 // MARK: - Construction
 
     /**
@@ -29,9 +31,7 @@ open class Charset: NSObject
      * @throws FatalError
      *         If the canonical name or any of the aliases are illegal
      */
-    fileprivate init(canonicalName: String, aliases: [String]?)
-    {
-        // Init instance variables
+    fileprivate init(canonicalName: String, aliases: [String]?) {
         self.name = canonicalName
         self.aliases = (aliases ?? [])
 
@@ -82,8 +82,8 @@ open class Charset: NSObject
      * @throws  FatalError
      *          If no support for the named charset is available
      */
-    @discardableResult open class func forName(_ charsetName: String) -> Charset
-    {
+    @discardableResult open class func forName(_ charsetName: String) -> Charset {
+
         if let charset = lookup(charsetName) {
             return charset
         }
@@ -107,17 +107,17 @@ open class Charset: NSObject
      * @throws  FatalError
      *          If the given name is not a legal charset name
      */
-    fileprivate func checkName(_ name: String)
-    {
+    fileprivate func checkName(_ name: String) {
+
         if name.isEmpty {
             Roxie.fatalError("Illegal charset name.")
         }
 
         var idx = 0
-        for ch in name
-        {
-            let str =  String(ch).unicodeScalars
-            let ucs =  str[str.startIndex].value
+        for ch in name {
+
+            let str = String(ch).unicodeScalars
+            let ucs = str[str.startIndex].value
 
             if (ucs >= UnicodeScalar("A").value && ucs <= UnicodeScalar("Z").value) { idx += 1; continue; }
             if (ucs >= UnicodeScalar("a").value && ucs <= UnicodeScalar("z").value) { idx += 1; continue; }
@@ -137,15 +137,14 @@ open class Charset: NSObject
     fileprivate struct Inner {
         static let StandardProvider = StandardCharsets()
     }
-
 }
 
 // ----------------------------------------------------------------------------
 // MARK: - @protocol Equatable, Printable, DebugPrintable
 // ----------------------------------------------------------------------------
 
-extension Charset // : CustomDebugStringConvertible
-{
+extension Charset { // : CustomDebugStringConvertible
+
 // MARK: - Properties
 
     open override var description: String {
@@ -155,7 +154,6 @@ extension Charset // : CustomDebugStringConvertible
     open override var debugDescription: String {
         return self.name
     }
-
 }
 
 public func == (lhs: Charset, rhs: Charset) -> Bool {
@@ -166,16 +164,16 @@ public func == (lhs: Charset, rhs: Charset) -> Bool {
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class US_ASCII: Charset
-    {
+extension Charset {
+
+    class US_ASCII: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "us-ascii"
 
@@ -204,16 +202,16 @@ extension Charset
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class ISO_8859_1: Charset
-    {
+extension Charset {
+
+    class ISO_8859_1: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "iso-8859-1"
 
@@ -237,14 +235,14 @@ extension Charset
         }
     }
 
-    class ISO_8859_2: Charset
-    {
+    class ISO_8859_2: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "iso-8859-2"
 
@@ -272,16 +270,16 @@ extension Charset
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class UTF_8: Charset
-    {
+extension Charset {
+
+    class UTF_8: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-8"
 
@@ -298,16 +296,16 @@ extension Charset
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class UTF_16: Charset
-    {
+extension Charset {
+
+    class UTF_16: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-16"
 
@@ -321,14 +319,14 @@ extension Charset
         }
     }
 
-    class UTF_16BE: Charset
-    {
+    class UTF_16BE: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-16be"
 
@@ -342,14 +340,14 @@ extension Charset
         }
     }
 
-    class UTF_16LE: Charset
-    {
+    class UTF_16LE: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-16le"
 
@@ -367,16 +365,16 @@ extension Charset
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class UTF_32: Charset
-    {
+extension Charset {
+
+    class UTF_32: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-32"
 
@@ -388,14 +386,14 @@ extension Charset
         }
     }
 
-    class UTF_32BE: Charset
-    {
+    class UTF_32BE: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-32be"
 
@@ -407,14 +405,14 @@ extension Charset
         }
     }
 
-    class UTF_32LE: Charset
-    {
+    class UTF_32LE: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "utf-32le"
 
@@ -425,23 +423,22 @@ extension Charset
             ]
         }
     }
-
 }
 
 // ----------------------------------------------------------------------------
 // MARK: -
 // ----------------------------------------------------------------------------
 
-extension Charset
-{
-    class WINDOWS_1250: Charset
-    {
+extension Charset {
+
+    class WINDOWS_1250: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "windows-1250"
 
@@ -453,14 +450,14 @@ extension Charset
         }
     }
 
-    class WINDOWS_1251: Charset
-    {
+    class WINDOWS_1251: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "windows-1251"
 
@@ -473,14 +470,14 @@ extension Charset
         }
     }
 
-    class WINDOWS_1252: Charset
-    {
+    class WINDOWS_1252: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "windows-1252"
 
@@ -492,14 +489,14 @@ extension Charset
         }
     }
 
-    class WINDOWS_1253: Charset
-    {
+    class WINDOWS_1253: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "windows-1253"
 
@@ -511,14 +508,14 @@ extension Charset
         }
     }
 
-    class WINDOWS_1254: Charset
-    {
+    class WINDOWS_1254: Charset {
+
         @objc init() {
             super.init(canonicalName: Const.Name, aliases: Const.Aliases)
         }
 
-        struct Const
-        {
+        struct Const {
+
             // Canonical name
             static let Name = "windows-1254"
 
@@ -530,5 +527,3 @@ extension Charset
         }
     }
 }
-
-// ----------------------------------------------------------------------------

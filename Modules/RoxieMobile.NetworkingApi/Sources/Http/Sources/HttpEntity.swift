@@ -2,14 +2,14 @@
 //
 //  HttpEntity.swift
 //
-//  @author     Alexander Bragin <alexander.bragin@gmail.com>
-//  @copyright  Copyright (c) 2015, MediariuM Ltd. All rights reserved.
-//  @link       http://www.mediarium.com/
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
-open class HttpEntity<T>
-{
+open class HttpEntity<T> {
+
 // MARK: - Construction
 
     /// Create a new, empty {@code HttpEntity}.
@@ -38,9 +38,7 @@ open class HttpEntity<T>
      * @param body the entity body
      * @param headers the entity headers
      */
-    public init(body: T?, headers: [String: String]?)
-    {
-        // Init instance variables
+    public init(body: T?, headers: [String: String]?) {
         self.headers = HttpHeaders(headers ?? [String: String]())
         self.body = body
     }
@@ -59,7 +57,4 @@ open class HttpEntity<T>
     open func hasBody() -> Bool {
         return (self.body != nil)
     }
-
 }
-
-// ----------------------------------------------------------------------------

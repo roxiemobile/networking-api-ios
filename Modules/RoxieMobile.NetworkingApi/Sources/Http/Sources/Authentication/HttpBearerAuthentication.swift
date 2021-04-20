@@ -3,8 +3,8 @@
 //  HttpBearerAuthentication.swift
 //
 //  @author     Denis Kolyasev <KolyasevDA@ekassir.com>
-//  @copyright  Copyright (c) 2016, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
@@ -12,14 +12,14 @@ import SwiftCommonsDiagnostics
 
 // ----------------------------------------------------------------------------
 
-open class HttpBearerAuthentication: HttpAuthentication
-{
+open class HttpBearerAuthentication: HttpAuthentication {
+
 // MARK: - Construction
 
-    public init(token: String)
-    {
+    public init(token: String) {
+
         // Validate params
-        Guard.notEmpty(token, "Token is empty")
+        Guard.notEmpty(token, "token is empty")
 
         // Init instance variables
         self.token = token
@@ -34,7 +34,4 @@ open class HttpBearerAuthentication: HttpAuthentication
 // MARK: - Variables
 
     fileprivate let token: String
-
 }
-
-// ----------------------------------------------------------------------------

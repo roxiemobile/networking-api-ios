@@ -3,17 +3,19 @@
 //  MimeType.swift
 //
 //  @author     Irina Zavilkina <ZavilkinaIB@ekassir.com>
-//  @copyright  Copyright (c) 2015, eKassir Ltd. All rights reserved.
-//  @link       http://www.ekassir.com/
+//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @link       https://www.roxiemobile.com/
 //
+// ----------------------------------------------------------------------------
+// swiftlint:disable file_length
 // ----------------------------------------------------------------------------
 
 import Foundation
 
 // ----------------------------------------------------------------------------
 
-open class MimeType
-{
+open class MimeType {
+
 // MARK: - Construction
 
     /**
@@ -66,15 +68,17 @@ open class MimeType
      * @param parameters the parameters, may be {@code null}
      * @throws IllegalArgumentException if any of the parameters contain illegal characters
      */
-    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer = nil)
-    {
-        // Init instance variables
+    public init?(type: String, subtype: String, params: [String: String]?, error: NSErrorPointer = nil) {
         self.type = type.lowercased()
         self.subtype = subtype.lowercased()
         self.parameters = [String: String]()
 
         // Validate incoming params
-        if (type.count < 1) || !checkToken(type, error: error) || (subtype.count < 1) || !checkToken(subtype, error: error) {
+        if (type.count < 1)
+               || !checkToken(type, error: error)
+               || (subtype.count < 1)
+               || !checkToken(subtype, error: error) {
+
             return nil
         }
 
@@ -94,15 +98,13 @@ open class MimeType
      * Return the character set, as indicated by a {@code charset} parameter, if any.
      * @return the character set; or {@code null} if not available
      */
-    open var charset: Charset?
-    {
-        var charset: Charset?
+    open var charset: Charset? {
 
-        if let charsetName = parameter(name: MimeType.ParamCharset) {
-            charset = Charset.forName(unquote(charsetName))
+        guard let charsetName = parameter(name: MimeType.ParamCharset) else {
+            return nil
         }
 
-        return charset
+        return Charset.forName(unquote(charsetName))
     }
 
     /**
@@ -117,17 +119,19 @@ open class MimeType
      * Checks the given token string for illegal characters, as defined in RFC 2616,
      * section 2.2.
      * @throws IllegalArgumentException in case of illegal characters
-     * @see <a href="http://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
+     * @see <a href="https://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
      */
-    fileprivate func checkToken(_ token: String, error: NSErrorPointer = nil) -> Bool
-    {
+    fileprivate func checkToken(_ token: String, error: NSErrorPointer = nil) -> Bool {
         var result = true
 
-        for ch in token
-        {
-            if !Inner.Token.contains(ch)
-            {
-                error?.pointee = NSError(domain: "IllegalArgumentException", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."])
+        for ch in token {
+            if !Inner.Token.contains(ch) {
+
+                error?.pointee = NSError(
+                    domain: "IllegalArgumentException",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Invalid token character ‘\(ch)’ in token ‘\(token)’."]
+                )
 
                 result = false
                 break
@@ -138,14 +142,11 @@ open class MimeType
         return result
     }
 
-    fileprivate func checkParameters(_ params: [String: String]?) -> [String: String]
-    {
+    fileprivate func checkParameters(_ params: [String: String]?) -> [String: String] {
         var parameters = [String: String]()
 
-        if let params = params
-        {
-            for (attribute, value) in params
-            {
+        if let params = params {
+            for (attribute, value) in params {
                 if checkParameters(attribute, value) {
                     parameters[attribute] = value
                 }
@@ -155,19 +156,16 @@ open class MimeType
         return parameters
     }
 
-    func checkParameters(_ attribute: String, _ value: String) -> Bool
-    {
+    func checkParameters(_ attribute: String, _ value: String) -> Bool {
         var result = false
 
-        if !attribute.isEmpty && !value.isEmpty && checkToken(attribute, error: nil)
-        {
-            if (attribute == MimeType.ParamCharset)
-            {
+        if !attribute.isEmpty && !value.isEmpty && checkToken(attribute, error: nil) {
+
+            if (attribute == MimeType.ParamCharset) {
                 Charset.forName(unquote(value))
                 result = true
             }
-            else
-            if !isQuotedString(value) {
+            else if !isQuotedString(value) {
                 result = checkToken(value, error: nil)
             }
         }
@@ -176,8 +174,7 @@ open class MimeType
         return result
     }
 
-    fileprivate func isQuotedString(_ str: String) -> Bool
-    {
+    fileprivate func isQuotedString(_ str: String) -> Bool {
         if (str.count < 2) {
             return false
         }
@@ -187,7 +184,7 @@ open class MimeType
     }
 
     func unquote(_ str: String) -> String {
-        return isQuotedString(str) ? str.substring(with: 1..<(str.count - 1)) : str
+        return isQuotedString(str) ? str.substring(with: 1 ..< (str.count - 1)) : str
     }
 
     /**
@@ -260,7 +257,9 @@ open class MimeType
 //                        String thisSubtypeNoSuffix = getSubtype().substring(0, thisPlusIdx);
 //                        String thisSubtypeSuffix = getSubtype().substring(thisPlusIdx + 1);
 //                        String otherSubtypeSuffix = other.getSubtype().substring(otherPlusIdx + 1);
-//                        if (thisSubtypeSuffix.equals(otherSubtypeSuffix) && WILDCARD_TYPE.equals(thisSubtypeNoSuffix)) {
+//                        if (thisSubtypeSuffix.equals(otherSubtypeSuffix)
+//                                && WILDCARD_TYPE.equals(thisSubtypeNoSuffix)) {
+//
 //                            return true;
 //                        }
 //                    }
@@ -279,37 +278,41 @@ open class MimeType
      * @return {@code true} if this media type is compatible with the given media type;
      * {@code false} otherwise
      */
-    public func isCompatibleWith(_ other: MimeType) -> Bool
-    {
+    public func isCompatibleWith(_ other: MimeType) -> Bool {
+
         if isWildcardType() || other.isWildcardType() {
             return true
         }
-        else
-        if (self.type == other.type)
-        {
+        else if (self.type == other.type) {
+
             if (self.subtype == other.subtype) {
                 return true
             }
 
             // Wildcard with suffix? e.g. application/_*+xml
-            if isWildcardSubtype() || other.isWildcardSubtype()
-            {
+            if isWildcardSubtype() || other.isWildcardSubtype() {
+
                 let selfPlusRange = self.subtype.range(of: "+")
                 let otherPlusRange = other.subtype.range(of: "+")
 
                 if (selfPlusRange == nil && otherPlusRange == nil) {
                     return true
                 }
-                else
-                if (selfPlusRange != nil && otherPlusRange != nil)
-                {
-                    let selfSubtypeNoSuffix  = String(self.subtype[..<selfPlusRange!.lowerBound])
-                    let otherSubtypeNoSuffix = String(other.subtype[..<otherPlusRange!.lowerBound])
+                else if (selfPlusRange != nil && otherPlusRange != nil) {
 
-                    let selfSubtypeSuffix  = String(self.subtype[self.subtype.index(after: selfPlusRange!.lowerBound)...])
-                    let otherSubtypeSuffix = String(other.subtype[other.subtype.index(after: otherPlusRange!.lowerBound)...])
+                    let selfSubtypeNoSuffix =
+                        String(self.subtype[..<selfPlusRange!.lowerBound])
+                    let otherSubtypeNoSuffix =
+                        String(other.subtype[..<otherPlusRange!.lowerBound])
 
-                    if (selfSubtypeSuffix == otherSubtypeSuffix) && (selfSubtypeNoSuffix == MimeType.WildcardType || otherSubtypeNoSuffix == MimeType.WildcardType) {
+                    let selfSubtypeSuffix =
+                        String(self.subtype[self.subtype.index(after: selfPlusRange!.lowerBound)...])
+                    let otherSubtypeSuffix =
+                        String(other.subtype[other.subtype.index(after: otherPlusRange!.lowerBound)...])
+
+                    if (selfSubtypeSuffix == otherSubtypeSuffix) &&
+                           (selfSubtypeNoSuffix == MimeType.WildcardType
+                               || otherSubtypeNoSuffix == MimeType.WildcardType) {
                         return true
                     }
                 }
@@ -428,21 +431,22 @@ open class MimeType
 //        protected int compareParameters(T mimeType1, T mimeType2) {
 //            int paramsSize1 = mimeType1.getParameters().size();
 //            int paramsSize2 = mimeType2.getParameters().size();
-//            return (paramsSize2 < paramsSize1 ? -1 : (paramsSize2 == paramsSize1 ? 0 : 1)); // audio/basic;level=1 < audio/basic
+//            return (paramsSize2 < paramsSize1
+//                    ? -1 : (paramsSize2 == paramsSize1 ? 0 : 1)); // audio/basic;level=1 < audio/basic
 //        }
 //    }
 
 // MARK: - Private Functions
 
-    fileprivate static func initToken() -> Set<Character>
-    {
+    fileprivate static func initToken() -> Set<Character> {
         var tokens = Set<Character>()
-        for idx in 0...128 {
+
+        for idx in 0 ... 128 {
             tokens.insert(Character(UnicodeScalar(idx)!))
         }
 
         // NOTE: Variable names refer to RFC 2616, section 2.2
-        for idx in 0...31 {
+        for idx in 0 ... 31 {
             tokens.remove(Character(UnicodeScalar(idx)!))
         }
 
@@ -480,15 +484,14 @@ open class MimeType
     public static let WildcardType = "*"
 
     public static let ParamCharset = "charset"
-
 }
 
 // ----------------------------------------------------------------------------
 // MARK: - @protocol Printable, DebugPrintable
 // ----------------------------------------------------------------------------
 
-extension MimeType: CustomStringConvertible, CustomDebugStringConvertible
-{
+extension MimeType: CustomStringConvertible, CustomDebugStringConvertible {
+
 // MARK: - Properties
 
     public var description: String {
@@ -501,8 +504,7 @@ extension MimeType: CustomStringConvertible, CustomDebugStringConvertible
 
 // MARK: - Private Functions
 
-    fileprivate func description(_ params: [String: String]) -> String
-    {
+    fileprivate func description(_ params: [String: String]) -> String {
         var result = ""
 
         for (key, value) in params {
@@ -511,7 +513,4 @@ extension MimeType: CustomStringConvertible, CustomDebugStringConvertible
 
         return result
     }
-
 }
-
-// ----------------------------------------------------------------------------
