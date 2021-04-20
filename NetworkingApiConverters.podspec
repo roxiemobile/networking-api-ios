@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   s.name                  = 'NetworkingApiConverters'
   s.summary               = 'A collection of useful converters for the asynchronous REST API client.'
-  s.version               = '1.5.0'
+  s.version               = '1.6.0'
 
   s.platform              = :ios
   s.ios.deployment_target = '12.0'
