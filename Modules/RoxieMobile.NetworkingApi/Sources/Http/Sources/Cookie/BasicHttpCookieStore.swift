@@ -261,8 +261,11 @@ extension BasicHttpCookieStore {
     fileprivate func postCookiesChangedNotification() {
         weak var instance = self
 
+        // DispatchQueue.main.sync returning exc_bad_instruction Swift 3
+        // @link https://stackoverflow.com/q/40154653/
+
         // .. on main thread
-        DispatchQueue.main.sync {
+        mainSync {
 
             var notificationCenter: NotificationCenter!
 #if os(iOS)
@@ -275,6 +278,12 @@ extension BasicHttpCookieStore {
             // Post notification
             notificationCenter.post(name: NSNotification.Name.NSHTTPCookieManagerCookiesChanged, object: instance)
         }
+    }
+
+    private func mainSync(execute block: () -> Void) {
+        Thread.isMainThread
+            ? block()
+            : DispatchQueue.main.sync(execute: block)
     }
 }
 
