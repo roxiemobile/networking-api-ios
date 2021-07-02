@@ -165,6 +165,23 @@ extension BasicHttpCookieStore {
     }
 
     /**
+     * Adds all of the HTTP cookies to this store.
+     */
+    public func addAll(_ cookies: [HttpCookieProtocol]) {
+        var changed = false
+
+        // Add HTTP cookies to the CookieStore
+        for cookie in cookies {
+            changed = add(cookie, notify: false) || changed
+        }
+
+        // Post notification if needed
+        if changed {
+            postCookiesChangedNotification()
+        }
+    }
+
+    /**
      * Retrieves cookies that match the specified URI.
      *
      * @returns not expired cookies.
