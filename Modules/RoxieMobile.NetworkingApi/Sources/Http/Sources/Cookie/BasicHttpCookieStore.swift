@@ -165,6 +165,23 @@ extension BasicHttpCookieStore {
     }
 
     /**
+     * Adds all of the HTTP cookies to this store.
+     */
+    public func addAll(_ cookies: [HttpCookieProtocol]) {
+        var changed = false
+
+        // Add HTTP cookies to the CookieStore
+        for cookie in cookies {
+            changed = add(cookie, notify: false) || changed
+        }
+
+        // Post notification if needed
+        if changed {
+            postCookiesChangedNotification()
+        }
+    }
+
+    /**
      * Retrieves cookies that match the specified URI.
      *
      * @returns not expired cookies.
@@ -261,8 +278,11 @@ extension BasicHttpCookieStore {
     fileprivate func postCookiesChangedNotification() {
         weak var instance = self
 
+        // DispatchQueue.main.sync returning exc_bad_instruction Swift 3
+        // @link https://stackoverflow.com/q/40154653/
+
         // .. on main thread
-        DispatchQueue.main.sync {
+        mainSync {
 
             var notificationCenter: NotificationCenter!
 #if os(iOS)
@@ -275,6 +295,12 @@ extension BasicHttpCookieStore {
             // Post notification
             notificationCenter.post(name: NSNotification.Name.NSHTTPCookieManagerCookiesChanged, object: instance)
         }
+    }
+
+    private func mainSync(execute block: () -> Void) {
+        Thread.isMainThread
+            ? block()
+            : DispatchQueue.main.sync(execute: block)
     }
 }
 
