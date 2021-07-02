@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   s.name                  = 'NetworkingApiHelpers'
   s.summary               = 'A collection of utility classes used by other modules of this library.'
-  s.version               = '1.6.0'
+  s.version               = '1.6.1'
 
   s.platform              = :ios
   s.ios.deployment_target = '12.0'
