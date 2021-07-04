@@ -41,3 +41,7 @@ public protocol HttpCookieProtocol: CustomStringConvertibleObjC {
     /// Checks if this cookie matches the given URL.
     func matchesURL(_ url: URL) -> Bool
 }
+
+// ----------------------------------------------------------------------------
+
+public typealias HttpCookie = HttpCookieProtocol
