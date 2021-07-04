@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   s.name                  = 'NetworkingApiRest'
   s.summary               = 'An asynchronous REST API client that makes an access to a RESTful Web Services easier.'
-  s.version               = '1.6.1'
+  s.version               = '1.6.2'
 
   s.platform              = :ios
   s.ios.deployment_target = '12.0'
