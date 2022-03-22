@@ -27,7 +27,6 @@
 		199EAD701FCF2AF00073001B /* HTTPCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD6E1FCF2AF00073001B /* HTTPCookie.swift */; };
 		199EAD711FCF2AF00073001B /* HTTPCookieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD6F1FCF2AF00073001B /* HTTPCookieStorage.swift */; };
 		19C434EB1FCC9E2900984A2D /* NetworkingApiHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C434EA1FCC9E2900984A2D /* NetworkingApiHttp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19C6D9B1268FA31F006CC0A9 /* HttpCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C6D9B0268FA31D006CC0A9 /* HttpCookie.swift */; };
 		E1BA0B134807180A0FE3955E /* Pods_NetworkingApi_Http.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0336180E686B5EF1BC7EF6CF /* Pods_NetworkingApi_Http.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,6 @@
 		199EAD6E1FCF2AF00073001B /* HTTPCookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookie.swift; sourceTree = "<group>"; };
 		199EAD6F1FCF2AF00073001B /* HTTPCookieStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookieStorage.swift; sourceTree = "<group>"; };
 		19C434EA1FCC9E2900984A2D /* NetworkingApiHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingApiHttp.h; sourceTree = "<group>"; };
-		19C6D9B0268FA31D006CC0A9 /* HttpCookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCookie.swift; sourceTree = "<group>"; };
 		F244CC37B783974FAE91DC53 /* Pods-NetworkingApi.Http.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Http.release.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Http/Pods-NetworkingApi.Http.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				199EACE41FCF23FC0073001B /* BasicHttpCookieStore.swift */,
-				19C6D9B0268FA31D006CC0A9 /* HttpCookie.swift */,
 				199EACE51FCF23FC0073001B /* HttpCookieProtocol.swift */,
 				199EACE61FCF23FC0073001B /* HttpCookieStore.swift */,
 			);
@@ -307,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				199EACFE1FCF23FC0073001B /* MediaType.swift in Sources */,
-				19C6D9B1268FA31F006CC0A9 /* HttpCookie.swift in Sources */,
 				199EACFA1FCF23FC0073001B /* HttpStatus.swift in Sources */,
 				199EACF41FCF23FC0073001B /* HttpEntity.swift in Sources */,
 				199EACFF1FCF23FC0073001B /* MimeType.swift in Sources */,
