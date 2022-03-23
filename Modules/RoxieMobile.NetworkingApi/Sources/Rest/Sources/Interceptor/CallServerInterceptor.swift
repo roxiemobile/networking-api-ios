@@ -54,42 +54,31 @@ class CallServerInterceptor: Interceptor {
         // How to use Alamofire with custom headers
         // @link https://stackoverflow.com/a/26055667
 
-        // Create manager
-        let manager = SessionManager(configuration: config)
-        manager.startRequestsImmediately = false
+        // taskWillPerformHTTPRedirection never called in Alamofire 5
+        // @link https://stackoverflow.com/a/60822110
 
-        // Create suspended request
-        let request = manager.request(urlRequest)
+        // Create redirector
+        let redirector = Redirector(behavior: .modify { _, request, response in
+            var mutableRequest = request
 
-        if let sessionDelegate = request.session.delegate as? SessionDelegate {
+            // iOS 8.1 uses "Content-Type" header from original request after redirect that may leads
+            // to 415 Unsupported Media Type error.
 
-            // Handle authentication challenge
-            sessionDelegate.sessionDidReceiveChallenge = { _, _ in
-                return (.performDefaultHandling, nil)
-            }
-            sessionDelegate.taskDidReceiveChallenge = { _, _, _ in
-                return (.performDefaultHandling, nil)
+            if (request.value(forHTTPHeaderField: HttpHeaders.Header.ContentType) != nil) {
+                mutableRequest.setValue(nil, forHTTPHeaderField: HttpHeaders.Header.ContentType)
             }
 
-            // Handle redirects
-            sessionDelegate.taskWillPerformHTTPRedirection = { _, _, response, request in
+            httpResponse = HttpResponse(response: response, redirectRequest: mutableRequest)
 
-                // iOS 8.1 uses "Content-Type" header from original request after redirect that may leads
-                // to 415 Unsupported Media Type error.
+            // Refuse all redirects
+            return nil
+        })
 
-                // HACK: Remove "Content-Type" header from new request
-                var mutableRequest = request
-                mutableRequest.setValue("", forHTTPHeaderField: HttpHeaders.Header.ContentType)
-
-                httpResponse = HttpResponse(response: response, redirectRequest: mutableRequest)
-
-                // Refuse all redirects
-                return nil
-            }
-        }
+        // Create session
+        let session = Session(configuration: config, redirectHandler: redirector)
 
         // Request data from the server
-        request.resume()
+        let request = session.request(urlRequest)
 
         // Add queue for getting of response
         let queue = DispatchQueue.global(qos: .default)
