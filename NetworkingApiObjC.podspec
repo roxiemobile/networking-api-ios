@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
 
   s.platform              = :ios
   s.ios.deployment_target = '12.0'
-  s.swift_version         = '5.3'
+  s.swift_version         = '5.5'
 
-  s.cocoapods_version     = '>= 1.10.1'
+  s.cocoapods_version     = '>= 1.11.3'
   s.static_framework      = true
 
   s.homepage              = 'https://github.com/roxiemobile/networking-api.ios'
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.source = {
     git: 'https://github.com/roxiemobile/networking-api.ios.git',
-    tag: s.version.to_s
+    tag: "v#{s.version}"
   }
 
   base_dir = 'Modules/RoxieMobile.NetworkingApi/Sources/ObjC/'
@@ -38,5 +38,5 @@ Pod::Spec.new do |s|
 
 # MARK: - Dependencies
 
-  s.dependency 'Alamofire', '~> 4.9.1'
+  s.dependency 'Alamofire', '~> 5.5.0'
 end

@@ -8,7 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
-public protocol Cancellable: class {
+public protocol Cancellable: AnyObject {
 
 // MARK: - Functions
 

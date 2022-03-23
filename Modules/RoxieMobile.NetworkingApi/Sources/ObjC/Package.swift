@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -22,7 +22,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Alamofire/Alamofire",
-            .upToNextMinor(from: "4.9.1")
+            .upToNextMinor(from: "5.5.0")
         ),
     ],
     targets: [

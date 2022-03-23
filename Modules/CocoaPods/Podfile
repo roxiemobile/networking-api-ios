@@ -9,7 +9,7 @@ workspace '../RoxieMobile.NetworkingApi/NetworkingApi.xcworkspace'
 # MARK: - Methods
 
 def inject_shared_dependencies_1
-  pod 'Alamofire', '~> 4.9.1'
+  pod 'Alamofire', '~> 5.5.0'
 end
 
 
@@ -20,14 +20,14 @@ target 'NetworkingApi.Helpers' do
 
   # Dependencies
   inject_shared_dependencies_1
-  pod 'SwiftCommons/Logging', '~> 1.6.0'
+  pod 'SwiftCommons/Logging', '~> 1.6.3'
 end
 
 target 'NetworkingApi.Http' do
   project '../RoxieMobile.NetworkingApi/Sources/Http/NetworkingApi.Http.xcodeproj'
 
   # Dependencies
-  pod 'SwiftCommons/Diagnostics', '~> 1.6.0'
+  pod 'SwiftCommons/Diagnostics', '~> 1.6.3'
 end
 
 target 'NetworkingApi.ObjC' do
@@ -42,6 +42,6 @@ target 'NetworkingApi.Rest' do
 
   # Dependencies
   inject_shared_dependencies_1
-  pod 'SwiftCommons/Data', '~> 1.6.0'
+  pod 'SwiftCommons/Data', '~> 1.6.3'
   pod 'SwiftyJSON', '~> 5.0.1'
 end
