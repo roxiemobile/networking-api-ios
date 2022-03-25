@@ -8,6 +8,7 @@
 //
 // ----------------------------------------------------------------------------
 
+import Alamofire
 import Foundation
 import NetworkingApiHttp
 import SwiftCommonsConcurrent
@@ -107,7 +108,7 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable {
                     }
 
                 case .failure(let cause):
-                    var cause = cause
+                    var cause = cause.asAFError?.underlyingError ?? cause
 
                     // Wrap up HTTP connection error
                     if isConnectionError(cause) {
