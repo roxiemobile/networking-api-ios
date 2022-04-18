@@ -21,7 +21,7 @@ public final class RestApiClient {
 // MARK: - Construction
 
     fileprivate init(builder: RestApiClientBuilder) {
-        self.options = builder.options
+        _httpClientConfig = builder.httpClientConfig ?? Shared.httpClientConfig
     }
 
 // MARK: - Functions
@@ -96,8 +96,8 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: self.options.interceptors)
-        interceptors.append(contentsOf: self.options.networkInterceptors)
+        interceptors.append(contentsOf: _httpClientConfig.interceptors())
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors())
         interceptors.append(newCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -110,7 +110,7 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: self.options.networkInterceptors)
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors())
         interceptors.append(newCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -132,8 +132,8 @@ public final class RestApiClient {
     fileprivate func newCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
         return CallServerInterceptorBuilder()
             .cookieStore(cookieStore)
-            .connectTimeout(self.options.connectionTimeout)
-            .requestTimeout(self.options.requestTimeout)
+            .connectTimeout(_httpClientConfig.connectTimeout())
+            .requestTimeout(_httpClientConfig.readTimeout())
             .build()
     }
 
@@ -220,17 +220,13 @@ public final class RestApiClient {
 
 // MARK: - Inner Types
 
-    fileprivate struct Options {
-        fileprivate var connectionTimeout = NetworkConfig.Timeout.Connection
-        fileprivate var requestTimeout = NetworkConfig.Timeout.Request
-
-        fileprivate var interceptors: [Interceptor] = []
-        fileprivate var networkInterceptors: [Interceptor] = []
+    private enum Shared {
+        static let httpClientConfig = DefaultHttpClientConfig()
     }
 
 // MARK: - Variables
 
-    fileprivate let options: Options
+    private let _httpClientConfig: HttpClientConfig
 }
 
 // ----------------------------------------------------------------------------
@@ -239,25 +235,8 @@ open class RestApiClientBuilder {
 
 // MARK: - Functions
 
-    open func connectTimeout(_ timeout: TimeInterval) -> Self {
-        Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
-        self.options.connectionTimeout = timeout
-        return self
-    }
-
-    open func requestTimeout(_ timeout: TimeInterval) -> Self {
-        Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
-        self.options.requestTimeout = timeout
-        return self
-    }
-
-    open func interceptors(_ interceptors: [Interceptor]) -> Self {
-        self.options.interceptors = interceptors
-        return self
-    }
-
-    open func networkInterceptors(_ networkInterceptors: [Interceptor]) -> Self {
-        self.options.networkInterceptors = networkInterceptors
+    open func httpClientConfig(_ httpClientConfig: HttpClientConfig) -> Self {
+        self.httpClientConfig = httpClientConfig
         return self
     }
 
@@ -267,5 +246,5 @@ open class RestApiClientBuilder {
 
 // MARK: - Variables
 
-    fileprivate var options = RestApiClient.Options()
+    fileprivate var httpClientConfig: HttpClientConfig?
 }
