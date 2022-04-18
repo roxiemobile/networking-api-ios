@@ -136,18 +136,11 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable {
     open func newClient() -> RestApiClient {
 
         // Get HTTP client config
-        let config = getHttpClientConfig()
+        let httpClientConfig = getHttpClientConfig()
 
         // Create/init HTTP client
         let builder = RestApiClientBuilder()
-            // Set the timeout until a connection is established
-            .connectTimeout(config.connectTimeout())
-            // Set the default socket timeout which is the timeout for waiting for data
-            .requestTimeout(config.readTimeout())
-            // Set an application interceptors
-            .interceptors(config.interceptors())
-            // Set an network interceptors
-            .networkInterceptors(config.networkInterceptors())
+            .httpClientConfig(httpClientConfig)
 
         // Done
         return builder.build()
