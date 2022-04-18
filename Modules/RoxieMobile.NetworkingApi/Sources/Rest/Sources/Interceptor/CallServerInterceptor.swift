@@ -75,7 +75,11 @@ class CallServerInterceptor: Interceptor {
         })
 
         // Create session
-        let session = Session(configuration: config, redirectHandler: redirector)
+        let session = Session(
+            configuration: config,
+            serverTrustManager: _options.tlsConfig?.trustManager,
+            redirectHandler: redirector
+        )
 
         // Request data from the server
         let request = session.request(urlRequest)
