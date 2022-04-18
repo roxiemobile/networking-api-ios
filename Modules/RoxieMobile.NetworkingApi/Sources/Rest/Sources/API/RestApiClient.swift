@@ -134,6 +134,7 @@ public final class RestApiClient {
             .cookieStore(cookieStore)
             .connectTimeout(_httpClientConfig.connectionTimeout)
             .requestTimeout(_httpClientConfig.readTimeout)
+            .tlsConfig(_httpClientConfig.tlsConfig)
             .build()
     }
 

@@ -126,6 +126,7 @@ class CallServerInterceptor: Interceptor {
         fileprivate var cookieStore: HttpCookieStore?
         fileprivate var connectionTimeout = NetworkConfig.Timeout.сonnection
         fileprivate var requestTimeout = NetworkConfig.Timeout.read
+        fileprivate var tlsConfig: TlsConfig?
     }
 
 // MARK: - Variables
@@ -153,6 +154,11 @@ class CallServerInterceptorBuilder {
     func requestTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.requestTimeout = timeout
+        return self
+    }
+
+    func tlsConfig(_ tlsConfig: TlsConfig?) -> Self {
+        self.options.tlsConfig = tlsConfig?.clone()
         return self
     }
 
