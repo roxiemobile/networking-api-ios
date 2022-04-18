@@ -21,7 +21,7 @@ public final class RestApiClient {
 // MARK: - Construction
 
     fileprivate init(builder: RestApiClientBuilder) {
-        _httpClientConfig = builder.httpClientConfig
+        _httpClientConfig = builder.httpClientConfig ?? Shared.httpClientConfig
     }
 
 // MARK: - Functions
@@ -218,6 +218,12 @@ public final class RestApiClient {
         return mutableURLRequest
     }
 
+// MARK: - Inner Types
+
+    private enum Shared {
+        static let httpClientConfig = DefaultHttpClientConfig()
+    }
+
 // MARK: - Variables
 
     private let _httpClientConfig: HttpClientConfig
@@ -240,5 +246,5 @@ open class RestApiClientBuilder {
 
 // MARK: - Variables
 
-    fileprivate var httpClientConfig: HttpClientConfig = DefaultHttpClientConfig()
+    fileprivate var httpClientConfig: HttpClientConfig?
 }
