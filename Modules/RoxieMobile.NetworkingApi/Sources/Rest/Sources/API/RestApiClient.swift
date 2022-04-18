@@ -62,7 +62,7 @@ public final class RestApiClient {
         let cookieStore = BasicHttpCookieStore(cookies: entity.cookies)
 
         // Create HTTP request
-        let urlRequest = newRequest(method, entity: entity)
+        let urlRequest = createRequest(method, entity: entity)
 
         do {
             // Execute HTTP request
@@ -98,7 +98,7 @@ public final class RestApiClient {
 
         interceptors.append(contentsOf: _httpClientConfig.interceptors)
         interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
-        interceptors.append(newCallServerInterceptor(cookieStore))
+        interceptors.append(createCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
     }
@@ -111,7 +111,7 @@ public final class RestApiClient {
         var interceptors: [Interceptor] = []
 
         interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
-        interceptors.append(newCallServerInterceptor(cookieStore))
+        interceptors.append(createCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
     }
@@ -129,16 +129,16 @@ public final class RestApiClient {
         return try chain.proceed(urlRequest)
     }
 
-    fileprivate func newCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
+    fileprivate func createCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
         return CallServerInterceptorBuilder()
-            .cookieStore(cookieStore)
-            .connectTimeout(_httpClientConfig.connectionTimeout)
-            .requestTimeout(_httpClientConfig.readTimeout)
+            .connectionTimeout(_httpClientConfig.connectionTimeout)
+            .readTimeout(_httpClientConfig.readTimeout)
             .tlsConfig(_httpClientConfig.tlsConfig)
+            .cookieStore(cookieStore)
             .build()
     }
 
-    fileprivate func newRequest(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> URLRequest {
+    fileprivate func createRequest(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> URLRequest {
 
         // Build HTTP request
         var request = URLRequestForMethod(method, entity.url!, headers: entity.headers?.allHeaderFields)

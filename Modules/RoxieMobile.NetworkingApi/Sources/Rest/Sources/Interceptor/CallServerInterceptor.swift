@@ -21,7 +21,7 @@ class CallServerInterceptor: Interceptor {
 // MARK: - Construction
 
     fileprivate init(builder: CallServerInterceptorBuilder) {
-        self.options = builder.options
+        _options = builder.options
     }
 
 // MARK: - Functions
@@ -30,9 +30,9 @@ class CallServerInterceptor: Interceptor {
         return try performRequest(chain.request as URLRequest)
     }
 
-// MARK: - Private Functions
+// MARK: - Private Methods
 
-    fileprivate func performRequest(_ urlRequest: URLRequest) throws -> HttpResponse {
+    private func performRequest(_ urlRequest: URLRequest) throws -> HttpResponse {
 
         var httpResponse: HttpResponse!
         var httpError: Error?
@@ -41,9 +41,9 @@ class CallServerInterceptor: Interceptor {
         let config = URLSessionConfiguration.ephemeral
 
         config.httpAdditionalHeaders = [:]
-        config.httpCookieStorage = (self.options.cookieStore as? HTTPCookieStorage)
-        config.timeoutIntervalForResource = self.options.connectionTimeout
-        config.timeoutIntervalForRequest = self.options.requestTimeout
+        config.timeoutIntervalForResource = _options.connectionTimeout
+        config.timeoutIntervalForRequest = _options.readTimeout
+        config.httpCookieStorage = (_options.cookieStore as? HTTPCookieStorage)
 
         // Send POST request using NSURLSession
         // @link https://stackoverflow.com/a/19101084
@@ -123,15 +123,15 @@ class CallServerInterceptor: Interceptor {
 // MARK: - Inner Types
 
     fileprivate struct Options {
-        fileprivate var cookieStore: HttpCookieStore?
-        fileprivate var connectionTimeout = NetworkConfig.Timeout.сonnection
-        fileprivate var requestTimeout = NetworkConfig.Timeout.read
-        fileprivate var tlsConfig: TlsConfig?
+        var connectionTimeout = NetworkConfig.Timeout.connection
+        var readTimeout = NetworkConfig.Timeout.read
+        var tlsConfig: TlsConfig?
+        var cookieStore: HttpCookieStore?
     }
 
 // MARK: - Variables
 
-    fileprivate let options: Options
+    private let _options: Options
 }
 
 // ----------------------------------------------------------------------------
@@ -140,25 +140,25 @@ class CallServerInterceptorBuilder {
 
 // MARK: - Functions
 
-    func cookieStore(_ cookieStore: HttpCookieStore?) -> Self {
-        self.options.cookieStore = cookieStore
-        return self
-    }
-
-    func connectTimeout(_ timeout: TimeInterval) -> Self {
+    func connectionTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
         self.options.connectionTimeout = timeout
         return self
     }
 
-    func requestTimeout(_ timeout: TimeInterval) -> Self {
+    func readTimeout(_ timeout: TimeInterval) -> Self {
         Guard.greaterThanOrEqualTo(timeout, 0, "timeout < 0")
-        self.options.requestTimeout = timeout
+        self.options.readTimeout = timeout
         return self
     }
 
     func tlsConfig(_ tlsConfig: TlsConfig?) -> Self {
         self.options.tlsConfig = tlsConfig?.clone()
+        return self
+    }
+
+    func cookieStore(_ cookieStore: HttpCookieStore?) -> Self {
+        self.options.cookieStore = cookieStore
         return self
     }
 

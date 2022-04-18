@@ -17,7 +17,7 @@ public enum NetworkConfig {
 // MARK: - Constants
 
     public enum Timeout {
-        public static let сonnection: TimeInterval = 60
+        public static let connection: TimeInterval = 60
         public static let read: TimeInterval = 60
     }
 }
