@@ -51,7 +51,7 @@ let package = Package(
         .package(
             name: "SwiftCommons",
             url: "https://github.com/roxiemobile/swift-commons.ios",
-            .upToNextMinor(from: "1.6.3")
+            .upToNextMinor(from: "1.6.4")
         ),
         .package(
             url: "https://github.com/SwiftyJSON/SwiftyJSON",
