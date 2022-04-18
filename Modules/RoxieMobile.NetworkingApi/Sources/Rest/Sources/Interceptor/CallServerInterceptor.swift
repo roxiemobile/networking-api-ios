@@ -124,8 +124,8 @@ class CallServerInterceptor: Interceptor {
 
     fileprivate struct Options {
         fileprivate var cookieStore: HttpCookieStore?
-        fileprivate var connectionTimeout = NetworkConfig.Timeout.Connection
-        fileprivate var requestTimeout = NetworkConfig.Timeout.Request
+        fileprivate var connectionTimeout = NetworkConfig.Timeout.сonnection
+        fileprivate var requestTimeout = NetworkConfig.Timeout.read
     }
 
 // MARK: - Variables

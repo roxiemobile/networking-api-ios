@@ -9,16 +9,15 @@
 // ----------------------------------------------------------------------------
 
 import Foundation
-import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public class NetworkConfig: NonCreatable {
+public enum NetworkConfig {
 
 // MARK: - Constants
 
-    public struct Timeout {
-        public static let Connection: TimeInterval = 60
-        public static let Request: TimeInterval = 60
+    public enum Timeout {
+        public static let сonnection: TimeInterval = 60
+        public static let read: TimeInterval = 60
     }
 }

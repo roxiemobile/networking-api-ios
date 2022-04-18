@@ -96,8 +96,8 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: _httpClientConfig.interceptors())
-        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors())
+        interceptors.append(contentsOf: _httpClientConfig.interceptors)
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
         interceptors.append(newCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -110,7 +110,7 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors())
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
         interceptors.append(newCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -132,8 +132,8 @@ public final class RestApiClient {
     fileprivate func newCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
         return CallServerInterceptorBuilder()
             .cookieStore(cookieStore)
-            .connectTimeout(_httpClientConfig.connectTimeout())
-            .requestTimeout(_httpClientConfig.readTimeout())
+            .connectTimeout(_httpClientConfig.connectionTimeout)
+            .requestTimeout(_httpClientConfig.readTimeout)
             .build()
     }
 
@@ -230,7 +230,7 @@ open class RestApiClientBuilder {
 // MARK: - Functions
 
     open func httpClientConfig(_ httpClientConfig: HttpClientConfig) -> Self {
-        self.httpClientConfig = httpClientConfig
+        self.httpClientConfig = httpClientConfig.clone()
         return self
     }
 

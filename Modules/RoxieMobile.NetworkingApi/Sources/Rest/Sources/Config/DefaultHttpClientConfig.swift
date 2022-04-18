@@ -13,7 +13,7 @@ import SwiftCommonsLogging
 
 // ----------------------------------------------------------------------------
 
-open class DefaultHttpClientConfig: HttpClientConfig {
+public struct DefaultHttpClientConfig: HttpClientConfig {
 
 // MARK: - Construction
 
@@ -21,42 +21,37 @@ open class DefaultHttpClientConfig: HttpClientConfig {
         // Do nothing
     }
 
+// MARK: - Properties
+
+    public let connectionTimeout: TimeInterval = NetworkConfig.Timeout.сonnection
+
+    public let readTimeout: TimeInterval = NetworkConfig.Timeout.read
+
+    public let interceptors: [Interceptor] = []
+
+    public let networkInterceptors: [Interceptor] = Self.createNetworkInterceptors()
+
+    public let tlsConfig: TlsConfig? = nil
+
 // MARK: - Methods
 
-    open func connectTimeout() -> TimeInterval {
-        return NetworkConfig.Timeout.Connection
+    public func clone() -> Self {
+        return Self.init()
     }
 
-    open func readTimeout() -> TimeInterval {
-        return NetworkConfig.Timeout.Connection
-    }
+// MARK: - Private Methods
 
-    open func interceptors() -> [Interceptor] {
-        return Inner.Interceptors
-    }
+    private static func createNetworkInterceptors() -> [Interceptor] {
+        var networkInterceptors: [Interceptor] = []
 
-    open func networkInterceptors() -> [Interceptor] {
-        return Inner.NetworkInterceptors
-    }
+        // Interceptor which adds an Alamofire library's version to an User-Agent's header
+        networkInterceptors.append(UserAgentRequestInterceptor())
 
-// MARK: - Constants
+        // Interceptor which logs request and response information
+        if Logger.isLoggable(.debug) {
+            networkInterceptors.append(HttpLoggingInterceptor())
+        }
 
-    fileprivate struct Inner {
-
-        static let Interceptors: [Interceptor] = []
-
-        static let NetworkInterceptors: [Interceptor] = {
-            var networkInterceptors: [Interceptor] = []
-
-            // Interceptor which adds an Alamofire library's version to an User-Agent's header
-            networkInterceptors.append(UserAgentRequestInterceptor())
-
-            // Interceptor which logs request and response information
-            if Logger.isLoggable(.debug) {
-                networkInterceptors.append(HttpLoggingInterceptor())
-            }
-
-            return networkInterceptors
-        }()
+        return networkInterceptors
     }
 }

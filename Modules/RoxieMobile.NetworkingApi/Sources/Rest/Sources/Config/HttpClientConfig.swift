@@ -9,32 +9,21 @@
 // ----------------------------------------------------------------------------
 
 import Foundation
+import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public protocol HttpClientConfig {
+public protocol HttpClientConfig: Cloneable {
 
-// MARK: - Methods
+// MARK: - Properties
 
-    /**
-     * TODO
-     */
-    func connectTimeout() -> TimeInterval
+    var connectionTimeout: TimeInterval { get }
 
-    /**
-     * TODO
-     */
-    func readTimeout() -> TimeInterval
+    var readTimeout: TimeInterval { get }
 
+    var interceptors: [Interceptor]  { get }
 
-    /**
-     * TODO
-     */
-    func interceptors() -> [Interceptor]
+    var networkInterceptors: [Interceptor]  { get }
 
-
-    /**
-     * TODO
-     */
-    func networkInterceptors() -> [Interceptor]
+    var tlsConfig: TlsConfig?  { get }
 }
