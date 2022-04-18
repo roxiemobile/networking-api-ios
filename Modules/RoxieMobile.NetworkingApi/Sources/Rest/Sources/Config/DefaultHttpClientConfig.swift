@@ -23,7 +23,7 @@ public struct DefaultHttpClientConfig: HttpClientConfig {
 
 // MARK: - Properties
 
-    public let connectionTimeout: TimeInterval = NetworkConfig.Timeout.сonnection
+    public let connectionTimeout: TimeInterval = NetworkConfig.Timeout.connection
 
     public let readTimeout: TimeInterval = NetworkConfig.Timeout.read
 
