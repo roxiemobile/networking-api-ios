@@ -27,11 +27,11 @@ public struct DefaultHttpClientConfig: HttpClientConfig {
 
     public let readTimeout: TimeInterval = NetworkConfig.Timeout.read
 
+    public let tlsConfig: TlsConfig? = nil
+
     public let interceptors: [Interceptor] = []
 
     public let networkInterceptors: [Interceptor] = Self.createNetworkInterceptors()
-
-    public let tlsConfig: TlsConfig? = nil
 
 // MARK: - Methods
 

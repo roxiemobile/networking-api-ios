@@ -21,9 +21,9 @@ public protocol HttpClientConfig: Cloneable {
 
     var readTimeout: TimeInterval { get }
 
+    var tlsConfig: TlsConfig?  { get }
+
     var interceptors: [Interceptor]  { get }
 
     var networkInterceptors: [Interceptor]  { get }
-
-    var tlsConfig: TlsConfig?  { get }
 }
