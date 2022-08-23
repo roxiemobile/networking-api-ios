@@ -8,7 +8,6 @@
 //
 // ----------------------------------------------------------------------------
 
-import Foundation
 import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
@@ -17,13 +16,11 @@ public protocol HttpClientConfig: Cloneable {
 
 // MARK: - Properties
 
-    var connectionTimeout: TimeInterval { get }
+    var requestTimeoutConfig: RequestTimeoutConfig? { get }
 
-    var readTimeout: TimeInterval { get }
+    var tlsConfig: TlsConfig? { get }
 
-    var tlsConfig: TlsConfig?  { get }
+    var interceptors: [Interceptor]? { get }
 
-    var interceptors: [Interceptor]  { get }
-
-    var networkInterceptors: [Interceptor]  { get }
+    var networkInterceptors: [Interceptor]? { get }
 }

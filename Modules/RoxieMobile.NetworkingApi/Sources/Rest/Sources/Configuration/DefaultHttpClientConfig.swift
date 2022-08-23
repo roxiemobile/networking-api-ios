@@ -17,21 +17,21 @@ public struct DefaultHttpClientConfig: HttpClientConfig {
 
 // MARK: - Construction
 
-    public init() {
+    public static let shared = DefaultHttpClientConfig()
+
+    private init() {
         // Do nothing
     }
 
 // MARK: - Properties
 
-    public let connectionTimeout: TimeInterval = NetworkConfig.Timeout.connection
-
-    public let readTimeout: TimeInterval = NetworkConfig.Timeout.read
+    public let requestTimeoutConfig: RequestTimeoutConfig? = nil
 
     public let tlsConfig: TlsConfig? = nil
 
-    public let interceptors: [Interceptor] = []
+    public let interceptors: [Interceptor]? = nil
 
-    public let networkInterceptors: [Interceptor] = Self.createNetworkInterceptors()
+    public let networkInterceptors: [Interceptor]? = Self.createNetworkInterceptors()
 
 // MARK: - Methods
 

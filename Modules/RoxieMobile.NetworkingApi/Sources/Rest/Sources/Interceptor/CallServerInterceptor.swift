@@ -127,8 +127,8 @@ class CallServerInterceptor: Interceptor {
 // MARK: - Inner Types
 
     fileprivate struct Options {
-        var connectionTimeout = NetworkConfig.Timeout.connection
-        var readTimeout = NetworkConfig.Timeout.read
+        var connectionTimeout = DefaultRequestTimeoutConfig.shared.connectionTimeout
+        var readTimeout = DefaultRequestTimeoutConfig.shared.readTimeout
         var tlsConfig: TlsConfig?
         var cookieStore: HttpCookieStore?
     }
