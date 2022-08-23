@@ -21,7 +21,7 @@ public final class RestApiClient {
 // MARK: - Construction
 
     fileprivate init(builder: RestApiClientBuilder) {
-        _httpClientConfig = builder.httpClientConfig ?? Shared.httpClientConfig
+        _httpClientConfig = builder.httpClientConfig ?? DefaultHttpClientConfig.shared
     }
 
 // MARK: - Functions
@@ -96,8 +96,8 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: _httpClientConfig.interceptors)
-        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
+        interceptors.append(contentsOf: _httpClientConfig.interceptors ?? [])
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors ?? [])
         interceptors.append(createCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -110,7 +110,7 @@ public final class RestApiClient {
 
         var interceptors: [Interceptor] = []
 
-        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors)
+        interceptors.append(contentsOf: _httpClientConfig.networkInterceptors ?? [])
         interceptors.append(createCallServerInterceptor(cookieStore))
 
         return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
@@ -130,9 +130,13 @@ public final class RestApiClient {
     }
 
     fileprivate func createCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
+
+        let requestTimeoutConfig = _httpClientConfig.requestTimeoutConfig
+            ?? DefaultRequestTimeoutConfig.shared
+
         return CallServerInterceptorBuilder()
-            .connectionTimeout(_httpClientConfig.connectionTimeout)
-            .readTimeout(_httpClientConfig.readTimeout)
+            .connectionTimeout(requestTimeoutConfig.connectionTimeout)
+            .readTimeout(requestTimeoutConfig.readTimeout)
             .tlsConfig(_httpClientConfig.tlsConfig)
             .cookieStore(cookieStore)
             .build()
@@ -217,12 +221,6 @@ public final class RestApiClient {
         }
 
         return mutableURLRequest
-    }
-
-// MARK: - Inner Types
-
-    private enum Shared {
-        static let httpClientConfig = DefaultHttpClientConfig()
     }
 
 // MARK: - Variables

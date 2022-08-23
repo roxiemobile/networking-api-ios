@@ -46,7 +46,7 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable {
      * The http client config.
      */
     open func getHttpClientConfig() -> HttpClientConfig {
-        return AbstractTaskInner.HttpClientConfig
+        return DefaultHttpClientConfig.shared
     }
 
 // MARK: - Methods
@@ -240,16 +240,6 @@ open class AbstractTask<Ti: HttpBody, To>: Task<Ti, To>, Cancellable {
     fileprivate let requestEntity: RequestEntity<Ti>
 
     fileprivate let cancelled = Atomic<Bool>(false)
-}
-
-// ----------------------------------------------------------------------------
-
-// WORKAROUND: Type 'Inner' nested in generic type 'AbstractTask' is not allowed
-private struct AbstractTaskInner {
-
-// MARK: - Constants
-
-    static let HttpClientConfig = DefaultHttpClientConfig()
 }
 
 // ----------------------------------------------------------------------------
