@@ -1,21 +1,34 @@
 // ----------------------------------------------------------------------------
 //
-//  TlsConfig.swift
+//  DefaultTlsConfig.swift
 //
-//  @author     Nikita Kolesnikov <kolesnikov-nv@roxiemobile.com>
+//  @author     Alexander Bragin <bragin-av@roxiemobile.com>
 //  @copyright  Copyright (c) 2022, Roxie Mobile Ltd. All rights reserved.
 //  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
 import Alamofire
-import SwiftCommonsLang
 
 // ----------------------------------------------------------------------------
 
-public protocol TlsConfig: Cloneable {
+public struct DefaultTlsConfig: TlsConfig {
+
+// MARK: - Construction
+
+    public static let shared = DefaultTlsConfig()
+
+    private init() {
+        // Do nothing
+    }
 
 // MARK: - Properties
 
-    var trustManager: ServerTrustManager? { get }
+    public var trustManager: ServerTrustManager? = nil
+
+// MARK: - Methods
+
+    public func clone() -> Self {
+        return Self.init()
+    }
 }
