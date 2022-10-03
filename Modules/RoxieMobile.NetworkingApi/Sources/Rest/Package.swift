@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ import PackageDescription
 let package = Package(
     name: "NetworkingApi.Rest",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -25,22 +25,21 @@ let package = Package(
             path: "../Helpers"
         ),
         .package(
-            name: "SwiftCommons",
-            url: "https://github.com/roxiemobile/swift-commons.ios",
-            .upToNextMinor(from: "1.6.4")
+            url: "https://github.com/roxiemobile/swift-commons-ios",
+            exact: "1.6.4"
         ),
         .package(
             url: "https://github.com/SwiftyJSON/SwiftyJSON",
-            .upToNextMinor(from: "5.0.1")
+            exact: "5.0.1"
         ),
     ],
     targets: [
         .target(
             name: "NetworkingApiRest",
             dependencies: [
-                .byName(name: "SwiftyJSON"),
+                "SwiftyJSON",
                 .product(name: "NetworkingApiHelpers", package: "NetworkingApi.Helpers"),
-                .product(name: "SwiftCommonsData", package: "SwiftCommons"),
+                .product(name: "SwiftCommonsData", package: "swift-commons-ios"),
             ],
             path: "Sources"
         ),

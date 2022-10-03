@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ import PackageDescription
 let package = Package(
     name: "NetworkingApi",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -46,16 +46,15 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Alamofire/Alamofire",
-            .upToNextMinor(from: "5.5.0")
+            exact: "5.5.0"
         ),
         .package(
-            name: "SwiftCommons",
-            url: "https://github.com/roxiemobile/swift-commons.ios",
-            .upToNextMinor(from: "1.6.4")
+            url: "https://github.com/roxiemobile/swift-commons-ios",
+            exact: "1.6.4"
         ),
         .package(
             url: "https://github.com/SwiftyJSON/SwiftyJSON",
-            .upToNextMinor(from: "5.0.1")
+            exact: "5.0.1"
         ),
     ],
     targets: [
@@ -88,14 +87,14 @@ let package = Package(
         .target(
             name: "NetworkingApiHttp",
             dependencies: [
-                .product(name: "SwiftCommonsDiagnostics", package: "SwiftCommons"),
+                .product(name: "SwiftCommonsDiagnostics", package: "swift-commons-ios"),
             ],
             path: "Modules/RoxieMobile.NetworkingApi/Sources/Http/Sources"
         ),
         .target(
             name: "NetworkingApiObjC",
             dependencies: [
-                .byName(name: "Alamofire"),
+                "Alamofire",
             ],
             path: "Modules/RoxieMobile.NetworkingApi/Sources/ObjC/Sources",
             exclude: [
@@ -105,8 +104,8 @@ let package = Package(
         .target(
             name: "NetworkingApiRest",
             dependencies: [
-                .byName(name: "SwiftyJSON"),
-                .product(name: "SwiftCommonsData", package: "SwiftCommons"),
+                "SwiftyJSON",
+                .product(name: "SwiftCommonsData", package: "swift-commons-ios"),
                 .target(name: "NetworkingApiHelpers"),
             ],
             path: "Modules/RoxieMobile.NetworkingApi/Sources/Rest/Sources"
