@@ -11,11 +11,9 @@
 		19C9FD8C1FCCABBB0069F3D1 /* NetworkingApiObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C9FD8A1FCCABBB0069F3D1 /* NetworkingApiObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19EBA8721FCF81A800C566D1 /* DefaultUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EBA8701FCF81A800C566D1 /* DefaultUserAgent.m */; };
 		19EBA8731FCF81A800C566D1 /* DefaultUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 19EBA8711FCF81A800C566D1 /* DefaultUserAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC51553D75F0C3B65FA2ACF8 /* Pods_NetworkingApi_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3131280D46CD46F1E89E8D74 /* Pods_NetworkingApi_ObjC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		072E8E1A125576EC1D919B4B /* Pods-NetworkingApi.ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.ObjC.debug.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.ObjC/Pods-NetworkingApi.ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		1976D4E11FCB821000C07C72 /* NetworkingApi.ObjC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = NetworkingApi.ObjC.xcconfig; sourceTree = "<group>"; };
 		19B793C4262DE50E0060DF70 /* NetworkingApiObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingApiObjC.swift; sourceTree = "<group>"; };
 		19C9FD6B1FCCA85D0069F3D1 /* NetworkingApiObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkingApiObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,8 +21,6 @@
 		19C9FD8A1FCCABBB0069F3D1 /* NetworkingApiObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingApiObjC.h; sourceTree = "<group>"; };
 		19EBA8701FCF81A800C566D1 /* DefaultUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultUserAgent.m; sourceTree = "<group>"; };
 		19EBA8711FCF81A800C566D1 /* DefaultUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultUserAgent.h; sourceTree = "<group>"; };
-		3131280D46CD46F1E89E8D74 /* Pods_NetworkingApi_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F0F25075845841E526D6755 /* Pods-NetworkingApi.ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.ObjC.release.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.ObjC/Pods-NetworkingApi.ObjC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC51553D75F0C3B65FA2ACF8 /* Pods_NetworkingApi_ObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +61,6 @@
 				19EB0CA21F72DF0D0029F302 /* Dependencies */,
 				19C017251F72CC3A00D29F73 /* Products */,
 				BB19805B08F8749F78BCDAAB /* Frameworks */,
-				8AB58F65C029F9B192B9243B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,19 +96,9 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
-		8AB58F65C029F9B192B9243B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				072E8E1A125576EC1D919B4B /* Pods-NetworkingApi.ObjC.debug.xcconfig */,
-				4F0F25075845841E526D6755 /* Pods-NetworkingApi.ObjC.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		BB19805B08F8749F78BCDAAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3131280D46CD46F1E89E8D74 /* Pods_NetworkingApi_ObjC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,7 +122,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19C9FD701FCCA85D0069F3D1 /* Build configuration list for PBXNativeTarget "NetworkingApi.ObjC" */;
 			buildPhases = (
-				055036201D2D5AA272A6843D /* [CP] Check Pods Manifest.lock */,
 				19C9FD661FCCA85D0069F3D1 /* Sources */,
 				19C9FD671FCCA85D0069F3D1 /* Frameworks */,
 				19C9FD681FCCA85D0069F3D1 /* Headers */,
@@ -196,27 +179,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		055036201D2D5AA272A6843D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NetworkingApi.ObjC-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		19C9FD661FCCA85D0069F3D1 /* Sources */ = {
@@ -344,7 +306,6 @@
 		};
 		19C9FD711FCCA85D0069F3D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 072E8E1A125576EC1D919B4B /* Pods-NetworkingApi.ObjC.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -371,7 +332,6 @@
 		};
 		19C9FD721FCCA85D0069F3D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F0F25075845841E526D6755 /* Pods-NetworkingApi.ObjC.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

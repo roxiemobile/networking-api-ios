@@ -27,12 +27,9 @@
 		199EAD701FCF2AF00073001B /* HTTPCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD6E1FCF2AF00073001B /* HTTPCookie.swift */; };
 		199EAD711FCF2AF00073001B /* HTTPCookieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199EAD6F1FCF2AF00073001B /* HTTPCookieStorage.swift */; };
 		19C434EB1FCC9E2900984A2D /* NetworkingApiHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C434EA1FCC9E2900984A2D /* NetworkingApiHttp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1BA0B134807180A0FE3955E /* Pods_NetworkingApi_Http.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0336180E686B5EF1BC7EF6CF /* Pods_NetworkingApi_Http.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0336180E686B5EF1BC7EF6CF /* Pods_NetworkingApi_Http.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkingApi_Http.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FD8007CF22C95FC5811310A /* Pods-NetworkingApi.Http.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Http.debug.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Http/Pods-NetworkingApi.Http.debug.xcconfig"; sourceTree = "<group>"; };
 		194320D01FCC9A7100480FDD /* NetworkingApiHttp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkingApiHttp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		194320D31FCC9A7100480FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1976D4C41FCB7C9100C07C72 /* NetworkingApi.Http.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = NetworkingApi.Http.xcconfig; sourceTree = "<group>"; };
@@ -56,7 +53,6 @@
 		199EAD6E1FCF2AF00073001B /* HTTPCookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookie.swift; sourceTree = "<group>"; };
 		199EAD6F1FCF2AF00073001B /* HTTPCookieStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookieStorage.swift; sourceTree = "<group>"; };
 		19C434EA1FCC9E2900984A2D /* NetworkingApiHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingApiHttp.h; sourceTree = "<group>"; };
-		F244CC37B783974FAE91DC53 /* Pods-NetworkingApi.Http.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkingApi.Http.release.xcconfig"; path = "../../../CocoaPods/Pods/Target Support Files/Pods-NetworkingApi.Http/Pods-NetworkingApi.Http.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +60,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BA0B134807180A0FE3955E /* Pods_NetworkingApi_Http.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +69,6 @@
 		0486F3E8B60FFA3C2071DDAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0336180E686B5EF1BC7EF6CF /* Pods_NetworkingApi_Http.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,7 +142,6 @@
 				19EB0CA21F72DF0D0029F302 /* Dependencies */,
 				19C017251F72CC3A00D29F73 /* Products */,
 				0486F3E8B60FFA3C2071DDAF /* Frameworks */,
-				C73B379C42C842913F8A60B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,15 +183,6 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
-		C73B379C42C842913F8A60B5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0FD8007CF22C95FC5811310A /* Pods-NetworkingApi.Http.debug.xcconfig */,
-				F244CC37B783974FAE91DC53 /* Pods-NetworkingApi.Http.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -217,7 +201,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 194320D51FCC9A7100480FDD /* Build configuration list for PBXNativeTarget "NetworkingApi.Http" */;
 			buildPhases = (
-				5636E60936EA6ADBBFA0D7BF /* [CP] Check Pods Manifest.lock */,
 				194320CB1FCC9A7100480FDD /* Sources */,
 				194320CC1FCC9A7100480FDD /* Frameworks */,
 				194320CD1FCC9A7100480FDD /* Headers */,
@@ -277,27 +260,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5636E60936EA6ADBBFA0D7BF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NetworkingApi.Http-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		194320CB1FCC9A7100480FDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -330,7 +292,6 @@
 /* Begin XCBuildConfiguration section */
 		194320D61FCC9A7100480FDD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FD8007CF22C95FC5811310A /* Pods-NetworkingApi.Http.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -355,7 +316,6 @@
 		};
 		194320D71FCC9A7100480FDD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F244CC37B783974FAE91DC53 /* Pods-NetworkingApi.Http.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
