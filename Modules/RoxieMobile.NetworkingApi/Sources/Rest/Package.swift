@@ -26,7 +26,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/roxiemobile/swift-commons-ios",
-            exact: "1.6.4"
+            exact: "1.7.0"
         ),
         .package(
             url: "https://github.com/SwiftyJSON/SwiftyJSON",
