@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire",
+      "state" : {
+        "revision" : "f82c23a8a7ef8dc1a49a8bfc6a96883e79121864",
+        "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift",
+      "state" : {
+        "revision" : "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
+        "version" : "1.4.3"
+      }
+    },
+    {
+      "identity" : "swift-commons-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/roxiemobile/swift-commons-ios",
+      "state" : {
+        "revision" : "a1c208337a671d0c2d1d638c3207f2bbb3cb29c8",
+        "version" : "1.6.4"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

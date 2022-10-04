@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ import PackageDescription
 let package = Package(
     name: "NetworkingApi.ObjC",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -22,14 +22,14 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/Alamofire/Alamofire",
-            .upToNextMinor(from: "5.5.0")
+            exact: "5.5.0"
         ),
     ],
     targets: [
         .target(
             name: "NetworkingApiObjC",
             dependencies: [
-                .byName(name: "Alamofire"),
+                "Alamofire",
             ],
             path: "Sources",
             exclude: [
