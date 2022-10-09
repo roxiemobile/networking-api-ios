@@ -59,26 +59,26 @@ public final class RestApiClient {
     fileprivate func execute(_ method: HTTPMethod, entity: RequestEntity<HttpBody>) -> HttpResult {
 
         let result: HttpResult
-        let cookieStore = BasicHttpCookieStore(cookies: entity.cookies)
+        let cookieStorage = entity.cookieStorage
 
         // Create HTTP request
         let urlRequest = createRequest(method, entity: entity)
 
         do {
             // Execute HTTP request
-            var response = try executeWithAllInterceptors(urlRequest, cookieStore: cookieStore)
+            var response = try executeWithAllInterceptors(urlRequest, cookieStorage: cookieStorage)
 
             // Follow up redirects
             while let redirectRequest = response.redirectRequest {
-                response = try executeWithNetworkInterceptors(redirectRequest, cookieStore: cookieStore)
+                response = try executeWithNetworkInterceptors(redirectRequest, cookieStorage: cookieStorage)
             }
 
             // Handle response
-            result = HttpResult.success(handleHttpResponse(response, cookieStore))
+            result = HttpResult.success(handleHttpResponse(response, cookieStorage))
         }
         catch let error as HttpResponseError {
             // Handle interrupted HTTP requests
-            result = HttpResult.success(handleHttpResponse(error.httpResponse, cookieStore))
+            result = HttpResult.success(handleHttpResponse(error.httpResponse, cookieStorage))
         }
         catch let error {
             // Handle any other errors
@@ -91,35 +91,35 @@ public final class RestApiClient {
 
     fileprivate func executeWithAllInterceptors(
         _ urlRequest: URLRequest,
-        cookieStore: HttpCookieStore
+        cookieStorage: HTTPCookieStorage
     ) throws -> HttpResponse {
 
         var interceptors: [Interceptor] = []
 
         interceptors.append(contentsOf: _httpClientConfig.interceptors ?? [])
         interceptors.append(contentsOf: _httpClientConfig.networkInterceptors ?? [])
-        interceptors.append(createCallServerInterceptor(cookieStore))
+        interceptors.append(createCallServerInterceptor(cookieStorage))
 
-        return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
+        return try execute(urlRequest, withInterceptors: interceptors, cookieStorage: cookieStorage)
     }
 
     fileprivate func executeWithNetworkInterceptors(
         _ urlRequest: URLRequest,
-        cookieStore: HttpCookieStore
+        cookieStorage: HTTPCookieStorage
     ) throws -> HttpResponse {
 
         var interceptors: [Interceptor] = []
 
         interceptors.append(contentsOf: _httpClientConfig.networkInterceptors ?? [])
-        interceptors.append(createCallServerInterceptor(cookieStore))
+        interceptors.append(createCallServerInterceptor(cookieStorage))
 
-        return try execute(urlRequest, withInterceptors: interceptors, cookieStore: cookieStore)
+        return try execute(urlRequest, withInterceptors: interceptors, cookieStorage: cookieStorage)
     }
 
     fileprivate func execute(
         _ urlRequest: URLRequest,
         withInterceptors interceptors: [Interceptor],
-        cookieStore: HttpCookieStore
+        cookieStorage: HTTPCookieStorage
     ) throws -> HttpResponse {
 
         // Create first chain element
@@ -129,7 +129,7 @@ public final class RestApiClient {
         return try chain.proceed(urlRequest)
     }
 
-    fileprivate func createCallServerInterceptor(_ cookieStore: HttpCookieStore) -> CallServerInterceptor {
+    fileprivate func createCallServerInterceptor(_ cookieStorage: HTTPCookieStorage) -> CallServerInterceptor {
 
         let requestTimeoutConfig = _httpClientConfig.requestTimeoutConfig
             ?? DefaultRequestTimeoutConfig.shared
@@ -138,7 +138,7 @@ public final class RestApiClient {
             .connectionTimeout(requestTimeoutConfig.connectionTimeout)
             .readTimeout(requestTimeoutConfig.readTimeout)
             .tlsConfig(_httpClientConfig.tlsConfig)
-            .cookieStore(cookieStore)
+            .cookieStorage(cookieStorage)
             .build()
     }
 
@@ -160,7 +160,7 @@ public final class RestApiClient {
 
     fileprivate func handleHttpResponse(
         _ httpResponse: HttpResponse,
-        _ cookieStore: HttpCookieStore
+        _ cookieStorage: HTTPCookieStorage
     ) -> ResponseEntity<Data> {
 
         var statusCode = HttpStatus.InternalServerError
@@ -186,7 +186,7 @@ public final class RestApiClient {
             .status(statusCode)
             // @see https://tools.ietf.org/html/rfc7231#section-3.1.1.5
             .mediaType(MediaType.ApplicationOctetStream)
-            .cookies(cookieStore.cookies)
+            .cookieStorage(cookieStorage)
 
         if let responseBody = httpResponse.body {
             entityBuilder.body(responseBody)

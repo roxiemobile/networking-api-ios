@@ -38,12 +38,12 @@ class CallServerInterceptor: Interceptor {
         var httpError: Error?
 
         // Create session configuration
-        let config = URLSessionConfiguration.ephemeral
+        let config = URLSessionConfiguration.ephemeral.copy() as! URLSessionConfiguration
 
         config.httpAdditionalHeaders = [:]
         config.timeoutIntervalForResource = _options.connectionTimeout
         config.timeoutIntervalForRequest = _options.readTimeout
-        config.httpCookieStorage = (_options.cookieStore as? HTTPCookieStorage)
+        config.httpCookieStorage = _options.cookieStorage
 
         // Send POST request using NSURLSession
         // @link https://stackoverflow.com/a/19101084
@@ -130,7 +130,7 @@ class CallServerInterceptor: Interceptor {
         var connectionTimeout = DefaultRequestTimeoutConfig.shared.connectionTimeout
         var readTimeout = DefaultRequestTimeoutConfig.shared.readTimeout
         var tlsConfig: TlsConfig?
-        var cookieStore: HttpCookieStore?
+        var cookieStorage: HTTPCookieStorage?
     }
 
 // MARK: - Variables
@@ -161,8 +161,8 @@ class CallServerInterceptorBuilder {
         return self
     }
 
-    func cookieStore(_ cookieStore: HttpCookieStore?) -> Self {
-        self.options.cookieStore = cookieStore
+    func cookieStorage(_ cookieStorage: HTTPCookieStorage) -> Self {
+        self.options.cookieStorage = cookieStorage
         return self
     }
 

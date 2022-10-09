@@ -20,7 +20,7 @@ open class BasicResponseEntity<T>: ResponseEntity<T> {
         super.init(
             url: builder.url,
             headers: builder.headers,
-            cookies: builder.cookies,
+            cookieStorage: builder.cookieStorage ?? InMemoryCookieStorage(),
             body: builder.body,
             status: builder.status,
             mediaType: builder.mediaType

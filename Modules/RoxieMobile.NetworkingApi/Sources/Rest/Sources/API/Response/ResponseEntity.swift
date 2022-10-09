@@ -18,10 +18,10 @@ open class ResponseEntity<T>: RequestEntity<T> {
 
 // MARK: - Construction
 
-    init(
+    internal init(
         url: URL?,
         headers: HttpHeaders?,
-        cookies: [HttpCookieProtocol]?,
+        cookieStorage: HTTPCookieStorage,
         body: T?,
         status: HttpStatus?,
         mediaType: MediaType?
@@ -31,7 +31,7 @@ open class ResponseEntity<T>: RequestEntity<T> {
         self.mediaType = mediaType
 
         // Parent processing
-        super.init(url: url, headers: headers, cookies: cookies, body: body)
+        super.init(url: url, headers: headers, cookieStorage: cookieStorage, body: body)
     }
 
 // MARK: - Properties

@@ -17,11 +17,11 @@ open class BasicRequestEntity<T>: RequestEntity<T> {
 
 // MARK: - Construction
 
-    init(builder: BasicRequestEntityBuilder<T>) {
+    internal init(builder: BasicRequestEntityBuilder<T>) {
         super.init(
             url: builder.url,
             headers: builder.headers,
-            cookies: builder.cookies,
+            cookieStorage: builder.cookieStorage ?? InMemoryCookieStorage(),
             body: builder.body
         )
     }
@@ -40,14 +40,14 @@ open class BasicRequestEntityBuilder<T> {
     public init(entity: RequestEntity<T>) {
         self.url = entity.url
         self.headers = entity.headers
-        self.cookies = entity.cookies
+        self.cookieStorage = entity.cookieStorage
         self.body = entity.body
     }
 
     public init<Ti>(entity: RequestEntity<Ti>, body: T?) {
         self.url = entity.url
         self.headers = entity.headers
-        self.cookies = entity.cookies
+        self.cookieStorage = entity.cookieStorage
         self.body = body
     }
 
@@ -57,7 +57,7 @@ open class BasicRequestEntityBuilder<T> {
 
     fileprivate(set) var headers: HttpHeaders?
 
-    fileprivate(set) var cookies: [HttpCookieProtocol]?
+    fileprivate(set) var cookieStorage: HTTPCookieStorage?
 
     fileprivate(set) var body: T?
 
@@ -73,8 +73,15 @@ open class BasicRequestEntityBuilder<T> {
         return self
     }
 
+    @discardableResult
+    open func cookieStorage(_ cookieStorage: HTTPCookieStorage) -> Self {
+        self.cookieStorage = cookieStorage
+        return self
+    }
+
+    @available(*, deprecated, message: "use cookieStorage(_:) instead")
     @discardableResult open func cookies(_ cookies: [HttpCookieProtocol]?) -> Self {
-        self.cookies = cookies
+        self.cookieStorage = InMemoryCookieStorage(cookies: cookies?.compactMap { HTTPCookie($0) } ?? [])
         return self
     }
 
