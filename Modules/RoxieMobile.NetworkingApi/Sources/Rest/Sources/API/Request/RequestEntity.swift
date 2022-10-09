@@ -18,10 +18,10 @@ open class RequestEntity<T> {
 
 // MARK: - Construction
 
-    init(url: URL?, headers: HttpHeaders?, cookies: [HttpCookieProtocol]?, body: T?) {
+    internal init(url: URL?, headers: HttpHeaders?, cookieStorage: HTTPCookieStorage, body: T?) {
         self.url = url
         self.headers = headers
-        self.cookies = cookies
+        self.cookieStorage = cookieStorage
         self.body = body
     }
 
@@ -31,7 +31,7 @@ open class RequestEntity<T> {
 
     public let headers: HttpHeaders?
 
-    public let cookies: [HttpCookieProtocol]?
+    public let cookieStorage: HTTPCookieStorage
 
     public let body: T?
 }
